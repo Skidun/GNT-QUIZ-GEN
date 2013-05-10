@@ -40,7 +40,8 @@
 
 $route['default_controller'] = "dashboard";
 $route['404_override'] = '';
-
-
+//My Routes
+$route['cadastrar-novo-quiz']= "dashboard/create";
+$route['visualizar-todos-quizes']= "dashboard";
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */

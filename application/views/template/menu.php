@@ -5,8 +5,8 @@
 					<li><div class="logo"></div></li>
 					<li><a href="#">quizes</a>
 						<ul class="nav2">
-							<li><a href="#">todos os quizes</a></li>
-							<li><a href="#">novo quiz</a></li>
+							<li><a href="<?php echo site_url('visualizar-todos-quizes');?>">todos os quizes</a></li>
+							<li><a href="<?php echo site_url('cadastrar-novo-quiz');?>">novo quiz</a></li>
 						</ul>
 					</li>
 					<li><a href="#">usuários</a>
