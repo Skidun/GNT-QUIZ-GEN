@@ -74,7 +74,7 @@ class Dashboard extends CI_Controller {
 
 	public function create()
 	{
-		$data['title'] = "Cadastrar Novo Quiz";
+		$data['page_title'] = "Cadastrar Novo Quiz";
 		$this->template->show('create_quiz', $data);
 	}
 
