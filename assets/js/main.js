@@ -138,8 +138,9 @@ $(function(){
 
 	//Editor de Texto
 	////Tamanho da fonte
-	$('.dk_options_inner a').click(function(){
-		$('input[name="itamanho"]').val($(this).text())
+	$('#dk_container_titulo-tamanho a').click(function(){
+		$('input[name="ititulo-tamanho"]').val('font-size:'+$(this).text());
+		$('.preview #nome').css('font-size',$(this).text());
 	});
 	
 });
