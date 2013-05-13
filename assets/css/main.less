@@ -20,7 +20,7 @@
 	font-style: normal;
 }
 
-body { font-size: 14px; line-height: 1.4; font-family:"Trebuchet MS", sans-serif; color:#ffffff; height: 100%; background:#f7f1e9 /*url("../img/backgrounds/bg.jpg") center top no-repeat */;}
+body { font-size: 14px; line-height: 1.4; font-family:"Trebuchet MS", sans-serif; color:#ffffff; height: 100%; background:#f7f1e9 /*url("../img/backgrounds/bg.jpg") center top no-repeat */; position:relative;}
 ::-moz-selection,::selection { background: #b3d4fc; text-shadow: none;}
 
 a{ text-decoration:none; color:#ffffff;}
@@ -186,7 +186,7 @@ fieldset, table, td, p{ margin:0; padding:0; border:0;}
 			.titulo{ font-family: 'Conv_Amaranth-Italic'; font-size:32px; color:#fab02d;}
 		}
 		.body{ background: #fbf8f4; border:1px solid #e6e1da; border-top:0; float:left; width:920px; padding:20px;
-			.preview{ float:right; background:#faab2a; width:620px; position:relative; padding-bottom:59px;
+			.preview{ float:right; background:#faab2a; width:620px;
 				#nome{ font-family: 'Conv_Amaranth-Bold'; font-size:20px; color:#333333; margin: 13px 19px;}
 				#texto{ color:#333333; float:left; width:315px; margin: 0 0 0 20px;
 					.titulo{ font-family: 'Conv_Amaranth'; font-size:24px; letter-spacing: -1px; line-height: 120%;}
@@ -198,7 +198,7 @@ fieldset, table, td, p{ margin:0; padding:0; border:0;}
 					}
 				}
 				#imagem{ width:240px; height:260px; background:#fdd595; overflow:hidden; float:right; border:2px solid #333333; margin: 2px 16px 0 0;}
-				#botoes{ position:absolute; bottom:0; left:0; z-index:2; zoom:1; width:580px; margin:20px;
+				#botoes{ float:left; z-index:2; zoom:1; width:580px; margin:20px;
 					a{ background-color:#cc1e59; color:#ffffff; float:left; width:110px; height:40px; font-family: 'Conv_Amaranth'; font-size:15px; text-align:center; line-height: 270%;
 						&.anterior{ float:left;}
 						&.proximo{ float:right;}
@@ -208,13 +208,20 @@ fieldset, table, td, p{ margin:0; padding:0; border:0;}
 			.editor{ float:left; background:#ffffff; color:#333333; width:280px;
 				.intro{ font-family: 'Conv_Amaranth-Italic'; font-size:24px; width:280px; float:left; border:1px solid #e6e1da; height:56px;
 					p{ margin: 12px 22px; float: left; letter-spacing: -1px;}
-					span{ background:url('../img/icones/accordion2.png') 0 0 no-repeat; width:58px; height:58px; float:right; margin:-1px -1px 0 0;
-						&:hover{ background-position: -58px 0;}
+					&.ui-state-default{
+						span{ background:url('../img/icones/accordion2.png') 0 -58px no-repeat; width:58px; height:58px; float:right; margin:-1px -1px 0 0;
+							&:hover{ background-position: -58px -58px;}
+						}
+					}
+					&.ui-state-active{
+						span{ background:url('../img/icones/accordion2.png') 0 0 no-repeat; width:58px; height:58px; float:right; margin:-1px -1px 0 0;
+							&:hover{ background-position: -58px 0;}
+						}
 					}
 				}
 				.content{ width:240px; padding: 13px 20px; float:left;  border:1px solid #e6e1da; border-top:0; border-bottom:0;
 					p{ font-size:18px; display:block; clear:both;
-						&.alinha{ margin:17px 0 4px 0;}
+						&.alinha{ margin:17px 0 4px 0; float: left; width: 100%;}
 					}
 					.input-picker{background: url("../img/backgrounds/input-novo.png") repeat-x 0 0 transparent; border-left: 1px solid #E6E1DA; border-radius:6px; display: inline-block;
 						input{ background-color:transparent !important; color:#333333!important; font-family:"Trebuchet MS", sans-serif!important; font-size:15px!important; font-style: italic; margin:9px 0 0 10px; width: 63px;}

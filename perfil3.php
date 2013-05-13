@@ -21,6 +21,8 @@
 					</div>
 					<div class="body">
 						<div class="editor">
+						
+							<!--Título do quiz-->
 							<div class="intro">
 								<p>Título do quiz</p>
 								<span class="arrow"></span>
@@ -40,7 +42,7 @@
 								<div class="input-picker"><input id="titulo-cor" type="text" value="333333" /></div>
 								<!--Alinhamento:-->
 								<p class="alinha">Alinhamento:</p>
-								<div class="titulo-alinhamento">
+								<div id="alinha-inner" class="titulo-alinhamento">
 									<div id="left" class="ativo"></div>
 									<div id="center"></div>
 									<div id="right"></div>
@@ -49,6 +51,8 @@
 								<!--passa o valor Alinhamento escondido-->
 								<input name="ititulo-alinhamento" type="hidden" value="text-align:left;" />
 							</div>
+							
+							<!--Perguntas-->
 							<div class="intro">
 								<p>Perguntas</p>
 								<span class="arrow"></span>
@@ -125,17 +129,46 @@
 								<input name="irespostas-tamanho" type="hidden" value="font-size:24px;" />
 								<!--Cor da fonte:-->
 								<p>Cor da fonte:</p>
-								<div class="input-picker"><input id="referencia-cor" type="text" value="333333" /></div>
+								<div class="input-picker"><input id="respostas-cor" type="text" value="333333" /></div>
 								<!--Alinhamento:-->
 								<p class="alinha">Alinhamento:</p>
-								<div id="alinha-inner" class="referencia-alinhamento">
+								<div id="alinha-inner" class="respostas-alinhamento">
 									<div id="left" class="ativo"></div>
 									<div id="center"></div>
 									<div id="right"></div>
 									<div id="justify"></div>
 								</div>
 								<!--passa o valor Alinhamento escondido-->
-								<input name="iperguntas-alinhamento" type="hidden" value="text-align:left;" />
+								<input name="irespostas-alinhamento" type="hidden" value="text-align:left;" />
+								<!--Cor de fundo:-->
+								<p class="alinha">Cor de fundo:</p>
+								<div class="input-picker"><input id="respostas-cor-fundo" type="text" value="" /></div>
+							</div>
+							
+							<!--Botões-->
+							<div class="intro">
+								<p>Botões</p>
+								<span class="arrow"></span>
+							</div>
+							<div class="content">
+								<!--Cor da fonte:-->
+								<p>Cor da fonte:</p>
+								<div class="input-picker"><input id="botoes-cor" type="text" value="333333" /></div>
+								<!--Cor de fundo:-->
+								<p>Cor de fundo:</p>
+								<div class="input-picker"><input id="botoes-cor-fundo" type="text" value="" /></div>
+							</div>
+							
+							<!--Imagem de fundo-->
+							<div class="intro">
+								<p>Imagem de fundo</p>
+								<span class="arrow"></span>
+							</div>
+							<div class="content">
+								<!--Imagem:-->
+								<!--Cor de fundo:-->
+								<p>Cor de fundo:</p>
+								<div class="input-picker"><input id="imagem-cor-fundo" type="text" value="" /></div>
 							</div>
 							
 						</div>
@@ -167,8 +200,8 @@
 								<img id="alvo" src="assets/img/backgrounds/imagem2.png" />
 							</div>
 							<div id="botoes">
-								<a href="#" class="anterior" title="Anterior">&raquo; Anterior</a>
-								<a href="#" class="proximo" title="Próximo">Próximo &laquo;</a>
+								<a href="#" class="anterior" title="Anterior">&laquo; Anterior</a>
+								<a href="#" class="proximo" title="Próximo">Próximo &raquo;</a>
 							</div>
 						</div>
 					</div>

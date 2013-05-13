@@ -137,6 +137,8 @@ $(function(){
 	});
 
 	//Editor de Texto
+	////Accordion
+	$('.editor').accordion({ header: ".intro" , icons: false , heightStyle:"content" });
 	////Tamanho da fonte
 	$('#dk_container_titulo-tamanho a').click(function(){
 		$('input[name="ititulo-tamanho"]').val('font-size:'+$(this).text()+';');
@@ -156,6 +158,7 @@ $(function(){
 	});
 	////JPicker
 	$('#titulo-cor').jPicker({
+		window:{ position:{ x: 'screenCenter' , y: ($(this).offset.top - $(window).scrollTop()) + $(this).height() } },
 		images:{clientPath: 'assets/img/jpicker/'}
 	},
 		function(color, context)
@@ -166,6 +169,7 @@ $(function(){
 			}
 	);
 	$('#perguntas-cor').jPicker({
+		window:{ position:{ x: 'screenCenter' , y: ($(this).offset.top - $(window).scrollTop()) + $(this).height() } },
 		images:{clientPath: 'assets/img/jpicker/'}
 	},
 		function(color, context)
@@ -176,12 +180,68 @@ $(function(){
 			}
 	);
 	$('#referencia-cor').jPicker({
+		window:{ position:{ x: 'screenCenter' , y: ($(this).offset.top - $(window).scrollTop()) + $(this).height() } },
 		images:{clientPath: 'assets/img/jpicker/'}
 	},
 		function(color, context)
 			{
 			var all = color.val('all');
 			$('.preview .subtitulo a').css('color','#'+all.hex);
+			$(this).css('background-color','transparent');
+			}
+	);
+	$('#botoes-cor').jPicker({
+		window:{ position:{ x: 'screenCenter' , y: ($(this).offset.top - $(window).scrollTop()) + $(this).height() } },
+		images:{clientPath: 'assets/img/jpicker/'}
+	},
+		function(color, context)
+			{
+			var all = color.val('all');
+			$('#botoes a').css('color','#'+all.hex);
+			$(this).css('background-color','transparent');
+			}
+	);
+	$('#botoes-cor-fundo').jPicker({
+		window:{ position:{ x: 'screenCenter' , y: ($(this).offset.top - $(window).scrollTop()) + $(this).height() } },
+		images:{clientPath: 'assets/img/jpicker/'}
+	},
+		function(color, context)
+			{
+			var all = color.val('all');
+			$('#botoes a').css('background-color','#'+all.hex);
+			$(this).css('background-color','transparent');
+			}
+	);
+	$('#respostas-cor').jPicker({
+		window:{ position:{ x: 'screenCenter' , y: ($(this).offset.top - $(window).scrollTop()) + $(this).height() } },
+		images:{clientPath: 'assets/img/jpicker/'}
+	},
+		function(color, context)
+			{
+			var all = color.val('all');
+			$('.preview .respostas').css('color','#'+all.hex);
+			$(this).css('background-color','transparent');
+			}
+	);
+	$('#respostas-cor-fundo').jPicker({
+		window:{ position:{ x: 'screenCenter' , y: ($(this).offset.top - $(window).scrollTop()) + $(this).height() } },
+		images:{clientPath: 'assets/img/jpicker/'}
+	},
+		function(color, context)
+			{
+			var all = color.val('all');
+			$('.preview .respostas').css('background-color','#'+all.hex);
+			$(this).css('background-color','transparent');
+			}
+	);
+	$('#imagem-cor-fundo').jPicker({
+		window:{ position:{ x: 'screenCenter' , y: ($(this).offset.top - $(window).scrollTop()) + $(this).height() } },
+		images:{clientPath: 'assets/img/jpicker/'}
+	},
+		function(color, context)
+			{
+			var all = color.val('all');
+			$('.preview #imagem').css('background-color','#'+all.hex);
 			$(this).css('background-color','transparent');
 			}
 	);
@@ -203,6 +263,12 @@ $(function(){
 		$(this).addClass('ativo');
 		$('input[name="ireferencia-alinhamento"]').val('text-align:'+this.id+';');
 		$('.preview .subtitulo').css('text-align',this.id);
+	});
+	$('.respostas-alinhamento div').click(function(){
+		$(this).siblings().removeClass('ativo');
+		$(this).addClass('ativo');
+		$('input[name="irespostas-alinhamento"]').val('text-align:'+this.id+';');
+		$('.preview .respostas').css('text-align',this.id);
 	});
 	
 });

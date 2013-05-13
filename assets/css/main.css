@@ -26,6 +26,7 @@ body {
   color: #ffffff;
   height: 100%;
   background: #f7f1e9 /*url("../img/backgrounds/bg.jpg") center top no-repeat */;
+  position: relative;
 }
 ::-moz-selection,
 ::selection {
@@ -641,8 +642,6 @@ p {
   float: right;
   background: #faab2a;
   width: 620px;
-  position: relative;
-  padding-bottom: 59px;
 }
 #conteudo .item .body .preview #nome {
   font-family: 'Conv_Amaranth-Bold';
@@ -690,9 +689,7 @@ p {
   margin: 2px 16px 0 0;
 }
 #conteudo .item .body .preview #botoes {
-  position: absolute;
-  bottom: 0;
-  left: 0;
+  float: left;
   z-index: 2;
   zoom: 1;
   width: 580px;
@@ -734,14 +731,24 @@ p {
   float: left;
   letter-spacing: -1px;
 }
-#conteudo .item .body .editor .intro span {
+#conteudo .item .body .editor .intro.ui-state-default span {
+  background: url('../img/icones/accordion2.png') 0 -58px no-repeat;
+  width: 58px;
+  height: 58px;
+  float: right;
+  margin: -1px -1px 0 0;
+}
+#conteudo .item .body .editor .intro.ui-state-default span:hover {
+  background-position: -58px -58px;
+}
+#conteudo .item .body .editor .intro.ui-state-active span {
   background: url('../img/icones/accordion2.png') 0 0 no-repeat;
   width: 58px;
   height: 58px;
   float: right;
   margin: -1px -1px 0 0;
 }
-#conteudo .item .body .editor .intro span:hover {
+#conteudo .item .body .editor .intro.ui-state-active span:hover {
   background-position: -58px 0;
 }
 #conteudo .item .body .editor .content {
@@ -759,6 +766,8 @@ p {
 }
 #conteudo .item .body .editor .content p.alinha {
   margin: 17px 0 4px 0;
+  float: left;
+  width: 100%;
 }
 #conteudo .item .body .editor .content .input-picker {
   background: url("../img/backgrounds/input-novo.png") repeat-x 0 0 transparent;
