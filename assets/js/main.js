@@ -139,8 +139,25 @@ $(function(){
 	//Editor de Texto
 	////Tamanho da fonte
 	$('#dk_container_titulo-tamanho a').click(function(){
-		$('input[name="ititulo-tamanho"]').val('font-size:'+$(this).text());
+		$('input[name="ititulo-tamanho"]').val('font-size:'+$(this).text()+';');
 		$('.preview #nome').css('font-size',$(this).text());
+	});
+	////JPicker
+	$('#titulo-cor').jPicker({
+		images:{clientPath: 'assets/img/jpicker/'}
+	},
+		function(color, context)
+			{
+			var all = color.val('all');
+			$('.preview #nome').css('color','#'+all.hex);
+			}
+	);
+	////Alinhamento
+	$('.titulo-alinhamento div').click(function(){
+		$(this).siblings().removeClass('ativo');
+		$(this).addClass('ativo');
+		$('input[name="ititulo-alinhamento"]').val('text-align:'+this.id+';');
+		$('.preview #nome').css('text-align',this.id);
 	});
 	
 });

@@ -729,6 +729,44 @@ p {
   display: block;
   clear: both;
 }
+#conteudo .item .body .editor .content .titulo-alinhamento {
+  display: block;
+  clear: both;
+}
+#conteudo .item .body .editor .content .titulo-alinhamento div {
+  width: 38px;
+  height: 38px;
+  float: left;
+  background: url("../img/icones/alinhamento.png") 0 0 no-repeat;
+  cursor: pointer;
+}
+#conteudo .item .body .editor .content .titulo-alinhamento div#left {
+  background-position: 0 0;
+}
+#conteudo .item .body .editor .content .titulo-alinhamento div#left.ativo {
+  background-position: 0 -38px;
+}
+#conteudo .item .body .editor .content .titulo-alinhamento div#center {
+  background-position: -38px 0;
+  width: 37px;
+}
+#conteudo .item .body .editor .content .titulo-alinhamento div#center.ativo {
+  background-position: -38px -38px;
+}
+#conteudo .item .body .editor .content .titulo-alinhamento div#right {
+  background-position: -75px 0;
+  width: 37px;
+}
+#conteudo .item .body .editor .content .titulo-alinhamento div#right.ativo {
+  background-position: -75px -38px;
+}
+#conteudo .item .body .editor .content .titulo-alinhamento div#justify {
+  background-position: -112px 0;
+  width: 37px;
+}
+#conteudo .item .body .editor .content .titulo-alinhamento div#justify.ativo {
+  background-position: -112px -38px;
+}
 #accordion,
 #accordion2 {
   margin-top: 9px;

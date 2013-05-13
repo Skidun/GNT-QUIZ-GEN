@@ -31,10 +31,20 @@
 									<option value="22px">22px</option>
 								</select>
 								<!--passa o valor Tamanho da fonte escondido-->
-								<input name="ititulo-tamanho" type="hidden" value="" />
+								<input name="ititulo-tamanho" type="hidden" value="font-size:20px;" />
 								<!--Cor da fonte:-->
 								<p>Cor da fonte:</p>
-								
+								<div class="input-picker"><input id="titulo-cor" type="text" value="333333" /></div>
+								<!--Alinhamento:-->
+								<p>Alinhamento:</p>
+								<div class="titulo-alinhamento">
+									<div id="left" class="ativo"></div>
+									<div id="center"></div>
+									<div id="right"></div>
+									<div id="justify"></div>
+								</div>
+								<!--passa o valor Alinhamento escondido-->
+								<input name="ititulo-alinhamento" type="hidden" value="text-align:left;" />
 							</div>
 						</div>
 						<div class="preview">
