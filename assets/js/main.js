@@ -81,8 +81,6 @@ $(function(){
 	});
 
 	//calcula quantos sortables tem e carrega
-
-
 			$("#sortable1,#sortable2").sortable();
 
 	
@@ -107,20 +105,27 @@ $(function(){
 	});
 	
 	//Perguntas e Respostas
-	$('.nova-resposta').on('click',function(){
-		var selectName = $(this).parent().find('.header:last select').attr('name');
-		$(this).parent().find('.sorteia').append('<div class="header"><span class="icon"></span><div class="input"><input type="text" name="nome" value="" size=""/></div><select name="'+selectName+'1" class="default"><option value="1">Amiga de todos</option><option value="2">Pegadora</option><option value="3">Amiga de todos</option><option value="4">Pegadora</option></select></div>');
+	$(document).on('click','.nova-resposta',function(){
+		//gera uma combinacao unica de numero para o novo select[name], assim não dá conflito
+		//por exemplo, resposta-21, é o select do grupo 2(#sortable2) e o segundo select desse grupo
+		var respostaNumero = $(this).parent().find('.sorteia').attr('id').slice(-1);
+		alert(respostaNumero);
+		var grupoNumero = $(this).parent().find(".header").length;
+		$(this).parent().find('.sorteia').append('<div class="header"><span class="icon"></span><div class="input"><input type="text" name="nome" value="" size=""/></div><select name="resposta-'+respostaNumero+grupoNumero+'" class="default"><option value="1">Amiga de todos</option><option value="2">Pegadora</option><option value="3">Amiga de todos</option><option value="4">Pegadora</option></select></div>');
 		//coloca o novo select no esquema
 		$('.default').dropkick();
 		return false;
 	});
 	
-	$('.nova-pergunta').click(function(){
-		var selectName = $(this).parent().find('.header:last select').attr('name');		
-		$("#accordion2").append('<div class="group"><div class="header"><span class="icon"></span><div class="input"><input type="text" name="nome" value="" size=""/></div><span class="arrow"></span></div><div class="body"><div id="perguntas"><div class="texto"><label for="link">Link de referência:</label><div class="input"><input type="text" name="link" value="" size=""/></div><label for="texto">Texto do link de referência:</label><div class="input"><input type="text" name="texto" value="" size=""/></div></div><div class="imagem"><label for="imagem">Imagem relacionada:<span>Dimensões: 240px x 260px</span></label><div class="quadro"><img id="alvo" src="assets/img/backgrounds/imagem.png"/></div><form id="fileupload" action="assets/server/php/" method="POST" enctype="multipart/form-data"><span class="btn btn-success fileinput-button"><input id="file" type="file"/></span></form></div></div><div id="respostas"><div class="titulo-respostas">Respostas:</div><div id="sortable'+($(".group").length+1)+'" class="sorteia"><div class="header"><span class="icon"></span><div class="input"><input type="text" name="nome" value="" size=""/></div><select name="'+selectName+'1" class="default"><option value="1">Amiga de todos</option><option value="2">Pegadora</option><option value="3">Amiga de todos</option><option value="4">Pegadora</option></select></div></div><a class="nova-resposta" href="javascript:void(0)"></a></div></div></div>');
+	$(document).on('click','.nova-pergunta',function(){
+		//gera uma combinacao unica de numero para o novo select[name], assim não dá conflito
+		//por exemplo, resposta-21, é o select do grupo 2(#sortable2) e o segundo select desse grupo
+		$("#accordion2").append('<div class="group"><div class="header"><span class="icon"></span><div class="input"><input type="text" name="nome" value="" size=""/></div><span class="arrow"></span></div><div class="body"><div id="perguntas"><div class="texto"><label for="link">Link de referência:</label><div class="input"><input type="text" name="link" value="" size=""/></div><label for="texto">Texto do link de referência:</label><div class="input"><input type="text" name="texto" value="" size=""/></div></div><div class="imagem"><label for="imagem">Imagem relacionada:<span>Dimensões: 240px x 260px</span></label><div class="quadro"><img id="alvo" src="assets/img/backgrounds/imagem.png"/></div><form id="fileupload" action="assets/server/php/" method="POST" enctype="multipart/form-data"><span class="btn btn-success fileinput-button"><input id="file" type="file"/></span></form></div></div><div id="respostas"><div class="titulo-respostas">Respostas:</div><div id="sortable'+($(".group").length+1)+'" class="sorteia"><div class="header"><span class="icon"></span><div class="input"><input type="text" name="nome" value="" size=""/></div><select name="resposta-'+($(".group").length+1)+'0" class="default"><option value="1">Amiga de todos</option><option value="2">Pegadora</option><option value="3">Amiga de todos</option><option value="4">Pegadora</option></select></div></div><a class="nova-resposta" href="javascript:void(0)"></a></div></div></div>');
 		//coloca o novo elemento de accordion no esquema
 		$("#accordion2").accordion('destroy').sortable('destroy');
-		$("#accordion2").accordion({active:$("#accordion2 .group").length-1,header:"> div > .header"}).sortable({axis:"y",handle:".header",stop:function(event,ui){ui.item.children(".header").triggerHandler("focusout")}});;
+		$("#accordion2").accordion({active:$("#accordion2 .group").length-1,header:"> div > .header"}).sortable({axis:"y",handle:".header",stop:function(event,ui){ui.item.children(".header").triggerHandler("focusout")}});
+		//coloca o novo select no esquema
+		$('.default').dropkick();
 		//calcula quantos sortables tem e carrega
 		var length = $(".group").length;
 		for( i=0; i < length; i++){
@@ -131,5 +136,10 @@ $(function(){
 		return false;
 	});
 
+	//Editor de Texto
+	////Tamanho da fonte
+	$('.dk_options_inner a').click(function(){
+		$('input[name="itamanho"]').val($(this).text())
+	});
 	
 });
