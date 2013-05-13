@@ -716,18 +716,18 @@ p {
 }
 #conteudo .item .body .editor {
   float: left;
-}
-#conteudo .item .body .editor #ed {
   background: #ffffff;
   border: 1px solid #e6e1da;
   color: #333333;
 }
-#conteudo .item .body .editor #ed .intro {
+#conteudo .item .body .editor .intro {
   font-family: 'Conv_Amaranth-Italic';
   font-size: 23px;
 }
-#conteudo .item .body .editor #ed .content {
+#conteudo .item .body .editor .content p {
   font-size: 18px;
+  display: block;
+  clear: both;
 }
 #accordion,
 #accordion2 {
