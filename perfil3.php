@@ -3,7 +3,7 @@
 		
 		<?php require_once('topo-dois.php'); ?>
 		
-		<div id="conteudo" class="perfil2">
+		<div id="conteudo">
 			<div id="wrap">
 			
 				<div class="nav-perfil">
@@ -20,11 +20,28 @@
 						<div class="titulo">Perguntas e respostas</div>
 					</div>
 					<div class="body">
+						<div class="editor">
+							<div class="intro">Título do quiz</div>
+							<div class="content">
+								<!--Tamanho da fonte-->
+								<p>Tamanho da fonte:</p>
+								<select name="titulo-tamanho" class="default">
+									<option value="18px">18px</option>
+									<option value="20px" selected="selected">20px</option>
+									<option value="22px">22px</option>
+								</select>
+								<!--passa o valor Tamanho da fonte escondido-->
+								<input name="ititulo-tamanho" type="hidden" value="" />
+								<!--Cor da fonte:-->
+								<p>Cor da fonte:</p>
+								
+							</div>
+						</div>
 						<div class="preview">
 							<div id="nome">Que tipo de solteira você é?</div>
 							<div id="texto">
-								<div class="titulo"></div>
-								<div class="subtitulo"></div>
+								<div class="titulo">Chegou o fim de semana e você:</div>
+								<div class="subtitulo"><a href="#">Texto do link de referência.</a></div>
 								<table class="respostas">
 									<tr>
 										<td><input type="radio" name="resposta" value="0" /></td>
