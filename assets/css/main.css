@@ -634,7 +634,8 @@ p {
   border: 1px solid #e6e1da;
   border-top: 0;
   float: left;
-  width: 100%;
+  width: 920px;
+  padding: 20px;
 }
 #conteudo .item .body .preview {
   float: right;
@@ -717,54 +718,102 @@ p {
 #conteudo .item .body .editor {
   float: left;
   background: #ffffff;
-  border: 1px solid #e6e1da;
   color: #333333;
+  width: 280px;
 }
 #conteudo .item .body .editor .intro {
   font-family: 'Conv_Amaranth-Italic';
-  font-size: 23px;
+  font-size: 24px;
+  width: 280px;
+  float: left;
+  border: 1px solid #e6e1da;
+  height: 56px;
+}
+#conteudo .item .body .editor .intro p {
+  margin: 12px 22px;
+  float: left;
+  letter-spacing: -1px;
+}
+#conteudo .item .body .editor .intro span {
+  background: url('../img/icones/accordion2.png') 0 0 no-repeat;
+  width: 58px;
+  height: 58px;
+  float: right;
+  margin: -1px -1px 0 0;
+}
+#conteudo .item .body .editor .intro span:hover {
+  background-position: -58px 0;
+}
+#conteudo .item .body .editor .content {
+  width: 240px;
+  padding: 13px 20px;
+  float: left;
+  border: 1px solid #e6e1da;
+  border-top: 0;
+  border-bottom: 0;
 }
 #conteudo .item .body .editor .content p {
   font-size: 18px;
   display: block;
   clear: both;
 }
-#conteudo .item .body .editor .content .titulo-alinhamento {
+#conteudo .item .body .editor .content p.alinha {
+  margin: 17px 0 4px 0;
+}
+#conteudo .item .body .editor .content .input-picker {
+  background: url("../img/backgrounds/input-novo.png") repeat-x 0 0 transparent;
+  border-left: 1px solid #E6E1DA;
+  border-radius: 6px;
+  display: inline-block;
+}
+#conteudo .item .body .editor .content .input-picker input {
+  background-color: transparent !important;
+  color: #333333!important;
+  font-family: "Trebuchet MS", sans-serif !important;
+  font-size: 15px!important;
+  font-style: italic;
+  margin: 9px 0 0 10px;
+  width: 63px;
+}
+#conteudo .item .body .editor .content .input-picker .jPicker {
+  float: right;
+}
+#conteudo .item .body .editor .content #alinha-inner {
   display: block;
   clear: both;
 }
-#conteudo .item .body .editor .content .titulo-alinhamento div {
+#conteudo .item .body .editor .content #alinha-inner div {
   width: 38px;
   height: 38px;
   float: left;
   background: url("../img/icones/alinhamento.png") 0 0 no-repeat;
   cursor: pointer;
 }
-#conteudo .item .body .editor .content .titulo-alinhamento div#left {
+#conteudo .item .body .editor .content #alinha-inner div#left {
   background-position: 0 0;
 }
-#conteudo .item .body .editor .content .titulo-alinhamento div#left.ativo {
+#conteudo .item .body .editor .content #alinha-inner div#left.ativo {
   background-position: 0 -38px;
 }
-#conteudo .item .body .editor .content .titulo-alinhamento div#center {
+#conteudo .item .body .editor .content #alinha-inner div#center {
   background-position: -38px 0;
   width: 37px;
 }
-#conteudo .item .body .editor .content .titulo-alinhamento div#center.ativo {
+#conteudo .item .body .editor .content #alinha-inner div#center.ativo {
   background-position: -38px -38px;
 }
-#conteudo .item .body .editor .content .titulo-alinhamento div#right {
+#conteudo .item .body .editor .content #alinha-inner div#right {
   background-position: -75px 0;
   width: 37px;
 }
-#conteudo .item .body .editor .content .titulo-alinhamento div#right.ativo {
+#conteudo .item .body .editor .content #alinha-inner div#right.ativo {
   background-position: -75px -38px;
 }
-#conteudo .item .body .editor .content .titulo-alinhamento div#justify {
+#conteudo .item .body .editor .content #alinha-inner div#justify {
   background-position: -112px 0;
   width: 37px;
 }
-#conteudo .item .body .editor .content .titulo-alinhamento div#justify.ativo {
+#conteudo .item .body .editor .content #alinha-inner div#justify.ativo {
   background-position: -112px -38px;
 }
 #accordion,

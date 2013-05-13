@@ -185,7 +185,7 @@ fieldset, table, td, p{ margin:0; padding:0; border:0;}
 		.header{ float:left; width:100%;
 			.titulo{ font-family: 'Conv_Amaranth-Italic'; font-size:32px; color:#fab02d;}
 		}
-		.body{ background: #fbf8f4; border:1px solid #e6e1da; border-top:0; float:left; width:100%;
+		.body{ background: #fbf8f4; border:1px solid #e6e1da; border-top:0; float:left; width:920px; padding:20px;
 			.preview{ float:right; background:#faab2a; width:620px; position:relative; padding-bottom:59px;
 				#nome{ font-family: 'Conv_Amaranth-Bold'; font-size:20px; color:#333333; margin: 13px 19px;}
 				#texto{ color:#333333; float:left; width:315px; margin: 0 0 0 20px;
@@ -205,12 +205,22 @@ fieldset, table, td, p{ margin:0; padding:0; border:0;}
 					}
 				}
 			}
-			.editor{ float:left; background:#ffffff; border:1px solid #e6e1da; color:#333333;
-				.intro{ font-family: 'Conv_Amaranth-Italic'; font-size:23px;}
-				.content{
-					p{ font-size:18px; display:block; clear:both;}
-					.input-picker{}
-					.titulo-alinhamento{ display:block; clear:both;
+			.editor{ float:left; background:#ffffff; color:#333333; width:280px;
+				.intro{ font-family: 'Conv_Amaranth-Italic'; font-size:24px; width:280px; float:left; border:1px solid #e6e1da; height:56px;
+					p{ margin: 12px 22px; float: left; letter-spacing: -1px;}
+					span{ background:url('../img/icones/accordion2.png') 0 0 no-repeat; width:58px; height:58px; float:right; margin:-1px -1px 0 0;
+						&:hover{ background-position: -58px 0;}
+					}
+				}
+				.content{ width:240px; padding: 13px 20px; float:left;  border:1px solid #e6e1da; border-top:0; border-bottom:0;
+					p{ font-size:18px; display:block; clear:both;
+						&.alinha{ margin:17px 0 4px 0;}
+					}
+					.input-picker{background: url("../img/backgrounds/input-novo.png") repeat-x 0 0 transparent; border-left: 1px solid #E6E1DA; border-radius:6px; display: inline-block;
+						input{ background-color:transparent !important; color:#333333!important; font-family:"Trebuchet MS", sans-serif!important; font-size:15px!important; font-style: italic; margin:9px 0 0 10px; width: 63px;}
+						.jPicker{ float:right;}						
+					}
+					#alinha-inner{ display:block; clear:both;
 						div{ width:38px; height:38px; float:left; background:url("../img/icones/alinhamento.png") 0 0 no-repeat; cursor:pointer;
 							&#left{ background-position:0 0; &.ativo{ background-position:0 -38px;}}
 							&#center{ background-position:-38px 0; width:37px; &.ativo{ background-position:-38px -38px;}}

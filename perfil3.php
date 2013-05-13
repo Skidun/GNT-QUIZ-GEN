@@ -21,7 +21,10 @@
 					</div>
 					<div class="body">
 						<div class="editor">
-							<div class="intro">Título do quiz</div>
+							<div class="intro">
+								<p>Título do quiz</p>
+								<span class="arrow"></span>
+							</div>
 							<div class="content">
 								<!--Tamanho da fonte-->
 								<p>Tamanho da fonte:</p>
@@ -36,7 +39,7 @@
 								<p>Cor da fonte:</p>
 								<div class="input-picker"><input id="titulo-cor" type="text" value="333333" /></div>
 								<!--Alinhamento:-->
-								<p>Alinhamento:</p>
+								<p class="alinha">Alinhamento:</p>
 								<div class="titulo-alinhamento">
 									<div id="left" class="ativo"></div>
 									<div id="center"></div>
@@ -46,6 +49,95 @@
 								<!--passa o valor Alinhamento escondido-->
 								<input name="ititulo-alinhamento" type="hidden" value="text-align:left;" />
 							</div>
+							<div class="intro">
+								<p>Perguntas</p>
+								<span class="arrow"></span>
+							</div>
+							<div class="content">
+								<!--Tamanho da fonte-->
+								<p>Tamanho da fonte:</p>
+								<select name="perguntas-tamanho" class="default">
+									<option value="22px">22px</option>
+									<option value="24px" selected="selected">24px</option>
+									<option value="26px">26px</option>
+								</select>
+								<!--passa o valor Tamanho da fonte escondido-->
+								<input name="iperguntas-tamanho" type="hidden" value="font-size:24px;" />
+								<!--Cor da fonte:-->
+								<p>Cor da fonte:</p>
+								<div class="input-picker"><input id="perguntas-cor" type="text" value="333333" /></div>
+								<!--Alinhamento:-->
+								<p class="alinha">Alinhamento:</p>
+								<div id="alinha-inner" class="perguntas-alinhamento">
+									<div id="left" class="ativo"></div>
+									<div id="center"></div>
+									<div id="right"></div>
+									<div id="justify"></div>
+								</div>
+								<!--passa o valor Alinhamento escondido-->
+								<input name="iperguntas-alinhamento" type="hidden" value="text-align:left;" />
+							</div>
+							
+							<!--Link de referência-->
+							<div class="intro">
+								<p>Link de referência</p>
+								<span class="arrow"></span>
+							</div>
+							<div class="content">
+								<!--Tamanho da fonte-->
+								<p>Tamanho da fonte:</p>
+								<select name="referencia-tamanho" class="default">
+									<option value="14px">14px</option>
+									<option value="16px" selected="selected">16px</option>
+									<option value="18px">18px</option>
+								</select>
+								<!--passa o valor Tamanho da fonte escondido-->
+								<input name="ireferencia-tamanho" type="hidden" value="font-size:24px;" />
+								<!--Cor da fonte:-->
+								<p>Cor da fonte:</p>
+								<div class="input-picker"><input id="referencia-cor" type="text" value="333333" /></div>
+								<!--Alinhamento:-->
+								<p class="alinha">Alinhamento:</p>
+								<div id="alinha-inner" class="referencia-alinhamento">
+									<div id="left" class="ativo"></div>
+									<div id="center"></div>
+									<div id="right"></div>
+									<div id="justify"></div>
+								</div>
+								<!--passa o valor Alinhamento escondido-->
+								<input name="iperguntas-alinhamento" type="hidden" value="text-align:left;" />
+							</div>
+							
+							<!--Respostas-->
+							<div class="intro">
+								<p>Respostas</p>
+								<span class="arrow"></span>
+							</div>
+							<div class="content">
+								<!--Tamanho da fonte-->
+								<p>Tamanho da fonte:</p>
+								<select name="respostas-tamanho" class="default">
+									<option value="13px">13px</option>
+									<option value="15px" selected="selected">15px</option>
+									<option value="17px">17px</option>
+								</select>
+								<!--passa o valor Tamanho da fonte escondido-->
+								<input name="irespostas-tamanho" type="hidden" value="font-size:24px;" />
+								<!--Cor da fonte:-->
+								<p>Cor da fonte:</p>
+								<div class="input-picker"><input id="referencia-cor" type="text" value="333333" /></div>
+								<!--Alinhamento:-->
+								<p class="alinha">Alinhamento:</p>
+								<div id="alinha-inner" class="referencia-alinhamento">
+									<div id="left" class="ativo"></div>
+									<div id="center"></div>
+									<div id="right"></div>
+									<div id="justify"></div>
+								</div>
+								<!--passa o valor Alinhamento escondido-->
+								<input name="iperguntas-alinhamento" type="hidden" value="text-align:left;" />
+							</div>
+							
 						</div>
 						<div class="preview">
 							<div id="nome">Que tipo de solteira você é?</div>

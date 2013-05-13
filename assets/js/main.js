@@ -14,7 +14,7 @@ $(function(){
 	
 	//Borda Arredondada no IE
 	if (window.PIE) {
-			$('.nav2 , .input , .dk_options_inner , .dk_container , .dk_toggle').each(function() {
+			$('.nav2 , .input , .dk_options_inner , .dk_container , .dk_toggle , .input-picker').each(function() {
 				PIE.attach(this);
 			});
 		}
@@ -142,6 +142,18 @@ $(function(){
 		$('input[name="ititulo-tamanho"]').val('font-size:'+$(this).text()+';');
 		$('.preview #nome').css('font-size',$(this).text());
 	});
+	$('#dk_container_perguntas-tamanho a').click(function(){
+		$('input[name="iperguntas-tamanho"]').val('font-size:'+$(this).text()+';');
+		$('.preview .titulo').css('font-size',$(this).text());
+	});
+	$('#dk_container_referencia-tamanho a').click(function(){
+		$('input[name="ireferencia-tamanho"]').val('font-size:'+$(this).text()+';');
+		$('.preview .subtitulo a').css('font-size',$(this).text());
+	});
+	$('#dk_container_respostas-tamanho a').click(function(){
+		$('input[name="irespostas-tamanho"]').val('font-size:'+$(this).text()+';');
+		$('.preview .respostas').css('font-size',$(this).text());
+	});
 	////JPicker
 	$('#titulo-cor').jPicker({
 		images:{clientPath: 'assets/img/jpicker/'}
@@ -150,6 +162,27 @@ $(function(){
 			{
 			var all = color.val('all');
 			$('.preview #nome').css('color','#'+all.hex);
+			$(this).css('background-color','transparent');
+			}
+	);
+	$('#perguntas-cor').jPicker({
+		images:{clientPath: 'assets/img/jpicker/'}
+	},
+		function(color, context)
+			{
+			var all = color.val('all');
+			$('.preview .titulo').css('color','#'+all.hex);
+			$(this).css('background-color','transparent');
+			}
+	);
+	$('#referencia-cor').jPicker({
+		images:{clientPath: 'assets/img/jpicker/'}
+	},
+		function(color, context)
+			{
+			var all = color.val('all');
+			$('.preview .subtitulo a').css('color','#'+all.hex);
+			$(this).css('background-color','transparent');
 			}
 	);
 	////Alinhamento
@@ -158,6 +191,18 @@ $(function(){
 		$(this).addClass('ativo');
 		$('input[name="ititulo-alinhamento"]').val('text-align:'+this.id+';');
 		$('.preview #nome').css('text-align',this.id);
+	});
+	$('.perguntas-alinhamento div').click(function(){
+		$(this).siblings().removeClass('ativo');
+		$(this).addClass('ativo');
+		$('input[name="iperguntas-alinhamento"]').val('text-align:'+this.id+';');
+		$('.preview .titulo').css('text-align',this.id);
+	});
+	$('.referencia-alinhamento div').click(function(){
+		$(this).siblings().removeClass('ativo');
+		$(this).addClass('ativo');
+		$('input[name="ireferencia-alinhamento"]').val('text-align:'+this.id+';');
+		$('.preview .subtitulo').css('text-align',this.id);
 	});
 	
 });
