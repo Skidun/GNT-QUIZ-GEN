@@ -95,6 +95,16 @@ $(function(){
             });
         }
     });
+	$('#fileupload-perfil-customiza')
+   .fileupload({
+        url: 'assets/server/php/',
+        dataType: 'json',
+        done: function (e, data) {			
+            $.each(data.result.files, function (index, file) {
+				$('img#alvo-perguntas').attr('src','assets/server/php/files/'+file.name);
+            });
+        }
+    });
 			
 	//Novo Perfil
 	$(".novo-perfil").click(function(){
@@ -138,7 +148,7 @@ $(function(){
 
 	//Editor de Texto
 	////Accordion
-	$('.editor').accordion({ header: ".intro" , icons: false , heightStyle:"content" });
+	$('.editor').accordion({ header: ".intro" , icons: false , heightStyle:"content" , active:5 });
 	////Tamanho da fonte
 	$('#dk_container_titulo-tamanho a').click(function(){
 		$('input[name="ititulo-tamanho"]').val('font-size:'+$(this).text()+';');

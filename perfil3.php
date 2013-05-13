@@ -166,8 +166,14 @@
 							</div>
 							<div class="content">
 								<!--Imagem:-->
+										<form id="fileupload-perfil-customiza" action="assets/server/php/" method="POST" enctype="multipart/form-data">
+										<div id="imagem-preview"><img id="alvo-perguntas" src="assets/img/backgrounds/preview.png" /></div>
+										<span class="btn btn-success fileinput-button">
+											<input id="file" type="file"  />
+										</span>
+										</form>
 								<!--Cor de fundo:-->
-								<p>Cor de fundo:</p>
+								<p class="alinha">Cor de fundo:</p>
 								<div class="input-picker"><input id="imagem-cor-fundo" type="text" value="" /></div>
 							</div>
 							
@@ -197,7 +203,7 @@
 								</table>
 							</div>
 							<div id="imagem">
-								<img id="alvo" src="assets/img/backgrounds/imagem2.png" />
+								<img id="alvo-perguntas" src="assets/img/backgrounds/imagem2.png" />
 							</div>
 							<div id="botoes">
 								<a href="#" class="anterior" title="Anterior">&laquo; Anterior</a>
