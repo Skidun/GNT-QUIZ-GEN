@@ -58,7 +58,7 @@
 												<div class="header">
 													<span class="icon"></span>
 													<div class="input"><input type="text" name="nome" value="Só pensa nas coisas que quer fazer sozinha: pedalar, assistir a um filme, cui..." size="" /></div>
-													<select name="resposta-1" class="default">
+													<select name="resposta-10" class="default">
 														<option value="1">Amiga de todos</option>
 														<option value="2">Pegadora</option>
 														<option value="3">Amiga de todos</option>
@@ -125,7 +125,7 @@
 												<div class="header">
 													<span class="icon"></span>
 													<div class="input"><input type="text" name="nome" value="" size="" /></div>
-													<select name="resposta-2" class="default">
+													<select name="resposta-20" class="default">
 														<option value="1">Amiga de todos</option>
 														<option value="2">Pegadora</option>
 														<option value="3">Amiga de todos</option>
@@ -148,7 +148,8 @@
 					<a class="nova-pergunta" href="#"></a>
 				</div>
 				
-				<a class="proxima-etapa" href="#"></a>
+				<a class="voltar" href="#" rel="link-interno" title="voltar"></a>
+				<a class="proxima-etapa" href="#" rel="link-interno" title="próxima etapa"></a>
 			
 			</div>
 		</div>
