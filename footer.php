@@ -11,6 +11,5 @@
 		<!--[if IE]>
 		<script type="text/javascript" src="assets/js/PIE.js"></script>
 		<![endif]-->
-		
     </body>
 </html>

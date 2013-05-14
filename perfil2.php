@@ -1,7 +1,7 @@
 <?php require_once('header.php'); ?>
-
 		
 		<?php require_once('topo-dois.php'); ?>
+	
 		
 		<div id="conteudo" class="perfil2">
 			<div id="wrap">
@@ -37,9 +37,9 @@
 									</div>
 									<div class="imagem">
 										<label for="imagem">Imagem relacionada:<span>Dimensões: 240px x 260px</span></label>
-										<div class="quadro"><img id="alvo" src="assets/img/backgrounds/imagem.png" /></div>
+										<div class="quadro"><img id="alvo0" src="assets/img/backgrounds/imagem.png" /></div>
 										
-										<form id="fileupload" action="assets/server/php/" method="POST" enctype="multipart/form-data">
+										<form id="fileupload0" action="assets/server/php/" method="POST" enctype="multipart/form-data">
 										<span class="btn btn-success fileinput-button">
 											<input id="file" type="file"  />
 										</span>
@@ -104,9 +104,9 @@
 									</div>
 									<div class="imagem">
 										<label for="imagem">Imagem relacionada:<span>Dimensões: 240px x 260px</span></label>
-										<div class="quadro"><img id="alvo" src="assets/img/backgrounds/imagem.png" /></div>
+										<div class="quadro"><img id="alvo1" src="assets/img/backgrounds/imagem.png" /></div>
 										
-										<form id="fileupload" action="assets/server/php/" method="POST" enctype="multipart/form-data">
+										<form id="fileupload1" action="assets/server/php/" method="POST" enctype="multipart/form-data">
 										<span class="btn btn-success fileinput-button">
 											<input id="file" type="file"  />
 										</span>
