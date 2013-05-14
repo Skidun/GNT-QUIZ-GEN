@@ -8,8 +8,8 @@
 			
 				<div class="nav-perfil">
 					<a class="anterior" href="#"></a>
-					<a class="perfis" href="#"></a>
 					<a class="perguntas" href="#"></a>
+					<a class="faixasClassificacao" href="#"></a>
 					<a class="customizacao" href="#"></a>
 					<a class="visualizacao ativo" href="#"></a>
 					<a class="proximo" href="#"></a>
