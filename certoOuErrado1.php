@@ -85,8 +85,7 @@
 				<div class="holder">
 					<a id="nova-pergunta-certo" class="nova-pergunta" href="#"></a>
 				</div>
-				
-				<a class="voltar" href="#" rel="link-interno" title="voltar"></a>
+
 				<a class="proxima-etapa" href="#" rel="link-interno" title="próxima etapa"></a>
 			
 			</div>
