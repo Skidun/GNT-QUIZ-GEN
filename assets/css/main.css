@@ -292,6 +292,8 @@ p {
 
   /*Certo ou Errado 1*/
 
+  /*Varias Respostas 1*/
+
 }
 #conteudo .conteudo-box {
   padding: 13px 20px;
@@ -1081,6 +1083,37 @@ p {
   background-position: 0 0;
 }
 #conteudo .radio .ui-helper-hidden-accessible {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+}
+#conteudo .checkbox {
+  float: right;
+  font-style: italic;
+  font-size: 15px;
+  color: #666666;
+  margin: 8px 115px 0 0 ;
+  position: relative;
+}
+#conteudo .checkbox .checkboxCustom {
+  background: url('../img/icones/checkbox.png') 0 0 no-repeat;
+  width: 18px;
+  height: 18px;
+  float: left;
+  margin: 1px 4px 0 0;
+}
+#conteudo .checkbox .checkboxCustom.ui-state-active {
+  background-position: 0 -18px !important;
+}
+#conteudo .checkbox .checkboxCustom.ui-state-default {
+  background-position: 0 0;
+}
+#conteudo .checkbox .ui-helper-hidden-accessible {
   border: 0;
   clip: rect(0 0 0 0);
   height: 1px;
