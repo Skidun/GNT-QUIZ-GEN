@@ -184,7 +184,17 @@ fieldset, table, td, p{ margin:0; padding:0; border:0;}
 	.item{ float:left;
 		.header{ float:left; width:100%; background:#ffffff; border:1px solid #e6e1da; border-right:0; margin:30px 0 0 0;
 			.titulo{ font-family: 'Conv_Amaranth-Italic'; font-size:32px; color:#fab02d; float:left; margin:8px 0 0 18px;}
-			.arrow{ background:url("../img/icones/accordion3.png") 0 0 no-repeat; width:64px; height:62px; margin:-1px 0 0 0; float:right;}
+			.arrow{ background:url("../img/icones/accordion3.png") 0 0 no-repeat; width:64px; height:62px; margin:-1px 0 0 0; float:right; cursor:pointer;}
+			&.ui-state-default{
+				.arrow{ background-position:0 0;
+					&:hover{ background-position:-64px 0;}
+				}
+			}
+			&.ui-state-active{
+				.arrow{ background-position:0 -64px; cursor:default;
+					&:hover{ background-position:-64px -64px;}
+				}
+			}
 		}
 		.body{ background: #fbf8f4; border:1px solid #e6e1da; border-top:0; float:left; width:920px; padding:20px;
 			.preview{ float:right; background:#faab2a; width:620px;
@@ -197,11 +207,21 @@ fieldset, table, td, p{ margin:0; padding:0; border:0;}
 					.respostas{ font-family: 'Conv_Amaranth'; font-size:15px; line-height: 120%; margin:19px 0;
 						td{ vertical-align:top; padding: 0 3px 10px 3px;}
 					}
+					.resultado{ font-family: 'Conv_Amaranth'; font-size:18px;
+						p{ letter-spacing: -1px; line-height: 120%; margin: 5px 0 20px;}
+						.saibaMais a{ color:#333333; font-size:15px;}
+					}
+					#botoesResultado{ float:left; margin:57px 0 22px 0; width: 280px;
+						a{ background-color:#cc1e59; color:#ffffff; float:left; width:110px; height:40px; font-family: 'Conv_Amaranth'; font-size:15px; text-align:center; line-height: 270%;
+							&.anterior{ float:left; width:160px;}
+							&.proximo{ float:right;}
+						}
+					}
 				}
 				#imagem{ width:240px; height:260px; background:#fdd595; overflow:hidden; float:right; border:2px solid #333333; margin: 2px 16px 0 0;
 					img{ width:240px; height:260px;}
 				}
-				#botoes{ float:left; z-index:2; zoom:1; width:580px; margin:20px;
+				#botoes{ float:left; width:580px; margin:20px;
 					a{ background-color:#cc1e59; color:#ffffff; float:left; width:110px; height:40px; font-family: 'Conv_Amaranth'; font-size:15px; text-align:center; line-height: 270%;
 						&.anterior{ float:left;}
 						&.proximo{ float:right;}

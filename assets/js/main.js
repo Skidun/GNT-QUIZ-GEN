@@ -122,6 +122,7 @@ $(function(){
 						});
 				}*/
 	
+	////Esse é do Perfil-Customização-Perguntas
 	$('#fileupload-perfil-customiza')
    .fileupload({
         url: 'assets/server/php/',
@@ -129,6 +130,17 @@ $(function(){
         done: function (e, data) {			
             $.each(data.result.files, function (index, file) {
 				$('img#alvo-perguntas').attr('src','assets/server/php/files/'+file.name);
+            });
+        }
+    });
+	////Esse é do Perfil-Customização-Resultados
+	$('#fileupload-perfil-customiza-resultados')
+   .fileupload({
+        url: 'assets/server/php/',
+        dataType: 'json',
+        done: function (e, data) {			
+            $.each(data.result.files, function (index, file) {
+				$('img#alvo-resultados').attr('src','assets/server/php/files/'+file.name);
             });
         }
     });
@@ -178,7 +190,9 @@ $(function(){
 	});
 
 	//Editor de Texto
-	////Accordion
+	////Accordion Externo
+	$('#perfilCustomizacao').accordion({ header: ".header" , icons: false , heightStyle:"content" , active:0 });
+	////Accordion Interno
 	$('.editor').accordion({ header: ".intro" , icons: false , heightStyle:"content" , active:0 });
 	////Tamanho da fonte
 	//////Perguntas
@@ -206,6 +220,18 @@ $(function(){
 	$('#dk_container_perguntas-resultados-tamanho a').click(function(){
 		$('input[name="iperguntas-resultados-tamanho"]').val('font-size:'+$(this).text()+';');
 		$('#previewResultados .titulo').css('font-size',$(this).text());
+	});
+	$('#dk_container_acertos-tamanho a').click(function(){
+		$('input[name="iacertos-tamanho"]').val('font-size:'+$(this).text()+';');
+		$('#previewResultados .acertos').css('font-size',$(this).text());
+	});
+	$('#dk_container_descricao-tamanho a').click(function(){
+		$('input[name="idescricao-tamanho"]').val('font-size:'+$(this).text()+';');
+		$('#previewResultados .descricao').css('font-size',$(this).text());
+	});
+	$('#dk_container_referencia-resultados-tamanho a').click(function(){
+		$('input[name="ireferencia-resultados-tamanho"]').val('font-size:'+$(this).text()+';');
+		$('#previewResultados .saibaMais a').css('font-size',$(this).text());
 	});
 	////JPicker
 	//////Perguntas
@@ -320,6 +346,72 @@ $(function(){
 			$(this).css('background-color','transparent');
 			}
 	);
+	$('#acertos-cor').jPicker({
+		window:{ position:{ x: 'screenCenter' , y: ($(this).offset.top - $(window).scrollTop()) + $(this).height() } },
+		images:{clientPath: 'assets/img/jpicker/'}
+	},
+		function(color, context)
+			{
+			var all = color.val('all');
+			$('#previewResultados .acertos').css('color','#'+all.hex);
+			$(this).css('background-color','transparent');
+			}
+	);
+	$('#descricao-cor').jPicker({
+		window:{ position:{ x: 'screenCenter' , y: ($(this).offset.top - $(window).scrollTop()) + $(this).height() } },
+		images:{clientPath: 'assets/img/jpicker/'}
+	},
+		function(color, context)
+			{
+			var all = color.val('all');
+			$('#previewResultados .descricao').css('color','#'+all.hex);
+			$(this).css('background-color','transparent');
+			}
+	);
+	$('#referencia-resultados-cor').jPicker({
+		window:{ position:{ x: 'screenCenter' , y: ($(this).offset.top - $(window).scrollTop()) + $(this).height() } },
+		images:{clientPath: 'assets/img/jpicker/'}
+	},
+		function(color, context)
+			{
+			var all = color.val('all');
+			$('#previewResultados .saibaMais a').css('color','#'+all.hex);
+			$(this).css('background-color','transparent');
+			}
+	);
+	$('#botoes-resultados-cor').jPicker({
+		window:{ position:{ x: 'screenCenter' , y: ($(this).offset.top - $(window).scrollTop()) + $(this).height() } },
+		images:{clientPath: 'assets/img/jpicker/'}
+	},
+		function(color, context)
+			{
+			var all = color.val('all');
+			$('#botoesResultado a').css('color','#'+all.hex);
+			$(this).css('background-color','transparent');
+			}
+	);
+	$('#botoes-resultados-cor-fundo').jPicker({
+		window:{ position:{ x: 'screenCenter' , y: ($(this).offset.top - $(window).scrollTop()) + $(this).height() } },
+		images:{clientPath: 'assets/img/jpicker/'}
+	},
+		function(color, context)
+			{
+			var all = color.val('all');
+			$('#botoesResultado a').css('background-color','#'+all.hex);
+			$(this).css('background-color','transparent');
+			}
+	);
+	$('#imagem-resultados-cor-fundo').jPicker({
+		window:{ position:{ x: 'screenCenter' , y: ($(this).offset.top - $(window).scrollTop()) + $(this).height() } },
+		images:{clientPath: 'assets/img/jpicker/'}
+	},
+		function(color, context)
+			{
+			var all = color.val('all');
+			$('#previewResultados #imagem').css('background-color','#'+all.hex);
+			$(this).css('background-color','transparent');
+			}
+	);
 	////Alinhamento
 	//////Perguntas
 	$('.titulo-alinhamento div').click(function(){
@@ -358,6 +450,24 @@ $(function(){
 		$(this).addClass('ativo');
 		$('input[name="iperguntas-resultados-alinhamento"]').val('text-align:'+this.id+';');
 		$('#previewResultados .titulo').css('text-align',this.id);
+	});
+	$('.acertos-alinhamento div').click(function(){
+		$(this).siblings().removeClass('ativo');
+		$(this).addClass('ativo');
+		$('input[name="iacertos-alinhamento"]').val('text-align:'+this.id+';');
+		$('#previewResultados .acertos').css('text-align',this.id);
+	});
+	$('.descricao-alinhamento div').click(function(){
+		$(this).siblings().removeClass('ativo');
+		$(this).addClass('ativo');
+		$('input[name="idescricao-alinhamento"]').val('text-align:'+this.id+';');
+		$('#previewResultados .descricao').css('text-align',this.id);
+	});
+	$('.referencia-resultados-alinhamento div').click(function(){
+		$(this).siblings().removeClass('ativo');
+		$(this).addClass('ativo');
+		$('input[name="ireferencia-resultados-alinhamento"]').val('text-align:'+this.id+';');
+		$('#previewResultados .saibaMais').css('text-align',this.id);
 	});
 	
 });

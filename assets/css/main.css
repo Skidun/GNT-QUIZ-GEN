@@ -642,6 +642,20 @@ p {
   height: 62px;
   margin: -1px 0 0 0;
   float: right;
+  cursor: pointer;
+}
+#conteudo .item .header.ui-state-default .arrow {
+  background-position: 0 0;
+}
+#conteudo .item .header.ui-state-default .arrow:hover {
+  background-position: -64px 0;
+}
+#conteudo .item .header.ui-state-active .arrow {
+  background-position: 0 -64px;
+  cursor: default;
+}
+#conteudo .item .header.ui-state-active .arrow:hover {
+  background-position: -64px -64px;
 }
 #conteudo .item .body {
   background: #fbf8f4;
@@ -692,6 +706,42 @@ p {
   vertical-align: top;
   padding: 0 3px 10px 3px;
 }
+#conteudo .item .body .preview #texto .resultado {
+  font-family: 'Conv_Amaranth';
+  font-size: 18px;
+}
+#conteudo .item .body .preview #texto .resultado p {
+  letter-spacing: -1px;
+  line-height: 120%;
+  margin: 5px 0 20px;
+}
+#conteudo .item .body .preview #texto .resultado .saibaMais a {
+  color: #333333;
+  font-size: 15px;
+}
+#conteudo .item .body .preview #texto #botoesResultado {
+  float: left;
+  margin: 57px 0 22px 0;
+  width: 280px;
+}
+#conteudo .item .body .preview #texto #botoesResultado a {
+  background-color: #cc1e59;
+  color: #ffffff;
+  float: left;
+  width: 110px;
+  height: 40px;
+  font-family: 'Conv_Amaranth';
+  font-size: 15px;
+  text-align: center;
+  line-height: 270%;
+}
+#conteudo .item .body .preview #texto #botoesResultado a.anterior {
+  float: left;
+  width: 160px;
+}
+#conteudo .item .body .preview #texto #botoesResultado a.proximo {
+  float: right;
+}
 #conteudo .item .body .preview #imagem {
   width: 240px;
   height: 260px;
@@ -707,8 +757,6 @@ p {
 }
 #conteudo .item .body .preview #botoes {
   float: left;
-  z-index: 2;
-  zoom: 1;
   width: 580px;
   margin: 20px;
 }
