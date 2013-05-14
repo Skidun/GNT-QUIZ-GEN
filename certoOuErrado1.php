@@ -51,17 +51,29 @@
 								
 									<div class="titulo-respostas">Respostas:</div>
 									
-									<div id="sortable1" class="sorteia">
+									<div id="sortable0" class="sorteia">
 										
 												<div class="header">
 													<span class="icon"></span>
 													<div class="input"><input type="text" name="nome" value="Só pensa nas coisas que quer fazer sozinha: pedalar, assistir a um filme, cui..." size="" /></div>
-													<div class="radio"></div>
+													<div class="radio">
+														<label for="radio00" class="radioCustom"></label>
+														<input type="radio" id="radio00" value="0" name="grupo0" />
+														Esta é a resposta correta
+													</div>
+												</div>
+												
+												<div class="header">
+													<span class="icon"></span>
+													<div class="input"><input type="text" name="nome" value="Só pensa nas coisas que quer fazer sozinha: pedalar, assistir a um filme, cui..." size="" /></div>
+													<div class="radio">
+														<label for="radio10" class="radioCustom"></label>
+														<input type="radio" id="radio10" value="1" name="grupo0" />
+														Esta é a resposta correta
+													</div>
 												</div>
 										
 									</div>
-
-									<a id="nova-resposta-perfil" class="nova-resposta" href="javascript:void(0)"></a>
 																	
 								</div><!--respostas-->
 								
@@ -71,7 +83,7 @@
 				</div><!--accordion-->			
 
 				<div class="holder">
-					<a id="nova-pergunta-perfil" class="nova-pergunta" href="#"></a>
+					<a id="nova-pergunta-certo" class="nova-pergunta" href="#"></a>
 				</div>
 				
 				<a class="voltar" href="#" rel="link-interno" title="voltar"></a>
