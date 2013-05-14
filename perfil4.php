@@ -15,16 +15,9 @@
 					<a class="proximo" href="#"></a>
 				</div>
 			
-				<div id="perfilCustomizacao" class="item">
-				
-					<!--Perguntas e respostas-->
-					<div class="header">
-						<div class="titulo">Perguntas e respostas</div>
-						<span class="arrow"></span>
-					</div>
-					<div class="body">
+				<div id="perfilVisualizacao" class="item">
 						
-						<div id="previewPerguntas" class="preview">
+						<div class="quiz">
 							<div id="nome">Que tipo de solteira você é?</div>
 							<div id="texto">
 								<div class="titulo">Chegou o fim de semana e você:</div>
@@ -56,9 +49,54 @@
 								<a href="#" class="proximo" title="Próximo">Próximo &raquo;</a>
 							</div>
 						</div>
-
-
-					</div>
+						
+						<!--Passa o código escondido numa textarea, para exibir como texto na textarea de baixo-->
+						<textarea name="quizCode" id="quizCode" cols="" rows="">
+							<div class="quiz">
+								<div id="nome">Que tipo de solteira você é?</div>
+								<div id="texto">
+									<div class="titulo">Chegou o fim de semana e você:</div>
+									<div class="subtitulo"><a href="#">Texto do link de referência.</a></div>
+									<table class="respostas">
+										<tr>
+											<td><input type="radio" name="resposta" value="0" /></td>
+											<td>Só pensa nas coisas que quer fazer sozinha: pedalar, assistir a um filme, cuidar da casa...</td>
+										</tr>
+										<tr>
+											<td><input type="radio" name="resposta" value="1" /></td>
+											<td>Liga para os amigos e pergunta se alguém tem um cara interessante. e bonito para te apresentar.</td>
+										</tr>
+										<tr>
+											<td><input type="radio" name="resposta" value="2" /></td>
+											<td>Avisa a todo mundo que vai rolar uma festinha no apê por sua conta.</td>
+										</tr>
+										<tr>
+											<td><input type="radio" name="resposta" value="3" /></td>
+											<td>Vai pra balada com as melhores amigas atrás dos gatos.</td>
+										</tr>
+									</table>
+								</div>
+								<div id="imagem">
+									<img id="alvo-perguntas" src="assets/img/backgrounds/imagem2.png" />
+								</div>
+								<div id="botoes">
+									<a href="#" class="anterior" title="Anterior">&laquo; Anterior</a>
+									<a href="#" class="proximo" title="Próximo">Próximo &raquo;</a>
+								</div>
+							</div>
+						</textarea>
+						
+						<div class="sidebar">
+							<p>Pré visualizar:</p>
+							<select class="default">
+								<option value="0">Pergunta 1: Chegou o fim de seman...</option>
+								<option value="1">Pergunta 1: Chegou o fim de seman...</option>
+							</select>
+							<p>Código para embutir na página:</p>
+							<!--Gerador de Código-->
+							<div class="textarea"><textarea cols="" rows="" id="codigo" name="codigo" readonly></textarea></div>
+							<a href="#" class="copiarCodigo" title="copiar código" rel="link-interno"></a>
+						</div>
 					
 				</div>
 		

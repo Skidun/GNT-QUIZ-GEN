@@ -467,5 +467,18 @@ $(function(){
 		$('input[name="ireferencia-resultados-alinhamento"]').val('text-align:'+this.id+';');
 		$('#previewResultados .saibaMais').css('text-align',this.id);
 	});
+
+	//Gerador de Código
+	var code = $("textarea#quizCode").val();
+	$('textarea#codigo').val($.trim(code));
+	
+	$(".copiarCodigo").zclip({
+		path: "assets/js/ZeroClipboard.swf",
+		copy:$('textarea#codigo').val(),
+		afterCopy:function(){
+			alert('Copiado para a área de transferência!');
+		}
+	});
+
 	
 });
