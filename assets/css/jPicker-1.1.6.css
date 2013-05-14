@@ -28,6 +28,8 @@
 .jPicker.Container {
   color: #000;
   z-index: 10;
+  top:144px!important;
+  position:fixed!important;
 }
 table.jPicker {
   background-color: #efefef;

@@ -236,7 +236,6 @@ $(function(){
 	////JPicker
 	//////Perguntas
 	$('#titulo-cor').jPicker({
-		window:{ position:{ x: 'screenCenter' , y: ($(this).offset.top - $(window).scrollTop()) + $(this).height() } },
 		images:{clientPath: 'assets/img/jpicker/'}
 	},
 		function(color, context)
@@ -247,7 +246,6 @@ $(function(){
 			}
 	);
 	$('#perguntas-cor').jPicker({
-		window:{ position:{ x: 'screenCenter' , y: ($(this).offset.top - $(window).scrollTop()) + $(this).height() } },
 		images:{clientPath: 'assets/img/jpicker/'}
 	},
 		function(color, context)
