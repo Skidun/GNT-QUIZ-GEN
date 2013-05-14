@@ -624,11 +624,24 @@ p {
 #conteudo .item .header {
   float: left;
   width: 100%;
+  background: #ffffff;
+  border: 1px solid #e6e1da;
+  border-right: 0;
+  margin: 30px 0 0 0;
 }
 #conteudo .item .header .titulo {
   font-family: 'Conv_Amaranth-Italic';
   font-size: 32px;
   color: #fab02d;
+  float: left;
+  margin: 8px 0 0 18px;
+}
+#conteudo .item .header .arrow {
+  background: url("../img/icones/accordion3.png") 0 0 no-repeat;
+  width: 64px;
+  height: 62px;
+  margin: -1px 0 0 0;
+  float: right;
 }
 #conteudo .item .body {
   background: #fbf8f4;

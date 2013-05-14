@@ -85,19 +85,30 @@ $(function(){
 
 	
 	//File Upload	
-   /*$('#fileupload')
+	////Tenho que deletar esse trecho e descobrir porque o fileupload não gera dinamicamente
+   $('#fileupload0')
    .fileupload({
         url: 'assets/server/php/',
         dataType: 'json',
         done: function (e, data) {			
             $.each(data.result.files, function (index, file) {
-				$('img#alvo').attr('src','assets/server/php/files/'+file.name);
+				$('img#alvo0').attr('src','assets/server/php/files/'+file.name);
             });
         }
-    });*/
+    });
+	$('#fileupload1')
+   .fileupload({
+        url: 'assets/server/php/',
+        dataType: 'json',
+        done: function (e, data) {			
+            $.each(data.result.files, function (index, file) {
+				$('img#alvo1').attr('src','assets/server/php/files/'+file.name);
+            });
+        }
+    });
 
-				//calcula quantos fileupload tem por página e carrega dinamicamente
-				var length = $(".group").length;
+				//possivel calculo de quantos fileupload tem por página e carrega dinamicamente
+				/*var length = $(".group").length;
 				for( i=0; i < length; i++){
 					$('#fileupload'+i)
 					   .fileupload({
@@ -109,7 +120,7 @@ $(function(){
 								});
 							}
 						});
-				}
+				}*/
 	
 	$('#fileupload-perfil-customiza')
    .fileupload({
@@ -168,25 +179,36 @@ $(function(){
 
 	//Editor de Texto
 	////Accordion
-	$('.editor').accordion({ header: ".intro" , icons: false , heightStyle:"content" , active:5 });
+	$('.editor').accordion({ header: ".intro" , icons: false , heightStyle:"content" , active:0 });
 	////Tamanho da fonte
+	//////Perguntas
 	$('#dk_container_titulo-tamanho a').click(function(){
 		$('input[name="ititulo-tamanho"]').val('font-size:'+$(this).text()+';');
-		$('.preview #nome').css('font-size',$(this).text());
+		$('#previewPerguntas #nome').css('font-size',$(this).text());
 	});
 	$('#dk_container_perguntas-tamanho a').click(function(){
 		$('input[name="iperguntas-tamanho"]').val('font-size:'+$(this).text()+';');
-		$('.preview .titulo').css('font-size',$(this).text());
+		$('#previewPerguntas .titulo').css('font-size',$(this).text());
 	});
 	$('#dk_container_referencia-tamanho a').click(function(){
 		$('input[name="ireferencia-tamanho"]').val('font-size:'+$(this).text()+';');
-		$('.preview .subtitulo a').css('font-size',$(this).text());
+		$('#previewPerguntas .subtitulo a').css('font-size',$(this).text());
 	});
 	$('#dk_container_respostas-tamanho a').click(function(){
 		$('input[name="irespostas-tamanho"]').val('font-size:'+$(this).text()+';');
-		$('.preview .respostas').css('font-size',$(this).text());
+		$('#previewPerguntas .respostas').css('font-size',$(this).text());
+	});
+	//////Resultados
+	$('#dk_container_titulo-resultados-tamanho a').click(function(){
+		$('input[name="ititulo-resultados-tamanho"]').val('font-size:'+$(this).text()+';');
+		$('#previewResultados #nome').css('font-size',$(this).text());
+	});
+	$('#dk_container_perguntas-resultados-tamanho a').click(function(){
+		$('input[name="iperguntas-resultados-tamanho"]').val('font-size:'+$(this).text()+';');
+		$('#previewResultados .titulo').css('font-size',$(this).text());
 	});
 	////JPicker
+	//////Perguntas
 	$('#titulo-cor').jPicker({
 		window:{ position:{ x: 'screenCenter' , y: ($(this).offset.top - $(window).scrollTop()) + $(this).height() } },
 		images:{clientPath: 'assets/img/jpicker/'}
@@ -194,7 +216,7 @@ $(function(){
 		function(color, context)
 			{
 			var all = color.val('all');
-			$('.preview #nome').css('color','#'+all.hex);
+			$('#previewPerguntas #nome').css('color','#'+all.hex);
 			$(this).css('background-color','transparent');
 			}
 	);
@@ -205,7 +227,7 @@ $(function(){
 		function(color, context)
 			{
 			var all = color.val('all');
-			$('.preview .titulo').css('color','#'+all.hex);
+			$('#previewPerguntas .titulo').css('color','#'+all.hex);
 			$(this).css('background-color','transparent');
 			}
 	);
@@ -216,7 +238,7 @@ $(function(){
 		function(color, context)
 			{
 			var all = color.val('all');
-			$('.preview .subtitulo a').css('color','#'+all.hex);
+			$('#previewPerguntas .subtitulo a').css('color','#'+all.hex);
 			$(this).css('background-color','transparent');
 			}
 	);
@@ -249,7 +271,7 @@ $(function(){
 		function(color, context)
 			{
 			var all = color.val('all');
-			$('.preview .respostas').css('color','#'+all.hex);
+			$('#previewPerguntas .respostas').css('color','#'+all.hex);
 			$(this).css('background-color','transparent');
 			}
 	);
@@ -260,7 +282,7 @@ $(function(){
 		function(color, context)
 			{
 			var all = color.val('all');
-			$('.preview .respostas').css('background-color','#'+all.hex);
+			$('#previewPerguntas .respostas').css('background-color','#'+all.hex);
 			$(this).css('background-color','transparent');
 			}
 	);
@@ -271,34 +293,71 @@ $(function(){
 		function(color, context)
 			{
 			var all = color.val('all');
-			$('.preview #imagem').css('background-color','#'+all.hex);
+			$('#previewPerguntas #imagem').css('background-color','#'+all.hex);
+			$(this).css('background-color','transparent');
+			}
+	);
+	//////Resultados
+	$('#titulo-resultados-cor').jPicker({
+		window:{ position:{ x: 'screenCenter' , y: ($(this).offset.top - $(window).scrollTop()) + $(this).height() } },
+		images:{clientPath: 'assets/img/jpicker/'}
+	},
+		function(color, context)
+			{
+			var all = color.val('all');
+			$('#previewResultados #nome').css('color','#'+all.hex);
+			$(this).css('background-color','transparent');
+			}
+	);
+	$('#perguntas-resultados-cor').jPicker({
+		window:{ position:{ x: 'screenCenter' , y: ($(this).offset.top - $(window).scrollTop()) + $(this).height() } },
+		images:{clientPath: 'assets/img/jpicker/'}
+	},
+		function(color, context)
+			{
+			var all = color.val('all');
+			$('#previewResultados .titulo').css('color','#'+all.hex);
 			$(this).css('background-color','transparent');
 			}
 	);
 	////Alinhamento
+	//////Perguntas
 	$('.titulo-alinhamento div').click(function(){
 		$(this).siblings().removeClass('ativo');
 		$(this).addClass('ativo');
 		$('input[name="ititulo-alinhamento"]').val('text-align:'+this.id+';');
-		$('.preview #nome').css('text-align',this.id);
+		$('#previewPerguntas #nome').css('text-align',this.id);
 	});
 	$('.perguntas-alinhamento div').click(function(){
 		$(this).siblings().removeClass('ativo');
 		$(this).addClass('ativo');
 		$('input[name="iperguntas-alinhamento"]').val('text-align:'+this.id+';');
-		$('.preview .titulo').css('text-align',this.id);
+		$('#previewPerguntas .titulo').css('text-align',this.id);
 	});
 	$('.referencia-alinhamento div').click(function(){
 		$(this).siblings().removeClass('ativo');
 		$(this).addClass('ativo');
 		$('input[name="ireferencia-alinhamento"]').val('text-align:'+this.id+';');
-		$('.preview .subtitulo').css('text-align',this.id);
+		$('#previewPerguntas .subtitulo').css('text-align',this.id);
 	});
 	$('.respostas-alinhamento div').click(function(){
 		$(this).siblings().removeClass('ativo');
 		$(this).addClass('ativo');
 		$('input[name="irespostas-alinhamento"]').val('text-align:'+this.id+';');
-		$('.preview .respostas').css('text-align',this.id);
+		$('#previewPerguntas .respostas').css('text-align',this.id);
+	});
+	//////Resultados
+	$('.titulo-resultados-alinhamento div').click(function(){
+		$(this).siblings().removeClass('ativo');
+		$(this).addClass('ativo');
+		$('input[name="ititulo-resultados-alinhamento"]').val('text-align:'+this.id+';');
+		$('#previewResultados #nome').css('text-align',this.id);
+	});
+	$('.perguntas-resultados-alinhamento div').click(function(){
+		$(this).siblings().removeClass('ativo');
+		$(this).addClass('ativo');
+		$('input[name="iperguntas-resultados-alinhamento"]').val('text-align:'+this.id+';');
+		$('#previewResultados .titulo').css('text-align',this.id);
 	});
 	
 });
