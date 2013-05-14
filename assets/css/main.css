@@ -292,6 +292,8 @@ p {
 
   /*Certo ou Errado 1*/
 
+  /*Certo ou Errado 2*/
+
   /*Varias Respostas 1*/
 
 }
@@ -1091,6 +1093,55 @@ p {
   padding: 0;
   position: absolute;
   width: 1px;
+}
+#conteudo .sliderHolder {
+  width: 930px;
+  position: relative;
+}
+#conteudo .sliderHolder #amountIni {
+  font-size: 18px;
+  color: #333333;
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 2;
+  zoom: 1;
+}
+#conteudo .sliderHolder #amountFin {
+  font-size: 18px;
+  color: #333333;
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: 2;
+  zoom: 1;
+  text-align: right;
+}
+#conteudo .ui-slider {
+  background: url('../img/backgrounds/slider.png') center top no-repeat;
+  width: 812px;
+  height: 17px;
+  margin: 15px 0 15px 55px;
+  position: relative;
+}
+#conteudo .ui-slider-range {
+  background: url('../img/backgrounds/sliderC.png') center top no-repeat;
+  height: 17px;
+  position: absolute;
+}
+#conteudo .ui-slider-handle {
+  background: url('../img/backgrounds/sliderA.png') center top no-repeat;
+  width: 26px;
+  height: 26px;
+  position: absolute;
+  top: -5px;
+}
+#conteudo .novaFaixa {
+  background: url("../img/botoes/novaFaixa.png") 0 0 no-repeat;
+  width: 269px;
+  height: 38px;
+  float: left;
+  margin: 20px;
 }
 #conteudo .checkbox {
   float: right;

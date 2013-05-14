@@ -146,8 +146,14 @@ $(function(){
     });
 			
 	//Novo Perfil
-	$(".novo-perfil").click(function(){
-		$('#accordion').append('<div class="group"><div class="header"><span class="icon"></span><div class="input"><input type="text" name="nome" value="Carente" size=""/></div><span class="arrow"></span></div><div class="body"><div class="texto"><label for="descricao">Descrição</label><div class="textarea"><textarea name="descricao" cols="" rows="">Você é a amiga da galera! Seu tempo livre é todo dedicado a amigos e pessoas queridas, por isso você nem acha que precisa gastar os neurônios pensando em como fazer para encontrar um namorado. Solidão? Que nada!</textarea></div><label for="link">Link de referência:</label><div class="input"><input type="text" name="link" value="http://www.gnt.com.br/post-falando-sobre-esse-perfil.html" size=""/></div><label for="texto">Texto do link de referência:</label><div class="input"><input type="text" name="texto" value="Saiba mais" size=""/></div></div><div class="imagem"><label for="imagem">Imagem relacionada:<span>Dimensões: 240px x 260px</span></label><div class="quadro"><img id="alvo" src="assets/img/backgrounds/imagem.png" name="imagem"/></div><span class="btn btn-success fileinput-button"><input id="fileupload" type="file"/></span></div></div></div>');
+	$("#novo-perfil").click(function(){
+		$('#accordion').append('<div class="header"><span class="icon"></span><div class="input"><input type="text" name="nome" value="Carente" size=""/></div><span class="arrow"></span></div><div class="body"><div class="texto"><label for="descricao">Descrição</label><div class="textarea"><textarea name="descricao" cols="" rows="">Você é a amiga da galera! Seu tempo livre é todo dedicado a amigos e pessoas queridas, por isso você nem acha que precisa gastar os neurônios pensando em como fazer para encontrar um namorado. Solidão? Que nada!</textarea></div><label for="link">Link de referência:</label><div class="input"><input type="text" name="link" value="http://www.gnt.com.br/post-falando-sobre-esse-perfil.html" size=""/></div><label for="texto">Texto do link de referência:</label><div class="input"><input type="text" name="texto" value="Saiba mais" size=""/></div></div><div class="imagem"><label for="imagem">Imagem relacionada:<span>Dimensões: 240px x 260px</span></label><div class="quadro"><img id="alvo" src="assets/img/backgrounds/imagem.png" name="imagem"/></div><span class="btn btn-success fileinput-button"><input id="fileupload" type="file"/></span></div></div>');
+		//bota o accordion no esquema
+		$( "#accordion" ).accordion('destroy');
+		$( "#accordion" ).accordion({
+			active: $('.group').length,
+			header: "> div > .header"			
+		});
 		//scrolla pro fim da página
 		$('html, body').animate({scrollTop:$(document).height()}, 1000);
 		return false;
@@ -508,6 +514,44 @@ $(function(){
 			$('html, body').animate({scrollTop:$(document).height()}, 1000);
 			return false;
 		});
+	//Certo ou Errado 2
+	$( "#slider" ).slider({
+			range: true,
+			min: 0,
+			max: 50,
+			values: [ 10, 40 ],
+			slide: function( event, ui ) {
+				$( ".amountIni0" ).val( ui.values[ 0 ] + "pts" );
+				$( ".amountFin0" ).val( ui.values[ 1 ] + "pts" );
+			}
+		});
+	 $( ".amountIni0" ).val( $( "#slider" ).slider( "values", 0 ) + "pts" );
+	 $( ".amountFin0" ).val( $( "#slider" ).slider( "values", 1 ) + "pts" );
+	 ////Nova Faixa
+	$("#novaFaixa").click(function(){
+		$('#accordion .group').append('<div class="header"><span class="icon"></span><div class="input"><input type="text" name="nome" value="Carente" size=""/></div><span class="arrow"></span></div><div class="body"><div class="sliderHolder"><input type="text" id="amountIni" class="amountIni'+($('.group').length)+'"/><input type="text" id="amountFin" class="amountFin'+($('.group').length)+'"/><div id="slider'+($('.group').length)+'"></div></div><div class="texto"><label for="descricao">Descrição</label><div class="textarea"><textarea name="descricao" cols="" rows=""></textarea></div><label for="link">Link de referência:</label><div class="input"><input type="text" name="link" value="" size=""/></div><label for="texto">Texto do link de referência:</label><div class="input"><input type="text" name="texto" value="" size=""/></div></div><div class="imagem"><label for="imagem">Imagem relacionada:<span>Dimensões: 240px x 260px</span></label><div class="quadro"><img id="alvo" src="assets/img/backgrounds/imagem.png" name="imagem"/></div><span class="btn btn-success fileinput-button"><input id="fileupload" type="file"/></span></div></div>');
+		//novo slider
+		$( "#slider"+($('.group').length) ).slider({
+					range: true,
+					min: 0,
+					max: 50,
+					values: [ 10, 40 ],
+					slide: function( event, ui ) {
+						$( ".amountIni"+($('.group').length) ).val( ui.values[ 0 ] + "pts" );
+						$( ".amountFin"+($('.group').length) ).val( ui.values[ 1 ] + "pts" );
+					}
+				});
+		 $( ".amountIni"+($('.group').length) ).val( $( "#slider"+($('.group').length) ).slider( "values", 0 ) + "pts" );
+		 $( ".amountFin"+($('.group').length) ).val( $( "#slider"+($('.group').length) ).slider( "values", 1 ) + "pts" );		
+		//scrolla pro fim da página
+		$( "#accordion" ).accordion('destroy');
+		$( "#accordion" ).accordion({
+			active: $('.group').length,
+			header: "> div > .header"			
+		});
+		$('html, body').animate({scrollTop:$(document).height()}, 1000);
+		return false;
+	});
 	
 	//Resposta Certa
 	//Perguntas e Respostas

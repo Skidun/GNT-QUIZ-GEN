@@ -101,7 +101,7 @@
 				</div><!--accordion-->
 				
 				<div class="holder">
-					<a class="novo-perfil" href="#"></a>
+					<a id="novo-perfil" class="novo-perfil" href="#"></a>
 				</div>
 				
 				<a class="proxima-etapa" href="#"></a>
