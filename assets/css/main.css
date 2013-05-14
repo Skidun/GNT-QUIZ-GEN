@@ -462,7 +462,9 @@ p {
   background-position: 0 -100px;
   margin: 0 0 0 -11px;
 }
-#conteudo .nav-perfil a.perguntas:hover,
+#conteudo .nav-perfil a.perguntas:hover {
+  background-position: -460px -100px;
+}
 #conteudo .nav-perfil a.perguntas.ativo {
   background-position: -230px -100px;
 }
@@ -481,6 +483,16 @@ p {
 #conteudo .nav-perfil a.visualizacao:hover,
 #conteudo .nav-perfil a.visualizacao.ativo {
   background-position: -230px -200px;
+}
+#conteudo .nav-perfil a.faixasClassificacao {
+  background-position: 0 -250px;
+  margin: 0 0 0 -11px;
+}
+#conteudo .nav-perfil a.faixasClassificacao:hover {
+  background-position: -460px -250px;
+}
+#conteudo .nav-perfil a.faixasClassificacao.ativo {
+  background-position: -230px -250px;
 }
 #conteudo .nav-perfil a.proximo {
   background-position: -50px 0;

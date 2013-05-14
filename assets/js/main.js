@@ -154,7 +154,7 @@ $(function(){
 	});
 	
 	//Perguntas e Respostas
-	$(document).on('click','.nova-resposta',function(){
+	$(document).on('click','#nova-resposta-perfil',function(){
 		//gera uma combinacao unica de numero para o novo select[name], assim não dá conflito
 		//por exemplo, resposta-21, é o select do grupo 2(#sortable2) e o segundo select desse grupo
 		var respostaNumero = $(this).parent().find('.sorteia').attr('id').slice(-1);
@@ -165,7 +165,7 @@ $(function(){
 		return false;
 	});
 	
-	$(document).on('click','.nova-pergunta',function(){
+	$(document).on('click','#nova-pergunta-perfil',function(){
 
 		//gera uma combinacao unica de numero para o novo select[name], assim não dá conflito
 		//por exemplo, resposta-21, é o select do grupo 2(#sortable2) e o segundo select desse grupo
