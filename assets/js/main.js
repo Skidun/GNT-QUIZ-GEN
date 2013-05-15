@@ -536,7 +536,7 @@ $(function(){
 		$( "#accordion" ).accordion('destroy');
 		$( "#accordion" ).accordion({
 			active: ($('.header').length-1),
-			header: ".header"			
+			header: "> div > .header"			
 		});
 		/*tem que resetar o fileupload e chamar de novo*/		
 			$('.fileupload').bind('fileuploaddestroy');
