@@ -578,8 +578,7 @@ $(function(){
 		return false;
 	});
 	
-	//Varias Respostas
-	////Perguntas e Respostas
+	//Varias Respostas > perguntas e respostas
 	$( "#checkbox00,#checkbox10,#checkbox01" ).button();
 		$(document).on('click','#nova-resposta-variasRespostas',function(){
 		//gera uma combinacao unica de numero para o novo select[name], assim não dá conflito
