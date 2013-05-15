@@ -413,7 +413,7 @@
 							<div id="texto">
 								<div class="titulo">Pegadora</div>								
 								<div class="resultado">
-									<p class="acertos">Você é a pegadora! Enquanto o 'certo' não aparece, você se diverte com os 'errados'!</p>
+									<p class="descricao">Você é a pegadora! Enquanto o 'certo' não aparece, você se diverte com os 'errados'!</p>
 									<p class="descricao">Brincadeiras à parte, você não tem medo de explorar sua sexualidade e seus desejos enquanto não tem um relacionamento sério à vista. O importante é curtir a vida!</p>
 									<div class="saibaMais"><a href="#">saiba mais</a></div>
 								

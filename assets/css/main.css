@@ -709,6 +709,11 @@ p {
   width: 315px;
   margin: 0 0 0 20px;
 }
+#conteudo .item .body .preview #texto .acertos {
+  font-family: 'Conv_Amaranth';
+  font-size: 15px;
+  color: #333333;
+}
 #conteudo .item .body .preview #texto .titulo {
   font-family: 'Conv_Amaranth';
   font-size: 24px;
