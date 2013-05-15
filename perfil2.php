@@ -52,12 +52,12 @@
 								
 									<div class="titulo-respostas">Respostas:</div>
 									
-									<div id="sortable1" class="sorteia">
+									<div id="sortable0" class="sorteia">
 										
 												<div class="header">
 													<span class="icon"></span>
 													<div class="input"><input type="text" name="nome" value="" size="" /></div>
-													<select name="resposta-10" class="default">
+													<select name="resposta-00" class="default">
 														<option value="1">Amiga de todos</option>
 														<option value="2">Pegadora</option>
 													</select>
@@ -66,7 +66,7 @@
 												<div class="header">
 													<span class="icon"></span>
 													<div class="input"><input type="text" name="nome" value="" size="" /></div>
-													<select name="resposta-11" class="default">
+													<select name="resposta-10" class="default">
 														<option value="1">Amiga de todos</option>
 														<option value="2">Pegadora</option>
 													</select>
