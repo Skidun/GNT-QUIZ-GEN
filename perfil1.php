@@ -14,6 +14,8 @@
 					<a class="visualizacao" href="#"></a>
 					<a class="proximo" href="#"></a>
 				</div>
+				
+				<form name="perfilPerfis" method="" action="">
 			
 				<div id="accordion">
 					
@@ -77,6 +79,8 @@
 					
 				</div><!--accordion-->
 				
+				</form>
+
 				<div class="holder">
 					<a id="novo-perfil" class="novo-perfil" href="#"></a>
 				</div>
