@@ -460,7 +460,9 @@ p {
   background-position: 0 -50px;
   margin: 0 0 0 -11px;
 }
-#conteudo .nav-perfil a.perfis:hover,
+#conteudo .nav-perfil a.perfis:hover {
+  background-position: -460px -50px;
+}
 #conteudo .nav-perfil a.perfis.ativo {
   background-position: -230px -50px;
 }
@@ -478,7 +480,9 @@ p {
   background-position: 0 -150px;
   margin: 0 0 0 -11px;
 }
-#conteudo .nav-perfil a.customizacao:hover,
+#conteudo .nav-perfil a.customizacao:hover {
+  background-position: -460px -150px;
+}
 #conteudo .nav-perfil a.customizacao.ativo {
   background-position: -230px -150px;
 }
@@ -486,7 +490,9 @@ p {
   background-position: 0 -200px;
   margin: 0 0 0 -11px;
 }
-#conteudo .nav-perfil a.visualizacao:hover,
+#conteudo .nav-perfil a.visualizacao:hover {
+  background-position: -460px -200px;
+}
 #conteudo .nav-perfil a.visualizacao.ativo {
   background-position: -230px -200px;
 }
