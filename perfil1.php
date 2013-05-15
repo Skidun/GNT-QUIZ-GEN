@@ -34,18 +34,20 @@
 								</div>
 								<div class="imagem">
 									<label for="imagem">Imagem relacionada:<span>Dimensões: 240px x 260px</span></label>
-									<div class="quadro"><img id="alvo0" src="assets/img/backgrounds/imagem.png" name="imagem" /></div>
-									
-									<span class="btn btn-success fileinput-button">
-										<input id="fileupload0" type="file" />
-									</span>
+																		
+									<form class="fileupload" action="assets/server/php/" method="POST" enctype="multipart/form-data">
+										<div class="quadro"><img id="alvo" src="assets/img/backgrounds/imagem.png" name="imagem" /></div>
+										<span class="btn btn-success fileinput-button">
+											<input id="file" type="file" />
+										</span>
+									</form>
 									
 								</div>
 							</div>
 							
 							<div class="header">
 								<span class="icon"></span>
-								<div class="input"><input type="text" name="nome" value="Carente" size="" /></div>
+								<div class="input"><input type="text" name="nome" value="" size="" /></div>
 								<span class="arrow"></span>
 							</div>
 							<div class="body">
@@ -59,14 +61,17 @@
 								</div>
 								<div class="imagem">
 									<label for="imagem">Imagem relacionada:<span>Dimensões: 240px x 260px</span></label>
-									<div class="quadro"><img id="alvo1" src="assets/img/backgrounds/imagem.png" name="imagem" /></div>
 									
-									<span class="btn btn-success fileinput-button">
-										<input id="fileupload1" type="file" />
-									</span>
+									<form class="fileupload" action="assets/server/php/" method="POST" enctype="multipart/form-data">
+										<div class="quadro"><img id="alvo" src="assets/img/backgrounds/imagem.png" name="imagem" /></div>
+										<span class="btn btn-success fileinput-button">
+											<input id="file" type="file" />
+										</span>
+									</form>
 									
 								</div>
 							</div>
+							
 					</div>	
 
 					

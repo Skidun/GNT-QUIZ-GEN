@@ -1,6 +1,6 @@
 $(function(){
 
-	//Limpa onfocus, retorna onblur
+	/*Limpa onfocus, retorna onblur*/
 	$('input[type="text"]').on({
 		focus: function(){
 			var $this = $(this);
@@ -12,14 +12,14 @@ $(function(){
 		}
 	});
 	
-	//Borda Arredondada no IE
+	/*Borda Arredondada no IE*/
 	if (window.PIE) {
 			$('.nav2 , .input , .dk_options_inner , .dk_container , .dk_toggle , .input-picker').each(function() {
 				PIE.attach(this);
 			});
 		}
 
-	//Início
+	//Página Inicial
 	$('.esqueceu').click(function(){
 		$('form.login').slideUp(200);
 		$('form.esqueci').delay(400).slideDown(200);
@@ -40,9 +40,9 @@ $(function(){
 	});
 	
 	//Todos os quizes
-	////Paginacao
+	/*Paginacao*/
 	$('.carregar-mais').click(function(){
-		//simula carregamento de 10 links
+		/*simula carregamento de 10 links*/
 		for (var i=0;i<9;i++)
 		{
 			var titulo	 					= 'Quiz de maquiagem';
@@ -56,7 +56,7 @@ $(function(){
 			var linkExcluir 				= '#';
 			$('.box tbody').append('<tr><td><div class="texto"><p>'+titulo+'</p><span>tipo: '+tipo+' | editado em: '+dataEdicao+'</span></div><div class="botoes"><a class="ver-e-embutir" href="'+linkVerEmbutir+'"></a><ul class="menu-editar"><li><div class="editar"></div><ul class="nav2"><li><a href="'+linkNomeTipo+'">nome e tipo</a></a></li><li><a href="'+linkPerfis+'">perfis</a></a></li><li><a href="'+linkPerguntasRespostas+'">perguntas & respostas</a></a></li><li><a href="'+linkCustomizacao+'">customizacao</a></a></li><li><a href="'+linkExcluir+'">excluir</a></a></li></ul></li></ul></div></td></tr>');
 		}
-		//scrolla pro fim da página
+		/*scrolla pro fim da página*/
 		$('html, body').animate({scrollTop:$(document).height()}, 1000);
 		return false;
 	});
@@ -64,7 +64,7 @@ $(function(){
 	//Novo Quiz
 	$('.default').dropkick();
 
-	//Accordion
+	/*Accordion*/
 	 $( "#accordion,#accordion2" )
 	.accordion({
 		active: false,
@@ -80,49 +80,23 @@ $(function(){
 		}
 	});
 
-	//calcula quantos sortables tem e carrega
+	/*Sortables*/
 			$("#sortable1,#sortable2").sortable();
 
+		
+	/*File Upload de Todas as Páginas*/
+	$('.fileupload').each(function () {
+		$(this).fileupload({
+			done: function (e, data) {
+				var filess  = data.files[0];
+				var filenam = filess.name;
+				$(this).find('#alvo').attr('src','assets/server/php/files/'+filenam);
+			}
+		});
+	});
 	
-	//File Upload	
-	////Tenho que deletar esse trecho e descobrir porque o fileupload não gera dinamicamente
-   $('#fileupload0')
-   .fileupload({
-        url: 'assets/server/php/',
-        dataType: 'json',
-        done: function (e, data) {			
-            $.each(data.result.files, function (index, file) {
-				$('img#alvo0').attr('src','assets/server/php/files/'+file.name);
-            });
-        }
-    });
-	$('#fileupload1')
-   .fileupload({
-        url: 'assets/server/php/',
-        dataType: 'json',
-        done: function (e, data) {			
-            $.each(data.result.files, function (index, file) {
-				$('img#alvo1').attr('src','assets/server/php/files/'+file.name);
-            });
-        }
-    });
-
-				//possivel calculo de quantos fileupload tem por página e carrega dinamicamente
-				/*var length = $(".group").length;
-				for( i=0; i < length; i++){
-					$('#fileupload'+i)
-					   .fileupload({
-							url: 'assets/server/php/',
-							dataType: 'json',
-							done: function (e, data) {			
-								$.each(data.result.files, function (index, file) {
-									$('img#alvo'+i).attr('src','assets/server/php/files/'+file.name);
-								});
-							}
-						});
-				}*/
-	
-	////Esse é do Perfil-Customização-Perguntas
+	//Perfil 3
+	/*perguntas*/
 	$('#fileupload-perfil-customiza')
    .fileupload({
         url: 'assets/server/php/',
@@ -133,7 +107,7 @@ $(function(){
             });
         }
     });
-	////Esse é do Perfil-Customização-Resultados
+	/*resultados*/
 	$('#fileupload-perfil-customiza-resultados')
    .fileupload({
         url: 'assets/server/php/',
@@ -145,27 +119,27 @@ $(function(){
         }
     });
 			
-	//Novo Perfil
+	/* botao novo perfil*/
 	$("#novo-perfil").click(function(){
-		$('#accordion').append('<div class="header"><span class="icon"></span><div class="input"><input type="text" name="nome" value="" size=""/></div><span class="arrow"></span></div><div class="body"><div class="texto"><label for="descricao">Descrição</label><div class="textarea"><textarea name="descricao" cols="" rows=""></textarea></div><label for="link">Link de referência:</label><div class="input"><input type="text" name="link" value="" size=""/></div><label for="texto">Texto do link de referência:</label><div class="input"><input type="text" name="texto" value="" size=""/></div></div><div class="imagem"><label for="imagem">Imagem relacionada:<span>Dimensões: 240px x 260px</span></label><div class="quadro"><img id="alvo'+$('.header').length+'" src="assets/img/backgrounds/imagem.png" name="imagem"/></div><span class="btn btn-success fileinput-button"><input id="fileupload'+$('.header').length+'" type="file"/></span></div></div>');
-		//bota o accordion no esquema
+		$('#accordion').append('<div class="header"><span class="icon"></span><div class="input"><input type="text" name="nome" value="" size=""/></div><span class="arrow"></span></div><div class="body"><div class="texto"><label for="descricao">Descrição</label><div class="textarea"><textarea name="descricao" cols="" rows=""></textarea></div><label for="link">Link de referência:</label><div class="input"><input type="text" name="link" value="" size=""/></div><label for="texto">Texto do link de referência:</label><div class="input"><input type="text" name="texto" value="" size=""/></div></div><div class="imagem"><label for="imagem">Imagem relacionada:<span>Dimensões: 240px x 260px</span></label><form class="fileupload" action="assets/server/php/" method="POST" enctype="multipart/form-data"><div class="quadro"><img id="alvo" src="assets/img/backgrounds/imagem.png" name="imagem"/></div><span class="btn btn-success fileinput-button"><input id="file" type="file"/></span></form></div></div>');
+		/*bota o accordion no esquema*/
 		$( "#accordion" ).accordion('destroy');
-		$( "#accordion" ).accordion({
-			active: ($('.header').length),
+		$( "#accordion" ).accordion({			
+			active: ($('.header').length-1),
 			header: ".header"			
 		});
-		//fileupload
-		$('#fileupload'+$('.header').length)
-		   .fileupload({
-				url: 'assets/server/php/',
-				dataType: 'json',
-				done: function (e, data) {			
-					$.each(data.result.files, function (index, file) {
-						$('img#alvo'+$('.header').length).attr('src','assets/server/php/files/'+file.name);
-					});
+		/*tem que resetar o fileupload e chamar de novo*/		
+		$('.fileupload').bind('fileuploaddestroy');
+		$('.fileupload').each(function () {
+			$(this).fileupload({
+				done: function (e, data) {
+					var filess= data.files[0];
+					var filenam = filess.name;
+					$(this).find('#alvo').attr('src','assets/server/php/files/'+filenam);
 				}
-			});		
-		//scrolla pro fim da página
+			});
+		});		
+		/*scrolla pro fim da página*/
 		$('html, body').animate({scrollTop:$(document).height()}, 1000);
 		return false;
 	});
