@@ -1287,6 +1287,10 @@ p {
   color: #666666;
   line-height: 110%;
 }
+#accordion .body .imagem label,
+#accordion2 .body .imagem label {
+  margin-bottom: 20px;
+}
 #accordion .body label,
 #accordion2 .body label {
   font-size: 18px;
