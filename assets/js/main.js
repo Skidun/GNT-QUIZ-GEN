@@ -503,7 +503,7 @@ $(function(){
 			$('html, body').animate({scrollTop:$(document).height()}, 1000);
 			return false;
 		});
-	//Certo ou Errado 2
+	//Certo ou Errado > faixas de classificacao
 	$( "#slider" ).slider({
 			range: true,
 			min: 0,
@@ -516,28 +516,32 @@ $(function(){
 		});
 	 $( ".amountIni0" ).val( $( "#slider" ).slider( "values", 0 ) + "pts" );
 	 $( ".amountFin0" ).val( $( "#slider" ).slider( "values", 1 ) + "pts" );
-	 ////Nova Faixa
+	 /*botao faixas de classificacao*/
 	$("#novaFaixa").click(function(){
-		$('#accordion .group').append('<div class="header"><span class="icon"></span><div class="input"><input type="text" name="nome" value="Carente" size=""/></div><span class="arrow"></span></div><div class="body"><div class="sliderHolder"><input type="text" id="amountIni" class="amountIni'+($('.group').length)+'"/><input type="text" id="amountFin" class="amountFin'+($('.group').length)+'"/><div id="slider'+($('.group').length)+'"></div></div><div class="texto"><label for="descricao">Descrição</label><div class="textarea"><textarea name="descricao" cols="" rows=""></textarea></div><label for="link">Link de referência:</label><div class="input"><input type="text" name="link" value="" size=""/></div><label for="texto">Texto do link de referência:</label><div class="input"><input type="text" name="texto" value="" size=""/></div></div><div class="imagem"><label for="imagem">Imagem relacionada:<span>Dimensões: 240px x 260px</span></label><div class="quadro"><img id="alvo" src="assets/img/backgrounds/imagem.png" name="imagem"/></div><span class="btn btn-success fileinput-button"><input id="fileupload" type="file"/></span></div></div>');
-		//novo slider
-		$( "#slider"+($('.group').length) ).slider({
+		$('#accordion .group').append('<div class="header"><span class="icon"></span><div class="input"><input type="text" name="nome" value="" size=""/></div><span class="arrow"></span></div><div class="body"><div class="sliderHolder"><input type="text" id="amountIni" class="amountIni'+($('.header').length)+'"/><input type="text" id="amountFin" class="amountFin'+($('.header').length)+'"/><div id="slider'+($('.header').length)+'"></div></div><div class="texto"><label for="descricao">Descrição</label><div class="textarea"><textarea name="descricao" cols="" rows=""></textarea></div><label for="link">Link de referência:</label><div class="input"><input type="text" name="link" value="" size=""/></div><label for="texto">Texto do link de referência:</label><div class="input"><input type="text" name="texto" value="" size=""/></div></div><div class="imagem"><label for="imagem">Imagem relacionada:<span>Dimensões: 240px x 260px</span></label><form class="fileupload" action="assets/server/php/" method="POST" enctype="multipart/form-data"><div class="quadro"><img id="alvo" src="assets/img/backgrounds/imagem.png" name="imagem"/></div><span class="btn btn-success fileinput-button"><input id="file" type="file"/></span></form></div></div>');
+		/*novo slider*/
+		$( "#slider"+($('.header').length) ).slider({
 					range: true,
 					min: 0,
 					max: 50,
 					values: [ 10, 40 ],
 					slide: function( event, ui ) {
-						$( ".amountIni"+($('.group').length) ).val( ui.values[ 0 ] + "pts" );
-						$( ".amountFin"+($('.group').length) ).val( ui.values[ 1 ] + "pts" );
+						$( ".amountIni"+($('.header').length) ).val( ui.values[ 0 ] + "pts" );
+						$( ".amountFin"+($('.header').length) ).val( ui.values[ 1 ] + "pts" );
 					}
 				});
-		 $( ".amountIni"+($('.group').length) ).val( $( "#slider"+($('.group').length) ).slider( "values", 0 ) + "pts" );
-		 $( ".amountFin"+($('.group').length) ).val( $( "#slider"+($('.group').length) ).slider( "values", 1 ) + "pts" );		
-		//scrolla pro fim da página
+		 $( ".amountIni"+($('.header').length) ).val( $( "#slider"+($('.header').length) ).slider( "values", 0 ) + "pts" );
+		 $( ".amountFin"+($('.header').length) ).val( $( "#slider"+($('.header').length) ).slider( "values", 1 ) + "pts" );		
+		//coloca o novo elemento de accordion no esquema
 		$( "#accordion" ).accordion('destroy');
 		$( "#accordion" ).accordion({
-			active: $('.group').length,
-			header: "> div > .header"			
+			active: ($('.header').length-1),
+			header: ".header"			
 		});
+		/*tem que resetar o fileupload e chamar de novo*/		
+			$('.fileupload').bind('fileuploaddestroy');
+			$(".fileupload").each(function(){$(this).fileupload({done:function(e,t){var n=t.files[0];var r=n.name;$(this).find("#alvo").attr("src","assets/server/php/files/"+r)}})})
+		//scrolla pro fim da página
 		$('html, body').animate({scrollTop:$(document).height()}, 1000);
 		return false;
 	});
