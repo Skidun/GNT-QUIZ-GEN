@@ -85,15 +85,15 @@ $(function(){
 
 		
 	/*File Upload de Todas as Páginas*/
-	$('.fileupload').each(function () {
-		$(this).fileupload({
-			done: function (e, data) {
-				var filess  = data.files[0];
-				var filenam = filess.name;
-				$(this).find('#alvo').attr('src','assets/server/php/files/'+filenam);
-			}
+		$('.fileupload').each(function () {
+			$(this).fileupload({
+				done: function (e, data) {
+					var filess= data.files[0];
+					var filenam = filess.name;
+					$(this).find('#alvo').attr('src','assets/server/php/files/'+filenam);
+				}
+			});
 		});
-	});
 	
 	//Perfil 3
 	/*perguntas*/
