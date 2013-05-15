@@ -147,13 +147,24 @@ $(function(){
 			
 	//Novo Perfil
 	$("#novo-perfil").click(function(){
-		$('#accordion').append('<div class="header"><span class="icon"></span><div class="input"><input type="text" name="nome" value="Carente" size=""/></div><span class="arrow"></span></div><div class="body"><div class="texto"><label for="descricao">Descrição</label><div class="textarea"><textarea name="descricao" cols="" rows="">Você é a amiga da galera! Seu tempo livre é todo dedicado a amigos e pessoas queridas, por isso você nem acha que precisa gastar os neurônios pensando em como fazer para encontrar um namorado. Solidão? Que nada!</textarea></div><label for="link">Link de referência:</label><div class="input"><input type="text" name="link" value="http://www.gnt.com.br/post-falando-sobre-esse-perfil.html" size=""/></div><label for="texto">Texto do link de referência:</label><div class="input"><input type="text" name="texto" value="Saiba mais" size=""/></div></div><div class="imagem"><label for="imagem">Imagem relacionada:<span>Dimensões: 240px x 260px</span></label><div class="quadro"><img id="alvo" src="assets/img/backgrounds/imagem.png" name="imagem"/></div><span class="btn btn-success fileinput-button"><input id="fileupload" type="file"/></span></div></div>');
+		$('#accordion').append('<div class="header"><span class="icon"></span><div class="input"><input type="text" name="nome" value="" size=""/></div><span class="arrow"></span></div><div class="body"><div class="texto"><label for="descricao">Descrição</label><div class="textarea"><textarea name="descricao" cols="" rows=""></textarea></div><label for="link">Link de referência:</label><div class="input"><input type="text" name="link" value="" size=""/></div><label for="texto">Texto do link de referência:</label><div class="input"><input type="text" name="texto" value="" size=""/></div></div><div class="imagem"><label for="imagem">Imagem relacionada:<span>Dimensões: 240px x 260px</span></label><div class="quadro"><img id="alvo'+$('.header').length+'" src="assets/img/backgrounds/imagem.png" name="imagem"/></div><span class="btn btn-success fileinput-button"><input id="fileupload'+$('.header').length+'" type="file"/></span></div></div>');
 		//bota o accordion no esquema
 		$( "#accordion" ).accordion('destroy');
 		$( "#accordion" ).accordion({
-			active: $('.group').length,
-			header: "> div > .header"			
+			active: ($('.header').length),
+			header: ".header"			
 		});
+		//fileupload
+		$('#fileupload'+$('.header').length)
+		   .fileupload({
+				url: 'assets/server/php/',
+				dataType: 'json',
+				done: function (e, data) {			
+					$.each(data.result.files, function (index, file) {
+						$('img#alvo'+$('.header').length).attr('src','assets/server/php/files/'+file.name);
+					});
+				}
+			});		
 		//scrolla pro fim da página
 		$('html, body').animate({scrollTop:$(document).height()}, 1000);
 		return false;
