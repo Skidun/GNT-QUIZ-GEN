@@ -196,14 +196,6 @@
 										<td><input type="radio" name="resposta" value="1" /></td>
 										<td>Liga para os amigos e pergunta se alguém tem um cara interessante. e bonito para te apresentar.</td>
 									</tr>
-									<tr>
-										<td><input type="radio" name="resposta" value="2" /></td>
-										<td>Avisa a todo mundo que vai rolar uma festinha no apê por sua conta.</td>
-									</tr>
-									<tr>
-										<td><input type="radio" name="resposta" value="3" /></td>
-										<td>Vai pra balada com as melhores amigas atrás dos gatos.</td>
-									</tr>
 								</table>
 							</div>
 							<div id="imagem">
@@ -411,9 +403,9 @@
 						<div id="previewResultados" class="preview">
 							<div id="nome">Que tipo de solteira você é?</div>
 							<div id="texto">
+								<p class="acertos">40 pontos!</p>
 								<div class="titulo">Pegadora</div>								
-								<div class="resultado">
-									<p class="acertos">Você é a pegadora! Enquanto o 'certo' não aparece, você se diverte com os 'errados'!</p>
+								<div class="resultado">									
 									<p class="descricao">Brincadeiras à parte, você não tem medo de explorar sua sexualidade e seus desejos enquanto não tem um relacionamento sério à vista. O importante é curtir a vida!</p>
 									<div class="saibaMais"><a href="#">saiba mais</a></div>
 								
