@@ -24,10 +24,11 @@
 								<span class="arrow"></span>
 							</div>
 							<div class="body">
+								<!--O numero de identificacao do slider deve vir salvo do BD, o restante ele calcula dinamicamente para ser salvo-->
 								<div class="sliderHolder">
-									<input type="text" id="amountIni" class="amountIni0" />
-									<input type="text" id="amountFin" class="amountFin0" />		
-									<div id="slider"></div>
+									<input type="text" id="amountIni" class="amountIni1" readonly />
+									<input type="text" id="amountFin" class="amountFin1" readonly />		
+									<div id="slider1"></div>
 								</div>
 								<div class="texto">
 									<label for="descricao">Descrição</label>

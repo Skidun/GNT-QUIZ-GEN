@@ -182,6 +182,13 @@
 							
 						</div>
 						
+						<div class="preVisu">
+							<p>Pré-visualizar:</p>
+							<select name="prePerguntas" class="default">
+								<option value="1">Chegou o fim de semana:</option>
+								<option value="2">Chegou o fim de semana:</option>
+							</select>
+						</div>
 						<div id="previewPerguntas" class="preview">
 							<div id="nome">Que tipo de solteira você é?</div>
 							<div id="texto">
@@ -400,6 +407,13 @@
 							
 						</div>
 						
+						<div class="preVisu">
+							<p>Pré-visualizar:</p>
+							<select name="preResultados" class="default">
+								<option value="1">Chegou o fim de semana:</option>
+								<option value="2">Chegou o fim de semana:</option>
+							</select>
+						</div>
 						<div id="previewResultados" class="preview">
 							<div id="nome">Que tipo de solteira você é?</div>
 							<div id="texto">

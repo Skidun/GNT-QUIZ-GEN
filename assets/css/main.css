@@ -366,12 +366,16 @@ p {
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
 }
-#conteudo .box tbody .botoes .menu-editar .nav2 li {
-  padding: 7px 10px;
-}
 #conteudo .box tbody .botoes .menu-editar .nav2 li a {
   font-size: 15px;
   color: #666666;
+  padding: 7px 10px;
+  display: block;
+}
+#conteudo .box tbody .botoes .menu-editar .nav2 li a:hover {
+  background-color: #cd1e5a;
+  color: #ffffff;
+  text-decoration: none;
 }
 #conteudo .box tbody td {
   border-bottom: 1px solid #cccccc;
@@ -1146,7 +1150,10 @@ p {
   width: 26px;
   height: 26px;
   position: absolute;
+  z-index: 99;
+  zoom: 1;
   top: -5px;
+  margin-left: -13px;
 }
 #conteudo .novaFaixa {
   background: url("../img/botoes/novaFaixa.png") 0 0 no-repeat;
@@ -1370,7 +1377,7 @@ p {
   text-decoration: none;
 }
 .dk_toggle {
-  background: url('../img/icones/dk_arrows.png') 96% center no-repeat;
+  background: url('../img/icones/dk_arrows.png') 98% center no-repeat;
   color: #666666;
   padding: 8px 45px 9px 10px;
   border-left: 1px solid #CCCCCC;
@@ -1383,6 +1390,19 @@ p {
 #perfilCustomizacao .dk_toggle {
   width: 39px!important;
   background-position: 86% 0;
+}
+#perfilCustomizacao .preVisu {
+  float: right;
+}
+#perfilCustomizacao .preVisu p {
+  font-size: 18px;
+  color: #333333;
+  float: left;
+  margin: 7px 4px 7px 0;
+}
+#perfilCustomizacao .preVisu .dk_toggle {
+  width: 443px!important;
+  background-position: 98% 0;
 }
 #perfilVisualizacao .dk_toggle {
   width: 243px!important;

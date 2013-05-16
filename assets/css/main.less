@@ -104,8 +104,10 @@ fieldset, table, td, p{ margin:0; padding:0; border:0;}
 					}
 					.editar{ background:url("../img/botoes/editar.png") 0 0 no-repeat; width:101px; height:38px; float:left;}
 					.nav2{ position:absolute; top:38px; right:0; z-index:2; zoom:1; background:#ffffff; border:1px solid #d3d3d3; width:170px; display:none; border-radius: 5px; -webkit-border-radius: 5px; -moz-border-radius: 5px;
-						li{ padding:7px 10px;
-							a{ font-size:15px; color:#666666;}
+						li{
+							a{ font-size:15px; color:#666666; padding:7px 10px; display:block;
+								&:hover{ background-color:#cd1e5a; color:#ffffff; text-decoration:none;}
+							}
 						}
 					}
 				}
@@ -324,7 +326,7 @@ fieldset, table, td, p{ margin:0; padding:0; border:0;}
 	}
 	.ui-slider{ background:url('../img/backgrounds/slider.png') center top no-repeat; width:812px; height:17px; margin:15px 0 15px 55px; position:relative;}
 	.ui-slider-range{ background:url('../img/backgrounds/sliderC.png') center top no-repeat; height:17px; position:absolute;}
-	.ui-slider-handle{ background:url('../img/backgrounds/sliderA.png') center top no-repeat; width:26px; height:26px; position:absolute; top:-5px;}
+	.ui-slider-handle{ background:url('../img/backgrounds/sliderA.png') center top no-repeat; width:26px; height:26px; position:absolute; z-index:99; zoom:1; top:-5px; margin-left: -13px;}
 	.novaFaixa{ background:url("../img/botoes/novaFaixa.png") 0 0 no-repeat; width:269px; height:38px; float:left; margin:20px;}
 	
 	/*Varias Respostas 1*/
@@ -380,9 +382,12 @@ fieldset, table, td, p{ margin:0; padding:0; border:0;}
 	.dk_container{ background:url("../img/backgrounds/select.png") 0 0 repeat-x; font-size: 15px; font-style:italic; margin-bottom: 18px; border-radius:5px; -webkit-border-radius:5px; -moz-border-radius:5px;}
 		.perfil2 .dk_container{ float:right; margin: 0 10px 0 0;}
 	.dk_container a { cursor: pointer; text-decoration: none;}
-	.dk_toggle{ background: url('../img/icones/dk_arrows.png') 96% center no-repeat; color: #666666; padding: 8px 45px 9px 10px; border-left: 1px solid #CCCCCC; border-right: 1px solid #CCCCCC; width:487px!important;}
+	.dk_toggle{ background: url('../img/icones/dk_arrows.png') 98% center no-repeat; color: #666666; padding: 8px 45px 9px 10px; border-left: 1px solid #CCCCCC; border-right: 1px solid #CCCCCC; width:487px!important;}
 		.perfil2 .dk_toggle{ width:245px!important;}
 		#perfilCustomizacao .dk_toggle{ width:39px!important; background-position:86% 0;}
+			#perfilCustomizacao .preVisu{ float:right;}
+			#perfilCustomizacao .preVisu p{ font-size:18px; color:#333333; float:left; margin:7px 4px 7px 0;}
+			#perfilCustomizacao .preVisu .dk_toggle{ width:443px!important; background-position:98% 0;}
 		#perfilVisualizacao .dk_toggle{ width:243px!important; overflow:hidden;
 			.dk_label{ width:243px!important; display:block!important; white-space:nowrap; overflow: hidden;}
 		}

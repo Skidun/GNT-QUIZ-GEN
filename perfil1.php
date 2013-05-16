@@ -16,9 +16,8 @@
 				</div>
 							
 				<div id="accordion">
-					
-					<div class="group">
-							
+						
+						<div class="group">
 							<div class="header">
 								<span class="icon"></span>
 								<div class="input"><input type="text" name="nome" value="" size="" /></div>
@@ -45,8 +44,7 @@
 									
 								</div>
 							</div>
-							
-					</div>	
+						</div>
 					
 				</div><!--accordion-->
 				

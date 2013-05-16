@@ -19,8 +19,7 @@
 				
 				<div id="accordion2">
 					
-					<div class="group">
-					
+					<div class="group">					
 							<div class="header">
 								<span class="icon"></span>
 								<div class="input"><input type="text" name="nome" value="" size="" /></div>
@@ -77,10 +76,9 @@
 									<a id="nova-resposta-perfil" class="nova-resposta" href="javascript:void(0)"></a>
 																	
 								</div><!--respostas-->								
-							</div><!--body-->
-							
-					</div>
-
+							</div><!--body-->							
+					</div><!--group-->
+								
 				</div><!--accordion-->			
 
 				<div class="holder">
