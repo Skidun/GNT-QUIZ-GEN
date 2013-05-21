@@ -3,6 +3,17 @@
 class Quiz_model extends CI_Model {
 	private $table = 'quiz';
 
+    public function get($id = false)
+    {
+                if($id)
+                        $this->db->where('id', $id);
+                $get = $this->db->get($this->table);
+                if($id)
+                        return $get->row_array();
+                if($get->num_rows > 0)
+                        return $get->result_array();
+                return array();
+    }
 
 	public function count_rows()
     {
@@ -13,40 +24,33 @@ class Quiz_model extends CI_Model {
     {                
         #ordenacao
         $this->db->order_by('id', 'DESC');
-        # Limite
-                
+        # Limite  
         $this->db->limit($quantidade, $de);
-                
         # Executa a consulta
                 
         return $this->db->get($this->table);
     }
 
     public function create($data)
-    {
-        $data['user_senha'] = md5($data['user_senha']);
-                
-        $this->db->insert($this->tabela, $data);
+    {                
+        $this->db->insert($this->table, $data);
 
         return (bool) $this->db->affected_rows();
     }
 
     public function update($id, $data)
     {
-        if(isset($data['user_senha']))
-            $data['user_senha'] = md5($data['user_senha']);
-    
-        $this->db->where('user_id', $id);
+        $this->db->where('id', $id);
 
-        $this->db->update($this->tabela, $data);
+        $this->db->update($this->table, $data);
 
         return (bool) $this->db->affected_rows();
     }
 
     public function delete($data)
     {
-        $this->db->where('user_id', $data);
-        $this->db->delete($this->tabela);
+        $this->db->where('id', $data);
+        $this->db->delete($this->table);
 
         return (bool) $this->db->affected_rows(); 
     }

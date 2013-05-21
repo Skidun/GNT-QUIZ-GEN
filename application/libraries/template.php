@@ -19,4 +19,11 @@ class Template{
 		
 		$CI->load->view('template/menu', array('view' => $view));
 	}
+
+	function menu2($view)
+	{
+		$CI = get_instance();
+		
+		$CI->load->view('template/menu_2', array('view' => $view));
+	}
 }

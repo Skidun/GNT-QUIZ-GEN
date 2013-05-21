@@ -1,21 +1,170 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Welcome extends CI_Controller {
+class Quiz extends CI_Controller {
+
+	/**
+	 * Dashboard Controller.
+	 *
+	 * Esse controller possui todos os métodos referente à dashboard do sistema
+	 * Ele é reponsável por carregar  os quizes na tela inicial após o login
+	 * 
+	 */
+
+	private $quizes_pagina = 20;
 
 	public function __construct()
 	{
 		parent::__construct();
+		//Carregar o Model Quiz
 		$this->load->model('quiz_model');
 		if(!$this->session->userdata('logado')){
 			redirect('login');
 		}
 	}
+	
+	public function index($de_paginacao=0)
+	{	
+		$data['page_title'] = 'Dashboard';
+		# Preparando o limite da paginação
+        $de_paginacao = ( $de_paginacao < 0 || $de_paginacao == 1 ) ? 0 : (int) $de_paginacao;
+        # Acessa o Model, executa a função get_all() e recebe os quizes    
+        $quizes = $this->quiz_model->get_all($de_paginacao, $this->quizes_pagina);        
+        $total = $this->quiz_model->count_rows();
+		$tr = '';
+        foreach($quizes->result() as $quiz){
+        	$tr .= '<tr>
+						<td>';
+			$tr .= '<div class="texto">
+						<p>'.$quiz->titulo.'</p>
+						<span>tipo: '.$quiz->tipo.' | editado em: '.date('d-m-Y', strtotime($quiz->data_alteracao)).'</span>
+				   </div>
+				   <div class="botoes">
+						<a class="ver-e-embutir" href="#"></a>
+						<ul class="menu-editar">
+							<li><div class="editar"></div>
+								<ul class="nav2">
+									<li><a href="'.site_url('editar-quiz').'/'.$quiz->id.'">nome e tipo</a></a></li>
+									<li><a href="#">perfis</a></a></li>
+									<li><a href="#">perguntas & respostas</a></a></li>
+									<li><a href="#">customizacao</a></a></li>
+									<li><a href="'.site_url('remover-quiz').'/'.$quiz->id.'" id="btn-excluir-quiz">excluir</a></a></li>
+								</ul>
+							</li>
+						</ul>
+					</div>';
+			$tr .= '</td>
+				</tr>';							
+       	}
+       	$data['quizes']	= $tr;
 
-	public function index()
-	{
-		$this->load->view('welcome_message');
+        $numero_links =  $total / $this->quizes_pagina; 
+        # Paginação
+        $config_paginacao['base_url']   = site_url('dashboard');
+        $config_paginacao['total_rows'] = $total;
+        $config_paginacao['uri_segment'] = 4;
+        $config_paginacao['num_links'] = $numero_links;
+        $config_paginacao['per_page'] = $this->quizes_pagina;
+        
+        $this->pagination->initialize($config_paginacao);
+            
+        $data['html_paginacao'] = $this->pagination->create_links();
+		
+
+		$this->template->show('home', $data);
+
 	}
+	//Chama view que Cria novo view
+	public function create()
+	{
+		$data['page_title'] = "Cadastrar Novo Quiz";
+		$this->template->show('create_quiz', $data);
+	}
+	//Chama view que edita o Quiz
+	public function edit($id)
+	{
+		$data['page_title'] = "Editar Quiz $id";
+		$data = $this->quiz_model->get($id);
+		$this->template->show('edit_quiz', $data);
+	}
+	//Salva o Quiz cadastrado no banco de dados
+	public function save()
+	{
+		$this->form_validation->set_rules('titulo', 'Titulo', 'trim|required|max_length[140]|xss_clean');
+		
+		if(!$this->form_validation->run()){
+			$this->template->show('create_quiz');
+		}else{
+			$data['titulo'] 		= $this->input->post('titulo', TRUE);
+			$data['tipo']   		= $this->input->post('tipo', TRUE);
+			$data['data_criacao']   = date('Y-m-d H:i:s'); 
+			$data['data_alteracao'] = date('Y-m-d H:i:s');
+			$data['id_usuario']    	= $this->session->userdata('id');
+
+			$result = $this->quiz_model->create($data);
+
+			if($result){
+				$query = $this->db->get('quiz');
+		        // Retorna o último ID inserido
+		        $last = $query->last_row('array');
+
+		        $id = $last['id'];
+		        //Verifica o tipo do quiz para
+		        switch ($this->input->post('tipo', TRUE)) {
+		        	case 'perfil':
+		        		$this->session->set_flashdata('id_quiz', $id);
+		        		redirect('quiz_tipo/perfil', 'refresh');
+		        		break;
+		        	
+		        	case 'certo-ou-errado':
+		        		$this->session->set_flashdata('id_quiz', $id);
+		        		redirect('quiz_tipo/faixa', 'refresh');
+		        		break;
+		        	
+		        	case 'resposta-certa':
+		        		$this->session->set_flashdata('id_quiz', $id);
+		        		redirect('quiz_tipo/resposta_certa', 'refresh');
+		        		break;
+
+		        	case 'apenas-uma':
+		        		$this->session->set_flashdata('id_quiz', $id);
+		        		redirect('quiz_tipo/apenas_uma', 'refresh');
+		        		break;		
+		        }
+			}
+		}
+	}
+	//Faz update do quiz
+	public function update()
+	{
+		$this->form_validation->set_rules('titulo', 'Titulo', 'trim|required|max_length[140]|xss_clean');
+		$data['titulo'] 		= $this->input->post('titulo', TRUE);
+		$data['data_alteracao'] = date('Y-m-d H:i:s');
+		$data['id_usuario']    	= $this->session->userdata('id');
+		
+		if(!$this->form_validation->run()){
+			$this->template->show('edit_quiz');
+		}else{
+			$result = $this->quiz_model->update($this->input->post('id'), $data);
+
+			if($result){
+				$this->session->set_flashdata('update-ok', 'Quiz '.$data['titulo'].' foi alterado com sucesso');
+				redirect('visualizar-todos-quizes', 'refresh');
+			}
+		}
+	}
+
+	public function remove($id)
+	{
+		$data = $id;
+		$result =  $this->quiz_model->delete($data);
+
+		if($result){
+			$this->session->set_flashdata('delete-ok', 'Quiz '.$id.' foi excluido');
+			redirect('visualizar-todos-quizes', 'refresh');
+		}
+	}
+
 }
 
-/* End of file welcome.php */
-/* Location: ./application/controllers/welcome.php */
+/* End of file dashboard.php */
+/* Location: ./application/controllers/dashboard.php */

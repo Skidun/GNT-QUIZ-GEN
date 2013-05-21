@@ -18,7 +18,7 @@
 				</ul>
 			</nav>
 			<ul class="menu">
-				<li><a class="novo-quiz" href="#"></a></li>
+				<li><a class="novo-quiz" href="<?php echo site_url('cadastrar-novo-quiz');?>"></a></li>
 				<li><a class="sair" href="<?php echo base_url();?>login/logout">sair</a></li>
 			</ul>
 			</div>

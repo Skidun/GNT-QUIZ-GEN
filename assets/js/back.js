@@ -2,6 +2,18 @@ var eventos_back = {
 	
 	init: function()
 	{
+		$('#senha-login, #txt-password,  #txt-password-repeat').focus(function(){
+			$(this).val('');
+			$(this).attr('type','password');
+		});
+
+		$('#senha-login, #txt-password,  #txt-password-repeat').blur(function(){
+			var texto = $(this).val();
+			if($(this).val() == '' || $(this).val() == 'senha' || $(this).val() == 'repita a senha nova' || $(this).val() == 'senha nova'){
+				$(this).attr('type', 'text');
+			}
+		});
+
 		$('#btn-esqueci-senha').click(function(e){
 			e.preventDefault();
 			var email = $('#email-login-recover').val();
@@ -56,6 +68,32 @@ var eventos_back = {
 				document.form_reset_pass.submit();
 			}
 		});
+		//Tela Criar Quiz
+		$('#criar-quiz').click(function(e){
+			e.preventDefault();
+			eventos_back.valida_quiz();
+		});
+
+		$('#tituloQuiz').focus(function(){
+			if($(this).val() == 'Preencha esse campo'){
+				//$(this).val('');
+				$(this).removeAttr('style');
+			}
+		});
+
+		//Tela todos os Quizes
+		$(document).on('click', '#btn-excluir-quiz', function(e){
+			e.preventDefault();
+
+			var link = this.href;
+			var confirmacao = confirm('Tem certeza que deseja excluir esse Quiz?');
+
+			if(confirmacao){
+				location.href=link;
+			}
+
+			return false;
+		});
 	},
 
 	recovery: function(email){
@@ -73,6 +111,16 @@ var eventos_back = {
 				}
 			}
 		);
+	},
+
+	valida_quiz: function(){
+		var tituloQuiz = $('#tituloQuiz').val(), tipoQuiz = $('#tipoQuiz').val();
+
+		if(tituloQuiz == '' || tituloQuiz == 'Preencha esse campo'){
+			$('#tituloQuiz').val('Preencha esse campo').css('color', '#c9451e');
+		}else{
+			document.form_quiz_create.submit();
+		}
 	}
 }
 

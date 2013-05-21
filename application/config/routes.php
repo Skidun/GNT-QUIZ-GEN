@@ -38,10 +38,15 @@
 |
 */
 
-$route['default_controller'] = "dashboard";
-$route['404_override'] = '';
-//My Routes
-$route['cadastrar-novo-quiz']= "dashboard/create";
-$route['visualizar-todos-quizes']= "dashboard";
+$route['default_controller'] 		= "login/restrict";
+$route['404_override'] 				= '';
+//Routes of controller Quiz
+$route['cadastrar-novo-quiz']	 	= "quiz/create";
+$route['visualizar-todos-quizes']	= "quiz";
+$route['salvar-quiz']			 	= "quiz/save";
+$route['editar-quiz/(:num)']	 	= "quiz/edit/$1";
+$route['remover-quiz/(:num)']	 	= "quiz/remove/$1";
+$route['alterar-quiz']	 			= "quiz/update";
+
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */

@@ -31,7 +31,7 @@ class Login extends CI_Controller {
 				'nome' => $result['nome'],
 				'email'=> $result['email'],
 			));
-			redirect('dashboard');
+			redirect('quiz');
 		}
 		
 		//load view
@@ -103,6 +103,15 @@ class Login extends CI_Controller {
 		}
 	}
 
+	//Restrict Área: verify if user are logged
+	public function restrict()
+	{
+		if(!$this->session->userdata('logado')){
+			redirect('login');
+		}else{
+			redirect('visualizar-todos-quizes');
+		}
+	}
 	
 }
 

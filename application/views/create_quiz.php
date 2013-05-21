@@ -1,6 +1,7 @@
 <?php $this->template->menu('create_quiz'); ?>
 		<div id="conteudo">
 			<div id="wrap">
+				<?php echo form_open('salvar-quiz',array('id'=>'form-quiz-create', 'name'=> 'form_quiz_create'));?>
 				<div class="conteudo-box">
 					<table class="novo">
 						<thead>
@@ -13,9 +14,10 @@
 								<td>
 									<div class="novo-inner">
 									<label for="titulo">Título:</label>
-									<div class="input"><input type="text" name="titulo" value="Que tipo de solteira você é?" size="" /></div>
+									<div class="input"><input type="text" name="titulo" id="tituloQuiz" value="" size="" /></div>
+									<?php echo '<div class="enviada-erro" style="display:block;">'.form_error('titulo').'</div>';?>
 									<label for="tipo">Tipo:</label>
-									<select name="tipo" class="default">
+									<select name="tipo" class="default" id="tipoQuiz">
 										<option value="perfil">Perfil</option>
 										<option value="certo-ou-errado">Certo ou Errado</option>
 										<option value="resposta-certa">Resposta Certa</option>
@@ -27,6 +29,7 @@
 						</tbody>
 					</table>					
 				</div>
-				<a class="criar-quiz" href="#" rel="link-interno" title="criar quiz"></a>
+				<input type="submit" name="criar-quiz" class="criar-quiz" id="criar-quiz" value="" />
+				<?php echo form_close();?>
 			</div>
 		</div>
