@@ -1,4 +1,4 @@
 GNT QUIZ GEN
 ============
 
-Sistema gerador de Quiz par ao site GNT.
+Sistema gerador de Quizes para o site do canal GNT.
