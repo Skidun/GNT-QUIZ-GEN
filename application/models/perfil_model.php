@@ -6,28 +6,25 @@ class Perfil_model extends CI_Model {
     public function get($id = false)
     {
                 if($id)
-                        $this->db->where('id', $id);
+                    $this->db->where('id_quiz', $id);
                 $get = $this->db->get($this->table);
                 if($id)
                         return $get->row_array();
                 if($get->num_rows > 0)
-                        return $get->result_array();
+                    return $get->result_array();
                 return array();
     }
 
-	public function count_rows()
+	public function count_rows($id)
     {
+        $this->db->where('id_quiz', $id);
         return $this->db->count_all_results($this->table);
     }
 	
-	public function get_all($de = 0, $quantidade = 0)
+	public function get_all($id)
     {                
-        #ordenacao
-        $this->db->order_by('id', 'DESC');
-        # Limite  
-        $this->db->limit($quantidade, $de);
-        # Executa a consulta
-                
+        $this->db->where('id_quiz', $id);
+
         return $this->db->get($this->table);
     }
 

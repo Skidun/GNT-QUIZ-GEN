@@ -45,7 +45,7 @@ class Quiz extends CI_Controller {
 								<ul class="nav2">
 									<li><a href="'.site_url('editar-quiz').'/'.$quiz->id.'">nome e tipo</a></a></li>
 									<li><a href="'.site_url('quiz_tipo').'/'.$quiz->tipo.'/'.$quiz->id.'">perfis</a></a></li>
-									<li><a href="#">perguntas & respostas</a></a></li>
+									<li><a href="'.site_url('perguntas').'/'.$quiz->tipo.'/'.$quiz->id.'">perguntas & respostas</a></a></li>
 									<li><a href="#">customizacao</a></a></li>
 									<li><a href="'.site_url('remover-quiz').'/'.$quiz->id.'" id="btn-excluir-quiz">excluir</a></a></li>
 								</ul>
@@ -116,18 +116,18 @@ class Quiz extends CI_Controller {
 		        		break;
 		        	
 		        	case 'certo-ou-errado':
-		        		$this->session->set_flashdata('id_quiz', $id);
-		        		redirect('quiz_tipo/faixa', 'refresh');
+		        		//$this->session->set_flashdata('id_quiz', $id);
+		        		redirect('quiz_tipo/faixa/'.$id);
 		        		break;
 		        	
 		        	case 'resposta-certa':
 		        		$this->session->set_flashdata('id_quiz', $id);
-		        		redirect('quiz_tipo/resposta_certa', 'refresh');
+		        		redirect('quiz_tipo/resposta_certa/'.$id);
 		        		break;
 
 		        	case 'apenas-uma':
 		        		$this->session->set_flashdata('id_quiz', $id);
-		        		redirect('quiz_tipo/apenas_uma', 'refresh');
+		        		redirect('quiz_tipo/apenas_uma/'.$id);
 		        		break;		
 		        }
 			}

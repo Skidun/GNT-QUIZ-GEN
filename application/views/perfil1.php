@@ -12,7 +12,12 @@
 					<a class="proximo" href="#"></a>
 				</div>
 							
-				<div id="accordion">		
+				<div id="accordion">
+						<?php
+							if($quantidade != 0){
+								echo $perfis;
+							}else{
+						?>	
 						<div class="group" id="0">
 							<div class="header">
 								<span class="icon"></span>
@@ -41,7 +46,7 @@
 								</div>
 							</div>
 						</div>
-					
+					<?php }?>
 				</div><!--accordion-->
 				
 				
