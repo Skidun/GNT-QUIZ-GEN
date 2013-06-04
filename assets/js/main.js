@@ -94,7 +94,7 @@ $(function(){
 				done: function (e, data) {
 					var filess= data.files[0];
 					var filenam = filess.name;
-					$(this).find('#alvo').attr('src','./assets/server/php/files/'+filenam);
+					$(this).find('#alvo-0').attr('src','../../assets/server/php/files/'+filenam);
 				}
 			});
 		});
@@ -103,40 +103,42 @@ $(function(){
 	/*perguntas*/
 	$('#fileupload-perfil-customiza')
    .fileupload({
-        url: './assets/server/php/',
+        url: '../assets/server/php/',
         dataType: 'json',
         done: function (e, data) {			
             $.each(data.result.files, function (index, file) {
-				$('img#alvo-perguntas').attr('src','./assets/server/php/files/'+file.name);
+				$('img#alvo-perguntas').attr('src','../../assets/server/php/files/'+file.name);
             });
         }
     });
 	/*resultados*/
 	$('#fileupload-perfil-customiza-resultados')
    .fileupload({
-        url: './assets/server/php/',
+        url: '../../assets/server/php/',
         dataType: 'json',
         done: function (e, data) {			
             $.each(data.result.files, function (index, file) {
-				$('img#alvo-resultados').attr('src','./assets/server/php/files/'+file.name);
+				$('img#alvo-resultados').attr('src','../../assets/server/php/files/'+file.name);
             });
         }
     });
 			
 	/* botao novo perfil*/
+	var count = 1;
 	$("#novo-perfil").click(function(){
-		$('#accordion').append('<div class="group"><div class="header"><span class="icon"></span><div class="input"><input type="text" name="nome" value="" size=""/></div><span class="arrow"></span></div><div class="body"><div class="texto"><label for="descricao">Descrição</label><div class="textarea"><textarea name="descricao" cols="" rows=""></textarea></div><label for="link">Link de referência:</label><div class="input"><input type="text" name="link" value="" size=""/></div><label for="texto">Texto do link de referência:</label><div class="input"><input type="text" name="texto" value="" size=""/></div></div><div class="imagem"><label for="imagem">Imagem relacionada:<span>Dimensões: 240px x 260px</span></label><form class="fileupload" action="assets/server/php/" method="POST" enctype="multipart/form-data"><div class="quadro"><img id="alvo" src="assets/img/backgrounds/imagem.png" name="imagem"/></div><span class="btn btn-success fileinput-button"><input id="file" type="file"/></span></form></div></div></div>');
+		var id = count++;
+		$('#accordion').append('<div class="group" id="'+id+'"><div class="header"><span class="icon"></span><div class="input"><input type="text" name="nome" id="nome-perfil-'+id+'"  value="" size=""/></div><span class="arrow"></span></div><div class="body"><div class="texto"><label for="descricao">Descrição</label><div class="textarea"><textarea name="descricao" id="descricao-perfil-'+id+'" cols="" rows=""></textarea></div><label for="link">Link de referência:</label><div class="input"><input type="text" name="link" id="link-perfil-'+id+'" value="" size=""/></div><label for="texto">Texto do link de referência:</label><div class="input"><input type="text" name="texto" id="texto-perfil-'+id+'" value="" size=""/></div></div><div class="imagem"><label for="imagem">Imagem relacionada:<span>Dimensões: 240px x 260px</span></label><form class="fileupload" action="../../assets/server/php/" method="POST" enctype="multipart/form-data"><div class="quadro"><img id="alvo-'+id+'" src="../../assets/img/backgrounds/imagem.png" name="imagem"/></div><span class="btn btn-success fileinput-button"><input id="file" type="file"/></span></form></div></div></div>');
 		/*bota o accordion no esquema*/
 		$( "#accordion" ).accordion('destroy').sortable('destroy');		
 		$( "#accordion" ).accordion({active:($('.header').length-1),header: "> div > .header",heightStyle: "content"}).sortable({axis: "y",handle: ".header",stop: function( event, ui ) {ui.item.children( ".header" ).triggerHandler( "focusout" );}});
 		/*tem que resetar o fileupload e chamar de novo*/		
 		$('.fileupload').bind('fileuploaddestroy');
-		$('.fileupload').each(function () {
+		$('.fileupload').each(function (index) {
 			$(this).fileupload({
 				done: function (e, data) {
 					var filess= data.files[0];
 					var filenam = filess.name;
-					$(this).find('#alvo').attr('src','./assets/server/php/files/'+filenam);
+					$(this).find('#alvo-'+index).attr('src','../../assets/server/php/files/'+filenam);
 				}
 			});
 		});		
@@ -161,7 +163,7 @@ $(function(){
 	$(document).on('click','#nova-pergunta-perfil',function(){
 		//gera uma combinacao unica de numero para o novo select[name], assim não dá conflito
 		//por exemplo, resposta-21, é o select do grupo 2(#sortable2) e o segundo select desse grupo
-		$("#accordion2").append('<div class="group"><div class="header"><span class="icon"></span><div class="input"><input type="text" name="nome" value="" size=""/></div><span class="arrow"></span></div><div class="body"><div id="perguntas"><div class="texto"><label for="link">Link de referência:</label><div class="input"><input type="text" name="link" value="" size=""/></div><label for="texto">Texto do link de referência:</label><div class="input"><input type="text" name="texto" value="" size=""/></div></div><div class="imagem"><label for="imagem">Imagem relacionada:<span>Dimensões: 240px x 260px</span></label><form class="fileupload" action="assets/server/php/" method="POST" enctype="multipart/form-data"><div class="quadro"><img id="alvo" src="assets/img/backgrounds/imagem.png" name="imagem"/></div><span class="btn btn-success fileinput-button"><input id="file" type="file"/></span></form></div></div><div id="respostas"><div class="titulo-respostas">Respostas:</div><div id="sortable'+$(".sorteia").length+'" class="sorteia"><div class="header"><span class="icon"></span><div class="input"><input type="text" name="nome" value="" size=""/></div><select name="resposta-0'+$(".sorteia").length+'" class="default"><option value="1">Amiga de todos</option><option value="2">Pegadora</option></select></div></div><a id="nova-resposta-perfil" class="nova-resposta" href="javascript:void(0)"></a></div></div></div>');
+		$("#accordion2").append('<div class="group"><div class="header"><span class="icon"></span><div class="input"><input type="text" name="nome" value="" size=""/></div><span class="arrow"></span></div><div class="body"><div id="perguntas"><div class="texto"><label for="link">Link de referência:</label><div class="input"><input type="text" name="link" value="" size=""/></div><label for="texto">Texto do link de referência:</label><div class="input"><input type="text" name="texto" value="" size=""/></div></div><div class="imagem"><label for="imagem">Imagem relacionada:<span>Dimensões: 240px x 260px</span></label><form class="fileupload" action="../../assets/server/php/" method="POST" enctype="multipart/form-data"><div class="quadro"><img id="alvo" src="../../assets/img/backgrounds/imagem.png" name="imagem"/></div><span class="btn btn-success fileinput-button"><input id="file" type="file"/></span></form></div></div><div id="respostas"><div class="titulo-respostas">Respostas:</div><div id="sortable'+$(".sorteia").length+'" class="sorteia"><div class="header"><span class="icon"></span><div class="input"><input type="text" name="nome" value="" size=""/></div><select name="resposta-0'+$(".sorteia").length+'" class="default"><option value="1">Amiga de todos</option><option value="2">Pegadora</option></select></div></div><a id="nova-resposta-perfil" class="nova-resposta" href="javascript:void(0)"></a></div></div></div>');
 		//coloca o novo elemento de accordion no esquema
 		$("#accordion2").accordion('destroy').sortable('destroy');
 		$("#accordion2").accordion({active:$("#accordion2 .sorteia").length-1,header:"> div > .header"}).sortable({axis:"y",handle:".header",stop:function(event,ui){ui.item.children(".header").triggerHandler("focusout")}});
@@ -174,7 +176,7 @@ $(function(){
 		}
 		/*tem que resetar o fileupload e chamar de novo*/		
 			$('.fileupload').bind('fileuploaddestroy');
-			$(".fileupload").each(function(){$(this).fileupload({done:function(e,t){var n=t.files[0];var r=n.name;$(this).find("#alvo").attr("src","../assets/server/php/files/"+r)}})})
+			$(".fileupload").each(function(){$(this).fileupload({done:function(e,t){var n=t.files[0];var r=n.name;$(this).find("#alvo").attr("src","../../assets/server/php/files/"+r)}})})
 		//scrolla pro fim da página
 		$('html, body').animate({scrollTop:$(document).height()}, 1000);
 		return false;
@@ -292,7 +294,7 @@ $(function(){
 	);
 	$('#respostas-cor-fundo').jPicker({
 		window:{ position:{ x: 'screenCenter' , y: ($(this).offset.top - $(window).scrollTop()) + $(this).height() } },
-		images:{clientPath: 'assets/img/jpicker/'}
+		images:{clientPath: '../assets/img/jpicker/'}
 	},
 		function(color, context)
 			{
@@ -315,7 +317,7 @@ $(function(){
 	//////Resultados
 	$('#titulo-resultados-cor').jPicker({
 		window:{ position:{ x: 'screenCenter' , y: ($(this).offset.top - $(window).scrollTop()) + $(this).height() } },
-		images:{clientPath: 'assets/img/jpicker/'}
+		images:{clientPath: '../assets/img/jpicker/'}
 	},
 		function(color, context)
 			{
@@ -326,7 +328,7 @@ $(function(){
 	);
 	$('#perguntas-resultados-cor').jPicker({
 		window:{ position:{ x: 'screenCenter' , y: ($(this).offset.top - $(window).scrollTop()) + $(this).height() } },
-		images:{clientPath: 'assets/img/jpicker/'}
+		images:{clientPath: '../assets/img/jpicker/'}
 	},
 		function(color, context)
 			{
@@ -337,7 +339,7 @@ $(function(){
 	);
 	$('#acertos-cor').jPicker({
 		window:{ position:{ x: 'screenCenter' , y: ($(this).offset.top - $(window).scrollTop()) + $(this).height() } },
-		images:{clientPath: 'assets/img/jpicker/'}
+		images:{clientPath: '../assets/img/jpicker/'}
 	},
 		function(color, context)
 			{
@@ -348,7 +350,7 @@ $(function(){
 	);
 	$('#descricao-cor').jPicker({
 		window:{ position:{ x: 'screenCenter' , y: ($(this).offset.top - $(window).scrollTop()) + $(this).height() } },
-		images:{clientPath: 'assets/img/jpicker/'}
+		images:{clientPath: '../assets/img/jpicker/'}
 	},
 		function(color, context)
 			{
@@ -359,7 +361,7 @@ $(function(){
 	);
 	$('#referencia-resultados-cor').jPicker({
 		window:{ position:{ x: 'screenCenter' , y: ($(this).offset.top - $(window).scrollTop()) + $(this).height() } },
-		images:{clientPath: 'assets/img/jpicker/'}
+		images:{clientPath: '../assets/img/jpicker/'}
 	},
 		function(color, context)
 			{
@@ -381,7 +383,7 @@ $(function(){
 	);
 	$('#botoes-resultados-cor-fundo').jPicker({
 		window:{ position:{ x: 'screenCenter' , y: ($(this).offset.top - $(window).scrollTop()) + $(this).height() } },
-		images:{clientPath: 'assets/img/jpicker/'}
+		images:{clientPath: '../assets/img/jpicker/'}
 	},
 		function(color, context)
 			{
@@ -392,7 +394,7 @@ $(function(){
 	);
 	$('#imagem-resultados-cor-fundo').jPicker({
 		window:{ position:{ x: 'screenCenter' , y: ($(this).offset.top - $(window).scrollTop()) + $(this).height() } },
-		images:{clientPath: 'assets/img/jpicker/'}
+		images:{clientPath: '../assets/img/jpicker/'}
 	},
 		function(color, context)
 			{
@@ -482,7 +484,7 @@ $(function(){
 			var tamanho = $(".sorteia").length;
 			//gera uma combinacao unica de numero para o novo select[name], assim não dá conflito
 			//por exemplo, resposta-21, é o select do grupo 2(#sortable2) e o segundo select desse grupo
-			$("#accordion2").append('<div class="group"><div class="header"><span class="icon"></span><div class="input"><input type="text" name="nome" value="" size=""/></div><span class="arrow"></span></div><div class="body"><div id="perguntas"><div class="texto"><label for="link">Link de referência:</label><div class="input"><input type="text" name="link" value="" size=""/></div><label for="texto">Texto do link de referência:</label><div class="input"><input type="text" name="texto" value="" size=""/></div></div><div class="imagem"><label for="imagem">Imagem relacionada:<span>Dimensões: 240px x 260px</span></label><form class="fileupload" action="assets/server/php/" method="POST" enctype="multipart/form-data"><div class="quadro"><img id="alvo" src="assets/img/backgrounds/imagem.png" name="imagem"/></div><span class="btn btn-success fileinput-button"><input id="file" type="file"/></span></form></div></div><div id="respostas"><div class="titulo-respostas">Respostas:</div><div id="sortable'+tamanho+'" class="sorteia"><div class="header"><span class="icon"></span><div class="input"><input type="text" name="nome" value="" size=""/></div><div class="radio"><label for="radio'+(tamanho+1)+tamanho+'" class="radioCustom"></label><input type="radio" id="radio'+(tamanho+1)+tamanho+'" value="0" name="grupo'+tamanho+'"/>Esta é a resposta correta</div></div><div class="header"><span class="icon"></span><div class="input"><input type="text" name="nome" value="" size=""/></div><div class="radio"><label for="radio'+(tamanho+2)+tamanho+'" class="radioCustom"></label><input type="radio" id="radio'+(tamanho+2)+tamanho+'" value="1" name="grupo'+tamanho+'"/>Esta é a resposta correta</div></div></div></div></div></div>');
+			$("#accordion2").append('<div class="group"><div class="header"><span class="icon"></span><div class="input"><input type="text" name="nome" value="" size=""/></div><span class="arrow"></span></div><div class="body"><div id="perguntas"><div class="texto"><label for="link">Link de referência:</label><div class="input"><input type="text" name="link" value="" size=""/></div><label for="texto">Texto do link de referência:</label><div class="input"><input type="text" name="texto" value="" size=""/></div></div><div class="imagem"><label for="imagem">Imagem relacionada:<span>Dimensões: 240px x 260px</span></label><form class="fileupload" action="../../assets/server/php/" method="POST" enctype="multipart/form-data"><div class="quadro"><img id="alvo" src="../assets/img/backgrounds/imagem.png" name="imagem"/></div><span class="btn btn-success fileinput-button"><input id="file" type="file"/></span></form></div></div><div id="respostas"><div class="titulo-respostas">Respostas:</div><div id="sortable'+tamanho+'" class="sorteia"><div class="header"><span class="icon"></span><div class="input"><input type="text" name="nome" value="" size=""/></div><div class="radio"><label for="radio'+(tamanho+1)+tamanho+'" class="radioCustom"></label><input type="radio" id="radio'+(tamanho+1)+tamanho+'" value="0" name="grupo'+tamanho+'"/>Esta é a resposta correta</div></div><div class="header"><span class="icon"></span><div class="input"><input type="text" name="nome" value="" size=""/></div><div class="radio"><label for="radio'+(tamanho+2)+tamanho+'" class="radioCustom"></label><input type="radio" id="radio'+(tamanho+2)+tamanho+'" value="1" name="grupo'+tamanho+'"/>Esta é a resposta correta</div></div></div></div></div></div>');
 			//coloca o novo elemento de accordion no esquema
 			$("#accordion2").accordion('destroy').sortable('destroy');
 			$("#accordion2").accordion({active:$("#accordion2 .sorteia").length-1,header:"> div > .header"}).sortable({axis:"y",handle:".header",stop:function(event,ui){ui.item.children(".header").triggerHandler("focusout")}});
@@ -521,7 +523,7 @@ $(function(){
 	 /*botao faixas de classificacao*/
 	$("#novaFaixa").click(function(){
 	var tamanho = $('.header').length;
-	$('#accordion').append('<div class="group"><div class="header"><span class="icon"></span><div class="input"><input type="text" name="nome" value="" size=""/></div><span class="arrow"></span></div><div class="body"><div class="sliderHolder"><input type="text" id="amountIni" class="amountIni'+(tamanho+1)+'" readonly/><input type="text" id="amountFin" class="amountFin'+(tamanho+1)+'" readonly/><div id="slider'+(tamanho+1)+'"></div></div><div class="texto"><label for="descricao">Descrição</label><div class="textarea"><textarea name="descricao" cols="" rows=""></textarea></div><label for="link">Link de referência:</label><div class="input"><input type="text" name="link" value="" size=""/></div><label for="texto">Texto do link de referência:</label><div class="input"><input type="text" name="texto" value="" size=""/></div></div><div class="imagem"><label for="imagem">Imagem relacionada:<span>Dimensões: 240px x 260px</span></label><form class="fileupload" action="assets/server/php/" method="POST" enctype="multipart/form-data"><div class="quadro"><img id="alvo" src="assets/img/backgrounds/imagem.png" name="imagem"/></div><span class="btn btn-success fileinput-button"><input id="file" type="file"/></span></form></div></div></div>');
+	$('#accordion').append('<div class="group"><div class="header"><span class="icon"></span><div class="input"><input type="text" name="nome" value="" size=""/></div><span class="arrow"></span></div><div class="body"><div class="sliderHolder"><input type="text" id="amountIni" class="amountIni'+(tamanho+1)+'" readonly/><input type="text" id="amountFin" class="amountFin'+(tamanho+1)+'" readonly/><div id="slider'+(tamanho+1)+'"></div></div><div class="texto"><label for="descricao">Descrição</label><div class="textarea"><textarea name="descricao" cols="" rows=""></textarea></div><label for="link">Link de referência:</label><div class="input"><input type="text" name="link" value="" size=""/></div><label for="texto">Texto do link de referência:</label><div class="input"><input type="text" name="texto" value="" size=""/></div></div><div class="imagem"><label for="imagem">Imagem relacionada:<span>Dimensões: 240px x 260px</span></label><form class="fileupload" action="../assets/server/php/" method="POST" enctype="multipart/form-data"><div class="quadro"><img id="alvo" src="../assets/img/backgrounds/imagem.png" name="imagem"/></div><span class="btn btn-success fileinput-button"><input id="file" type="file"/></span></form></div></div></div>');
 		/*novo slider*/
 		$( "#slider"+(tamanho+1) ).slider({
 					range: true,
@@ -544,7 +546,7 @@ $(function(){
 		});
 		/*tem que resetar o fileupload e chamar de novo*/		
 			$('.fileupload').bind('fileuploaddestroy');
-			$(".fileupload").each(function(){$(this).fileupload({done:function(e,t){var n=t.files[0];var r=n.name;$(this).find("#alvo").attr("src","assets/server/php/files/"+r)}})})
+			$(".fileupload").each(function(){$(this).fileupload({done:function(e,t){var n=t.files[0];var r=n.name;$(this).find("#alvo").attr("src",".../assets/server/php/files/"+r)}})})
 		//scrolla pro fim da página
 		$('html, body').animate({scrollTop:$(document).height()}, 1000);
 		return false;
@@ -567,7 +569,7 @@ $(function(){
 		//gera uma combinacao unica de numero para o novo select[name], assim não dá conflito
 		//por exemplo, resposta-21, é o select do grupo 2(#sortable2) e o segundo select desse grupo
 		var grupoNumero = $('.group').last().find(".header").length;
-		$("#accordion2").append('<div class="group"><div class="header"><span class="icon"></span><div class="input"><input type="text" name="nome" value="" size=""/></div><span class="arrow"></span></div><div class="body"><div id="perguntas"><div class="texto"><label for="link">Link de referência:</label><div class="input"><input type="text" name="link" value="" size=""/></div><label for="texto">Texto do link de referência:</label><div class="input"><input type="text" name="texto" value="" size=""/></div></div><div class="imagem"><label for="imagem">Imagem relacionada:<span>Dimensões: 240px x 260px</span></label><form class="fileupload" action="assets/server/php/" method="POST" enctype="multipart/form-data"><div class="quadro"><img id="alvo" src="assets/img/backgrounds/imagem.png" name="imagem"/></div><span class="btn btn-success fileinput-button"><input id="file" type="file"/></span></form></div></div><div id="respostas"><div class="titulo-respostas">Respostas:</div><div id="sortable'+$(".sorteia").length+'" class="sorteia"><div class="header"><span class="icon"></span><div class="input"><input type="text" name="nome" value="" size=""/></div><div class="radio"><label for="radio0'+$(".sorteia").length+'" class="radioCustom"></label><input type="radio" id="radio0'+$(".sorteia").length+'" value="0" name="grupo'+$(".sorteia").length+'"/>Esta é a resposta correta</div></div></div><a id="nova-resposta-respostaCerta" class="nova-resposta" href="javascript:void(0)"></a></div></div></div>');
+		$("#accordion2").append('<div class="group"><div class="header"><span class="icon"></span><div class="input"><input type="text" name="nome" value="" size=""/></div><span class="arrow"></span></div><div class="body"><div id="perguntas"><div class="texto"><label for="link">Link de referência:</label><div class="input"><input type="text" name="link" value="" size=""/></div><label for="texto">Texto do link de referência:</label><div class="input"><input type="text" name="texto" value="" size=""/></div></div><div class="imagem"><label for="imagem">Imagem relacionada:<span>Dimensões: 240px x 260px</span></label><form class="fileupload" action="../../assets/server/php/" method="POST" enctype="multipart/form-data"><div class="quadro"><img id="alvo" src="assets/img/backgrounds/imagem.png" name="imagem"/></div><span class="btn btn-success fileinput-button"><input id="file" type="file"/></span></form></div></div><div id="respostas"><div class="titulo-respostas">Respostas:</div><div id="sortable'+$(".sorteia").length+'" class="sorteia"><div class="header"><span class="icon"></span><div class="input"><input type="text" name="nome" value="" size=""/></div><div class="radio"><label for="radio0'+$(".sorteia").length+'" class="radioCustom"></label><input type="radio" id="radio0'+$(".sorteia").length+'" value="0" name="grupo'+$(".sorteia").length+'"/>Esta é a resposta correta</div></div></div><a id="nova-resposta-respostaCerta" class="nova-resposta" href="javascript:void(0)"></a></div></div></div>');
 		//coloca o novo elemento de accordion no esquema
 		$("#accordion2").accordion('destroy').sortable('destroy');
 		$("#accordion2").accordion({active:$("#accordion2 .sorteia").length-1,header:"> div > .header"}).sortable({axis:"y",handle:".header",stop:function(event,ui){ui.item.children(".header").triggerHandler("focusout")}});
@@ -608,7 +610,7 @@ $(function(){
 		//gera uma combinacao unica de numero para o novo select[name], assim não dá conflito
 		//por exemplo, resposta-21, é o select do grupo 2(#sortable2) e o segundo select desse grupo
 		var grupoNumero = $('.group').last().find(".header").length;
-		$("#accordion2").append('<div class="group"><div class="header"><span class="icon"></span><div class="input"><input type="text" name="nome" value="" size=""/></div><span class="arrow"></span></div><div class="body"><div id="perguntas"><div class="texto"><label for="link">Link de referência:</label><div class="input"><input type="text" name="link" value="" size=""/></div><label for="texto">Texto do link de referência:</label><div class="input"><input type="text" name="texto" value="" size=""/></div></div><div class="imagem"><label for="imagem">Imagem relacionada:<span>Dimensões: 240px x 260px</span></label><form class="fileupload" action="assets/server/php/" method="POST" enctype="multipart/form-data"><div class="quadro"><img id="alvo" src="assets/img/backgrounds/imagem.png" name="imagem"/></div><span class="btn btn-success fileinput-button"><input id="file" type="file"/></span></form></div></div><div id="respostas"><div class="titulo-respostas">Respostas:</div><div id="sortable'+$(".sorteia").length+'" class="sorteia"><div class="header"><span class="icon"></span><div class="input"><input type="text" name="nome" value="" size=""/></div><div class="checkbox"><label for="checkbox0'+$(".sorteia").length+'" class="checkboxCustom"></label><input type="checkbox" id="checkbox0'+$(".sorteia").length+'" value="0" name="grupo'+$(".sorteia").length+'"/>Esta é a resposta correta</div></div></div><a id="nova-resposta-variasRespostas" class="nova-resposta" href="javascript:void(0)"></a></div></div></div>');
+		$("#accordion2").append('<div class="group"><div class="header"><span class="icon"></span><div class="input"><input type="text" name="nome" value="" size=""/></div><span class="arrow"></span></div><div class="body"><div id="perguntas"><div class="texto"><label for="link">Link de referência:</label><div class="input"><input type="text" name="link" value="" size=""/></div><label for="texto">Texto do link de referência:</label><div class="input"><input type="text" name="texto" value="" size=""/></div></div><div class="imagem"><label for="imagem">Imagem relacionada:<span>Dimensões: 240px x 260px</span></label><form class="fileupload" action="../../assets/server/php/" method="POST" enctype="multipart/form-data"><div class="quadro"><img id="alvo" src="assets/img/backgrounds/imagem.png" name="imagem"/></div><span class="btn btn-success fileinput-button"><input id="file" type="file"/></span></form></div></div><div id="respostas"><div class="titulo-respostas">Respostas:</div><div id="sortable'+$(".sorteia").length+'" class="sorteia"><div class="header"><span class="icon"></span><div class="input"><input type="text" name="nome" value="" size=""/></div><div class="checkbox"><label for="checkbox0'+$(".sorteia").length+'" class="checkboxCustom"></label><input type="checkbox" id="checkbox0'+$(".sorteia").length+'" value="0" name="grupo'+$(".sorteia").length+'"/>Esta é a resposta correta</div></div></div><a id="nova-resposta-variasRespostas" class="nova-resposta" href="javascript:void(0)"></a></div></div></div>');
 		//coloca o novo elemento de accordion no esquema
 		$("#accordion2").accordion('destroy').sortable('destroy');
 		$("#accordion2").accordion({active:$("#accordion2 .sorteia").length-1,header:"> div > .header"}).sortable({axis:"y",handle:".header",stop:function(event,ui){ui.item.children(".header").triggerHandler("focusout")}});

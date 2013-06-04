@@ -86,12 +86,19 @@ var eventos_back = {
 			e.preventDefault();
 
 			var link = this.href;
-			var confirmacao = confirm('Tem certeza que deseja excluir esse Quiz?');
+			var confirmacao = confirm('Todos os perfis, faixas, perguntas e respostas e configurações associadas serão removidos. Tem certeza que deseja excluir?');
 
 			if(confirmacao){
 				location.href=link;
 			}
 
+			return false;
+		});
+
+		//Perfil 1
+		$('#btn-proxima-etapa-1-perfil').click(function(e){
+			e.preventDefault();
+			eventos_back.salva_perfil();
 			return false;
 		});
 	},
@@ -121,7 +128,44 @@ var eventos_back = {
 		}else{
 			document.form_quiz_create.submit();
 		}
-	}
+	},
+
+	salva_perfil: function(){
+/*		$('.group').each(function(index){
+			var perfil= [{
+				titulo:$('#nome-perfil').val(),
+				descricao: $('#descricao-perfil').val(),
+				link:$('#link-perfil').val(), 
+				texto:$('#texto-perfil').val(),
+				imagem:$('#alvo').attr('src'),
+				id_quiz:$('#id_quiz').val()
+			}]
+			//$('#descricao-perfil').val(), link[index] = $('#link-perfil').val(), texto[index] = $('#texto-perfil').val(), imagem[index] = $('#alvo').attr('src'), id_quiz[index] = $('#id_quiz').val();
+			console.log(perfil);
+		});*/	
+		$('.group').each(function(index){
+
+			var titulo = $('#nome-perfil-'+index).val(), descricao =  $('#descricao-perfil-'+index).val(), link = $('#link-perfil-'+index).val(), texto = $('#texto-perfil-'+index).val(), imagem = $('#alvo-'+index).attr('src'), id_quiz = $('#id_quiz').val();
+			if(titulo == '' || descricao == '' || link == '' || texto == '' || imagem == ''){
+				alert('Preencha todos os campos de cada perfil');
+			}else if(!$(this).hasClass('salvo')){
+				var grupo = $(this).attr('id', index);
+				$.getJSON(
+					'../save_perfil',
+					{titulo:titulo, descricao:descricao, link_referencia:link, texto_link:texto, imagem:imagem, id_quiz:id_quiz},
+					function(e){
+						if(e.result == 'sucesso'){
+							$(grupo).addClass('salvo');
+							alert('Perfis salvos com sucesso! '+grupo);
+						}
+					}
+				);
+
+				console.log(index+' | Titulo: '+titulo+' Descrição: '+descricao+ ' link: '+link+' Texto do Link: '+texto+ ' Imagem: '+imagem);
+			}	
+		});
+		//console.log(titulo[index]);
+	} 
 }
 
 jQuery(document).ready(function($) {

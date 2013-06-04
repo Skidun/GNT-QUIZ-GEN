@@ -44,7 +44,7 @@ class Quiz extends CI_Controller {
 							<li><div class="editar"></div>
 								<ul class="nav2">
 									<li><a href="'.site_url('editar-quiz').'/'.$quiz->id.'">nome e tipo</a></a></li>
-									<li><a href="#">perfis</a></a></li>
+									<li><a href="'.site_url('quiz_tipo').'/'.$quiz->tipo.'/'.$quiz->id.'">perfis</a></a></li>
 									<li><a href="#">perguntas & respostas</a></a></li>
 									<li><a href="#">customizacao</a></a></li>
 									<li><a href="'.site_url('remover-quiz').'/'.$quiz->id.'" id="btn-excluir-quiz">excluir</a></a></li>
@@ -111,8 +111,8 @@ class Quiz extends CI_Controller {
 		        //Verifica o tipo do quiz para
 		        switch ($this->input->post('tipo', TRUE)) {
 		        	case 'perfil':
-		        		$this->session->set_flashdata('id_quiz', $id);
-		        		redirect('quiz_tipo/perfil', 'refresh');
+		        		//$this->session->set_flashdata('id_quiz', $id);
+		        		redirect("quiz_tipo/perfil/".$id);
 		        		break;
 		        	
 		        	case 'certo-ou-errado':
@@ -156,6 +156,7 @@ class Quiz extends CI_Controller {
 	public function remove($id)
 	{
 		$data = $id;
+		$this->perfil_model->quiz_delete($data);
 		$result =  $this->quiz_model->delete($data);
 
 		if($result){
