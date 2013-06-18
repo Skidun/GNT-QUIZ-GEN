@@ -47,6 +47,8 @@ $route['salvar-quiz']			 	= "quiz/save";
 $route['editar-quiz/(:num)']	 	= "quiz/edit/$1";
 $route['remover-quiz/(:num)']	 	= "quiz/remove/$1";
 $route['alterar-quiz']	 			= "quiz/update";
+//Routes of controller Quiz_tipo
+$route['remover-perfil/(:num)']		= "quiz_tipo/remove_perfil/$1";
 
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */

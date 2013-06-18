@@ -3,14 +3,7 @@
 		<div id="conteudo">
 			<div id="wrap">
 			
-				<div class="nav-perfil">
-					<a class="anterior" href="#"></a>
-					<a class="perfis ativo" href="#"></a>
-					<a class="perguntas" href="#"></a>
-					<a class="customizacao" href="#"></a>
-					<a class="visualizacao" href="#"></a>
-					<a class="proximo" href="#"></a>
-				</div>
+				<?php $this->template->menu3('perfil1');?>
 							
 				<div id="accordion">
 						<?php
@@ -45,6 +38,7 @@
 									
 								</div>
 							</div>
+							
 						</div>
 					<?php }?>
 				</div><!--accordion-->
@@ -54,7 +48,7 @@
 					<a id="novo-perfil" class="novo-perfil" href="#"></a>
 				</div>
 				
-				<a class="proxima-etapa" id="btn-proxima-etapa-1-perfil" href="#"></a>
+				<a class="proxima-etapa" id="btn-proxima-etapa-1-perfil" rel="<?php echo base_url();?>perguntas/perfil/<?php echo $id;?>"></a>
 			
 			</div>
 		</div>

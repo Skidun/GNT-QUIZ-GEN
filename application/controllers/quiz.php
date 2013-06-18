@@ -16,7 +16,6 @@ class Quiz extends CI_Controller {
 	{
 		parent::__construct();
 		//Carregar o Model Quiz
-		$this->load->model('quiz_model');
 		if(!$this->session->userdata('logado')){
 			redirect('login');
 		}
@@ -157,6 +156,7 @@ class Quiz extends CI_Controller {
 	{
 		$data = $id;
 		$this->perfil_model->quiz_delete($data);
+		$this->pergunta_model->quiz_delete($data);
 		$result =  $this->quiz_model->delete($data);
 
 		if($result){

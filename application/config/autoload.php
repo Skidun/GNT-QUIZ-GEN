@@ -64,7 +64,7 @@ $autoload['libraries'] = array('database','pagination', 'uri', 'template', 'sess
 |	$autoload['helper'] = array('url', 'file');
 */
 
-$autoload['helper'] = array('url', 'form', 'text', 'string');
+$autoload['helper'] = array('url', 'form', 'text', 'string', 'file');
 
 
 /*
@@ -109,7 +109,7 @@ $autoload['language'] = array();
 |
 */
 
-$autoload['model'] = array('quiz_model', 'perfil_model', 'user_model');
+$autoload['model'] = array('quiz_model', 'perfil_model', 'user_model', 'pergunta_model', 'resposta_model');
 
 
 /* End of file autoload.php */

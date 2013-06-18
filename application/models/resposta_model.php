@@ -1,7 +1,7 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Perfil_model extends CI_Model {
-	private $table = 'perfil';
+class Resposta_model extends CI_Model {
+	private $table = 'respostas';
 
     public function get($id = false)
     {
@@ -44,17 +44,18 @@ class Perfil_model extends CI_Model {
         return (bool) $this->db->affected_rows();
     }
 
-    public function delete($id, $id_quiz)
+    public function delete($data)
     {
-        $this->db->where('id', $id)->where('id_quiz', $id_quiz);
+        $this->db->where('id', $data);
         $this->db->delete($this->table);
 
         return (bool) $this->db->affected_rows(); 
     }
 
-    public function quiz_delete($id)
+    public function perfil_delete($id, $id_quiz)
     {
-        $this->db->where('id_quiz', $id);
+        $this->db->where('id_quiz', $id_quiz);
+        $this->db->where('perfilResposta', $id);
         $this->db->delete($this->table);
 
         return (bool) $this->db->affected_rows(); 

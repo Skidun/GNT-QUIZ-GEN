@@ -26,4 +26,11 @@ class Template{
 		
 		$CI->load->view('template/menu_2', array('view' => $view));
 	}
+
+	function menu3($view)
+	{
+		$CI = get_instance();
+		
+		$CI->load->view('template/menu_3', array('view' => $view));
+	}
 }
