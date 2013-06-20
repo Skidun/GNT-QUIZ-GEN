@@ -21,11 +21,17 @@ class Resposta_model extends CI_Model {
         return $this->db->count_all_results($this->table);
     }
 	
-	public function get_all($id)
+	public function get_all($id, $pergunta_id)
     {                
-        $this->db->where('id_quiz', $id);
+        //$this->db->where('id_quiz', $id);
+        $this->db->where('id_pergunta', $pergunta_id);
+        $this->db->order_by('ordem', 'ASC');
+        $this->db->select('*');
+        $this->db->from('respostas');
+        $this->db->join('perfil', 'perfil.id = respostas.perfil_resposta');
 
-        return $this->db->get($this->table);
+
+        return $this->db->get();
     }
 
     public function create($data)
@@ -44,9 +50,10 @@ class Resposta_model extends CI_Model {
         return (bool) $this->db->affected_rows();
     }
 
-    public function delete($data)
+    public function delete($id, $id_quiz, $filtro)
     {
-        $this->db->where('id', $data);
+        $this->db->where('id_quiz', $id_quiz);
+        $this->db->where($filtro, $id);
         $this->db->delete($this->table);
 
         return (bool) $this->db->affected_rows(); 
@@ -55,7 +62,16 @@ class Resposta_model extends CI_Model {
     public function perfil_delete($id, $id_quiz)
     {
         $this->db->where('id_quiz', $id_quiz);
-        $this->db->where('perfilResposta', $id);
+        $this->db->where('perfil_resposta', $id);
+        $this->db->delete($this->table);
+
+        return (bool) $this->db->affected_rows(); 
+    }
+
+    public function pergunta_delete($id, $id_quiz)
+    {
+        $this->db->where('id_quiz', $id_quiz);
+        $this->db->where('id_pergunta', $id);
         $this->db->delete($this->table);
 
         return (bool) $this->db->affected_rows(); 

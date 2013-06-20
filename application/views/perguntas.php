@@ -7,7 +7,11 @@
 				<div class="titulo-perguntas">Perguntas:</div>
 				
 				<div id="accordion2">
-					
+					<?php 
+						if($quantidade > 0){
+							echo $perguntas;
+						}else{
+					?>
 					<div class="group" id="0">					
 							<div class="header">
 								<span class="icon"></span>
@@ -35,7 +39,6 @@
 									</div>
 								</div><!--perguntas-->
 								<input type="hidden" id="id_quiz" name="id_quiz" value="<?php echo $id;?>" />
-								<div><a href="#" id="excluir-perfil-0" title="Excluir perfil" style="color: red; font-size: 18px;">Excluir perfil</a></div>
 
 								<div id="respostas">
 								
@@ -59,6 +62,7 @@
 							</div><!--body-->							
 					</div><!--group-->
 					<input type="hidden" name="tipo_quiz" id="tipo_quiz" value="<?php echo $tipo;?>" />
+				<?php } ?>
 				</div><!--accordion-->			
 
 				<div class="holder">

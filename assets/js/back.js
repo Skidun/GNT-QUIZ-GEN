@@ -136,6 +136,21 @@ var eventos_back = {
 			eventos_back.salva_perguntas();
 			return false;
 		});
+
+		//Remover uma pergunta e suas respostas
+		$(document).on('click', '.excluir-pergunta', function(e){
+			e.preventDefault();
+			var url = this.href, id_quiz = this.rel, alvo = this.id;
+			var imagem = $('#alvo-'+alvo).attr('src').split('../../assets/server/php/files/');
+
+			eventos_back.remove_pergunta(url, id_quiz, imagem);
+
+			return false;
+		});
+
+
+		//Ordenação dos itens
+
 	},
 	//Executa a operação de recovey no banco de dados
 	recovery: function(email)
@@ -234,15 +249,21 @@ var eventos_back = {
 	salva_perguntas: function(url)
 	{
 		$('.group').each(function(index){
-
+			//Variáveis que pegam os
 			var nome 		 = $('#nome-pergunta-'+index).val(), prox_url = $('#btn-proxima-etapa-2-perguntas').attr('href'), link = $('#link-pergunta-'+index).val(), texto = $('#texto-pergunta-'+index).val(), imagem = $('#alvo-pergunta-'+index).attr('src'), id_quiz = $('#id_quiz').val();
 			var box_resposta = '#sortable'+index+' .header';
-
+			 $(box_resposta+' .input input[name="nome"]').each(function(){
+			 	if(this.value == ''){
+			 		alert('Preencha todas as respostas');
+			 	}
+			 });
+			//Verifica se os campos nome da pergunta, imagem e resposta não estão vazios.
 			if(nome == '' || imagem == ''){
-				alert('Preencha todos os campos de cada perfil');
+				alert('Preencha os campos da pergunta e suas respostas');
 				return false;
 			}else if(!$(this).hasClass('salvo')){
 				var grupo = $(this).attr('id', index);
+				//Salva a pergunta via ajax
 				$.getJSON(
 					'../save_pergunta_perfil',
 					{texto:nome, link_referencia:link, texto_link:texto, imagem:imagem, id_quiz:id_quiz},
@@ -276,16 +297,28 @@ var eventos_back = {
 				);
 
 				console.log(index+' | Titulo: '+nome+' link: '+link+' Texto do Link: '+texto+ ' Imagem: '+imagem);
-				/*
 				if(!url){
 					window.location.href=prox_url;
 				}else{
 					window.location.href=url;
 				}
-				*/
 			}
 			//window.location.href=prox_url;	
 		});
+	},
+
+	remove_pergunta: function(url, id_quiz, imagem)
+	{
+		var confirmacao = confirm('Tem certeza que deseja excluir essa pergunta, uma vez excluido, todas as respostas relacionadas a esse pergunta também serão excluidas? '+imagem);
+		if(confirmacao)
+		{
+			if(imagem == 'http://localhost:8080/quiz-generate/assets/img/backgrounds/imagem.png' || imagem == '../../assets/img/backgrounds/imagem.png'){
+				window.location.href=url+'?id_quiz='+id_quiz;
+			}else{
+				window.location.href=url+'?id_quiz='+id_quiz+'&imagem='+imagem;
+			}
+		}
+		return false;
 	}  
 }
 

@@ -32,7 +32,7 @@ class Respostas extends CI_Controller {
 
 	public function save_resposta_perfil()
 	{
-		$data['texto'] 			 = $this->input->get('texto', true);
+		$data['resposta'] 			 = $this->input->get('texto', true);
 		$data['tipo_resposta'] 	 = $this->input->get('tipo_resposta', true);
 		$data['perfil_resposta'] = $this->input->get('perfil_resposta', true);
 		$data['id_pergunta'] 	 = $this->input->get('id_pergunta', true);
