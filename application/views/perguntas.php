@@ -10,6 +10,7 @@
 					<?php 
 						if($quantidade > 0){
 							echo $perguntas;
+							echo '<input type="hidden" id="data_alteracao" value="'.$data_alteracao.'" />';
 						}else{
 					?>
 					<div class="group" id="0">					
@@ -39,6 +40,7 @@
 									</div>
 								</div><!--perguntas-->
 								<input type="hidden" id="id_quiz" name="id_quiz" value="<?php echo $id;?>" />
+								<input type="hidden" id="data" name="data" value="<?php echo $data;?>" />
 
 								<div id="respostas">
 								
@@ -62,6 +64,7 @@
 							</div><!--body-->							
 					</div><!--group-->
 					<input type="hidden" name="tipo_quiz" id="tipo_quiz" value="<?php echo $tipo;?>" />
+					<input type="hidden" id="data_alteracao" value="<?php echo $data_alteracao;?>" />
 				<?php } ?>
 				</div><!--accordion-->			
 
@@ -70,7 +73,7 @@
 				</div>
 				
 				<a class="voltar" href="<?php echo base_url();?>quiz_tipo/<?php echo $tipo;?>/<?php echo $id;?>" rel="link-interno" title="voltar"></a>
-				<a class="proxima-etapa" href="<?php echo base_url();?>customizacao/<?php echo $tipo;?>/<?php echo $id;?>"" rel="link-interno" id="btn-proxima-etapa2-perguntas" title="próxima etapa"></a>
+				<a class="proxima-etapa" href="<?php echo base_url();?>customizacao/<?php echo $tipo;?>/<?php echo $id;?>" rel="link-interno" id="btn-proxima-etapa-2-perguntas" title="próxima etapa"></a>
 			
 			</div>
 		</div>

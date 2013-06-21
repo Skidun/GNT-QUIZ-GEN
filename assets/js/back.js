@@ -252,14 +252,17 @@ var eventos_back = {
 			//Variáveis que pegam os
 			var nome 		 = $('#nome-pergunta-'+index).val(), prox_url = $('#btn-proxima-etapa-2-perguntas').attr('href'), link = $('#link-pergunta-'+index).val(), texto = $('#texto-pergunta-'+index).val(), imagem = $('#alvo-pergunta-'+index).attr('src'), id_quiz = $('#id_quiz').val();
 			var box_resposta = '#sortable'+index+' .header';
-			 $(box_resposta+' .input input[name="nome"]').each(function(){
-			 	if(this.value == ''){
-			 		alert('Preencha todas as respostas');
-			 	}
-			 });
 			//Verifica se os campos nome da pergunta, imagem e resposta não estão vazios.
-			if(nome == '' || imagem == ''){
-				alert('Preencha os campos da pergunta e suas respostas');
+			
+			$(box_resposta+' .input input[name="nome"]').each(function(){
+				 	if(this.value == '' || this.value == 'Preencha esse campo'){
+				 		this.value='';
+				 		this.value="Preencha esse campo";
+				 	}
+			});
+
+			if(nome == '' || nome == 'Preencha esse campo'){
+				$('#nome-pergunta-'+index).val('Preencha esse campo')
 				return false;
 			}else if(!$(this).hasClass('salvo')){
 				var grupo = $(this).attr('id', index);
@@ -278,7 +281,7 @@ var eventos_back = {
 
 							$(box_resposta).each(function(index_resp){
 											var resposta 	= $('#nome-resposta-'+index_resp).val(), perfil_resposta = $('#perfil-resposta-'+index_resp).val();
-							    			alert(resposta+' / '+perfil_resposta+' / '+id_pergunta+' / '+id_quiz+' / '+tipo_quiz);
+							    			//alert(resposta+' / '+perfil_resposta+' / '+id_pergunta+' / '+id_quiz+' / '+tipo_quiz);
 							    			$.get('../../respostas/save_resposta_perfil',
 							    				{texto:resposta, tipo_resposta:tipo_quiz, perfil_resposta:perfil_resposta, id_pergunta:id_pergunta, id_quiz:id_quiz},
 							    				function(e_resp){
@@ -302,8 +305,15 @@ var eventos_back = {
 				}else{
 					window.location.href=url;
 				}
-			}
-			//window.location.href=prox_url;	
+			}else if($(this).hasClass('edit')){
+
+			}else{
+				if(!url){
+					window.location.href=prox_url;
+				}else{
+					window.location.href=url;
+				}
+			}	
 		});
 	},
 

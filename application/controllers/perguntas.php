@@ -18,6 +18,10 @@ class Perguntas extends CI_Controller {
 
 	public function perfil($id)
 	{
+		//Resgata informações do quiz de acordo com seu ID que é passado como 3º segmento da URL
+		//Também pega os perfis cadastrados para aquele quiz
+		//Seta algumas variáveis em branco que serão populadas após o loop da consulta
+		//Pega as perguntas que já estão salvas no banco
 		$data  			= $this->quiz_model->get($id);
 		$perfis 		= $this->perfil_model->get_all($id);
 		$option_perfil 	= '';
@@ -107,10 +111,10 @@ class Perguntas extends CI_Controller {
 		$data['quantidade']		= $this->pergunta_model->count_rows($id);
 		$this->template->show('perguntas', $data);
 	}
-
+	//Método que salva a pergunta do tipo perfil
 	public function save_pergunta_perfil()
 	{
-		$data['pergunta'] 			 = $this->input->get('texto', true);
+		$data['pergunta'] 		 = $this->input->get('texto', true);
 		$data['link_referencia'] = $this->input->get('link_referencia', true);
 		$data['texto_link'] 	 = $this->input->get('texto_link', true);
 		$data['imagem'] 		 = $this->input->get('imagem', true);
@@ -127,7 +131,7 @@ class Perguntas extends CI_Controller {
 			echo json_encode($retorno);
 		}
 	}
-
+	//Método que remove a pergunta
 	public function remove_pergunta($id)
 	{
 		//Se caso a imagem não for a padrão ele precisa remove-la do servidor
@@ -139,15 +143,19 @@ class Perguntas extends CI_Controller {
 		}
 		$filtro	 = 'id_pergunta';
 		$id_quiz = $this->input->get('id_quiz');
-		$this->resposta_model->delete($id, $id_quiz, $filtro);
-		$result = $this->pergunta_model->delete($id, $id_quiz);
-		if($result):
-			$this->session->flashdata('retorno', 'Pergunta excluida com sucesso!');
-			redirect('perguntas/perfil/'.$id_quiz,'refresh');
-		else:
-			$this->session->flashdata('retorno', 'Falha o excluir a pergunta!');
-			redirect('perguntas/perfil/'.$id_quiz,'refresh');
-		endif;	
+		$resposta= $this->resposta_model->delete($id, $id_quiz, $filtro);
+		if($resposta){
+			$result  = $this->pergunta_model->delete($id, $id_quiz);
+			if($result):
+				$this->session->flashdata('retorno', 'Pergunta excluida com sucesso!');
+				redirect('perguntas/perfil/'.$id_quiz,'refresh');
+			else:
+				$this->session->flashdata('retorno', 'Falha o excluir a pergunta!');
+				redirect('perguntas/perfil/'.$id_quiz,'refresh');
+			endif;
+		}else{
+			return 'Não foi possível excluir a pergunta';
+		}
 	}
 
 }
