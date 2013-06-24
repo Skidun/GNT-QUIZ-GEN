@@ -70,8 +70,8 @@ class Resposta_model extends CI_Model {
 
     public function pergunta_delete($id, $id_quiz)
     {
-        $this->db->where('id_quiz', $id_quiz);
         $this->db->where('id_pergunta', $id);
+        $this->db->where('id_quiz', $id_quiz);
         $this->db->delete($this->table);
 
         return (bool) $this->db->affected_rows(); 

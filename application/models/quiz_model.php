@@ -6,13 +6,20 @@ class Quiz_model extends CI_Model {
     public function get($id = false)
     {
                 if($id)
-                        $this->db->where('id', $id);
+                    $this->db->where('id', $id);
                 $get = $this->db->get($this->table);
                 if($id)
-                        return $get->row_array();
+                    return $get->row_array();
                 if($get->num_rows > 0)
-                        return $get->result_array();
+                    return $get->result_array();
                 return array();
+    }
+
+    public function valida_timestamp($id, $time_stamp)
+    {
+                $this->db->where('id', $id);
+                $this->db->where('data_alteracao', $time_stamp);
+                return $this->db->get($this->table);
     }
 
 	public function count_rows()

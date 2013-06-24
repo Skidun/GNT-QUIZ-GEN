@@ -10,7 +10,7 @@ class Login extends CI_Controller {
 
 	public function index()
 	{
-		$data['page_title'] = "Instalação";
+		$data['page_title'] = "Login";
 		$data['email'] = '';
 		$data['senha'] = '';
 			
@@ -31,7 +31,7 @@ class Login extends CI_Controller {
 				'nome' => $result['nome'],
 				'email'=> $result['email'],
 			));
-			redirect('quiz');
+			redirect('visualizar-todos-quizes');
 		}
 		
 		//load view

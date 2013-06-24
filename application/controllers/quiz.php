@@ -165,6 +165,21 @@ class Quiz extends CI_Controller {
 		}
 	}
 
+	#Valida o time stamp do quiz
+	public function valida_timestamp()
+	{
+		$id 		= $this->input->get('id',true);
+		$time_stamp = $this->input->get('data_alteracao', true);
+
+		$query = $this->quiz_model->valida_timestamp($id, $time_stamp);
+		
+		if($query->num_rows > 0){
+			echo "ok";
+		}else{
+			echo "fail";
+		}
+	}
+
 }
 
 /* End of file dashboard.php */

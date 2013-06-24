@@ -18,21 +18,23 @@ class Perguntas extends CI_Controller {
 
 	public function perfil($id)
 	{
-		//Resgata informações do quiz de acordo com seu ID que é passado como 3º segmento da URL
-		//Também pega os perfis cadastrados para aquele quiz
-		//Seta algumas variáveis em branco que serão populadas após o loop da consulta
-		//Pega as perguntas que já estão salvas no banco
+		#Resgata informações do quiz de acordo com seu ID que é passado como 3º segmento da URL
+		#Também pega os perfis cadastrados para aquele quiz
+		#Seta algumas variáveis em branco que serão populadas após o loop da consulta
+		#Pega as perguntas que já estão salvas no banco
 		$data  			= $this->quiz_model->get($id);
 		$perfis 		= $this->perfil_model->get_all($id);
 		$option_perfil 	= '';
 		$list_perguntas	= '';
 		$list_respostas = '';
+		$options_select = array();
 		$perguntas   	= $this->pergunta_model->get_all($id);
-		//Gera as options de perfis para cada resposta
+		#Gera as options de perfis para cada resposta
 		foreach($perfis->result() as $perfil){
 			$option_perfil .= '<option value="'.$perfil->id.'">'.$perfil->titulo.'</option>';
+			$options_select[$perfil->id] = $perfil->titulo;
 		}
-		//Gera a listagem de perguntas e suas respostas
+		#Gera a listagem de perguntas e suas respostas
 		$count = -1;
 		if($perguntas->num_rows() > 0){
 			foreach($perguntas->result() as $pergunta){
@@ -73,24 +75,24 @@ class Perguntas extends CI_Controller {
 													
 													<div id="sortable'.$count.'" class="sorteia">
 												';
-				//Faço uma consulta na tabela de respostas para pegar a tabela daquela determinada pergunta e daquele determinado quiz												
+				#Faço uma consulta na tabela de respostas para pegar a tabela daquela determinada pergunta e daquele determinado quiz												
 				$respostas = $this->resposta_model->get_all($id, $pergunta->id);
-				//Contagem inicial de cada loop
+				#Contagem inicial de cada loop
 				$count_resp= -1;
-				//Gerar os box de respostas
+				#Gerar os box de respostas
 				foreach($respostas->result() as $resposta){
 					$count_resp++;
 					$list_perguntas		.=	'			
 																<div class="header">
 																	<span class="icon"></span>
-																	<div class="input"><input type="text" name="nome" id="nome-resposta-'.$count_resp.'" value="'.$resposta->resposta.'" size="" /></div>
-																	<select name="perfil-resposta" id="perfil-resposta-'.$count_resp.'" class="default">
-																		<option value='.$resposta->perfil_resposta.'>'.$resposta->titulo.'</option>
-																	</select>
+																	<div class="input">
+																	<input type="text" name="nome" id="nome-resposta-'.$count_resp.'" value="'.$resposta->resposta.'" size="" />
+																	<input type="hidden" name="id_reposta" id="id-resposta-'.$count_resp.'" value="'.$resposta->id.'"/>
+																	</div>'.form_dropdown('perfil-resposta', $options_select, $resposta->perfil_resposta, 'class="default" id="perfil-resposta-'.$count_resp.'"').'
 																</div>
 										';
 				}
-				//Fecha as listagem de perguntas já com suas respostas inclusas
+				#Fecha as listagem de perguntas já com suas respostas inclusas
 				$list_perguntas		.=  '													
 													</div>
 
@@ -104,14 +106,15 @@ class Perguntas extends CI_Controller {
 			}
 
 		}
-
+		#variáveis que serão passadas para a View
 		$data['page_title'] 	= ' Perguntas e Respotas do tipo perfil';
 		$data['option_perfil'] 	= $option_perfil; 
 		$data['perguntas']		= $list_perguntas;
 		$data['quantidade']		= $this->pergunta_model->count_rows($id);
+		#Chama a view dentro do template
 		$this->template->show('perguntas', $data);
 	}
-	//Método que salva a pergunta do tipo perfil
+	#Método que salva a pergunta do tipo perfil
 	public function save_pergunta_perfil()
 	{
 		$data['pergunta'] 		 = $this->input->get('texto', true);
@@ -119,23 +122,64 @@ class Perguntas extends CI_Controller {
 		$data['texto_link'] 	 = $this->input->get('texto_link', true);
 		$data['imagem'] 		 = $this->input->get('imagem', true);
 		$data['id_quiz'] 		 = $this->input->get('id_quiz', true);
+		/*
+		$id_quiz 				 = $this->input->get('id_quiz', true);
+		$time_stamp				 = $this->input->get('data_alteracao');
 
+		$valida_quiz 			 = $this->quiz_model->get($id_quiz);
+		*/
 		$create = $this->pergunta_model->create($data);
-
 		if($create){
+			#Variáveis necessárias para atualização do time_stamp do quiz	
+
 			$this->db->where('id_quiz', $this->input->get('id_quiz', true));
 			$query = $this->db->get('perguntas');
 			$last = $query->last_row('array');
 			$id_pergunta = $last['id'];
-			$retorno = array('result'=>'sucesso', 'id_pergunta'=> $id_pergunta);
+			$retorno = array('result'=>'sucesso', 'id_pergunta'=> $id_pergunta);	
+			echo json_encode($retorno);
+		}else{
+			$retorno = array('result'=>'falha');
 			echo json_encode($retorno);
 		}
+			
 	}
-	//Método que remove a pergunta
+	#Método que atualiza as perguntas
+	public function update_pergunta_perfil()
+	{
+		$id 					 = $this->input->get('id_pergunta', true);
+		$data['pergunta'] 		 = $this->input->get('texto', true);
+		$data['link_referencia'] = $this->input->get('link_referencia', true);
+		$data['texto_link'] 	 = $this->input->get('texto_link', true);
+		$data['imagem'] 		 = $this->input->get('imagem', true);
+		$data['id_quiz'] 		 = $this->input->get('id_quiz', true);
+		$id_quiz 				 = $this->input->get('id_quiz', true);
+		$time_stamp				 = $this->input->get('data_alteracao');
+
+		$valida_quiz 			 = $this->quiz_model->get($id_quiz);
+		if($valida_quiz){
+			if($valida_quiz['data_alteracao'] == $time_stamp){
+				$update = $this->pergunta_model->update($id, $data);
+				if($update){
+					#Variáveis necessárias para atualização do time_stamp do quiz
+					
+					$update_data['data_alteracao'] = date('Y-m-d H:i:s');
+					$update_quiz = $this->quiz_model->update($id_quiz, $update_data);
+
+					$retorno = array('result'=>'sucesso', 'id_pergunta'=> $id_pergunta);
+					echo json_encode($retorno);
+				}
+			}else{
+				echo json_encode(array('result'=>'timestamp_diff'));
+			}
+		}
+	}
+
+	#Método que remove a pergunta
 	public function remove_pergunta($id)
 	{
-		//Se caso a imagem não for a padrão ele precisa remove-la do servidor
-		if($this->input->get('imagem')){
+		#Se caso a imagem não for a padrão ele precisa remove-la do servidor
+		if($this->input->get('imagem', true)){
 			$img_perfil	 = explode(',',$this->input->get('imagem'));
 			$dir     = 'assets/server/php/files/';
 			$imagem	 = $img_perfil[1];
@@ -154,7 +198,7 @@ class Perguntas extends CI_Controller {
 				redirect('perguntas/perfil/'.$id_quiz,'refresh');
 			endif;
 		}else{
-			return 'Não foi possível excluir a pergunta';
+			echo 'Não foi possível excluir a pergunta';
 		}
 	}
 
