@@ -188,7 +188,7 @@ class Perguntas extends CI_Controller {
 		$filtro	 = 'id_pergunta';
 		$id_quiz = $this->input->get('id_quiz');
 		$resposta= $this->resposta_model->delete($id, $id_quiz, $filtro);
-		if($resposta){
+		#if($resposta){
 			$result  = $this->pergunta_model->delete($id, $id_quiz);
 			if($result):
 				$this->session->flashdata('retorno', 'Pergunta excluida com sucesso!');
@@ -197,9 +197,9 @@ class Perguntas extends CI_Controller {
 				$this->session->flashdata('retorno', 'Falha o excluir a pergunta!');
 				redirect('perguntas/perfil/'.$id_quiz,'refresh');
 			endif;
-		}else{
-			echo 'Não foi possível excluir a pergunta';
-		}
+		#}else{
+		#	echo 'Não foi possível excluir a pergunta';
+		#}
 	}
 
 }

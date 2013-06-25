@@ -270,11 +270,13 @@ var eventos_back = {
 			var nome 		 = $('#nome-pergunta-'+index).val(), prox_url = $('#btn-proxima-etapa-2-perguntas').attr('href'), link = $('#link-pergunta-'+index).val(), texto = $('#texto-pergunta-'+index).val(), imagem = $('#alvo-pergunta-'+index).attr('src'), id_quiz = $('#id_quiz').val();
 			var box_resposta = '#sortable'+index+' .header';
 			//Verifica se os campos nome da pergunta, imagem e resposta não estão vazios.
-			
-			$(box_resposta+' .input input[name="nome"]').each(function(){
+			alert(box_resposta);
+			return false;
+			$(box_resposta+' .input input[name="nome-resposta"]').each(function(){
 				 	if(this.value == '' || this.value == 'Preencha esse campo'){
 				 		this.value='';
 				 		this.value="Preencha esse campo";
+				 		return false;
 				 	}
 			});
 
@@ -296,9 +298,10 @@ var eventos_back = {
 							var id_pergunta = e.id_pergunta, tipo_quiz = $('#tipo_quiz').val();
 
 							$(box_resposta).each(function(index_resp){
-								var resposta 	= $(box_resposta+' .input #nome-resposta-'+index_resp).val(), perfil_resposta = $('.group#'+index+' .body #resposta #soteable'+index+' .header #perfil-resposta-'+index_resp).val();
+								var verificador = $(box_resposta+' .input input[name="nome-resposta"]').attr('rel');
+								var resposta 	= $(box_resposta+' .input #nome-resposta-'+index_resp).val(), perfil_resposta = $(box_resposta+' #perfil-resposta-'+index_resp).val();
 							    //alert(resposta+' / '+perfil_resposta+' / '+id_pergunta+' / '+id_quiz+' / '+tipo_quiz);
-							    alert(resposta+' - '+perfil_resposta)
+							    
 							    $.get('../../respostas/save_resposta_perfil',
 								    {texto:resposta, tipo_resposta:tipo_quiz, perfil_resposta:perfil_resposta, id_pergunta:id_pergunta, id_quiz:id_quiz},
 								    function(e_resp){
@@ -318,9 +321,6 @@ var eventos_back = {
 							}
 							*/
 						//Se caso o time_stamp seja diferente ele não vai proceder com o cadastro	
-						}else if(e.result == 'timestamp_diff'){
-							alert('Ops, alguém atualizou esse quiz rencetemente, para processeguir recarregue a o página');
-						//Se caso o cadastro da pergunta não for efetuado
 						}else{
 							alert('Ocorreu uma falha ao tentar cadastrar o quiz');
 						}

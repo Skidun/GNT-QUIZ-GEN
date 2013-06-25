@@ -163,27 +163,27 @@ $(function(){
 		var option = $('select[name="perfil-resposta"]').html();
 		$('select[name=perfil-resposta]').removeData("dropkick");
 		$('#dk_container_perfil-resposta-'+id).remove();		
-		$(this).parent().find('.sorteia').append('<div class="header"><span class="icon"></span><div class="input"><input type="text" name="nome" id="nome-resposta-'+id+'"value="" size=""/></div><select name="perfil-resposta" id="perfil-resposta-'+id+'" class="default">'+option+'</select></div>');
+		$(this).parent().find('.sorteia').append('<div class="header"><span class="icon"></span><div class="input"><input type="text" name="nome-resposta" id="nome-resposta-'+id+'" rel="'+id+'" value="" size=""/></div><select name="perfil-resposta" id="perfil-resposta-'+id+'" class="default">'+option+'</select></div>');
 		//coloca o novo select no esquema
-		$('#perfil-resposta-'+id).dropkick();
+		$('select[name="perfil-resposta"]').dropkick();
 		return false;
 	});
 	/*botão nova pergunta*/
 	$(document).on('click','#nova-pergunta-perfil',function(){
 		var count = $('.group').length;
 		var id = count++;
-		var id_resposta = $('.header').length -1;
+		var id_resposta = $('.header').length;
 		var option = $('#perfil-resposta-0').html();
 		//gera uma combinacao unica de numero para o novo select[name], assim não dá conflito
 		//por exemplo, resposta-21, é o select do grupo 2(#sortable2) e o segundo select desse grupo
-		$("#accordion2").append('<div class="group" id="'+id+'"><div class="header"><span class="icon"></span><div class="input"><input type="text" name="nome" id="nome-pergunta-'+id+'" value="" size=""/></div><span class="arrow"></span></div><div class="body"><div id="perguntas"><div class="texto"><label for="link">Link de referência:</label><div class="input"><input type="text" name="link" id="link-pergunta-'+id+'" value="" size=""/></div><label for="texto">Texto do link de referência:</label><div class="input"><input type="text" name="texto" id="texto-pergunta-'+id+'" value="" size=""/></div></div><div class="imagem"><label for="imagem">Imagem relacionada:<span>Dimensões: 240px x 260px</span></label><form class="fileupload" action="../../assets/server/php/" method="POST" enctype="multipart/form-data"><div class="quadro"><img id="alvo-pergunta-'+id+'" src="../../assets/img/backgrounds/imagem.png" name="imagem"/></div><span class="btn btn-success fileinput-button"><input id="file" type="file"/></span></form><input type="hidden" id="id-pergunta-'+id+'" name="id-pergunta" value="" /></div></div><div id="respostas"><div class="titulo-respostas">Respostas:</div><div id="sortable'+$(".sorteia").length+'" class="sorteia"><div class="header"><span class="icon"></span><div class="input"><input type="text" name="nome-resposta-'+id+'" value="" size=""/></div><select name="perfil-resposta" id="perfil-resposta-'+id_resposta+'" class="default">'+option+'</select></div></div><a id="nova-resposta-perfil" class="nova-resposta" href="javascript:void(0)"></a></div></div></div>');
+		$("#accordion2").append('<div class="group" id="'+id+'"><div class="header"><span class="icon"></span><div class="input"><input type="text" name="nome" id="nome-pergunta-'+id+'" value="" size=""/></div><span class="arrow"></span></div><div class="body"><div id="perguntas"><div class="texto"><label for="link">Link de referência:</label><div class="input"><input type="text" name="link" id="link-pergunta-'+id+'" value="" size=""/></div><label for="texto">Texto do link de referência:</label><div class="input"><input type="text" name="texto" id="texto-pergunta-'+id+'" value="" size=""/></div></div><div class="imagem"><label for="imagem">Imagem relacionada:<span>Dimensões: 240px x 260px</span></label><form class="fileupload" action="../../assets/server/php/" method="POST" enctype="multipart/form-data"><div class="quadro"><img id="alvo-pergunta-'+id+'" src="../../assets/img/backgrounds/imagem.png" name="imagem"/></div><span class="btn btn-success fileinput-button"><input id="file" type="file"/></span></form><input type="hidden" id="id-pergunta-'+id+'" name="id-pergunta" value="" /></div></div><div id="respostas"><div class="titulo-respostas">Respostas:</div><div id="sortable'+$(".sorteia").length+'" class="sorteia"><div class="header"><span class="icon"></span><div class="input"><input type="text" name="nome-resposta" id="nome-resposta-'+$('.header').length+'" rel="'+$('.header').length+'" value="" size=""/></div><select name="perfil-resposta" id="perfil-resposta-'+id_resposta+'" class="default">'+option+'</select></div></div><a id="nova-resposta-perfil" class="nova-resposta" href="javascript:void(0)"></a></div></div></div>');
 		//coloca o novo elemento de accordion no esquema
 		$("#accordion2").accordion('destroy').sortable('destroy');
 		//$('select[name=perfil-resposta]').removeData("dropkick");
 		//$('#dk_container_perfil-resposta-'+id).remove();	
 		$("#accordion2").accordion({active:$("#accordion2 .sorteia").length-1,header:"> div > .header"}).sortable({axis:"y",handle:".header",stop:function(event,ui){ui.item.children(".header").triggerHandler("focusout")}});
 		//coloca o novo select no esquema
-		$('#perfil-resposta-'+id_resposta).dropkick();
+		$('select[name="perfil-resposta"]').dropkick();
 		//calcula quantos sortables tem e carrega
 		var length = $(".sorteia").length;
 		for( i=0; i < length; i++){

@@ -7,11 +7,14 @@
 				<div class="titulo-perguntas">Perguntas:</div>
 				
 				<div id="accordion2">
+					<?php
+						echo '<input type="hidden" id="data_alteracao" value="'.$data_alteracao.'" />';
+						echo '<input type="hidden" id="id_quiz" name="id_quiz" value="'.$id.'" />';
+						echo '<input type="hidden" name="tipo_quiz" id="tipo_quiz" value="'.$tipo.'" />';
+					?>
 					<?php 
 						if($quantidade > 0){
 							echo $perguntas;
-							echo '<input type="hidden" id="data_alteracao" value="'.$data_alteracao.'" />';
-							echo '<input type="hidden" id="id_quiz" name="id_quiz" value="'.$id.'" />';
 						}else{
 					?>
 					<div class="group" id="0">					
@@ -40,8 +43,6 @@
 										<input type="hidden" id="id-pergunta-0" name="id-pergunta" value="" />
 									</div>
 								</div><!--perguntas-->
-								<input type="hidden" id="data" name="data" value="<?php echo $data;?>" />
-
 								<div id="respostas">
 								
 									<div class="titulo-respostas">Respostas:</div>
@@ -63,7 +64,7 @@
 
 							</div><!--body-->							
 					</div><!--group-->
-					<input type="hidden" name="tipo_quiz" id="tipo_quiz" value="<?php echo $tipo;?>" />
+					
 				<?php } ?>
 				</div><!--accordion-->			
 
