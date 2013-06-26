@@ -190,7 +190,7 @@ var eventos_back = {
 					eventos_back.salva_perguntas();
 				}else{
 					alert('A data de alteração do quiz é diferente da data que você tem armazenado na página, a página será atualizada para que as informações referente ao quiz sejam atualizadas');
-					window.reload();
+					window.location.reload();
 				}	
 			}
 		);
@@ -262,29 +262,40 @@ var eventos_back = {
 		}
 		return false;
 	},
+	/*Prototipo
+	salva_perguntas: function()
+	{
+		$('.group').each(function(index){
+			var respostas = $(this).find('.sorteia .header');
+			$(respostas).each(function(index_resp){
+				console.log('Resposta-'+index+'-'+index_resp);
+			});
+		});
+	},
+	*/
 
 	salva_perguntas: function(url)
 	{
 		$('.group').each(function(index){
 			//Variáveis que pegam os
-			var nome 		 = $('#nome-pergunta-'+index).val(), prox_url = $('#btn-proxima-etapa-2-perguntas').attr('href'), link = $('#link-pergunta-'+index).val(), texto = $('#texto-pergunta-'+index).val(), imagem = $('#alvo-pergunta-'+index).attr('src'), id_quiz = $('#id_quiz').val();
-			var box_resposta = '#sortable'+index+' .header';
-			//Verifica se os campos nome da pergunta, imagem e resposta não estão vazios.
-			alert(box_resposta);
-			return false;
-			$(box_resposta+' .input input[name="nome-resposta"]').each(function(){
-				 	if(this.value == '' || this.value == 'Preencha esse campo'){
-				 		this.value='';
-				 		this.value="Preencha esse campo";
-				 		return false;
-				 	}
-			});
+			var nome 		 = $('#nome-pergunta-'+index).val(), prox_url = $('#btn-proxima-etapa-2-perguntas').attr('href'), link = $('#link-pergunta-'+index).val(), texto = $('#texto-pergunta-'+index).val(), imagem = $('#alvo-pergunta-'+index).attr('src'), id_quiz = $('#id_quiz').val(), tipo_quiz = $('#tipo_quiz').val();
+			var box_resposta = $(this).find('.sorteia .header');
 
 			if(nome == '' || nome == 'Preencha esse campo'){
 				$('#nome-pergunta-'+index).val('Preencha esse campo')
 				return false;
 			}else if(!$(this).hasClass('salvo')){
 				var grupo = $(this).attr('id', index);
+				
+				//Verifica se os campos nome da pergunta, imagem e resposta não estão vazios.
+				$(this).find('.input input[name="nome-resposta"]').each(function(){
+					 	if(this.value == '' || this.value == 'Preencha esse campo'){
+					 		this.value='';
+					 		this.value="Preencha esse campo";
+					 		return false;
+					 	}
+				});
+
 				//Salva a pergunta via ajax
 				$.getJSON(
 					'../save_pergunta_perfil',
@@ -295,80 +306,67 @@ var eventos_back = {
 							$(grupo).removeClass('edit');
 							$('#id-pergunta-'+index).val(e.id_pergunta);
 							//Vamos salvar a resposta agora
-							var id_pergunta = e.id_pergunta, tipo_quiz = $('#tipo_quiz').val();
 
 							$(box_resposta).each(function(index_resp){
-								var verificador = $(box_resposta+' .input input[name="nome-resposta"]').attr('rel');
-								var resposta 	= $(box_resposta+' .input #nome-resposta-'+index_resp).val(), perfil_resposta = $(box_resposta+' #perfil-resposta-'+index_resp).val();
-							    //alert(resposta+' / '+perfil_resposta+' / '+id_pergunta+' / '+id_quiz+' / '+tipo_quiz);
-							    
+								var resposta 	= $(this).find('.input input[name="nome-resposta"]').val(), perfil_resposta = $(this).find('select[name=perfil-resposta]').val();
+							    //Log do cadastro
+							    console.log('Pergunta: '+nome+' ID: '+e.id_pergunta+' | Resposta: '+resposta+' - Perfil: '+perfil_resposta);
 							    $.get('../../respostas/save_resposta_perfil',
-								    {texto:resposta, tipo_resposta:tipo_quiz, perfil_resposta:perfil_resposta, id_pergunta:id_pergunta, id_quiz:id_quiz},
+								    {texto:resposta, tipo_resposta:tipo_quiz, perfil_resposta:perfil_resposta, id_pergunta:e.id_pergunta, id_quiz:id_quiz},
 								    function(e_resp){
 								    	if(e_resp == 'sucesso'){
+								    		//log do cadastro da resposta
 								    		console.log('Sucesso');
 								    	}else{
+								    		//log do erro do cadastro da resposta
 								    		console.log('Falha ao cadastrar resposta');
 								    	}
 							    	}
 							    );
 							});
-							/*
-							if(!url){
-								window.location.href=prox_url;
-							}else{
-								window.location.href=url;
-							}
-							*/
-						//Se caso o time_stamp seja diferente ele não vai proceder com o cadastro	
 						}else{
 							alert('Ocorreu uma falha ao tentar cadastrar o quiz');
 						}
 					});
-
-				console.log(index+' | Titulo: '+nome+' link: '+link+' Texto do Link: '+texto+ ' Imagem: '+imagem);
-				
 			}else if($(this).hasClass('edit')){
 				//Variáveis que pegam os
-				var nome 		 = $('#nome-pergunta-'+index).val(), prox_url = $('#btn-proxima-etapa-2-perguntas').attr('href'), link = $('#link-pergunta-'+index).val(), texto = $('#texto-pergunta-'+index).val(), imagem = $('#alvo-pergunta-'+index).attr('src'), id_quiz = $('#id_quiz').val();
-				var box_resposta = '#sortable'+index+' .header';
 				//Verifica se os campos nome da pergunta, imagem e resposta não estão vazios.
-				$(box_resposta+' .input input[name="nome"]').each(function(){
+				$(this).find('.input input[name="nome-resposta"]').each(function(){
 					 	if(this.value == '' || this.value == 'Preencha esse campo'){
 					 		this.value='';
 					 		this.value="Preencha esse campo";
 					 	}
 				});
+
 				var grupo = $(this).attr('id', index);
+
+				var id_pergunta = $(this).find('input[name="id-pergunta"]').val();
+				console.log(id_pergunta);
+
+				//return false;
 				//Salva a pergunta via ajax
+				
 				$.getJSON(
 					'../update_pergunta_perfil',
-					{texto:nome, link_referencia:link, texto_link:texto, imagem:imagem, id_quiz:id_quiz, data_alteracao:data_alteracao},
+					{texto:nome, link_referencia:link, texto_link:texto, imagem:imagem, id_quiz:id_quiz, id_pergunta:id_pergunta},
 					function(e){
 						if(e.result == 'sucesso'){
-							$(grupo).addClass('salvo');
-							$(grupo).removeClass('edit');
-							//Vamos salvar a resposta agora
-							$(box_resposta).each(function(index_resp){
-								var resposta 	= $('#nome-resposta-'+index_resp).val(), perfil_resposta = $('#perfil-resposta-'+index_resp).val();
+							//$(grupo).removeClass('edit');
+							//Vamos salvar a resposta agora 
+							$(box_resposta+'.edit').each(function(index_resp){
+								var resposta = $(this).find('.input input[name="nome-resposta"]').val(), perfil_resposta = $(this).find('select[name=perfil-resposta]').val();
 							    //alert(resposta+' / '+perfil_resposta+' / '+id_pergunta+' / '+id_quiz+' / '+tipo_quiz);
-							    $.get('../../respostas/save_resposta_perfil',
+							    $.get('../../respostas/update_resposta_perfil',
 							    	{texto:resposta, tipo_resposta:tipo_quiz, perfil_resposta:perfil_resposta, id_pergunta:id_pergunta, id_quiz:id_quiz},
 							    	function(e_resp){
 							    		if(e_resp == 'sucesso'){
 							    			console.log('Sucesso');
-							    					}else{
-							    						console.log('Falha ao cadastrar resposta');
-							    					}
-							    				}
-							    			);
+							    		}else{
+							    			console.log('Falha ao cadastrar resposta');
+							    		}
+							    	}
+							   	);
 							});
-
-							/*if(!url){
-								window.location.href=prox_url;
-							}else{
-								window.location.href=url;
-							}*/
 						//Se caso o time_stamp seja diferente ele não vai proceder com o cadastro	
 						}else if(e.result == 'timestamp_diff'){
 							alert('Ops, alguém atualizou esse quiz rencetemente, para processeguir recarregue a o página');
@@ -376,13 +374,14 @@ var eventos_back = {
 						}else{
 							alert('Ocorreu uma falha ao tentar cadastrar o quiz');
 						}
-					});
+					}
+				);
 			}else{
-				/*if(!url){
-					window.location.href=prox_url;
-				}else{
-					window.location.href=url;
-				}*/
+				//if(!url){
+				//	window.location.href=prox_url;
+				//}else{
+				//	window.location.href=url;
+				//}
 			}	
 		});
 	},

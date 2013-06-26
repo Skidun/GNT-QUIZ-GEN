@@ -64,7 +64,8 @@ $(function(){
 	
 	//Novo Quiz
 	$('.default').dropkick();
-
+	$('select[name="perfil-resposta"]').dropkick();
+	$('.dk_container').show();
 	/*Accordion*/
 	delete($.ui.accordion.prototype._keydown);
 	 $( "#accordion, #accordion2" )
@@ -162,7 +163,7 @@ $(function(){
 		var grupoNumero = $(this).parent().find(".header").length;
 		var option = $('select[name="perfil-resposta"]').html();
 		$('select[name=perfil-resposta]').removeData("dropkick");
-		$('#dk_container_perfil-resposta-'+id).remove();		
+		//$('#dk_container_perfil-resposta-'+id).remove();		
 		$(this).parent().find('.sorteia').append('<div class="header"><span class="icon"></span><div class="input"><input type="text" name="nome-resposta" id="nome-resposta-'+id+'" rel="'+id+'" value="" size=""/></div><select name="perfil-resposta" id="perfil-resposta-'+id+'" class="default">'+option+'</select></div>');
 		//coloca o novo select no esquema
 		$('select[name="perfil-resposta"]').dropkick();
