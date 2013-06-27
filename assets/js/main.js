@@ -109,7 +109,8 @@ $(function(){
         dataType: 'json',
         done: function (e, data) {			
             $.each(data.result.files, function (index, file) {
-				$('img#alvo-pergunta-'+index).attr('src','../../assets/server/php/files/'+file.name);
+				$('#previewPerguntas').attr('style', 'background: url(../../assets/server/php/files/'+file.name+') !important;');
+				$('img#alvo-perguntas').attr('src','../../assets/server/php/files/'+file.name);
             });
         }
     });
@@ -121,6 +122,7 @@ $(function(){
         done: function (e, data) {			
             $.each(data.result.files, function (index, file) {
 				$('img#alvo-resultados').attr('src','../../assets/server/php/files/'+file.name);
+				$('#previewResultados').attr('style', 'background: url(../../assets/server/php/files/'+file.name+') !important;');
             });
         }
     });
@@ -245,7 +247,7 @@ $(function(){
 	////JPicker
 	//////Perguntas
 	$('#titulo-cor').jPicker({
-		images:{clientPath: 'assets/img/jpicker/'}
+		images:{clientPath: '../../assets/img/jpicker/'}
 	},
 		function(color, context)
 			{
@@ -255,7 +257,7 @@ $(function(){
 			}
 	);
 	$('#perguntas-cor').jPicker({
-		images:{clientPath: 'assets/img/jpicker/'}
+		images:{clientPath: '../../assets/img/jpicker/'}
 	},
 		function(color, context)
 			{
@@ -266,7 +268,7 @@ $(function(){
 	);
 	$('#referencia-cor').jPicker({
 		window:{ position:{ x: 'screenCenter' , y: ($(this).offset.top - $(window).scrollTop()) + $(this).height() } },
-		images:{clientPath: 'assets/img/jpicker/'}
+		images:{clientPath: '../../assets/img/jpicker/'}
 	},
 		function(color, context)
 			{
@@ -277,7 +279,7 @@ $(function(){
 	);
 	$('#botoes-cor').jPicker({
 		window:{ position:{ x: 'screenCenter' , y: ($(this).offset.top - $(window).scrollTop()) + $(this).height() } },
-		images:{clientPath: 'assets/img/jpicker/'}
+		images:{clientPath: '../../assets/img/jpicker/'}
 	},
 		function(color, context)
 			{
@@ -288,7 +290,7 @@ $(function(){
 	);
 	$('#botoes-cor-fundo').jPicker({
 		window:{ position:{ x: 'screenCenter' , y: ($(this).offset.top - $(window).scrollTop()) + $(this).height() } },
-		images:{clientPath: 'assets/img/jpicker/'}
+		images:{clientPath: '../../assets/img/jpicker/'}
 	},
 		function(color, context)
 			{
@@ -299,7 +301,7 @@ $(function(){
 	);
 	$('#respostas-cor').jPicker({
 		window:{ position:{ x: 'screenCenter' , y: ($(this).offset.top - $(window).scrollTop()) + $(this).height() } },
-		images:{clientPath: 'assets/img/jpicker/'}
+		images:{clientPath: '../../assets/img/jpicker/'}
 	},
 		function(color, context)
 			{
@@ -310,7 +312,7 @@ $(function(){
 	);
 	$('#respostas-cor-fundo').jPicker({
 		window:{ position:{ x: 'screenCenter' , y: ($(this).offset.top - $(window).scrollTop()) + $(this).height() } },
-		images:{clientPath: '../assets/img/jpicker/'}
+		images:{clientPath: '../../assets/img/jpicker/'}
 	},
 		function(color, context)
 			{
@@ -321,19 +323,19 @@ $(function(){
 	);
 	$('#imagem-cor-fundo').jPicker({
 		window:{ position:{ x: 'screenCenter' , y: ($(this).offset.top - $(window).scrollTop()) + $(this).height() } },
-		images:{clientPath: 'assets/img/jpicker/'}
+		images:{clientPath: '../../assets/img/jpicker/'}
 	},
 		function(color, context)
 			{
 			var all = color.val('all');
-			$('#previewPerguntas #imagem').css('background-color','#'+all.hex);
+			$('#previewPerguntas').css('background-color','#'+all.hex);
 			$(this).css('background-color','transparent');
 			}
 	);
 	//////Resultados
 	$('#titulo-resultados-cor').jPicker({
 		window:{ position:{ x: 'screenCenter' , y: ($(this).offset.top - $(window).scrollTop()) + $(this).height() } },
-		images:{clientPath: '../assets/img/jpicker/'}
+		images:{clientPath: '../../assets/img/jpicker/'}
 	},
 		function(color, context)
 			{
@@ -344,7 +346,7 @@ $(function(){
 	);
 	$('#perguntas-resultados-cor').jPicker({
 		window:{ position:{ x: 'screenCenter' , y: ($(this).offset.top - $(window).scrollTop()) + $(this).height() } },
-		images:{clientPath: '../assets/img/jpicker/'}
+		images:{clientPath: '../../assets/img/jpicker/'}
 	},
 		function(color, context)
 			{
@@ -355,7 +357,7 @@ $(function(){
 	);
 	$('#acertos-cor').jPicker({
 		window:{ position:{ x: 'screenCenter' , y: ($(this).offset.top - $(window).scrollTop()) + $(this).height() } },
-		images:{clientPath: '../assets/img/jpicker/'}
+		images:{clientPath: '../../assets/img/jpicker/'}
 	},
 		function(color, context)
 			{
@@ -366,7 +368,7 @@ $(function(){
 	);
 	$('#descricao-cor').jPicker({
 		window:{ position:{ x: 'screenCenter' , y: ($(this).offset.top - $(window).scrollTop()) + $(this).height() } },
-		images:{clientPath: '../assets/img/jpicker/'}
+		images:{clientPath: '../../assets/img/jpicker/'}
 	},
 		function(color, context)
 			{
@@ -377,7 +379,7 @@ $(function(){
 	);
 	$('#referencia-resultados-cor').jPicker({
 		window:{ position:{ x: 'screenCenter' , y: ($(this).offset.top - $(window).scrollTop()) + $(this).height() } },
-		images:{clientPath: '../assets/img/jpicker/'}
+		images:{clientPath: '../../assets/img/jpicker/'}
 	},
 		function(color, context)
 			{
@@ -388,7 +390,7 @@ $(function(){
 	);
 	$('#botoes-resultados-cor').jPicker({
 		window:{ position:{ x: 'screenCenter' , y: ($(this).offset.top - $(window).scrollTop()) + $(this).height() } },
-		images:{clientPath: 'assets/img/jpicker/'}
+		images:{clientPath: '../../assets/img/jpicker/'}
 	},
 		function(color, context)
 			{
@@ -399,7 +401,7 @@ $(function(){
 	);
 	$('#botoes-resultados-cor-fundo').jPicker({
 		window:{ position:{ x: 'screenCenter' , y: ($(this).offset.top - $(window).scrollTop()) + $(this).height() } },
-		images:{clientPath: '../assets/img/jpicker/'}
+		images:{clientPath: '../../assets/img/jpicker/'}
 	},
 		function(color, context)
 			{
@@ -410,12 +412,12 @@ $(function(){
 	);
 	$('#imagem-resultados-cor-fundo').jPicker({
 		window:{ position:{ x: 'screenCenter' , y: ($(this).offset.top - $(window).scrollTop()) + $(this).height() } },
-		images:{clientPath: '../assets/img/jpicker/'}
+		images:{clientPath: '../../assets/img/jpicker/'}
 	},
 		function(color, context)
 			{
 			var all = color.val('all');
-			$('#previewResultados #imagem').css('background-color','#'+all.hex);
+			$('#previewResultados').css('background-color','#'+all.hex);
 			$(this).css('background-color','transparent');
 			}
 	);
@@ -482,7 +484,7 @@ $(function(){
 	$('textarea#codigo').val($.trim(code));
 	
 	$(".copiarCodigo").zclip({
-		path: "assets/js/ZeroClipboard.swf",
+		path: "../../assets/js/ZeroClipboard.swf",
 		copy:$('textarea#codigo').val(),
 		afterCopy:function(){
 			alert('Copiado para a área de transferência!');
