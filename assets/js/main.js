@@ -164,7 +164,7 @@ $(function(){
 		var option = $('select[name="perfil-resposta"]').html();
 		$('select[name=perfil-resposta]').removeData("dropkick");
 		//$('#dk_container_perfil-resposta-'+id).remove();		
-		$(this).parent().find('.sorteia').append('<div class="header"><span class="icon"></span><div class="input"><input type="text" name="nome-resposta" id="nome-resposta-'+id+'" rel="'+id+'" value="" size=""/></div><select name="perfil-resposta" id="perfil-resposta-'+id+'" class="default">'+option+'</select></div>');
+		$(this).parent().find('.sorteia').append('<div class="header novo"><span class="icon"></span><div class="input"><input type="text" name="nome-resposta" id="nome-resposta-'+id+'" rel="'+id+'" value="" size=""/></div><select name="perfil-resposta" id="perfil-resposta-'+id+'" class="default">'+option+'</select></div>');
 		//coloca o novo select no esquema
 		$('select[name="perfil-resposta"]').dropkick();
 		return false;

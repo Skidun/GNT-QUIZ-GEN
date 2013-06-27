@@ -27,11 +27,11 @@ class Resposta_model extends CI_Model {
         $this->db->where('id_pergunta', $pergunta_id);
         $this->db->order_by('ordem', 'ASC');
         $this->db->select('*');
-        $this->db->from('respostas');
-        $this->db->join('perfil', 'perfil.id = respostas.perfil_resposta');
+        //$this->db->from('respostas');
+        //$this->db->join('perfil', 'perfil.id = respostas.perfil_resposta');
 
 
-        return $this->db->get();
+        return $this->db->get($this->table);
     }
 
     public function create($data)

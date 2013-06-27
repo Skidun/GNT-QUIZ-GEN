@@ -86,8 +86,8 @@ class Perguntas extends CI_Controller {
 																<div class="header">
 																	<span class="icon"></span>
 																	<div class="input">
-																	<input type="text" name="nome" id="nome-resposta-'.$count_resp.'" value="'.$resposta->resposta.'" size="" />
-																	<input type="hidden" name="id_reposta" id="id-resposta-'.$count_resp.'" value="'.$resposta->id.'"/>
+																	<input type="text" name="nome-resposta" id="nome-resposta-'.$count_resp.'" value="'.$resposta->resposta.'" size="" />
+																	<input type="hidden" name="id-resposta" id="id-resposta-'.$count_resp.'" value="'.$resposta->id.'"/>
 																	</div>'.form_dropdown('perfil-resposta', $options_select, $resposta->perfil_resposta, 'class="default" id="perfil-resposta-'.$count_resp.'"').'
 																</div>
 										';
@@ -153,25 +153,15 @@ class Perguntas extends CI_Controller {
 		$data['texto_link'] 	 = $this->input->get('texto_link', true);
 		$data['imagem'] 		 = $this->input->get('imagem', true);
 		$data['id_quiz'] 		 = $this->input->get('id_quiz', true);
-		$id_quiz 				 = $this->input->get('id_quiz', true);
-		$time_stamp				 = $this->input->get('data_alteracao');
-
-		$valida_quiz 			 = $this->quiz_model->get($id_quiz);
-		if($valida_quiz){
-			if($valida_quiz['data_alteracao'] == $time_stamp){
-				$update = $this->pergunta_model->update($id, $data);
-				if($update){
-					#Variáveis necessárias para atualização do time_stamp do quiz
-					
-					$update_data['data_alteracao'] = date('Y-m-d H:i:s');
-					$update_quiz = $this->quiz_model->update($id_quiz, $update_data);
-
-					$retorno = array('result'=>'sucesso', 'id_pergunta'=> $id_pergunta);
-					echo json_encode($retorno);
-				}
-			}else{
-				echo json_encode(array('result'=>'timestamp_diff'));
-			}
+		
+		$update = $this->pergunta_model->update($id, $data);
+		if($update){
+			#Variáveis necessárias para atualização do time_stamp do quiz
+			$retorno = array('result'=>'sucesso');
+			echo json_encode($retorno);
+		}else{
+			$retorno = array('result'=>'falha');
+			echo json_encode($retorno);
 		}
 	}
 

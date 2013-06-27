@@ -179,6 +179,21 @@ class Quiz extends CI_Controller {
 			echo "fail";
 		}
 	}
+	#Update Time Stamp
+	public function update_timestamp()
+	{
+		$id 					= $this->input->get('id_quiz', true);
+		$data['data_alteracao'] = date('Y-m-d H:i:s');
+		$data['id_usuario']    	= $this->session->userdata('id');
+		
+		$result = $this->quiz_model->update($id, $data);
+			if($result){
+				echo 'ok';
+			}else{
+				echo 'falha';
+			}
+		
+	}
 
 }
 
