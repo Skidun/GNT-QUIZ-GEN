@@ -203,7 +203,6 @@ var eventos_back = {
 
 	salva_perfil: function(url)
 	{	
-		alert('Olá');
 		$('.group').each(function(index){
 			var titulo = $('#nome-perfil-'+index).val(), prox_url = $('#btn-proxima-etapa-1-perfil').attr('rel'), descricao =  $('#descricao-perfil-'+index).val(), link = $('#link-perfil-'+index).val(), texto = $('#texto-perfil-'+index).val(), imagem = $('#alvo-'+index).attr('src'), id_quiz = $('#id_quiz').val(), id_perfil = $('#id-perfil-'+index).val();
 			if(titulo == '' || descricao == '' || link == '' || texto == '' || imagem == ''){

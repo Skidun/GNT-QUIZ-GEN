@@ -209,18 +209,22 @@ $(function(){
 	//////Perguntas
 	$('#dk_container_titulo-tamanho a').click(function(){
 		$('input[name="ititulo-tamanho"]').val('font-size:'+$(this).text()+';');
+		$('input[name="ititulo-tamanho"]').attr('rel', $(this).text());
 		$('#previewPerguntas #nome').css('font-size',$(this).text());
 	});
 	$('#dk_container_perguntas-tamanho a').click(function(){
 		$('input[name="iperguntas-tamanho"]').val('font-size:'+$(this).text()+';');
+		$('input[name="iperguntas-tamanho"]').attr('rel', $(this).text());
 		$('#previewPerguntas .titulo').css('font-size',$(this).text());
 	});
 	$('#dk_container_referencia-tamanho a').click(function(){
 		$('input[name="ireferencia-tamanho"]').val('font-size:'+$(this).text()+';');
+		$('input[name="ireferencia-tamanho"]').attr('rel', $(this).text());
 		$('#previewPerguntas .subtitulo a').css('font-size',$(this).text());
 	});
 	$('#dk_container_respostas-tamanho a').click(function(){
 		$('input[name="irespostas-tamanho"]').val('font-size:'+$(this).text()+';');
+		$('input[name="irespostas-tamanho"]').attr('rel', $(this).text());
 		$('#previewPerguntas .respostas').css('font-size',$(this).text());
 	});
 	//////Resultados

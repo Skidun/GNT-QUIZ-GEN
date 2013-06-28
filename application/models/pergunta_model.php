@@ -3,13 +3,12 @@
 class Pergunta_model extends CI_Model {
 	private $table = 'perguntas';
 
-    public function get($id = false)
+    public function get($id)
     {
-                if($id)
-                    $this->db->where('id_quiz', $id);
+                $this->db->where('id_quiz', $id);
                 $get = $this->db->get($this->table);
-                if($id)
-                        return $get->row_array();
+                
+                return $get->row_array();
                 if($get->num_rows > 0)
                     return $get->result_array();
                 return array();

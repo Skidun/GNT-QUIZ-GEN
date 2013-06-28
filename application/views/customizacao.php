@@ -11,10 +11,65 @@
 					<div class="header">
 						<div class="titulo">Perguntas e respostas</div>
 						<span class="arrow"></span>
+						<?php 
+							if($customizacao == NULL){
+								#Perguntas e respostas
+								$customizacao['titulo_quiz_font_size'] = '20px';
+								$customizacao['titulo_quiz_font_color'] = '333333';
+								$customizacao['titulo_quiz_align'] = 'left';
+								
+								$customizacao['pergunta_quiz_font_size'] = '24px';
+								$customizacao['pergunta_quiz_font_color'] = '333333';
+								$customizacao['pergunta_quiz_align'] = 'left';
+
+								$customizacao['link_ref_pergunta_font_size'] = '16px';
+								$customizacao['link_ref_pergunta_font_color'] = '333333';
+								$customizacao['link_ref_pergunta_align'] = 'left';
+
+								$customizacao['resposta_pergunta_font_size'] = '15px';
+								$customizacao['resposta_pergunta_font_color'] = '333333';
+								$customizacao['resposta_pergunta_align'] = 'left';
+								$customizacao['resposta_pergunta_bg_color'] = '';
+
+								$customizacao['botao_perguntas_font_color'] = '333333';
+								$customizacao['botao_perguntas_bg_color'] = '';
+
+								$customizacao['quiz_bg_img'] = '';
+								$customizacao['quiz_bg_color'] = '';
+
+								#Resultados
+								$customizacao['resultado_titulo_quiz_font_size'] = '20px';
+								$customizacao['resultado_titulo_quiz_font_color'] = '333333';
+								$customizacao['resultado_titulo_quiz_align'] = 'left';
+								
+								$customizacao['resultado_titulo_faixa_font_size'] = '20px';
+								$customizacao['resultado_titulo_faixa_font_color'] = '333333';
+								$customizacao['resultado_titulo_faixa_align'] = 'left';
+
+								$customizacao['pergunta_quiz_font_color'] = '333333';
+								$customizacao['pergunta_quiz_align'] = 'left';
+
+								$customizacao['link_ref_pergunta_font_size'] = '16px';
+								$customizacao['link_ref_pergunta_font_color'] = '333333';
+								$customizacao['link_ref_pergunta_align'] = 'left';
+
+								$customizacao['resposta_pergunta_font_size'] = '15px';
+								$customizacao['resposta_pergunta_font_color'] = '333333';
+								$customizacao['resposta_pergunta_align'] = 'left';
+								$customizacao['resposta_pergunta_bg_color'] = '';
+
+								$customizacao['botao_perguntas_font_color'] = '333333';
+								$customizacao['botao_perguntas_bg_color'] = '';
+
+								$customizacao['quiz_bg_img'] = '';
+								$customizacao['quiz_bg_color'] = '';
+
+							}
+						?>
 					</div>
+					
 					<div class="body">
-						<div class="editor">
-						
+						<div class="editor">	
 							<!--Título do quiz-->
 							<div class="intro">
 								<p>Título do quiz</p>
@@ -23,26 +78,25 @@
 							<div class="content">
 								<!--Tamanho da fonte-->
 								<p>Tamanho da fonte:</p>
-								<select name="titulo-tamanho" class="default">
-									<option value="18px">18px</option>
-									<option value="20px" selected="selected">20px</option>
-									<option value="22px">22px</option>
-								</select>
+								<?php 
+									$options_titulo_tamanho = array('18px'=>'18px', '20px'=>'20px', '22px'=>'22px');
+									echo form_dropdown('titulo-tamanho', $options_titulo_tamanho, $customizacao['titulo_quiz_font_size'], ' class="default"');
+								?>
 								<!--passa o valor Tamanho da fonte escondido-->
-								<input name="ititulo-tamanho" type="hidden" value="font-size:20px;" />
+								<input name="ititulo-tamanho" type="hidden" value="font-size:<?php echo $customizacao['titulo_quiz_font_size'];?>" />
 								<!--Cor da fonte:-->
 								<p>Cor da fonte:</p>
-								<div class="input-picker"><input id="titulo-cor" type="text" value="333333" /></div>
+								<div class="input-picker"><input id="titulo-cor" type="text" id="titulo_quiz_font_color" value="<?php echo $customizacao['titulo_quiz_font_color'];?>" /></div>
 								<!--Alinhamento:-->
 								<p class="alinha">Alinhamento:</p>
 								<div id="alinha-inner" class="titulo-alinhamento">
-									<div id="left" class="ativo"></div>
-									<div id="center"></div>
-									<div id="right"></div>
-									<div id="justify"></div>
+									<div id="left" <?php if($customizacao['titulo_quiz_align'] == 'left') echo 'class="ativo"';?>></div>
+									<div id="center" <?php if($customizacao['titulo_quiz_align'] == 'center') echo 'class="ativo"';?>></div>
+									<div id="right" <?php if($customizacao['titulo_quiz_align'] == 'right') echo 'class="ativo"';?>></div>
+									<div id="justify" <?php if($customizacao['titulo_quiz_align'] == 'justify') echo 'class="ativo"';?>></div>
 								</div>
 								<!--passa o valor Alinhamento escondido-->
-								<input name="ititulo-alinhamento" type="hidden" value="text-align:left;" />
+								<input name="ititulo-alinhamento" id="titulo_quiz_align" type="hidden" value="text-align: <?php echo $customizacao['titulo_quiz_align']?>;" />
 							</div>
 							
 							<!--Perguntas-->
@@ -53,26 +107,25 @@
 							<div class="content">
 								<!--Tamanho da fonte-->
 								<p>Tamanho da fonte:</p>
-								<select name="perguntas-tamanho" class="default">
-									<option value="22px">22px</option>
-									<option value="24px" selected="selected">24px</option>
-									<option value="26px">26px</option>
-								</select>
+								<?php 
+									$options_pergunta_tamanho = array('18px'=>'18px','20px'=>'20px','22px'=>'22px', '24px'=>'24px', '26px'=>'26px');
+									echo form_dropdown('perguntas-tamanho', $options_pergunta_tamanho, $customizacao['pergunta_quiz_font_size'], ' class="default" ');
+								?>
 								<!--passa o valor Tamanho da fonte escondido-->
-								<input name="iperguntas-tamanho" type="hidden" value="font-size:24px;" />
+								<input name="iperguntas-tamanho" type="hidden" value="font-size:<?php echo $customizacao['pergunta_quiz_font_size'];?>" />
 								<!--Cor da fonte:-->
 								<p>Cor da fonte:</p>
-								<div class="input-picker"><input id="perguntas-cor" type="text" value="333333" /></div>
+								<div class="input-picker"><input id="perguntas-cor" type="text" value="<?php echo $customizacao['pergunta_quiz_font_color']?>" /></div>
 								<!--Alinhamento:-->
 								<p class="alinha">Alinhamento:</p>
 								<div id="alinha-inner" class="perguntas-alinhamento">
-									<div id="left" class="ativo"></div>
-									<div id="center"></div>
-									<div id="right"></div>
-									<div id="justify"></div>
+									<div id="left" <?php if($customizacao['pergunta_quiz_align'] == 'left') echo 'class="ativo"';?>></div>
+									<div id="center" <?php if($customizacao['pergunta_quiz_align'] == 'center') echo 'class="ativo"';?>></div>
+									<div id="right" <?php if($customizacao['pergunta_quiz_align'] == 'right') echo 'class="ativo"';?>></div>
+									<div id="justify" <?php if($customizacao['pergunta_quiz_align'] == 'justify') echo 'class="ativo"';?>></div>
 								</div>
 								<!--passa o valor Alinhamento escondido-->
-								<input name="iperguntas-alinhamento" type="hidden" value="text-align:left;" />
+								<input name="iperguntas-alinhamento" type="hidden" value="text-align:<?php echo $customizacao['pergunta_quiz_align'];?>" />
 							</div>
 							
 							<!--Link de referência-->
@@ -83,26 +136,26 @@
 							<div class="content">
 								<!--Tamanho da fonte-->
 								<p>Tamanho da fonte:</p>
-								<select name="referencia-tamanho" class="default">
-									<option value="14px">14px</option>
-									<option value="16px" selected="selected">16px</option>
-									<option value="18px">18px</option>
-								</select>
+
+								<?php 
+									$options_link_tamanho = array('14px'=>'14px','16px'=>'16px','18px'=>'18px');
+									echo form_dropdown('referencia-tamanho', $options_link_tamanho, $customizacao['link_ref_pergunta_font_size'], ' class="default" ');
+								?>
 								<!--passa o valor Tamanho da fonte escondido-->
-								<input name="ireferencia-tamanho" type="hidden" value="font-size:24px;" />
+								<input name="ireferencia-tamanho" type="hidden" value="font-size:<?php echo $customizacao['link_ref_pergunta_font_size'];?>;" />
 								<!--Cor da fonte:-->
 								<p>Cor da fonte:</p>
-								<div class="input-picker"><input id="referencia-cor" type="text" value="333333" /></div>
+								<div class="input-picker"><input id="referencia-cor" type="text" value="<?php echo $customizacao['link_ref_pergunta_font_color'];?>" /></div>
 								<!--Alinhamento:-->
 								<p class="alinha">Alinhamento:</p>
 								<div id="alinha-inner" class="referencia-alinhamento">
-									<div id="left" class="ativo"></div>
-									<div id="center"></div>
-									<div id="right"></div>
-									<div id="justify"></div>
+									<div id="left" <?php if($customizacao['link_ref_pergunta_align'] == 'left') echo 'class="ativo"';?>></div>
+									<div id="center" <?php if($customizacao['link_ref_pergunta_align'] == 'center') echo 'class="ativo"';?>></div>
+									<div id="right" <?php if($customizacao['link_ref_pergunta_align'] == 'right') echo 'class="ativo"';?>></div>
+									<div id="justify" <?php if($customizacao['link_ref_pergunta_align'] == 'justify') echo 'class="ativo"';?>></div>
 								</div>
 								<!--passa o valor Alinhamento escondido-->
-								<input name="iperguntas-alinhamento" type="hidden" value="text-align:left;" />
+								<input name="iperguntas-alinhamento" type="hidden" value="text-align:<?php echo $customizacao['link_ref_pergunta_align'];?>;" />
 							</div>
 							
 							<!--Respostas-->
@@ -113,29 +166,29 @@
 							<div class="content">
 								<!--Tamanho da fonte-->
 								<p>Tamanho da fonte:</p>
-								<select name="respostas-tamanho" class="default">
-									<option value="13px">13px</option>
-									<option value="15px" selected="selected">15px</option>
-									<option value="17px">17px</option>
-								</select>
+
+								<?php 
+									$options_resposta_tamanho = array('13px'=>'13px','15px'=>'15px','17px'=>'17px');
+									echo form_dropdown('respostas-tamanho', $options_resposta_tamanho, $customizacao['resposta_pergunta_font_size'], ' class="default" ');
+								?>
 								<!--passa o valor Tamanho da fonte escondido-->
-								<input name="irespostas-tamanho" type="hidden" value="font-size:24px;" />
+								<input name="irespostas-tamanho" type="hidden" value="font-size:<?php echo $customizacao['resposta_pergunta_font_size'];?>;" />
 								<!--Cor da fonte:-->
 								<p>Cor da fonte:</p>
-								<div class="input-picker"><input id="respostas-cor" type="text" value="333333" /></div>
+								<div class="input-picker"><input id="respostas-cor" type="text" value="<?php echo $customizacao['resposta_pergunta_font_color'];?>" /></div>
 								<!--Alinhamento:-->
 								<p class="alinha">Alinhamento:</p>
 								<div id="alinha-inner" class="respostas-alinhamento">
-									<div id="left" class="ativo"></div>
-									<div id="center"></div>
-									<div id="right"></div>
-									<div id="justify"></div>
+									<div id="left" <?php if($customizacao['resposta_pergunta_align'] == 'left') echo 'class="ativo"';?>></div>
+									<div id="center" <?php if($customizacao['resposta_pergunta_align'] == 'center') echo 'class="ativo"';?>></div>
+									<div id="right" <?php if($customizacao['resposta_pergunta_align'] == 'right') echo 'class="ativo"';?>></div>
+									<div id="justify" <?php if($customizacao['resposta_pergunta_align'] == 'justify') echo 'class="ativo"';?>></div>
 								</div>
 								<!--passa o valor Alinhamento escondido-->
-								<input name="irespostas-alinhamento" type="hidden" value="text-align:left;" />
+								<input name="irespostas-alinhamento" type="hidden" value="text-align:<?php echo $customizacao['resposta_pergunta_align'];?>;" />
 								<!--Cor de fundo:-->
 								<p class="alinha">Cor de fundo:</p>
-								<div class="input-picker"><input id="respostas-cor-fundo" type="text" value="" /></div>
+								<div class="input-picker"><input id="respostas-cor-fundo" type="text" value="<?php echo $customizacao['resposta_pergunta_bg_color'];?>" /></div>
 							</div>
 							
 							<!--Botões-->
@@ -146,10 +199,10 @@
 							<div class="content">
 								<!--Cor da fonte:-->
 								<p>Cor da fonte:</p>
-								<div class="input-picker"><input id="botoes-cor" type="text" value="333333" /></div>
+								<div class="input-picker"><input id="botoes-cor" type="text" value="<?php echo $customizacao['botao_perguntas_font_color'];?>" /></div>
 								<!--Cor de fundo:-->
 								<p>Cor de fundo:</p>
-								<div class="input-picker"><input id="botoes-cor-fundo" type="text" value="" /></div>
+								<div class="input-picker"><input id="botoes-cor-fundo" type="text" value="<?php echo $customizacao['botao_perguntas_bg_color'];?>" /></div>
 							</div>
 							
 							<!--Imagem de fundo-->
@@ -174,29 +227,19 @@
 						<div id="previewPerguntas" class="preview">
 							<div id="nome"><?php  echo $titulo;?></div>
 							<div id="texto">
-								<div class="titulo">Chegou o fim de semana e você:</div>
-								<div class="subtitulo"><a href="#">Texto do link de referência.</a></div>
+								<div class="titulo"><?php echo $perguntas['pergunta'];?></div>
+								<div class="subtitulo"><a href="<?php echo $perguntas['link_referencia'];?>" target="_blank"><?php echo $perguntas['texto_link'];?></a></div>
 								<table class="respostas">
-									<tr>
-										<td><input type="radio" name="resposta" value="0" /></td>
-										<td>Só pensa nas coisas que quer fazer sozinha: pedalar, assistir a um filme, cuidar da casa...</td>
-									</tr>
-									<tr>
-										<td><input type="radio" name="resposta" value="1" /></td>
-										<td>Liga para os amigos e pergunta se alguém tem um cara interessante. e bonito para te apresentar.</td>
-									</tr>
-									<tr>
-										<td><input type="radio" name="resposta" value="2" /></td>
-										<td>Avisa a todo mundo que vai rolar uma festinha no apê por sua conta.</td>
-									</tr>
-									<tr>
-										<td><input type="radio" name="resposta" value="3" /></td>
-										<td>Vai pra balada com as melhores amigas atrás dos gatos.</td>
-									</tr>
+									<?php foreach($respostas as $resposta):?>
+										<tr>
+											<td><input type="radio" name="resposta" value="<?php echo $resposta->perfil_resposta;?>" /></td>
+											<td><?php echo $resposta->resposta;?></td>
+										</tr>
+									<?php endforeach;?>
 								</table>
 							</div>
 							<div id="imagem">
-								<img id="alvo-pergunta" src="<?php echo base_url();?>assets/img/backgrounds/imagem2.png" />
+								<img id="alvo-pergunta" src="<?php echo $perguntas['imagem'];?>" />
 							</div>
 							<div id="botoes">
 								<a href="#" class="anterior" title="Anterior">&laquo; Anterior</a>
@@ -397,21 +440,13 @@
 							
 						</div>
 						
-						<div class="preVisu">
-							<p>Pré-visualizar:</p>
-							<select name="preResultados" class="default">
-								<option value="1">Chegou o fim de semana:</option>
-								<option value="2">Chegou o fim de semana:</option>
-							</select>
-						</div>
 						<div id="previewResultados" class="preview">
-							<div id="nome">Que tipo de solteira você é?</div>
+							<div id="nome"><?php echo $titulo;?></div>
 							<div id="texto">
-								<div class="titulo">Pegadora</div>								
+								<div class="titulo"><?php echo $perfis['titulo'];?></div>								
 								<div class="resultado">
-									<p class="descricao">Você é a pegadora! Enquanto o 'certo' não aparece, você se diverte com os 'errados'!</p>
-									<p class="descricao">Brincadeiras à parte, você não tem medo de explorar sua sexualidade e seus desejos enquanto não tem um relacionamento sério à vista. O importante é curtir a vida!</p>
-									<div class="saibaMais"><a href="#">saiba mais</a></div>
+									<p class="descricao"><?php echo $perfis['descricao'];?></p>
+									<div class="saibaMais"><a href="<?php echo $perfis['link_referencia'];?>"><?php echo $perfis['texto_link'];?></a></div>
 								
 									<div id="botoesResultado">
 										<a href="#" class="anterior" title="jogar novamente">&laquo; jogar novamente</a>
@@ -421,7 +456,8 @@
 								</div>								
 							</div>
 							<div id="imagem">
-								<img id="alvo--" src="<?php echo base_url();?>assets/img/backgrounds/imagem2.png" />
+								<!--<img id="alvo--" src="<?php echo base_url();?>assets/img/backgrounds/imagem2.png" />-->
+								<img id="alvo--" src="<?php echo $perfis['imagem'];?>" />
 							</div>
 						</div>
 					</div>

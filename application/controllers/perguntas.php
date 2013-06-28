@@ -76,7 +76,7 @@ class Perguntas extends CI_Controller {
 													<div id="sortable'.$count.'" class="sorteia">
 												';
 				#Faço uma consulta na tabela de respostas para pegar a tabela daquela determinada pergunta e daquele determinado quiz												
-				$respostas = $this->resposta_model->get_all($id, $pergunta->id);
+				$respostas = $this->resposta_model->get_all($pergunta->id);
 				#Contagem inicial de cada loop
 				$count_resp= -1;
 				#Gerar os box de respostas

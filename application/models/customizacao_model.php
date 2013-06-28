@@ -1,11 +1,11 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Resposta_model extends CI_Model {
-	private $table = 'respostas';
+class Customizacao_model extends CI_Model {
+	private $table = 'configuracoes';
 
     public function get($id)
     {
-                $this->db->where('id_pergunta', $id);
+                $this->db->where('id_quiz', $id);
                 $get = $this->db->get($this->table);
                 
                 return $get->row_array();
