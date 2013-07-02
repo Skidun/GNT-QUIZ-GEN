@@ -1526,3 +1526,81 @@ p {
   direction: ltr;
   cursor: pointer;
 }
+/*Visualizacao*/
+.janela{
+  border:0;
+  float: left;
+  width: 620px;
+  overflow: hidden;
+}
+#quizVisualizacao{
+  float: left;
+  width: 620px;
+}
+#quizVisualizacao #nome{
+  font-family: 'Conv_Amaranth-Bold';
+  margin: 13px 19px;
+}
+#quizVisualizacao #texto{
+  float: left;
+  width: 315px;
+  margin: 0 0 0 20px;
+}
+#quizVisualizacao .titulo{
+  font-family: 'Conv_Amaranth';
+  letter-spacing: -1px;
+  line-height: 120%;
+}
+#quizVisualizacao .subtitulo{
+  font-family: 'Conv_Amaranth-Italic';  
+  line-height: 120%;
+}
+#quizVisualizacao .respostas{
+  font-family: 'Conv_Amaranth';
+  line-height: 120%;
+  margin: 19px 0;
+}
+#quizVisualizacao .respostas td{
+  vertical-align: top;
+  padding: 0 3px 10px 3px;
+}
+#quizVisualizacao #imagem{
+  width: 240px;
+  height: 260px;
+  overflow: hidden;
+  float: right;
+  border: 2px solid #333333;
+  margin: 2px 16px 0 0;
+}
+#quizVisualizacao #botoes{
+  float: left;
+  width: 580px;
+  margin: 20px;
+}
+#quizVisualizacao #botoes a{
+  width: 110px;
+  height: 40px;
+  font-family: 'Conv_Amaranth';
+  font-size: 15px;
+  text-align: center;
+  line-height: 270%;
+}
+#quizVisualizacao #anterior{
+  float: left;
+}
+#quizVisualizacao #proximo{
+  float: right;
+}
+#quizVisualizacao #chamaResultado{
+  float: right;
+  display: none;
+}
+#slideshow #slidesContainer {
+  margin:0 auto;
+  width:620px;
+  position:relative;
+}
+#slideshow #slidesContainer .slide {
+  margin:0 auto;
+  width:600px; /* reduce by 20 pixels to avoid horizontal scroll */
+}
