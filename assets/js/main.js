@@ -654,7 +654,10 @@ $(document).ready(function(){
   });
   
   // Set #slideInner width equal to total width of all slides
-  $('#slideInner').css('width', slideWidth * numberOfSlides);
+  $('#slideInner').css({
+  	'width': slideWidth * numberOfSlides,
+  	'height': $('.slide').height()
+	});
 
   // Hide left arrow control on first load
   manageControls(currentPosition);
@@ -671,7 +674,8 @@ $(document).ready(function(){
       // Move slideInner using margin-left
       $('#slideInner').animate({
         'marginLeft' : slideWidth*(-currentPosition)
-      });
+      },200);
+      $('.slide').fadeOut(20).delay(160).fadeIn(20);
     });
   
   // manageControls: Hides and shows controls depending on currentPosition

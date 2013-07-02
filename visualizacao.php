@@ -57,7 +57,7 @@
 								<!--Chama slide posterior-->
 								<a href="#" id="proximo" class="control" title="Próximo" style="color:#ffffff; background-color:#cc1e59;">Próximo &raquo;</a>
 								<!--Chama a página de resultado, só aparece ao final do slideshow-->
-								<a href="#" id="chamaResultado" title="Próximo" style="color:#ffffff; background-color:#cc1e59;">Próximo &raquo;</a>
+								<a href="#" id="chamaResultado" title="Próximo" style="color:#ffffff; background-color:#cc1e59;">Resultado &raquo;</a>
 							</div>
 						</div>
 
