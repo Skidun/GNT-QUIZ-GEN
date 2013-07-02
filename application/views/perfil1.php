@@ -4,7 +4,7 @@
 			<div id="wrap">
 			
 				<?php $this->template->menu3('perfil1');?>
-							
+				<input type="hidden" id="data_alteracao" value="<?php echo $data_alteracao;?>" />			
 				<div id="accordion">
 						<?php
 							if($quantidade != 0){

@@ -29,6 +29,9 @@ class Perguntas extends CI_Controller {
 		$list_respostas = '';
 		$options_select = array();
 		$perguntas   	= $this->pergunta_model->get_all($id);
+		if($perfis->num_rows() == 0){
+			redirect('quiz_tipo/perfil/'.$id);
+		}
 		#Gera as options de perfis para cada resposta
 		foreach($perfis->result() as $perfil){
 			$option_perfil .= '<option value="'.$perfil->id.'">'.$perfil->titulo.'</option>';

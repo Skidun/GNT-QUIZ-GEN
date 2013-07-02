@@ -42,7 +42,7 @@ class Quiz extends CI_Controller {
 						<ul class="menu-editar">
 							<li><div class="editar"></div>
 								<ul class="nav2">
-									<li><a href="'.site_url('editar-quiz').'/'.$quiz->id.'">nome e tipo</a></a></li>
+									<li><a href="'.site_url('editar-quiz').'/'.$quiz->id.'">nome</a></a></li>
 									<li><a href="'.site_url('quiz_tipo').'/'.$quiz->tipo.'/'.$quiz->id.'">perfis</a></a></li>
 									<li><a href="'.site_url('perguntas').'/'.$quiz->tipo.'/'.$quiz->id.'">perguntas & respostas</a></a></li>
 									<li><a href="'.site_url('customizacao/'.$quiz->tipo.'/'.$quiz->id).'">customizacao</a></a></li>
@@ -107,6 +107,8 @@ class Quiz extends CI_Controller {
 		        $last = $query->last_row('array');
 
 		        $id = $last['id'];
+		        //Cria a customização Default de todos os quizes
+		        $this->customizacao_model->create($id);
 		        //Verifica o tipo do quiz para
 		        switch ($this->input->post('tipo', TRUE)) {
 		        	case 'perfil':
@@ -157,6 +159,7 @@ class Quiz extends CI_Controller {
 		$data = $id;
 		$this->perfil_model->quiz_delete($data);
 		$this->pergunta_model->quiz_delete($data);
+		$this->customizacao_model->quiz_delete($data);
 		$result =  $this->quiz_model->delete($data);
 
 		if($result){

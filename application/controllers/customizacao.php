@@ -20,8 +20,8 @@ class Customizacao extends CI_Controller {
 	{
 		#Variáveis que abragem todas as etapas do quiz
 		$perguntas 			= $this->pergunta_model->get($id);
-		$respostas			= $this->resposta_model->get_all($perguntas['id']);
-		$perfis				= $this->perfil_model->get($id);
+		$respostas			= @$this->resposta_model->get_all($perguntas['id']);
+		$perfis				= @$this->perfil_model->get($id);
 		#Array com as informações que são enviados para a view
 		$data  					= $this->quiz_model->get($id);
 		$data['customizacao']	= $this->customizacao_model->get($id);
@@ -29,8 +29,13 @@ class Customizacao extends CI_Controller {
 		$data['respostas']  	= $respostas->result();
 		$data['perfis'] 		= $perfis;
 		$data['page_title']		=	'Customização do quiz';
+		if($perfis == NULL){
+			redirect('quiz_tipo/perfil/'.$id);
+		}elseif($perguntas == NULL || $respostas == NULL){
+			redirect('perguntas/perfil/'.$id);
+		}
 		$this->template->show('customizacao', $data);
-	}	
+	}
 
 }
 

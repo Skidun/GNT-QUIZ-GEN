@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tempo de Geração: 28/06/2013 às 18:27:47
+-- Tempo de Geração: 02/07/2013 às 19:30:20
 -- Versão do Servidor: 5.5.31
 -- Versão do PHP: 5.4.6-1ubuntu1.2
 
@@ -28,7 +28,7 @@ SET time_zone = "+00:00";
 
 CREATE TABLE IF NOT EXISTS `configuracoes` (
   `id` tinyint(4) NOT NULL AUTO_INCREMENT,
-  `titulo_quiz_font_size` int(11) DEFAULT NULL,
+  `titulo_quiz_font_size` varchar(11) DEFAULT NULL,
   `titulo_quiz_font_color` varchar(7) DEFAULT NULL,
   `titulo_quiz_align` varchar(12) DEFAULT NULL,
   `pergunta_quiz_font_size` varchar(12) DEFAULT NULL,
@@ -67,7 +67,15 @@ CREATE TABLE IF NOT EXISTS `configuracoes` (
   `id_quiz` tinyint(4) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `id_quiz` (`id_quiz`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Tabela de configuração que será aplicada a cada quiz.' AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='Tabela de configuração que será aplicada a cada quiz.' AUTO_INCREMENT=4 ;
+
+--
+-- Extraindo dados da tabela `configuracoes`
+--
+
+INSERT INTO `configuracoes` (`id`, `titulo_quiz_font_size`, `titulo_quiz_font_color`, `titulo_quiz_align`, `pergunta_quiz_font_size`, `pergunta_quiz_font_color`, `pergunta_quiz_align`, `link_ref_pergunta_font_size`, `link_ref_pergunta_font_color`, `link_ref_pergunta_align`, `resposta_pergunta_font_size`, `resposta_pergunta_font_color`, `resposta_pergunta_align`, `resposta_pergunta_bg_color`, `botao_perguntas_font_color`, `botao_perguntas_bg_color`, `quiz_bg_img`, `quiz_bg_color`, `resultado_titulo_quiz_font_size`, `resultado_titulo_quiz_font_color`, `resultado_titulo_quiz_align`, `resultado_titulo_faixa_font_size`, `resultado_titulo_faixa_font_color`, `resultado_titulo_faixa_align`, `resultado_porcentagem_font_size`, `resultado_porcentagem_font_color`, `resultado_porcentagem_align`, `resultado_descricao_font_size`, `resultado_descricao_font_color`, `resultado_descricao_align`, `resultado_linkref_font_size`, `resultado_linkref_font_color`, `resultado_linkref_align`, `resultado_botao_font_color`, `resultado_botao_bg_color`, `resultado_bg_img`, `resultado_bg_color`, `id_quiz`) VALUES
+(1, '20px', '333333', 'left', '24px', '333333', 'left', '16px', '333333', 'left', '15px', '333333', 'left', NULL, 'ffffff', 'cc1e59', NULL, 'faab2a', '20px', '333333', 'left', '24px', '333333', 'left', '18px', '333333', 'left', '18px', '333333', 'left', '15px', '333333', 'left', 'ffffff', 'cc1e59', NULL, 'faab2a', 36),
+(3, '20px', '333333', 'left', '24px', '333333', 'left', '16px', '333333', 'left', '15px', '333333', 'left', NULL, 'ffffff', 'cc1e59', NULL, 'faab2a', '20px', '333333', 'left', '24px', '333333', 'left', '18px', '333333', 'left', '18px', '333333', 'left', '15px', '333333', 'left', 'ffffff', 'cc1e59', NULL, 'faab2a', 38);
 
 -- --------------------------------------------------------
 
@@ -161,14 +169,15 @@ CREATE TABLE IF NOT EXISTS `quiz` (
   `id_usuario` tinyint(4) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `id_usuario` (`id_usuario`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='Tabela de Quizes' AUTO_INCREMENT=37 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='Tabela de Quizes' AUTO_INCREMENT=39 ;
 
 --
 -- Extraindo dados da tabela `quiz`
 --
 
 INSERT INTO `quiz` (`id`, `titulo`, `tipo`, `data_alteracao`, `data_criacao`, `id_usuario`) VALUES
-(36, 'Vida saudável', 'perfil', '2013-06-27 21:10:07', '2013-06-04', 1);
+(36, 'Vida saudável', 'perfil', '2013-07-02 21:21:20', '2013-06-04', 1),
+(38, 'dasdasds', 'perfil', '2013-07-02 22:24:53', '2013-07-02', 1);
 
 -- --------------------------------------------------------
 
