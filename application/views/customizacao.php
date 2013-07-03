@@ -7,6 +7,7 @@
 			
 				<div id="perfilCustomizacao" class="item">
 					<input type="hidden" name="data_alteracao" id="data_alteracao" value="<?php echo $data_alteracao;?>" />
+					<input type="hidden" name="id-config" id="id-config" value="<?php echo $customizacao['id'];?>" />
 					<!--Perguntas e respostas-->
 					<div class="header">
 						<div class="titulo">Perguntas e respostas</div>
@@ -108,6 +109,7 @@
 								<p>Respostas</p>
 								<span class="arrow"></span>
 							</div>
+
 							<div class="content">
 								<!--Tamanho da fonte-->
 								<p>Tamanho da fonte:</p>

@@ -85,13 +85,11 @@ class UploadHandler
             'image_versions' => array(
                 // Uncomment the following version to restrict the size of
                 // uploaded images:
-                /*
                 '' => array(
-                    'max_width' => 1920,
-                    'max_height' => 1200,
+                    'max_width' => 240,
+                    'max_height' => 260,
                     'jpeg_quality' => 95
                 ),
-                */
                 // Uncomment the following to create medium sized images:
                 /*
                 'medium' => array(
@@ -99,7 +97,7 @@ class UploadHandler
                     'max_height' => 600,
                     'jpeg_quality' => 80
                 ),
-                */
+                
                 'thumbnail' => array(
                     // Uncomment the following to force the max
                     // dimensions and e.g. create square thumbnails:
@@ -107,6 +105,7 @@ class UploadHandler
                     'max_width' => 80,
                     'max_height' => 80
                 )
+                */
             )
         );
         if ($options) {

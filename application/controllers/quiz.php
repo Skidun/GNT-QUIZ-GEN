@@ -38,7 +38,7 @@ class Quiz extends CI_Controller {
 						<span>tipo: '.$quiz->tipo.' | editado em: '.date('d-m-Y', strtotime($quiz->data_alteracao)).'</span>
 				   </div>
 				   <div class="botoes">
-						<a class="ver-e-embutir" href="#"></a>
+						<a class="ver-e-embutir" href="'.site_url("ver-quiz/".$quiz->id).'"></a>
 						<ul class="menu-editar">
 							<li><div class="editar"></div>
 								<ul class="nav2">
@@ -152,6 +152,54 @@ class Quiz extends CI_Controller {
 				redirect('visualizar-todos-quizes', 'refresh');
 			}
 		}
+	}
+
+	public function show_quiz($id){
+		$customizacao 				= $this->customizacao_model->get($id);
+		$perguntas 					= $this->pergunta_model->get_all($id);
+		$perfis						= $this->perfil_model->get($id);
+		$html_perguntas = '';
+		$html_resposta  = '';
+		#HTML das Tabelas
+		foreach($perguntas->result() as $pergunta){
+			$html_perguntas .= '
+									<div class="slide">
+									<div id="texto">
+										<div class="titulo" style="font-size:'.$customizacao['pergunta_quiz_font_size'].'; color:#'.$customizacao['pergunta_quiz_font_color'].'; text-align:'.$customizacao['pergunta_quiz_align'].';">'.$pergunta->pergunta.'</div>
+										<div class="subtitulo" style="text-align:'.$customizacao['link_ref_pergunta_align'].'"><a href="'.$pergunta->link_referencia.'" style="font-size:'.$customizacao['link_ref_pergunta_font_size'].'; color:#'.$customizacao['link_ref_pergunta_font_color'].';">'.$pergunta->texto_link.'</a></div>
+										<table class="respostas" style="font-size:'.$customizacao['resposta_pergunta_font_size'].'; color:#'.$customizacao['resposta_pergunta_font_color'].'; text-align:'.$customizacao['resposta_pergunta_align'].';">
+										';
+						$respostas					= $this->resposta_model->get_all($pergunta->id);
+						foreach($respostas->result() as $resposta):				
+						$html_perguntas.='
+											<tr>
+												<td><input type="radio" name="resposta" value="'.$resposta->perfil_resposta.'" /></td>
+												<td>'.$resposta->resposta.'</td>
+											</tr>
+										';
+						endforeach;											
+			$html_perguntas	.=	'
+										</table>
+									</div>
+									<div id="imagem" style="background: #fdd595;">
+										<img id="alvo-perguntas" src="'.$pergunta->imagem.'" width="244" height="264" />
+									</div>
+							    </div>
+			';
+		}
+		#Array com as informações que são enviados para a view
+		$data  						= $this->quiz_model->get($id);
+		$data['customizacao']		= $customizacao;
+		$data['perguntas']  		= $html_perguntas;
+		$data['respostas']  		= $respostas->result();
+		$data['perfis'] 			= $perfis;
+		$data['page_title']			=	'Visualizar Quiz';
+		/*if($perfis == NULL){
+			redirect('quiz_tipo/perfil/'.$id);
+		}elseif($perguntas == NULL || $respostas == NULL){
+			redirect('perguntas/perfil/'.$id);
+		}*/
+		$this->template->show('visualizacao', $data);
 	}
 
 	public function remove($id)

@@ -43,6 +43,7 @@ $route['404_override'] 				= '';
 //Routes of controller Quiz
 $route['cadastrar-novo-quiz']	 	= "quiz/create";
 $route['visualizar-todos-quizes']	= "quiz";
+$route['ver-quiz/(:num)']			= "quiz/show_quiz/$1";
 $route['salvar-quiz']			 	= "quiz/save";
 $route['editar-quiz/(:num)']	 	= "quiz/edit/$1";
 $route['remover-quiz/(:num)']	 	= "quiz/remove/$1";

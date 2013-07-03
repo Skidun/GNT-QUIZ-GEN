@@ -36,6 +36,75 @@ class Customizacao extends CI_Controller {
 		}
 		$this->template->show('customizacao', $data);
 	}
+	
+	function multiexplode ($delimiters,$string)
+	{
+    	$ready = str_replace($delimiters, $delimiters[0], $string);
+    	$launch = explode($delimiters[0], $ready);
+    	return  $launch;
+	}
+
+	public function update()
+	{
+		#Quebrar variáveis de alinhamento
+		$titulo_alinhamento 				= $this->multiexplode(array('text-align:', ';'), $this->input->get('titulo_alinhamento', TRUE));
+		$perguntas_alinhamento 				= $this->multiexplode(array('text-align:', ';'), $this->input->get('perguntas_alinhamento', TRUE));
+		$referencia_alinhamento 			= $this->multiexplode(array('text-align:', ';'), $this->input->get('referencia_alinhamento', TRUE));
+		$resposta_alinhamento 				= $this->multiexplode(array('text-align:', ';'), $this->input->get('resposta_alinhamento', TRUE));
+		$titulo_quiz_resultados_alinhamento	= $this->multiexplode(array('text-align:', ';'), $this->input->get('titulo_quiz_resultados_alinhamento', TRUE));
+		$titulo_resultados_alinhamento		= $this->multiexplode(array('text-align:', ';'), $this->input->get('titulo_resultados_alinhamento', TRUE));
+		$acertos_alinhamento				= $this->multiexplode(array('text-align:', ';'), $this->input->get('acertos_alinhamento', TRUE));
+		$descricao_alinhamento				= $this->multiexplode(array('text-align:', ';'), $this->input->get('descricao_alinhamento', TRUE));
+		$referencia_resultados_alinhamento	= $this->multiexplode(array('text-align:', ';'), $this->input->get('referencia_resultados_alinhamento', TRUE));
+		#Variáveis que serão atualizadas no banco
+
+		$id											=	$this->input->get('id_config', TRUE);
+		$data['titulo_quiz_font_size']				=	$this->input->get('titulo_tamanho', TRUE);
+		$data['titulo_quiz_font_color']				=	$this->input->get('titulo_cor', TRUE);
+		$data['titulo_quiz_align']					=	$titulo_alinhamento[1];
+		$data['pergunta_quiz_font_size']			=	$this->input->get('pergunta_tamanho', TRUE);
+		$data['pergunta_quiz_font_color']			=	$this->input->get('pergunta_cor', TRUE);
+		$data['pergunta_quiz_align']				=	$perguntas_alinhamento[1];
+		$data['link_ref_pergunta_font_size']		=	$this->input->get('referencia_tamanho', TRUE);
+		$data['link_ref_pergunta_font_color']		=	$this->input->get('referencia_cor', TRUE);
+		$data['link_ref_pergunta_align']			=	$referencia_alinhamento[1];
+		$data['resposta_pergunta_font_size']		=	$this->input->get('resposta_tamanho', TRUE);
+		$data['resposta_pergunta_font_color']		=	$this->input->get('resposta_cor', TRUE);
+		$data['resposta_pergunta_align']			=	$resposta_alinhamento[1];
+		$data['resposta_pergunta_bg_color']			=	$this->input->get('resposta_cor_fundo', TRUE);
+		$data['botao_perguntas_font_color']			=	$this->input->get('botoes_cor', TRUE);
+		$data['botao_perguntas_bg_color']			=	$this->input->get('botoes_cor_fundo', TRUE);
+		$data['quiz_bg_img']						=	$this->input->get('pergunta_imagem_fundo', TRUE);
+		$data['quiz_bg_color']						=	$this->input->get('pergunta_cor_fundo', TRUE);
+		$data['resultado_titulo_quiz_font_size']	=	$this->input->get('titulo_quiz_resultados_tamanho', TRUE);
+		$data['resultado_titulo_quiz_font_color']	=	$this->input->get('titulo_quiz_resultados_cor', TRUE);
+		$data['resultado_titulo_quiz_align']		=	$titulo_quiz_resultados_alinhamento[1];
+		$data['resultado_titulo_faixa_font_size']	=	$this->input->get('titulo_resultatados_tamanho', TRUE);
+		$data['resultado_titulo_faixa_font_color']	=	$this->input->get('titulo_resultados_cor', TRUE);
+		$data['resultado_titulo_faixa_align']		=	$titulo_resultados_alinhamento[1];
+		$data['resultado_porcentagem_font_size']	=	$this->input->get('acertos_tamanho', TRUE);
+		$data['resultado_porcentagem_font_color']	=	$this->input->get('acertos_cor', TRUE);
+		$data['resultado_porcentagem_align']		=	$acertos_alinhamento[1];
+		$data['resultado_descricao_font_size']		=	$this->input->get('descricao_tamanho', TRUE);
+		$data['resultado_descricao_font_color']		=	$this->input->get('descricao_cor', TRUE);
+		$data['resultado_descricao_align']			=	$descricao_alinhamento[1];
+		$data['resultado_linkref_font_size']		=	$this->input->get('referencia_resultados_tamanho', TRUE);
+		$data['resultado_linkref_font_color']		=	$this->input->get('referencia_resultados_cor', TRUE);
+		$data['resultado_linkref_align']			=	$referencia_resultados_alinhamento[1];
+		$data['resultado_botao_font_color']			=	$this->input->get('botoes_resultados_cor', TRUE);
+		$data['resultado_botao_bg_color']			=	$this->input->get('botoes_resultados_cor_fundo', TRUE);
+		$data['resultado_bg_img']					=	$this->input->get('imagem_resultados_fundo', TRUE);
+		$data['resultado_bg_color']					=	$this->input->get('resultados_cor_fundo', TRUE);
+		$id_quiz									=	$this->input->get('id_quiz', TRUE);
+
+		$update = $this->customizacao_model->update($id, $data);
+
+		if($update){
+			echo 'sucesso';
+		}else{
+			echo 'falha';
+		}
+	}
 
 }
 

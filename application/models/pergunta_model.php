@@ -23,7 +23,7 @@ class Pergunta_model extends CI_Model {
 	public function get_all($id)
     {                
         $this->db->where('id_quiz', $id);
-        $this->db->select('*');
+        //$this->db->select('*');
         return $this->db->get($this->table);
     }
 
