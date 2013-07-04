@@ -570,6 +570,19 @@ p {
 #conteudo .sorteia .header .icon:hover {
   background-position: -60px 0;
 }
+
+#conteudo .sorteia .header .excluir {
+  background: url("../img/icones/excluir.png") 0 0 no-repeat;
+  width: 59px;
+  height: 60px;
+  float: left;
+  margin: -11px 5px -11px -1px;
+  cursor: pointer;
+}
+#conteudo .sorteia .header .excluir:hover {
+  background-position: -60px 0;
+}
+
 #conteudo .sorteia .header .input {
   float: left;
   background: url("../img/backgrounds/input-novo.png") 0 0 repeat-x;
@@ -581,7 +594,7 @@ p {
   -moz-border-radius: 6px;
 }
 #conteudo .sorteia .header .input input {
-  width: 516px;
+  width: 456px;
   margin: 9px 10px;
   font-style: italic;
   font-size: 15px;
@@ -1237,7 +1250,7 @@ p {
 }
 #accordion .header .input input,
 #accordion2 .header .input input {
-  width: 798px;
+  width: 738px;
   margin: 9px 10px;
   font-style: italic;
   font-size: 15px;
@@ -1256,6 +1269,21 @@ p {
 #accordion2 .header .arrow:hover {
   background-position: -60px 0;
 }
+
+#accordion .header .excluir,
+#accordion2 .header .excluir {
+  background: url("../img/icones/excluir.png") 0 0 no-repeat;
+  width: 60px;
+  height: 60px;
+  float: right;
+  margin: -11px -1px -11px 0;
+  cursor: pointer;
+}
+#accordion .header .excluir:hover,
+#accordion2 .header .excluir:hover {
+  background-position: -60px 0;
+}
+
 #accordion .header.ui-accordion-header-active .icon,
 #accordion2 .header.ui-accordion-header-active .icon {
   background-position: 0 -60px;

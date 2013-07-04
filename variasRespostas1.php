@@ -25,6 +25,7 @@
 								<span class="icon"></span>
 								<div class="input"><input type="text" name="nome" value="" size="" /></div>
 								<span class="arrow"></span>
+								<span class="excluir excluir-um"></span>
 							</div>
 							<div class="body">							
 								<div id="perguntas">
@@ -58,6 +59,7 @@
 										
 												<div class="header">
 													<span class="icon"></span>
+													<span class="excluir excluir-dois"></span>
 													<div class="input"><input type="text" name="nome" value="" size="" /></div>
 													<div class="checkbox">
 														<label for="checkbox00" class="checkboxCustom"></label>
@@ -68,6 +70,7 @@
 												
 												<div class="header">
 													<span class="icon"></span>
+													<span class="excluir excluir-dois"></span>
 													<div class="input"><input type="text" name="nome" value="" size="" /></div>
 													<div class="checkbox">
 														<label for="checkbox10" class="checkboxCustom"></label>

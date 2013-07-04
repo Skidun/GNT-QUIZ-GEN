@@ -22,6 +22,7 @@
 								<span class="icon"></span>
 								<div class="input"><input type="text" name="nome" value="" size="" /></div>
 								<span class="arrow"></span>
+								<span class="excluir excluir-um"></span>
 							</div>
 							<div class="body">
 								<div class="texto">
