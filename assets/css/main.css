@@ -337,6 +337,18 @@ p {
   height: 38px;
   float: left;
 }
+#conteudo .box tbody .botoes .editar-usuario {
+  background: url("../img/botoes/usuarioFuncoes.png") 0 0 no-repeat;
+  width: 101px;
+  height: 38px;
+  float: left;
+}
+#conteudo .box tbody .botoes .excluir-usuario{
+  background: url("../img/botoes/usuarioFuncoes.png") -101px 0 no-repeat;
+  width: 100px;
+  height: 38px;
+  float: left;
+}
 #conteudo .box tbody .botoes .menu-editar {
   float: left;
 }
@@ -385,6 +397,16 @@ p {
   text-align: center;
 }
 #conteudo .box tfoot .carregar-mais {
+  font-size: 15px;
+  color: #ce1f5c;
+  display: block;
+  width: 100%;
+  padding: 30px 22px 30px 20px;
+  margin: 20px 0 -14px -22px;
+  border: 1px solid #e6e1da;
+  background: #fbf8f4;
+}
+#conteudo .box tfoot .carregar-mais-usuarios {
   font-size: 15px;
   color: #ce1f5c;
   display: block;
@@ -1631,4 +1653,49 @@ p {
 #slideshow #slidesContainer .slide {
   margin:0 auto;
   width:600px; /* reduce by 20 pixels to avoid horizontal scroll */
+}
+/*usuarios*/
+#conteudo .usuarios .box tbody td {
+  border:0;
+}
+.usuarios .input {
+  background: url("../img/backgrounds/input-novo.png") 0 0 repeat-x;
+  display: inline-block;
+  border-left: 1px solid #e6e1da;
+  border-right: 1px solid #e6e1da;
+  margin: 10px 0;
+  border-radius: 6px;
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+}
+.usuarios .input input {
+width: 520px;
+margin: 9px 10px;
+font-style: italic;
+font-size: 15px;
+color: #666666;
+}
+.usuarios p{
+  color:#333;
+  font-size: 18px;
+}
+.btn-criar-usuario{
+  background: url(../img/botoes/usuarioForm.png) 0 0 no-repeat;
+  width: 173px;
+  height: 50px;
+  float: left;
+  border: 0;
+  outline: 0;
+  margin:0;
+  padding: 0;
+}
+.btn-editar-usuario{
+  background: url(../img/botoes/usuarioForm.png) 0 -50px no-repeat;
+  width: 173px;
+  height: 50px;
+  float: left;
+  border: 0;
+  outline: 0;
+  margin:0;
+  padding: 0;
 }

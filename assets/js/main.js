@@ -39,6 +39,28 @@ $(function(){
 		$(this).attr('type','password');
 	});
 	
+	//Todos os usuarios
+	/*Paginacao*/
+	$('.carregar-mais-usuarios').click(function(){
+		/*simula carregamento de 10 links*/
+		for (var i=0;i<9;i++)
+		{
+			var nome	 					= 'Lorem Ipsum';
+			var email						= 'ipsum@skidun.com.br';
+			var editarUsuario 			= '#';
+			var excluirUsuario			= '#';
+			$('.box tbody').append('<tr><td><div class="texto"><p>'+nome+'</p><span>'+email+'</span></div><div class="botoes"><a class="editar-usuario" href="'+editarUsuario+'"></a><a class="excluir-usuario" href="'+excluirUsuario+'"></a></div></td></tr>');
+		}
+		/*scrolla pro fim da página*/
+		$('html, body').animate({scrollTop:$(document).height()}, 1000);
+		$('.excluir-usuario').click(function(){ $(this).parents('tr').remove(); });
+
+		return false;
+	});
+	/*Exclusao*/
+	$('.excluir-usuario').click(function(){ $(this).parents('tr').remove(); });
+
+
 	//Todos os quizes
 	/*Paginacao*/
 	$('.carregar-mais').click(function(){
