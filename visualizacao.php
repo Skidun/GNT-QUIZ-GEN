@@ -13,11 +13,11 @@
 										<div class="subtitulo" style="text-align:left"><a href="#" style="font-size:16px; color:#333333;">Texto do link de referência.</a></div>
 										<table class="respostas" style="font-size:15px; color:#333333; text-align:left;">
 											<tr>
-												<td><input type="radio" name="resposta" value="0" /></td>
+												<td><input type="radio" name="resposta0" value="0" /></td>
 												<td>Só pensa nas coisas que quer fazer sozinha: pedalar, assistir a um filme, cuidar da casa...</td>
 											</tr>
 											<tr>
-												<td><input type="radio" name="resposta" value="1" /></td>
+												<td><input type="radio" name="resposta0" value="1" /></td>
 												<td>Liga para os amigos e pergunta se alguém tem um cara interessante. e bonito para te apresentar.</td>
 											</tr>
 										</table>
@@ -33,11 +33,11 @@
 										<div class="subtitulo" style="text-align:left"><a href="#" style="font-size:16px; color:#333333;">Texto do link de referência.</a></div>
 										<table class="respostas" style="font-size:15px; color:#333333; text-align:left;">
 											<tr>
-												<td><input type="radio" name="resposta" value="0" /></td>
+												<td><input type="radio" name="resposta1" value="0" /></td>
 												<td>Só pensa nas coisas que quer fazer sozinha: pedalar, assistir a um filme, cuidar da casa...</td>
 											</tr>
 											<tr>
-												<td><input type="radio" name="resposta" value="1" /></td>
+												<td><input type="radio" name="resposta1" value="1" /></td>
 												<td>Liga para os amigos e pergunta se alguém tem um cara interessante. e bonito para te apresentar.</td>
 											</tr>
 										</table>
