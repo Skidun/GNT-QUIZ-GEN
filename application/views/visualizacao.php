@@ -1,6 +1,7 @@
 						<div id="quizVisualizacao" class="quiz" style="background:#<?php if($customizacao['quiz_bg_img'] == ''){echo $customizacao['quiz_bg_color'];}else{echo 'url('.$customizacao['quiz_bg_img'].')';}?>;">
 							<div id="nome" style="font-size:<?php echo $customizacao['titulo_quiz_font_size'];?>; color:#<?php echo $customizacao['titulo_quiz_font_color'];?>; text-align:<?php echo $customizacao['titulo_quiz_align'];?>;"><?php echo $titulo;?></div>
 							<input type="hidden" id="tipo-quiz" name="tipo-quiz" value="<?php echo $tipo;?>" />
+							<input type="hidden" id="id-quiz" name="id-quiz" value="<?php echo $id;?>" />
 
 							<!-- Slideshow HTML -->
 							<div id="slideshow">

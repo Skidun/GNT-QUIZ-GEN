@@ -161,8 +161,14 @@ var eventos_back = {
 
 			return false;
 		});
-	},
-	
+
+		//Chama resultado do Quiz
+		$('#chamaResultado').click(function(e){
+			e.preventDefault();
+			eventos_back.visualizar_resultado();
+		});
+	},	
+
 	//Executa a operação de recovey no banco de dados
 	recovery: function(email)
 	{	
@@ -449,6 +455,20 @@ var eventos_back = {
 				}
 			}	
 		);
+	},
+
+	visualizar_resultado: function()
+	{
+		var resposta = new Array();
+		var id       = $('#id-quiz').val();
+		var tipo     = $('#tipo-quiz').val();
+		$('input:radio:checked').each(function(){
+			//resposta.push(this);
+			resposta.push($(this).val());
+			
+		});
+
+		$.get('../../visualizacao/resultado_'+tipo, {respostas:resposta, id_quiz:id}, function(e){});
 	},
 
 	remove_pergunta: function(url, id_quiz, imagem)

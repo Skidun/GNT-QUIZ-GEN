@@ -33,6 +33,36 @@ class Visualizacao extends CI_Controller {
 		$this->template->show('visualizador', $data);
 	}
 
+	public function resultado_perfil()
+	{
+		function key_compare_func($key1, $key2)
+		{
+		    if ($key1 == $key2)
+		        return 0;
+		    else if ($key1 > $key2)
+		        return 1;
+		    else
+		        return -1;
+		}
+
+		$resposta_perfil = $this->perfil_model->get_all($this->input->get('id_quiz')); 
+		$resposta_user 	 = $this->input->get('respostas');
+		$perfil 		 = array();
+		/*foreach($resposta_perfil->result() as $perfis){
+			array_push($perfil, $perfis->id);
+		}*/
+
+		$x="";
+		for($i=0;$i<count($resposta_user);$i++){
+
+        	if ( $x == $resposta_user[$i] ) {
+        		echo $x;
+        	}
+      		$x = $resposta_user[$i];
+		}
+
+	}
+
 }
 
 /* End of file customizacao.php */

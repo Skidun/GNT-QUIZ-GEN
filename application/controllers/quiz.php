@@ -38,7 +38,7 @@ class Quiz extends CI_Controller {
 						<span>tipo: '.$quiz->tipo.' | editado em: '.date('d-m-Y', strtotime($quiz->data_alteracao)).'</span>
 				   </div>
 				   <div class="botoes">
-						<a class="ver-e-embutir" href="'.site_url("ver-quiz/".$quiz->id).'"></a>
+						<a class="ver-e-embutir" href="'.site_url("visualizacao/".$quiz->tipo."/".$quiz->id).'"></a>
 						<ul class="menu-editar">
 							<li><div class="editar"></div>
 								<ul class="nav2">
@@ -160,8 +160,10 @@ class Quiz extends CI_Controller {
 		$perfis						= $this->perfil_model->get($id);
 		$html_perguntas = '';
 		$html_resposta  = '';
+		$count_resposta = -1;
 		#HTML das Tabelas
 		foreach($perguntas->result() as $pergunta){
+			$count_resposta++;
 			$html_perguntas .= '
 									<div class="slide">
 									<div id="texto">
@@ -173,7 +175,7 @@ class Quiz extends CI_Controller {
 						foreach($respostas->result() as $resposta):				
 						$html_perguntas.='
 											<tr>
-												<td><input type="radio" name="resposta" value="'.$resposta->perfil_resposta.'" /></td>
+												<td><input type="radio" name="resposta'.$count_resposta.'" value="'.$resposta->perfil_resposta.'" /></td>
 												<td>'.$resposta->resposta.'</td>
 											</tr>
 										';

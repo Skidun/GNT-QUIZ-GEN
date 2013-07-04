@@ -652,7 +652,12 @@ $(function(){
 	});
 	
 });
-
+/*Calcula o tamanho do Iframe
+$(function(){
+	var altura = $('iframe.janela').contents().find('#quizVisualizacao').height();
+	$('iframe.janela').attr('height',altura);
+});
+*/
 //Lógica do slideshow da Visualização
 $(document).ready(function(){
   var currentPosition = 0;
@@ -680,30 +685,46 @@ $(document).ready(function(){
 
   // Hide left arrow control on first load
   manageControls(currentPosition);
- 
+
   // Create event listeners for .controls clicks
   $('.control')
     .bind('click', function(){
-    // Determine new position
-      currentPosition = ($(this).attr('id')=='proximo') 
-    ? currentPosition+1 : currentPosition-1;
-  
-      // Hide / show controls
-      manageControls(currentPosition);
-      // Move slideInner using margin-left
-      $('#slideInner').animate({
-        'marginLeft' : slideWidth*(-currentPosition)
-      },200);
-      $('.slide').fadeOut(20).delay(160).fadeIn(20);
+
+    if ($('input[name=resposta'+ currentPosition +']:checked').length) {
+
+	    // Determine new position
+	      currentPosition = ($(this).attr('id')=='proximo') 
+	    ? currentPosition+1 : currentPosition-1;
+	  
+	      // Hide / show controls
+	      manageControls(currentPosition);
+	      // Move slideInner using margin-left
+	      $('#slideInner').animate({
+	        'marginLeft' : slideWidth*(-currentPosition)
+	      },200);
+	      $('.slide').fadeOut(20).delay(160).fadeIn(20);
+
+  	}else{
+  		alert('Marque pelo menos uma resposta.');
+  	}
+
     });
   
   // manageControls: Hides and shows controls depending on currentPosition
   function manageControls(position){
     // Hide left arrow if position is first slide
     if(position==0){ $('#anterior').hide() }
-    else{ $('#anterior').show() }
+    else{ $('#anterior').show(); $('.slide').removeClass('visivel'); }
     // Hide right arrow if position is last slide
-    if(position==numberOfSlides-1){ $('#proximo').hide(); $('#chamaResultado').show() } 
-    else{ $('#proximo').show(); $('#chamaResultado').hide() }
+    if(position==numberOfSlides-1){ $('#proximo').hide(); $('#chamaResultado').show();  } 
+    else{ $('#proximo').show(); $('#chamaResultado').hide(); }
     } 
-  });
+
+    $('#chamaResultado').bind('click',function(){
+    	if ($('input[name=resposta'+ currentPosition +']:checked').length) {
+    		//se estiver tudo ok, libera o resultado
+    	}
+    	else{ alert('Marque pelo menos uma resposta.'); }
+
+    });
+});
