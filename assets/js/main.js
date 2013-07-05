@@ -773,7 +773,7 @@ $(document).ready(function(){
 			      $('#botoesResultado').hide();
 			      currentPosition = ($(this).attr('id')=='proximo') 
 				    ? currentPosition+1 : currentPosition-1;
-			      manageControls(0);
+			      manageControls();
     				});
     	}else{ alert('Marque pelo menos uma resposta.'); }
 
