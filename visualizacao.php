@@ -47,6 +47,26 @@
 									</div>
 							    </div>
 
+							    <div class="slide">
+									<div id="texto">
+										<div class="titulo" style="font-size: 24px;color: #333333; text-align:left;">Pegadora</div>								
+										<div class="resultado">
+											<p class="descricao" style="font-size:18px; color:#333333; text-align:left;">Você é a pegadora! Enquanto o 'certo' não aparece, você se diverte com os 'errados'!</p>
+											<p class="descricao" style="font-size:18px; color:#333333; text-align:left;">Brincadeiras à parte, você não tem medo de explorar sua sexualidade e seus desejos enquanto não tem um relacionamento sério à vista. O importante é curtir a vida!</p>
+											<div class="saibaMais"><a href="#" style="font-size: 15px; color:#333333; text-align:left;">saiba mais</a></div>
+										
+											<div id="botoesResultado">
+												<a href="#" class="anterior" title="jogar novamente" style="color: #ffffff;background-color: #cc1e59;">&laquo; jogar novamente</a>
+												<a href="#" class="proximo" title="ver gabarito" style="color: #ffffff;background-color: #cc1e59;">ver gabarito</a>
+											</div>
+										
+										</div>								
+									</div>
+									<div id="imagem" style="background: #fdd595;">
+										<img id="alvo-perguntas" src="assets/img/backgrounds/imagem2.png" />
+									</div>
+							    </div>
+
 							  </div>
 							</div>
 							<!-- Slideshow HTML -->

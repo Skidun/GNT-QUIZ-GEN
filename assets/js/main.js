@@ -751,17 +751,32 @@ $(document).ready(function(){
     if(position==0){ $('#anterior').hide() }
     else{ $('#anterior').show(); $('.slide').removeClass('visivel'); }
     // Hide right arrow if position is last slide
-    if(position==numberOfSlides-1){ $('#proximo').hide(); $('#chamaResultado').show();  } 
+    if(position==numberOfSlides-2){ $('#proximo').hide(); $('#chamaResultado').show();  } 
     else{ $('#proximo').show(); $('#chamaResultado').hide(); }
     } 
 
     $('#chamaResultado').bind('click',function(){
     	if ($('input[name=resposta'+ currentPosition +']:checked').length) {
     		//se estiver tudo ok, libera o resultado
-    	}
-    	else{ alert('Marque pelo menos uma resposta.'); }
+		      var result = ( parseInt($('#slideInner').css('margin-left'))-620 );
+		      $('#slideInner').animate({
+		        'marginLeft' : result
+		      },200);
+		      $('.slide').fadeOut(20).delay(160).fadeIn(20);
+		      $('#botoes').hide();
+		      $('#botoesResultado').show();
+		      $('#botoesResultado .anterior').click(function(){ location.reload() });
+		      $('#botoesResultado .proximo').click(function(){ 
+		      	$('#slideInner').css('margin-left','0');
+		      	$('input[type="radio"]:checked').parent().next().css('text-decoration','underline');
+			      $('#botoes').show();
+			      $('#botoesResultado').hide();
+			      currentPosition = ($(this).attr('id')=='proximo') 
+				    ? currentPosition+1 : currentPosition-1;
+			      manageControls(0);
+    				});
+    	}else{ alert('Marque pelo menos uma resposta.'); }
 
     });
 
-
-  });
+});

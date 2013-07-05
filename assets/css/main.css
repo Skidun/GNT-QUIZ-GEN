@@ -1654,6 +1654,36 @@ p {
   margin:0 auto;
   width:600px; /* reduce by 20 pixels to avoid horizontal scroll */
 }
+#quizVisualizacao .resultado .descricao{
+  letter-spacing: -1px;
+  line-height: 120%;
+  margin: 5px 0 20px;
+  font-family: 'Conv_Amaranth';
+}
+#quizVisualizacao .resultado .saibaMais{
+  font-family: 'Conv_Amaranth';
+}
+#quizVisualizacao #botoesResultado{
+  display: none;
+  float: left;
+  margin: 57px 0 22px 0;
+  width: 280px;
+}
+#quizVisualizacao #botoesResultado a{
+  height: 40px;
+  font-family: 'Conv_Amaranth';
+  font-size: 15px;
+  text-align: center;
+  line-height: 270%;
+}
+#quizVisualizacao #botoesResultado a.anterior{
+  float: left;
+  width: 160px;
+}
+#quizVisualizacao #botoesResultado a.proximo{
+  float: right;
+  width: 110px;
+}
 /*usuarios*/
 #conteudo .usuarios .box tbody td {
   border:0;
