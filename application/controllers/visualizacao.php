@@ -32,35 +32,31 @@ class Visualizacao extends CI_Controller {
 		}
 		$this->template->show('visualizador', $data);
 	}
-
+	//Gera o resultado do tipo perfil
 	public function resultado_perfil()
 	{
-		function key_compare_func($key1, $key2)
-		{
-		    if ($key1 == $key2)
-		        return 0;
-		    else if ($key1 > $key2)
-		        return 1;
-		    else
-		        return -1;
-		}
-
-		$resposta_perfil = $this->perfil_model->get_all($this->input->get('id_quiz')); 
-		$resposta_user 	 = $this->input->get('respostas');
-		$perfil 		 = array();
-		/*foreach($resposta_perfil->result() as $perfis){
-			array_push($perfil, $perfis->id);
-		}*/
-
+		#Recebe um array com todas as resposta do usuário
+		$resposta_user 	 = $this->input->get('respostas', TRUE);
+		#Inicia a variável d contagem x com o valor 0
 		$x="";
+		#Inicia faz um loop para varrer as respostas do usuário e verificar se existe uma  
 		for($i=0;$i<count($resposta_user);$i++){
-
-        	if ( $x == $resposta_user[$i] ) {
-        		echo $x;
+        	# Se alguma resposta se repetir na maioria dos indices, ela é escolhida como resposta
+        	if($x == $resposta_user[$i]) {
+        		#Eu pergo o perfil usando como filtro o ID do perfil vencedor
+        		
         	}
       		$x = $resposta_user[$i];
+      		$resposta_perfil = $this->perfil_model->get_resposta($x);
 		}
-
+		#Popula o array Data com os valores do Perfil
+		$data['titulo']			= $resposta_perfil['titulo'];
+		$data['descricao']		= $resposta_perfil['descricao'];
+		$data['link_referencia']= $resposta_perfil['link_referencia'];
+		$data['texto_link']		= $resposta_perfil['texto_link'];
+		$data['imagem']			= $resposta_perfil['imagem'];
+		#PHP gera um JSON do resultado
+		echo json_encode($data);
 	}
 
 }

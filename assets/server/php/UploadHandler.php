@@ -91,13 +91,13 @@ class UploadHandler
                     'jpeg_quality' => 95
                 ),
                 // Uncomment the following to create medium sized images:
-                /*
+                
                 'medium' => array(
-                    'max_width' => 800,
-                    'max_height' => 600,
+                    'max_width' => 240,
+                    'max_height' => 260,
                     'jpeg_quality' => 80
                 ),
-                
+                /*
                 'thumbnail' => array(
                     // Uncomment the following to force the max
                     // dimensions and e.g. create square thumbnails:

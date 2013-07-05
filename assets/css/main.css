@@ -337,6 +337,18 @@ p {
   height: 38px;
   float: left;
 }
+#conteudo .box tbody .botoes .editar-usuario {
+  background: url("../img/botoes/usuarioFuncoes.png") 0 0 no-repeat;
+  width: 101px;
+  height: 38px;
+  float: left;
+}
+#conteudo .box tbody .botoes .excluir-usuario{
+  background: url("../img/botoes/usuarioFuncoes.png") -101px 0 no-repeat;
+  width: 100px;
+  height: 38px;
+  float: left;
+}
 #conteudo .box tbody .botoes .menu-editar {
   float: left;
 }
@@ -385,6 +397,16 @@ p {
   text-align: center;
 }
 #conteudo .box tfoot .carregar-mais {
+  font-size: 15px;
+  color: #ce1f5c;
+  display: block;
+  width: 100%;
+  padding: 30px 22px 30px 20px;
+  margin: 20px 0 -14px -22px;
+  border: 1px solid #e6e1da;
+  background: #fbf8f4;
+}
+#conteudo .box tfoot .carregar-mais-usuarios {
   font-size: 15px;
   color: #ce1f5c;
   display: block;
@@ -570,6 +592,19 @@ p {
 #conteudo .sorteia .header .icon:hover {
   background-position: -60px 0;
 }
+
+#conteudo .sorteia .header .excluir {
+  background: url("../img/icones/excluir.png") 0 0 no-repeat;
+  width: 59px;
+  height: 60px;
+  float: left;
+  margin: -11px 5px -11px -1px;
+  cursor: pointer;
+}
+#conteudo .sorteia .header .excluir:hover {
+  background-position: -60px 0;
+}
+
 #conteudo .sorteia .header .input {
   float: left;
   background: url("../img/backgrounds/input-novo.png") 0 0 repeat-x;
@@ -581,7 +616,7 @@ p {
   -moz-border-radius: 6px;
 }
 #conteudo .sorteia .header .input input {
-  width: 516px;
+  width: 456px;
   margin: 9px 10px;
   font-style: italic;
   font-size: 15px;
@@ -1237,7 +1272,7 @@ p {
 }
 #accordion .header .input input,
 #accordion2 .header .input input {
-  width: 798px;
+  width: 738px;
   margin: 9px 10px;
   font-style: italic;
   font-size: 15px;
@@ -1256,6 +1291,21 @@ p {
 #accordion2 .header .arrow:hover {
   background-position: -60px 0;
 }
+
+#accordion .header .excluir,
+#accordion2 .header .excluir {
+  background: url("../img/icones/excluir.png") 0 0 no-repeat;
+  width: 60px;
+  height: 60px;
+  float: right;
+  margin: -11px -1px -11px 0;
+  cursor: pointer;
+}
+#accordion .header .excluir:hover,
+#accordion2 .header .excluir:hover {
+  background-position: -60px 0;
+}
+
 #accordion .header.ui-accordion-header-active .icon,
 #accordion2 .header.ui-accordion-header-active .icon {
   background-position: 0 -60px;
@@ -1565,8 +1615,6 @@ p {
   padding: 0 3px 10px 3px;
 }
 #quizVisualizacao #imagem{
-  width: 240px;
-  height: 260px;
   overflow: hidden;
   float: right;
   border: 2px solid #333333;
@@ -1600,7 +1648,103 @@ p {
   width:620px;
   position:relative;
 }
-#slideshow #slidesContainer .slide {
+#slideshow #slidesContainer .slide, #slideshow #slidesContainer .slide-resultado {
   margin:0 auto;
   width:600px; /* reduce by 20 pixels to avoid horizontal scroll */
+}
+#quizVisualizacao .resultado .descricao{
+  letter-spacing: -1px;
+  line-height: 120%;
+  margin: 5px 0 20px;
+  font-family: 'Conv_Amaranth';
+}
+#quizVisualizacao .resultado .saibaMais{
+  font-family: 'Conv_Amaranth';
+}
+#quizVisualizacao #botoesResultado{
+  display: none;
+  float: left;
+  margin: 57px 0 22px 0;
+  width: 280px;
+}
+#quizVisualizacao #botoesResultado a{
+  height: 40px;
+  font-family: 'Conv_Amaranth';
+  font-size: 15px;
+  text-align: center;
+  line-height: 270%;
+}
+#quizVisualizacao #botoesResultado a.anterior{
+  float: left;
+  width: 160px;
+}
+#quizVisualizacao #botoesResultado a.proximo{
+  float: right;
+  width: 110px;
+}
+/*usuarios*/
+#conteudo .usuarios .box tbody td {
+  border:0;
+}
+.usuarios .input {
+  background: url("../img/backgrounds/input-novo.png") 0 0 repeat-x;
+  display: inline-block;
+  border-left: 1px solid #e6e1da;
+  border-right: 1px solid #e6e1da;
+  margin: 0 0 10px 0;
+  border-radius: 6px;
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+}
+.usuarios .input input {
+width: 520px;
+margin: 9px 10px;
+font-style: italic;
+font-size: 15px;
+color: #666666;
+}
+.usuarios p{
+  color:#333;
+  font-size: 18px;
+  margin:0 0 10px 0;
+}
+.btn-criar-usuario{
+  background: url(../img/botoes/usuarioForm.png) 0 0 no-repeat;
+  width: 173px;
+  height: 50px;
+  float: left;
+  border: 0;
+  outline: 0;
+  margin:0;
+  padding: 0;
+}
+.btn-editar-usuario{
+  background: url(../img/botoes/usuarioForm.png) 0 -50px no-repeat;
+  width: 173px;
+  height: 50px;
+  float: left;
+  border: 0;
+  outline: 0;
+  margin:0;
+  padding: 0;
+}
+.btn-criar-quiz{
+  background: url(../img/botoes/quizForm.png) 0 0 no-repeat;
+  width: 173px;
+  height: 50px;
+  float: left;
+  border: 0;
+  outline: 0;
+  margin:0;
+  padding: 0;
+}
+.btn-editar-quiz{
+  background: url(../img/botoes/quizForm.png) 0 -50px no-repeat;
+  width: 173px;
+  height: 50px;
+  float: left;
+  border: 0;
+  outline: 0;
+  margin:0;
+  padding: 0;
 }

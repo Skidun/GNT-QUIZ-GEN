@@ -184,7 +184,7 @@ class Quiz extends CI_Controller {
 										</table>
 									</div>
 									<div id="imagem" style="background: #fdd595;">
-										<img id="alvo-perguntas" src="'.$pergunta->imagem.'" width="244" height="264" />
+										<img id="alvo-perguntas" src="'.$pergunta->imagem.'" />
 									</div>
 							    </div>
 			';

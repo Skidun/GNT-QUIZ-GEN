@@ -22,6 +22,7 @@
 								<span class="icon"></span>
 								<div class="input"><input type="text" name="nome" id="nome-pergunta-0" value="" size="" /></div>
 								<span class="arrow"></span>
+								<span class="excluir excluir-um"></span>
 							</div>
 							<div class="body">							
 								<div id="perguntas">								
@@ -51,6 +52,7 @@
 										
 												<div class="header">
 													<span class="icon"></span>
+													<a class="excluir excluir-dois"></a>
 													<div class="input"><input type="text" name="nome-resposta" id="nome-resposta-0" value="" size="" /></div>
 													<select name="perfil-resposta" id="perfil-resposta-0" class="default">
 														<?php echo $option_perfil;?>

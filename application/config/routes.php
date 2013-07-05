@@ -52,6 +52,7 @@ $route['alterar-quiz']	 			= "quiz/update";
 $route['remover-perfil/(:num)']		= "quiz_tipo/remove_perfil/$1";
 //Routes of controller Perguntas
 $route['remover-pergunta/(:num)']	= "perguntas/remove_pergunta/$1";
+$route['remover-resposta/(:num)']	= "respostas/remove_resposta/$1";
 
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */

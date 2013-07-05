@@ -116,7 +116,7 @@ var eventos_back = {
 		});
 
 		//Editar perfil
-		$('.group input, .group textarea, .group .quadro img, .group .sorteia .header .input input, .group .sorteia .header select').change(function(){
+		$('.group input, .group textarea, .group .quadro img, .group .sorteia .header .input input, .group .sorteia .header select, .group .sorteia .header.novo .input input, .group .sorteia .header.novo select').on('change',function(){
 			$(this).parents('.group').addClass('edit');
 		});
 		$('.group.salvo .sorteia .novo .input input[name="nome-resposta"], .group.salvo .sorteia .novo select[name="perfil-resposta"]').blur(function(){
@@ -152,21 +152,59 @@ var eventos_back = {
 		});
 
 		//Remover uma pergunta e suas respostas
-		$(document).on('click', '.excluir-pergunta', function(e){
+		$(document).on('click', '.excluir-um', function(e){
 			e.preventDefault();
 			var url = this.href, id_quiz = this.rel, alvo = this.id;
 			var imagem = $('#alvo-'+alvo).attr('src').split('../../assets/server/php/files/');
+			var data_alteracao = $('#data_alteracao').val();
+			
+				$.get('../../quiz/valida_timestamp', {id:id_quiz, data_alteracao:data_alteracao}).done(
+					function(e){
+						if(e == 'ok'){
+							eventos_back.remove_pergunta(url, id_quiz, imagem);
+						}else{
+							alert('A data de alteração do quiz é diferente da data que você tem armazenado na página, a página será atualizada para que as informações referente ao quiz sejam atualizadas');
+							window.location.reload();
+						}	
+					}
+				);
+			
+			return false;
+		});
 
-			eventos_back.remove_pergunta(url, id_quiz, imagem);
+		//Remover uma resposta
+		$(document).on('click', '.excluir-dois', function(e){
+			e.preventDefault();
+			var url = this.href, id_quiz = this.rel;
+			var data_alteracao = $('#data_alteracao').val();
+		
+			$.get('../../quiz/valida_timestamp', {id:id_quiz, data_alteracao:data_alteracao}).done(
+				function(e){
+					if(e == 'ok'){
+						eventos_back.remove_resposta(url, id_quiz);
+					}else{
+						alert('A data de alteração do quiz é diferente da data que você tem armazenado na página, a página será atualizada para que as informações referente ao quiz sejam atualizadas');
+						window.location.reload();
+					}	
+				}
+			);
 
 			return false;
 		});
 
 		//Chama resultado do Quiz
-		$('#chamaResultado').click(function(e){
+		/*
+		$('#chamaResultado').bind('click',function(e){
 			e.preventDefault();
+	    	
+
+    	});
+		$('#chamaResultado').click(function(e){
+			
+			$(this).hide();
 			eventos_back.visualizar_resultado();
 		});
+		*/
 	},	
 
 	//Executa a operação de recovey no banco de dados
@@ -197,6 +235,8 @@ var eventos_back = {
 			document.form_quiz_create.submit();
 		}
 	},
+
+
 
 	valida_timestamp: function(evento)
 	{
@@ -459,16 +499,50 @@ var eventos_back = {
 
 	visualizar_resultado: function()
 	{
-		var resposta = new Array();
-		var id       = $('#id-quiz').val();
-		var tipo     = $('#tipo-quiz').val();
-		$('input:radio:checked').each(function(){
-			//resposta.push(this);
-			resposta.push($(this).val());
+		if ($('input[name=resposta'+ currentPosition +']:checked').length) {
+	    	//se estiver tudo ok, libera o resultado
+			var result = ( parseInt($('#slideInner').css('margin-left'))-620 );
+			var resposta = new Array();
+			var id       = $('#id-quiz').val();
+			var tipo     = $('#tipo-quiz').val();
 			
-		});
+			$('#slideInner').animate({
+			    'marginLeft' : result
+			},200);
+			
+			$('.slide').fadeOut(20).delay(160).fadeIn(20);
+			$('#botoes').hide();
+			$('.loader').show();
 
-		$.get('../../visualizacao/resultado_'+tipo, {respostas:resposta, id_quiz:id}, function(e){});
+			$('input:radio:checked').each(function(){
+			//resposta.push(this);
+				resposta.push($(this).val());
+			});
+
+			$.getJSON('../../visualizacao/resultado_'+tipo, 
+				{respostas:resposta, id_quiz:id},
+				function(e){
+					$('.loader').fadeOut();
+					$('#botoesResultado').show();
+					$('#resultado #texto .titulo').text(e.titulo);
+					$('#resultado #texto .resultado .descricao').text(e.descricao);
+					$('#resultado #texto .resultado .saibaMais a').attr('href', e.link_referencia).text(e.texto_link);
+					$('#resultado #imagem .alvo-perguntas').attr('src', e.imagem).text(e.texto_link);
+
+			      	$('#botoesResultado .anterior').click(function(){ location.reload() });
+			      	$('#botoesResultado .proximo').click(function(){ 
+			      	$('#slideInner').css('margin-left','0');
+			      	$('input[type="radio"]:checked').parent().next().css('text-decoration','underline');
+				      $('#botoes').show();
+				      $('#botoesResultado').hide();
+				      currentPosition = ($(this).attr('id')=='proximo') 
+					    ? currentPosition+1 : currentPosition-1;
+				      manageControls();
+	    			});
+				}
+			);
+			      
+	    }else{ alert('Marque pelo menos uma resposta.'); }
 	},
 
 	remove_pergunta: function(url, id_quiz, imagem)
@@ -481,6 +555,16 @@ var eventos_back = {
 			}else{
 				window.location.href=url+'?id_quiz='+id_quiz+'&imagem='+imagem;
 			}
+		}
+		return false;
+	},
+
+	remove_resposta: function(url, id_quiz)
+	{
+		var confirmacao = confirm('Tem certeza que deseja excluir essa resposta?');
+		if(confirmacao)
+		{
+				window.location.href=url+'?id_quiz='+id_quiz;
 		}
 		return false;
 	}  

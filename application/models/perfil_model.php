@@ -28,6 +28,17 @@ class Perfil_model extends CI_Model {
         return $this->db->get($this->table);
     }
 
+    public function get_resposta($id)
+    {                
+        $this->db->where('id', $id);
+        $get = $this->db->get($this->table);
+            
+        return $get->row_array();
+        if($get->num_rows > 0)
+            return $get->result_array();
+        return array();
+    }
+
     public function create($data)
     {                
         $this->db->insert($this->table, $data);

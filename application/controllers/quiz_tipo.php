@@ -49,6 +49,7 @@ class Quiz_tipo extends CI_Controller {
 								<span class="icon"></span>
 								<div class="input"><input type="text" name="nome" id="nome-perfil-'.$count.'" value="'.$perfil->titulo.'" size="" /></div>
 								<span class="arrow"></span>
+								<a href="'.site_url('remover-perfil/'.$perfil->id).'" id="'.$count.'" class="excluir excluir-um remover-perfil" rel="'.$perfil->id_quiz.'"></a>
 							</div>
 							<div class="body">
 								<div class="texto">
@@ -58,7 +59,7 @@ class Quiz_tipo extends CI_Controller {
 									<div class="input"><input type="text" name="link" id="link-perfil-'.$count.'" value="'.$perfil->link_referencia.'" size="" /></div>
 									<label for="texto">Texto do link de referência:</label>
 									<div class="input"><input type="text" name="texto" id="texto-perfil-'.$count.'" value="'.$perfil->texto_link.'" size="" /></div>
-									<div style="margin-top: 50px;"><a href="'.site_url('remover-perfil/'.$perfil->id).'" id="'.$count.'" class="remover-perfil" title="Excluir perfil" rel="'.$perfil->id_quiz.'"style="color: red; font-size: 18px;">Excluir perfil</a></div>
+									
 								</div>
 								<div class="imagem">
 									<label for="imagem">Imagem relacionada:<span>Dimensões: 240px x 260px</span></label>

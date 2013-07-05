@@ -132,7 +132,7 @@ $(function(){
 	$("#novo-perfil").click(function(){
 		var count = $('.group').length;
 		var id = count++;
-		$('#accordion').append('<div class="group" id="'+id+'"><div class="header"><span class="icon"></span><div class="input"><input type="text" name="nome" id="nome-perfil-'+id+'"  value="" size=""/></div><span class="arrow"></span></div><div class="body"><div class="texto"><label for="descricao">Descrição</label><div class="textarea"><textarea name="descricao" id="descricao-perfil-'+id+'" cols="" rows=""></textarea></div><label for="link">Link de referência:</label><div class="input"><input type="text" name="link" id="link-perfil-'+id+'" value="" size=""/></div><label for="texto">Texto do link de referência:</label><div class="input"><input type="text" name="texto" id="texto-perfil-'+id+'" value="" size=""/></div></div><div class="imagem"><label for="imagem">Imagem relacionada:<span>Dimensões: 240px x 260px</span></label><form class="fileupload" action="../../assets/server/php/" method="POST" enctype="multipart/form-data"><div class="quadro"><img id="alvo-'+id+'" src="../../assets/img/backgrounds/imagem.png" name="imagem"/></div><span class="btn btn-success fileinput-button"><input id="file" type="file"/></span></form></div></div></div>');
+		$('#accordion').append('<div class="group" id="'+id+'"><div class="header"><span class="icon"></span><div class="input"><input type="text" name="nome" id="nome-perfil-'+id+'"  value="" size=""/></div><span class="arrow"></span><span class="excluir excluir-um"></span></div><div class="body"><div class="texto"><label for="descricao">Descrição</label><div class="textarea"><textarea name="descricao" id="descricao-perfil-'+id+'" cols="" rows=""></textarea></div><label for="link">Link de referência:</label><div class="input"><input type="text" name="link" id="link-perfil-'+id+'" value="" size=""/></div><label for="texto">Texto do link de referência:</label><div class="input"><input type="text" name="texto" id="texto-perfil-'+id+'" value="" size=""/></div></div><div class="imagem"><label for="imagem">Imagem relacionada:<span>Dimensões: 240px x 260px</span></label><form class="fileupload" action="../../assets/server/php/" method="POST" enctype="multipart/form-data"><div class="quadro"><img id="alvo-'+id+'" src="../../assets/img/backgrounds/imagem.png" name="imagem"/></div><span class="btn btn-success fileinput-button"><input id="file" type="file"/></span></form></div></div></div>');
 		/*bota o accordion no esquema*/
 		$( "#accordion" ).accordion('destroy').sortable('destroy');		
 		$( "#accordion" ).accordion({active:($('.header').length-1),header: "> div > .header",heightStyle: "content"}).sortable({axis: "y",handle: ".header",stop: function( event, ui ) {ui.item.children( ".header" ).triggerHandler( "focusout" );}});
@@ -148,6 +148,7 @@ $(function(){
 			});
 		});		
 		/*scrolla pro fim da página*/
+		$('.excluir-um').click(function(){ $(this).parents('.group').remove(); });
 		$('html, body').animate({scrollTop:$(document).height()}, 1000);
 		return false;
 	});
@@ -166,9 +167,13 @@ $(function(){
 		var option = $('select[name="perfil-resposta"]').html();
 		$('select[name=perfil-resposta]').removeData("dropkick");
 		//$('#dk_container_perfil-resposta-'+id).remove();		
-		$(this).parent().find('.sorteia').append('<div class="header novo"><span class="icon"></span><div class="input"><input type="text" name="nome-resposta" id="nome-resposta-'+id+'" rel="'+id+'" value="" size=""/></div><select name="perfil-resposta" id="perfil-resposta-'+id+'" class="default">'+option+'</select></div>');
+		$(this).parent().find('.sorteia').append('<div class="header novo"><span class="icon"></span><a href="" class="excluir excluir-dois"></a><div class="input"><input type="text" name="nome-resposta" id="nome-resposta-'+id+'" rel="'+id+'" value="" size=""/></div><select name="perfil-resposta" id="perfil-resposta-'+id+'" class="default">'+option+'</select></div>');
 		//coloca o novo select no esquema
 		$('select[name="perfil-resposta"]').dropkick();
+		$(this).parents('.group').removeClass('edit');
+		$(this).parents('.group').addClass('edit');
+		$('.excluir-um').click(function(){ $(this).parents('.group').remove(); });
+		$('.excluir-dois').click(function(){ $(this).parents('.header').remove(); return false;});  
 		return false;
 	});
 	/*botão nova pergunta*/
@@ -179,7 +184,7 @@ $(function(){
 		var option = $('#perfil-resposta-0').html();
 		//gera uma combinacao unica de numero para o novo select[name], assim não dá conflito
 		//por exemplo, resposta-21, é o select do grupo 2(#sortable2) e o segundo select desse grupo
-		$("#accordion2").append('<div class="group" id="'+id+'"><div class="header"><span class="icon"></span><div class="input"><input type="text" name="nome" id="nome-pergunta-'+id+'" value="" size=""/></div><span class="arrow"></span></div><div class="body"><div id="perguntas"><div class="texto"><label for="link">Link de referência:</label><div class="input"><input type="text" name="link" id="link-pergunta-'+id+'" value="" size=""/></div><label for="texto">Texto do link de referência:</label><div class="input"><input type="text" name="texto" id="texto-pergunta-'+id+'" value="" size=""/></div></div><div class="imagem"><label for="imagem">Imagem relacionada:<span>Dimensões: 240px x 260px</span></label><form class="fileupload" action="../../assets/server/php/" method="POST" enctype="multipart/form-data"><div class="quadro"><img id="alvo-pergunta-'+id+'" src="../../assets/img/backgrounds/imagem.png" name="imagem"/></div><span class="btn btn-success fileinput-button"><input id="file" type="file"/></span></form><input type="hidden" id="id-pergunta-'+id+'" name="id-pergunta" value="" /></div></div><div id="respostas"><div class="titulo-respostas">Respostas:</div><div id="sortable'+$(".sorteia").length+'" class="sorteia"><div class="header"><span class="icon"></span><div class="input"><input type="text" name="nome-resposta" id="nome-resposta-'+$('.header').length+'" rel="'+$('.header').length+'" value="" size=""/></div><select name="perfil-resposta" id="perfil-resposta-'+id_resposta+'" class="default">'+option+'</select></div></div><a id="nova-resposta-perfil" class="nova-resposta" href="javascript:void(0)"></a></div></div></div>');
+		$("#accordion2").append('<div class="group" id="'+id+'"><div class="header"><span class="icon"></span><div class="input"><input type="text" name="nome" id="nome-pergunta-'+id+'" value="" size=""/></div><span class="arrow"></span><a href="#" class="excluir exclui-um"></a></div><div class="body"><div id="perguntas"><div class="texto"><label for="link">Link de referência:</label><div class="input"><input type="text" name="link" id="link-pergunta-'+id+'" value="" size=""/></div><label for="texto">Texto do link de referência:</label><div class="input"><input type="text" name="texto" id="texto-pergunta-'+id+'" value="" size=""/></div></div><div class="imagem"><label for="imagem">Imagem relacionada:<span>Dimensões: 240px x 260px</span></label><form class="fileupload" action="../../assets/server/php/" method="POST" enctype="multipart/form-data"><div class="quadro"><img id="alvo-pergunta-'+id+'" src="../../assets/img/backgrounds/imagem.png" name="imagem"/></div><span class="btn btn-success fileinput-button"><input id="file" type="file"/></span></form><input type="hidden" id="id-pergunta-'+id+'" name="id-pergunta" value="" /></div></div><div id="respostas"><div class="titulo-respostas">Respostas:</div><div id="sortable'+$(".sorteia").length+'" class="sorteia"><div class="header"><span class="icon"></span><a href="" class="excluir excluir-dois"></a><div class="input"><input type="text" name="nome-resposta" id="nome-resposta-'+$('.header').length+'" rel="'+$('.header').length+'" value="" size=""/></div><select name="perfil-resposta" id="perfil-resposta-'+id_resposta+'" class="default">'+option+'</select></div></div><a id="nova-resposta-perfil" class="nova-resposta" href="javascript:void(0)"></a></div></div></div>');
 		//coloca o novo elemento de accordion no esquema
 		$("#accordion2").accordion('destroy').sortable('destroy');
 		//$('select[name=perfil-resposta]').removeData("dropkick");
@@ -197,6 +202,8 @@ $(function(){
 			$(".fileupload").each(function(){$(this).fileupload({done:function(e,t){var n=t.files[0];var r=n.name;$(this).find("#alvo-pergunta-"+id).attr("src","../../assets/server/php/files/"+r)}})})
 		//scrolla pro fim da página
 		$('html, body').animate({scrollTop:$(document).height()}, 1000);
+		$('.excluir-um').click(function(){ $(this).parents('.group').remove(); });
+		$('.excluir-dois').click(function(){ $(this).parents('.header').remove(); return false;});
 		return false;
 	});
 
@@ -506,7 +513,7 @@ $(function(){
 			var tamanho = $(".sorteia").length;
 			//gera uma combinacao unica de numero para o novo select[name], assim não dá conflito
 			//por exemplo, resposta-21, é o select do grupo 2(#sortable2) e o segundo select desse grupo
-			$("#accordion2").append('<div class="group"><div class="header"><span class="icon"></span><div class="input"><input type="text" name="nome" value="" size=""/></div><span class="arrow"></span></div><div class="body"><div id="perguntas"><div class="texto"><label for="link">Link de referência:</label><div class="input"><input type="text" name="link" value="" size=""/></div><label for="texto">Texto do link de referência:</label><div class="input"><input type="text" name="texto" value="" size=""/></div></div><div class="imagem"><label for="imagem">Imagem relacionada:<span>Dimensões: 240px x 260px</span></label><form class="fileupload" action="../../assets/server/php/" method="POST" enctype="multipart/form-data"><div class="quadro"><img id="alvo" src="../assets/img/backgrounds/imagem.png" name="imagem"/></div><span class="btn btn-success fileinput-button"><input id="file" type="file"/></span></form></div></div><div id="respostas"><div class="titulo-respostas">Respostas:</div><div id="sortable'+tamanho+'" class="sorteia"><div class="header"><span class="icon"></span><div class="input"><input type="text" name="nome" value="" size=""/></div><div class="radio"><label for="radio'+(tamanho+1)+tamanho+'" class="radioCustom"></label><input type="radio" id="radio'+(tamanho+1)+tamanho+'" value="0" name="grupo'+tamanho+'"/>Esta é a resposta correta</div></div><div class="header"><span class="icon"></span><div class="input"><input type="text" name="nome" value="" size=""/></div><div class="radio"><label for="radio'+(tamanho+2)+tamanho+'" class="radioCustom"></label><input type="radio" id="radio'+(tamanho+2)+tamanho+'" value="1" name="grupo'+tamanho+'"/>Esta é a resposta correta</div></div></div></div></div></div>');
+			$("#accordion2").append('<div class="group"><div class="header"><span class="icon"></span><a class="excluir excluir-dois"></a><div class="input"><input type="text" name="nome" value="" size=""/></div><span class="arrow"></span></div><div class="body"><div id="perguntas"><div class="texto"><label for="link">Link de referência:</label><div class="input"><input type="text" name="link" value="" size=""/></div><label for="texto">Texto do link de referência:</label><div class="input"><input type="text" name="texto" value="" size=""/></div></div><div class="imagem"><label for="imagem">Imagem relacionada:<span>Dimensões: 240px x 260px</span></label><form class="fileupload" action="../../assets/server/php/" method="POST" enctype="multipart/form-data"><div class="quadro"><img id="alvo" src="../assets/img/backgrounds/imagem.png" name="imagem"/></div><span class="btn btn-success fileinput-button"><input id="file" type="file"/></span></form></div></div><div id="respostas"><div class="titulo-respostas">Respostas:</div><div id="sortable'+tamanho+'" class="sorteia"><div class="header"><span class="icon"></span><div class="input"><input type="text" name="nome" value="" size=""/></div><div class="radio"><label for="radio'+(tamanho+1)+tamanho+'" class="radioCustom"></label><input type="radio" id="radio'+(tamanho+1)+tamanho+'" value="0" name="grupo'+tamanho+'"/>Esta é a resposta correta</div></div><div class="header"><span class="icon"></span><div class="input"><input type="text" name="nome" value="" size=""/></div><div class="radio"><label for="radio'+(tamanho+2)+tamanho+'" class="radioCustom"></label><input type="radio" id="radio'+(tamanho+2)+tamanho+'" value="1" name="grupo'+tamanho+'"/>Esta é a resposta correta</div></div></div></div></div></div>');
 			//coloca o novo elemento de accordion no esquema
 			$("#accordion2").accordion('destroy').sortable('destroy');
 			$("#accordion2").accordion({active:$("#accordion2 .sorteia").length-1,header:"> div > .header"}).sortable({axis:"y",handle:".header",stop:function(event,ui){ui.item.children(".header").triggerHandler("focusout")}});
@@ -581,9 +588,13 @@ $(function(){
 		//por exemplo, resposta-21, é o select do grupo 2(#sortable2) e o segundo select desse grupo
 		var respostaNumero = $(this).parent().find('.sorteia').attr('id').slice(-1);
 		var grupoNumero = $(this).parent().find(".header").length;
-		$(this).parent().find('.sorteia').append('<div class="header"><span class="icon"></span><div class="input"><input type="text" name="nome" value="" size=""/></div><div class="radio"><label for="radio'+grupoNumero+respostaNumero+'" class="radioCustom"></label><input type="radio" id="radio'+grupoNumero+respostaNumero+'" value="'+grupoNumero+'" name="grupo'+respostaNumero+'"/>Esta é a resposta correta</div></div>');
+		$(this).parent().find('.sorteia').append('<div class="header"><span class="icon"></span><a class="excluir excluir-dois"></a><div class="input"><input type="text" name="nome" value="" size=""/></div><div class="radio"><label for="radio'+grupoNumero+respostaNumero+'" class="radioCustom"></label><input type="radio" id="radio'+grupoNumero+respostaNumero+'" value="'+grupoNumero+'" name="grupo'+respostaNumero+'"/>Esta é a resposta correta</div></div>');
 		//coloca o novo radio no esquema
 		$( "#radio"+grupoNumero+respostaNumero ).button();
+		$(this).parents('.group').removeClass('edit');
+		$(this).parents('.group').addClass('edit');
+		$('.excluir-um').click(function(){ $(this).parents('.group').remove(); });
+		$('.excluir-dois').click(function(){ $(this).parents('.header').remove(); });  
 		return false;
 	});
 	/*botão nova pergunta*/
@@ -591,7 +602,7 @@ $(function(){
 		//gera uma combinacao unica de numero para o novo select[name], assim não dá conflito
 		//por exemplo, resposta-21, é o select do grupo 2(#sortable2) e o segundo select desse grupo
 		var grupoNumero = $('.group').last().find(".header").length;
-		$("#accordion2").append('<div class="group"><div class="header"><span class="icon"></span><div class="input"><input type="text" name="nome" value="" size=""/></div><span class="arrow"></span></div><div class="body"><div id="perguntas"><div class="texto"><label for="link">Link de referência:</label><div class="input"><input type="text" name="link" value="" size=""/></div><label for="texto">Texto do link de referência:</label><div class="input"><input type="text" name="texto" value="" size=""/></div></div><div class="imagem"><label for="imagem">Imagem relacionada:<span>Dimensões: 240px x 260px</span></label><form class="fileupload" action="../../assets/server/php/" method="POST" enctype="multipart/form-data"><div class="quadro"><img id="alvo" src="assets/img/backgrounds/imagem.png" name="imagem"/></div><span class="btn btn-success fileinput-button"><input id="file" type="file"/></span></form></div></div><div id="respostas"><div class="titulo-respostas">Respostas:</div><div id="sortable'+$(".sorteia").length+'" class="sorteia"><div class="header"><span class="icon"></span><div class="input"><input type="text" name="nome" value="" size=""/></div><div class="radio"><label for="radio0'+$(".sorteia").length+'" class="radioCustom"></label><input type="radio" id="radio0'+$(".sorteia").length+'" value="0" name="grupo'+$(".sorteia").length+'"/>Esta é a resposta correta</div></div></div><a id="nova-resposta-respostaCerta" class="nova-resposta" href="javascript:void(0)"></a></div></div></div>');
+		$("#accordion2").append('<div class="group"><div class="header"><span class="icon"></span><a class="excluir excluir-um"></a><div class="input"><input type="text" name="nome" value="" size=""/></div><span class="arrow"></span></div><div class="body"><div id="perguntas"><div class="texto"><label for="link">Link de referência:</label><div class="input"><input type="text" name="link" value="" size=""/></div><label for="texto">Texto do link de referência:</label><div class="input"><input type="text" name="texto" value="" size=""/></div></div><div class="imagem"><label for="imagem">Imagem relacionada:<span>Dimensões: 240px x 260px</span></label><form class="fileupload" action="../../assets/server/php/" method="POST" enctype="multipart/form-data"><div class="quadro"><img id="alvo" src="assets/img/backgrounds/imagem.png" name="imagem"/></div><span class="btn btn-success fileinput-button"><input id="file" type="file"/></span></form></div></div><div id="respostas"><div class="titulo-respostas">Respostas:</div><div id="sortable'+$(".sorteia").length+'" class="sorteia"><div class="header"><span class="icon"></span><div class="input"><input type="text" name="nome" value="" size=""/></div><div class="radio"><label for="radio0'+$(".sorteia").length+'" class="radioCustom"></label><input type="radio" id="radio0'+$(".sorteia").length+'" value="0" name="grupo'+$(".sorteia").length+'"/>Esta é a resposta correta</div></div></div><a id="nova-resposta-respostaCerta" class="nova-resposta" href="javascript:void(0)"></a></div></div></div>');
 		//coloca o novo elemento de accordion no esquema
 		$("#accordion2").accordion('destroy').sortable('destroy');
 		$("#accordion2").accordion({active:$("#accordion2 .sorteia").length-1,header:"> div > .header"}).sortable({axis:"y",handle:".header",stop:function(event,ui){ui.item.children(".header").triggerHandler("focusout")}});
@@ -607,6 +618,8 @@ $(function(){
 			$(".fileupload").each(function(){$(this).fileupload({done:function(e,t){var n=t.files[0];var r=n.name;$(this).find("#alvo").attr("src","assets/server/php/files/"+r)}})})
 		//scrolla pro fim da página
 		$('html, body').animate({scrollTop:$(document).height()}, 1000);
+		$('.excluir-um').click(function(){ $(this).parents('.group').remove(); });
+		$('.excluir-dois').click(function(){ $(this).parents('.header').remove(); });
 		return false;
 	});
 	
@@ -718,13 +731,56 @@ $(document).ready(function(){
     // Hide right arrow if position is last slide
     if(position==numberOfSlides-1){ $('#proximo').hide(); $('#chamaResultado').show();  } 
     else{ $('#proximo').show(); $('#chamaResultado').hide(); }
-    } 
+    }
 
-    $('#chamaResultado').bind('click',function(){
+     $('#chamaResultado').bind('click',function(){
     	if ($('input[name=resposta'+ currentPosition +']:checked').length) {
-    		//se estiver tudo ok, libera o resultado
-    	}
-    	else{ alert('Marque pelo menos uma resposta.'); }
+	    	//se estiver tudo ok, libera o resultado
+			var result = ( parseInt($('#slideInner').css('margin-left'))-620 );
+			var resposta = new Array();
+			var id       = $('#id-quiz').val();
+			var tipo     = $('#tipo-quiz').val();
+			
+			$('#slideInner').animate({
+			    'marginLeft' : result
+			},200);
+			
+			$('.slide').fadeOut(20).delay(160)
+			$('.slide-resultado').fadeIn(20);
+			$('#botoes').hide();
+			$('.loader').show();
+
+			$('input:radio:checked').each(function(){
+			//resposta.push(this);
+				resposta.push($(this).val());
+			});
+			console.log(resposta);
+			$.getJSON('../../visualizacao/resultado_'+tipo, 
+				{respostas:resposta, id_quiz:id},
+				function(e){
+					$('.loader').fadeOut();
+					$('#botoesResultado').show();
+					$('#resultado #texto .titulo').text(e.titulo);
+					$('#resultado #texto .resultado .descricao').text(e.descricao);
+					$('#resultado #texto .resultado .saibaMais a').attr('href', e.link_referencia).text(e.texto_link);
+					$('#resultado #imagem #alvo-perguntas').attr('src', e.imagem).text(e.texto_link);
+
+			      	$('#botoesResultado .anterior').click(function(){ location.reload() });
+			      	$('#botoesResultado .proximo').click(function(){ 
+			      	$('#slideInner').css('margin-left','0');
+			      	$('input[type="radio"]:checked').parent().next().css('text-decoration','underline');
+				      $('.slide-resultado').hide();
+				      $('.slide').fadeIn();
+				      $('#botoes').show();
+				      $('#botoesResultado').hide();
+				      currentPosition = ($(this).attr('id')=='proximo') 
+					    ? currentPosition+1 : currentPosition-1;
+				      manageControls();
+	    			});
+				}
+			);
+			      
+	    }else{ alert('Marque pelo menos uma resposta.'); } 
 
     });
 });

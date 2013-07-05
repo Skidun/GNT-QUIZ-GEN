@@ -69,6 +69,25 @@ class Respostas extends CI_Controller {
 		}
 	}
 
+	public function remove_resposta($id)
+	{
+		#Se caso a imagem não for a padrão ele precisa remove-la do servidor
+		$filtro	 = 'id';
+		$id_quiz = $this->input->get('id_quiz');
+		#if($resposta){
+			$result  = $this->resposta_model->delete($id, $id_quiz, $filtro);
+			if($result):
+				$this->session->flashdata('retorno', 'Resposta excluida com sucesso!');
+				redirect('perguntas/perfil/'.$id_quiz,'refresh');
+			else:
+				$this->session->flashdata('retorno', 'Falha o excluir a resposta!');
+				redirect('perguntas/perfil/'.$id_quiz,'refresh');
+			endif;
+		#}else{
+		#	echo 'Não foi possível excluir a pergunta';
+		#}
+	}
+
 }
 
 /* End of file perguntas.php */

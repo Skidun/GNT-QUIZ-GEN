@@ -48,6 +48,7 @@ class Perguntas extends CI_Controller {
 												<span class="icon"></span>
 												<div class="input"><input type="text" name="nome" id="nome-pergunta-'.$count.'" value="'.$pergunta->pergunta.'" size="" /></div>
 												<span class="arrow"></span>
+												<a href="'.site_url('remover-pergunta').'/'.$pergunta->id.'" id="pergunta-'.$count.'" rel="'.$pergunta->id_quiz.'" class="excluir excluir-um" title="Excluir esta perguta"></a>
 											</div>
 											<div class="body">							
 												<div id="perguntas">								
@@ -70,7 +71,6 @@ class Perguntas extends CI_Controller {
 													</div>
 												</div><!--perguntas-->
 												<input type="hidden" id="id_quiz" name="id_quiz" value="'.$pergunta->id_quiz.'" />
-												<div><a href="'.site_url('remover-pergunta').'/'.$pergunta->id.'" id="pergunta-'.$count.'" rel="'.$pergunta->id_quiz.'" class="excluir-pergunta" title="Excluir esta perguta" style="color: red; font-size: 18px;">Excluir pergunta</a></div>
 
 												<div id="respostas">
 												
@@ -88,6 +88,7 @@ class Perguntas extends CI_Controller {
 					$list_perguntas		.=	'			
 																<div class="header">
 																	<span class="icon"></span>
+																	<a href="'.site_url('remover-resposta').'/'.$resposta->id.'" class="excluir excluir-dois" rel="'.$resposta->id_quiz.'"></a>
 																	<div class="input">
 																	<input type="text" name="nome-resposta" id="nome-resposta-'.$count_resp.'" value="'.$resposta->resposta.'" size="" />
 																	<input type="hidden" name="id-resposta" id="id-resposta-'.$count_resp.'" value="'.$resposta->id.'"/>

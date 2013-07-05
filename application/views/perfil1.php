@@ -16,6 +16,7 @@
 								<span class="icon"></span>
 								<div class="input"><input type="text" name="nome" id="nome-perfil-0" value="" size="" /></div>
 								<span class="arrow"></span>
+								<a href="#" class="excluir excluir-um remover-perfil"></a>
 							</div>
 							<div class="body">
 								<div class="texto">
