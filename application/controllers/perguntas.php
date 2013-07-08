@@ -156,8 +156,8 @@ class Perguntas extends CI_Controller {
 		$data['link_referencia'] = $this->input->get('link_referencia', true);
 		$data['texto_link'] 	 = $this->input->get('texto_link', true);
 		$data['imagem'] 		 = $this->input->get('imagem', true);
-		$data['id_quiz'] 		 = $this->input->get('id_quiz', true);
-		
+		//$data['id_quiz'] 		 = $this->input->get('id_quiz', true);
+
 		$update = $this->pergunta_model->update($id, $data);
 		if($update){
 			#Variáveis necessárias para atualização do time_stamp do quiz
