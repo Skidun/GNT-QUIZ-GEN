@@ -121,12 +121,12 @@ class Quiz_tipo extends CI_Controller {
 
 	public function remove_perfil($id)
 	{
-		$img_perfil	 = explode(',',$this->input->get('imagem'));
-		$id_quiz = $this->input->get('id_quiz');
-		$dir     = 'assets/server/php/files/';
-		$imagem	 = $img_perfil[1];
+		@$img_perfil	 = explode(',',$this->input->get('imagem'));
+		@$id_quiz = $this->input->get('id_quiz');
+		@$dir     = 'assets/server/php/files/';
+		@$imagem	 = $img_perfil[1];
 
-		$remove_imagem = unlink('./'.$dir.$imagem);
+		@$remove_imagem = unlink('./'.$dir.$imagem);
 
 		$this->resposta_model->perfil_delete($id, $id_quiz);
 		$result = $this->perfil_model->delete($id, $id_quiz);

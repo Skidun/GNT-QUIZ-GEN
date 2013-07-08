@@ -9,10 +9,10 @@
 							<li><a href="<?php echo site_url('cadastrar-novo-quiz');?>">novo quiz</a></li>
 						</ul>
 					</li>
-					<li><a href="#">usuários</a>
+					<li><a href="todos-os-usuarios">usuários</a>
 						<ul class="nav2">
-							<li><a href="#">todos os usuários</a></li>
-							<li><a href="#">novo usuário</a></li>
+							<li><a href="todos-os-usuarios">todos os usuários</a></li>
+							<li><a href="cadastrar-novo-usuario">novo usuário</a></li>
 						</ul>
 					</li>
 				</ul>

@@ -48,6 +48,13 @@ $route['salvar-quiz']			 	= "quiz/save";
 $route['editar-quiz/(:num)']	 	= "quiz/edit/$1";
 $route['remover-quiz/(:num)']	 	= "quiz/remove/$1";
 $route['alterar-quiz']	 			= "quiz/update";
+//Routes of controller Quiz
+$route['cadastrar-novo-usuario']	= "usuarios/create";
+$route['todos-os-usuarios']			= "usuarios";
+$route['salvar-usuario']			= "usuarios/save";
+$route['editar-usuario/(:num)']	 	= "usuarios/edit/$1";
+$route['remover-usuario/(:num)']	= "usuarios/remove/$1";
+$route['alterar-usuario']	 		= "usuarios/update";
 //Routes of controller Quiz_tipo
 $route['remover-perfil/(:num)']		= "quiz_tipo/remove_perfil/$1";
 //Routes of controller Perguntas

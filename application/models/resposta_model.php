@@ -76,6 +76,14 @@ class Resposta_model extends CI_Model {
 
         return (bool) $this->db->affected_rows(); 
     }
+
+    public function quiz_delete($id)
+    {
+        $this->db->where('id_quiz', $id);
+        $this->db->delete($this->table);
+
+        return (bool) $this->db->affected_rows(); 
+    }
 }
 
 /* End of file modelName.php */

@@ -264,8 +264,10 @@ var eventos_back = {
 
 	salva_perfil: function(url)
 	{	
+		var prox_url = $('#btn-proxima-etapa-1-perfil').attr('rel'), id_quiz = $('#id_quiz').val();
+
 		$('.group').each(function(index){
-			var titulo = $('#nome-perfil-'+index).val(), prox_url = $('#btn-proxima-etapa-1-perfil').attr('rel'), descricao =  $('#descricao-perfil-'+index).val(), link = $('#link-perfil-'+index).val(), texto = $('#texto-perfil-'+index).val(), imagem = $('#alvo-'+index).attr('src'), id_quiz = $('#id_quiz').val(), id_perfil = $('#id-perfil-'+index).val(), ordem = index;
+			var titulo = $('#nome-perfil-'+index).val(), descricao =  $('#descricao-perfil-'+index).val(), link = $('#link-perfil-'+index).val(), texto = $('#texto-perfil-'+index).val(), imagem = $('#alvo-'+index).attr('src'), id_perfil = $('#id-perfil-'+index).val(), ordem = index;
 			if(titulo == '' || descricao == '' || link == '' || texto == '' || imagem == ''){
 				alert('Preencha todos os campos de cada perfil');
 				return false;
@@ -276,13 +278,9 @@ var eventos_back = {
 					{titulo:titulo, descricao:descricao, link_referencia:link, texto_link:texto, imagem:imagem, id_quiz:id_quiz, ordem:ordem},
 					function(e){
 						if(e.result == 'sucesso'){
-							$(grupo).removeClass('edit');
-							$(grupo).addClass('salvo');
-							if(!url){
-								window.location.href=prox_url;
-							}else{
-								window.location.href=url
-							}
+							console.log('Novo perfil salvo com sucesso');
+						}else{
+							console.log('Falha ao tentar salvar novo');
 						}
 					}
 				);
@@ -293,28 +291,26 @@ var eventos_back = {
 					{id:id_perfil, titulo:titulo, descricao:descricao, link_referencia:link, texto_link:texto, imagem:imagem, ordem:ordem},
 					function(e){
 						if(e == 'sucesso'){
-							$(grupo).removeClass('edit');
-							$(grupo).removeClass('salvo');
-							if(!url){
-								window.location.href=prox_url;
-							}else{
-								window.location.href=url
-							}salva_customizacao()
-							
-							return false;
+							console.log('Perfil atualizado com sucesso!');
 						}else{
 							console.log('houve uma falha');
 						}
 					}
 				);
-			}else{
+			}
+				
+		});
+
+		$.get('../../quiz/update_timestamp', {id_quiz:id_quiz}, function(e){
+			if(e == 'ok'){
 				if(!url){
 					window.location.href=prox_url;
 				}else{
-					window.location.href=url
+					window.location.href=url;
 				}
-			}	
+			}
 		});
+
 	},
 
 	remove_perfil: function(url, id_quiz, imagem)

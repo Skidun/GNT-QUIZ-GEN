@@ -92,15 +92,25 @@ $(function(){
 	}
 		
 	/*File Upload de Todas as Páginas*/
-		$('.fileupload').each(function (index) {
+	$('.fileupload').each(function (index) {
 			$(this).fileupload({
 				done: function (e, data) {
 					var filess= data.files[0];
 					var filenam = filess.name;
-					$(this).find('#alvo-pergunta-'+index).attr('src','../../assets/server/php/files/'+filenam);
+					$(this).find('img#alvo-'+index).attr('src','../../assets/server/php/files/'+filenam);
 				}
 			});
-		});
+	});
+
+	$('.fileupload#form-file-upload-pergunta').each(function (index) {
+			$(this).fileupload({
+				done: function (e, data) {
+					var filess= data.files[0];
+					var filenam = filess.name;
+					$(this).find('img#alvo-pergunta-'+index).attr('src','../../assets/server/php/files/'+filenam);
+				}
+			});
+	});
 	
 	//Perfil
 	/*perguntas*/

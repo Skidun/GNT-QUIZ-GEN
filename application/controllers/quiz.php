@@ -209,6 +209,7 @@ class Quiz extends CI_Controller {
 		$data = $id;
 		$this->perfil_model->quiz_delete($data);
 		$this->pergunta_model->quiz_delete($data);
+		$this->resposta_model->quiz_delete($data);
 		$this->customizacao_model->quiz_delete($data);
 		$result =  $this->quiz_model->delete($data);
 
