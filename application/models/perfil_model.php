@@ -24,6 +24,7 @@ class Perfil_model extends CI_Model {
 	public function get_all($id)
     {                
         $this->db->where('id_quiz', $id);
+        $this->db->order_by('ordem', 'ASC');
 
         return $this->db->get($this->table);
     }

@@ -90,6 +90,7 @@ class Quiz_tipo extends CI_Controller {
 		$data['link_referencia'] 	= $this->input->get('link_referencia');
 		$data['texto_link'] 		= $this->input->get('texto_link');
 		$data['imagem'] 			= $this->input->get('imagem');
+		$data['ordem'] 				= $this->input->get('ordem');
 		$data['id_quiz'] 			= $this->input->get('id_quiz');
 
 		$result  = $this->perfil_model->create($data);
@@ -108,6 +109,7 @@ class Quiz_tipo extends CI_Controller {
 		$data['link_referencia'] 	= $this->input->get('link_referencia');
 		$data['texto_link'] 		= $this->input->get('texto_link');
 		$data['imagem'] 			= $this->input->get('imagem');
+		$data['ordem'] 				= $this->input->get('ordem');
 
 		$result  = $this->perfil_model->update($id, $data);
 		if($result){

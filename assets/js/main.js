@@ -81,13 +81,14 @@ $(function(){
 			// IE doesn't register the blur when sorting
 			// so trigger focusout handlers to remove .ui-state-focus
 			ui.item.children( ".header" ).triggerHandler( "focusout" );
+			$(this).find('.group').addClass('edit');
 		}
 	});
 
 	/*Sortables, conta quantos tem na página e gera por id dinamicamente*/
 	var contadorSorteia = $('.sorteia').length;
 	for(i=0 ; i<contadorSorteia ; i++){
-		$("#sortable"+i).sortable();
+		$("#sortable"+i).sortable({stop: function(event, ui){$(this).parents('.group').removeClass('edit').addClass('edit');}});
 	}
 		
 	/*File Upload de Todas as Páginas*/

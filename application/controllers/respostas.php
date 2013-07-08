@@ -36,6 +36,7 @@ class Respostas extends CI_Controller {
 		$data['tipo_resposta'] 	 = $this->input->get('tipo_resposta', true);
 		$data['perfil_resposta'] = $this->input->get('perfil_resposta', true);
 		$data['id_pergunta'] 	 = $this->input->get('id_pergunta', true);
+		$data['ordem'] 	 		 = $this->input->get('ordem', true);
 		$data['id_quiz'] 		 = $this->input->get('id_quiz', true);
 
 		$create = $this->resposta_model->create($data);
@@ -56,6 +57,7 @@ class Respostas extends CI_Controller {
 		$data['tipo_resposta'] 	 = $this->input->get('tipo_resposta', true);
 		$data['perfil_resposta'] = $this->input->get('perfil_resposta', true);
 		$data['id_pergunta'] 	 = $this->input->get('id_pergunta', true);
+		$data['ordem'] 	 		 = $this->input->get('ordem', true);
 		$data['id_quiz'] 		 = $this->input->get('id_quiz', true);
 
 		$update= $this->resposta_model->update($id, $data);

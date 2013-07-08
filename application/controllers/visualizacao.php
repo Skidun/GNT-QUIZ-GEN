@@ -44,7 +44,6 @@ class Visualizacao extends CI_Controller {
         	# Se alguma resposta se repetir na maioria dos indices, ela é escolhida como resposta
         	if($x == $resposta_user[$i]) {
         		#Eu pergo o perfil usando como filtro o ID do perfil vencedor
-        		
         	}
       		$x = $resposta_user[$i];
       		$resposta_perfil = $this->perfil_model->get_resposta($x);

@@ -265,7 +265,7 @@ var eventos_back = {
 	salva_perfil: function(url)
 	{	
 		$('.group').each(function(index){
-			var titulo = $('#nome-perfil-'+index).val(), prox_url = $('#btn-proxima-etapa-1-perfil').attr('rel'), descricao =  $('#descricao-perfil-'+index).val(), link = $('#link-perfil-'+index).val(), texto = $('#texto-perfil-'+index).val(), imagem = $('#alvo-'+index).attr('src'), id_quiz = $('#id_quiz').val(), id_perfil = $('#id-perfil-'+index).val();
+			var titulo = $('#nome-perfil-'+index).val(), prox_url = $('#btn-proxima-etapa-1-perfil').attr('rel'), descricao =  $('#descricao-perfil-'+index).val(), link = $('#link-perfil-'+index).val(), texto = $('#texto-perfil-'+index).val(), imagem = $('#alvo-'+index).attr('src'), id_quiz = $('#id_quiz').val(), id_perfil = $('#id-perfil-'+index).val(), ordem = index;
 			if(titulo == '' || descricao == '' || link == '' || texto == '' || imagem == ''){
 				alert('Preencha todos os campos de cada perfil');
 				return false;
@@ -273,7 +273,7 @@ var eventos_back = {
 				var grupo = $(this).attr('id', index);
 				$.get(
 					'../save_perfil',
-					{titulo:titulo, descricao:descricao, link_referencia:link, texto_link:texto, imagem:imagem, id_quiz:id_quiz},
+					{titulo:titulo, descricao:descricao, link_referencia:link, texto_link:texto, imagem:imagem, id_quiz:id_quiz, ordem:ordem},
 					function(e){
 						if(e.result == 'sucesso'){
 							$(grupo).removeClass('edit');
@@ -290,7 +290,7 @@ var eventos_back = {
 			}else if($(this).hasClass('edit')){
 				$.get(
 					'../update_perfil/',
-					{id:id_perfil, titulo:titulo, descricao:descricao, link_referencia:link, texto_link:texto, imagem:imagem},
+					{id:id_perfil, titulo:titulo, descricao:descricao, link_referencia:link, texto_link:texto, imagem:imagem, ordem:ordem},
 					function(e){
 						if(e == 'sucesso'){
 							$(grupo).removeClass('edit');
@@ -344,7 +344,7 @@ var eventos_back = {
 		quiz_alteracao = $('#id_quiz').val();
 		$('.group').each(function(index){
 			//Variáveis que pegam os
-			var nome 		 = $('#nome-pergunta-'+index).val(), link = $('#link-pergunta-'+index).val(), texto = $('#texto-pergunta-'+index).val(), imagem = $('#alvo-pergunta-'+index).attr('src'), id_quiz = $('#id_quiz').val(), tipo_quiz = $('#tipo_quiz').val();
+			var nome 		 = $('#nome-pergunta-'+index).val(), link = $('#link-pergunta-'+index).val(), texto = $('#texto-pergunta-'+index).val(), imagem = $('#alvo-pergunta-'+index).attr('src'), id_quiz = $('#id_quiz').val(), tipo_quiz = $('#tipo_quiz').val(), ordem = index;
 			var box_resposta = $(this).find('.sorteia .header');
 
 			if(nome == '' || nome == 'Preencha esse campo'){
@@ -365,7 +365,7 @@ var eventos_back = {
 				//Salva a pergunta via ajax
 				$.getJSON(
 					'../save_pergunta_perfil',
-					{texto:nome, link_referencia:link, texto_link:texto, imagem:imagem, id_quiz:id_quiz},
+					{texto:nome, link_referencia:link, texto_link:texto, imagem:imagem, id_quiz:id_quiz, ordem:ordem},
 					function(e){
 						if(e.result == 'sucesso'){
 							$(grupo).addClass('salvo');
@@ -374,11 +374,11 @@ var eventos_back = {
 							//Vamos salvar a resposta agora
 
 							$(box_resposta).each(function(index_resp){
-								var resposta 	= $(this).find('.input input[name="nome-resposta"]').val(), perfil_resposta = $(this).find('select[name=perfil-resposta]').val();
+								var resposta 	= $(this).find('.input input[name="nome-resposta"]').val(), perfil_resposta = $(this).find('select[name=perfil-resposta]').val(), ordem = index_resp;
 							    //Log do cadastro
 							    console.log('Pergunta: '+nome+' ID: '+e.id_pergunta+' | Resposta: '+resposta+' - Perfil: '+perfil_resposta);
 							    $.get('../../respostas/save_resposta_perfil',
-								    {texto:resposta, tipo_resposta:tipo_quiz, perfil_resposta:perfil_resposta, id_pergunta:e.id_pergunta, id_quiz:id_quiz},
+								    {texto:resposta, tipo_resposta:tipo_quiz, perfil_resposta:perfil_resposta, id_pergunta:e.id_pergunta, id_quiz:id_quiz, ordem:ordem},
 								    function(e_resp){
 								    	if(e_resp == 'sucesso'){
 								    		//log do cadastro da resposta
@@ -408,10 +408,10 @@ var eventos_back = {
 				var id_pergunta = $(this).find('input[name="id-pergunta"]').val();
 				//Salva uma nova resposta ou atualiza as respostas existentes 
 				$(box_resposta).each(function(index_resp){
-					var resposta = $(this).find('.input input[name="nome-resposta"]').val(), id_resposta = $(this).find('.input input[name="id-resposta"]').val(),  perfil_resposta = $(this).find('select[name=perfil-resposta]').val();
+					var resposta = $(this).find('.input input[name="nome-resposta"]').val(), id_resposta = $(this).find('.input input[name="id-resposta"]').val(),  perfil_resposta = $(this).find('select[name=perfil-resposta]').val(), ordem_resposta = index_resp;
 				   	if($(this).hasClass('novo')){
 					   	$.get('../../respostas/save_resposta_perfil',
-						    {texto:resposta, tipo_resposta:tipo_quiz, perfil_resposta:perfil_resposta, id_pergunta:id_pergunta, id_quiz:id_quiz},
+						    {texto:resposta, tipo_resposta:tipo_quiz, perfil_resposta:perfil_resposta, id_pergunta:id_pergunta, id_quiz:id_quiz, ordem:ordem_resposta},
 						    function(e_resp){
 							   	console.log({texto:resposta, tipo_resposta:tipo_quiz, perfil_resposta:perfil_resposta, id_pergunta:id_pergunta, id_quiz:id_quiz});
 							   	if(e_resp == 'sucesso'){
@@ -425,7 +425,7 @@ var eventos_back = {
 						);
 					}else{
 					   	$.get('../../respostas/update_resposta_perfil',
-						   	{texto:resposta, tipo_resposta:tipo_quiz, perfil_resposta:perfil_resposta, id_pergunta:id_pergunta, id_quiz:id_quiz, id_resposta:id_resposta},
+						   	{texto:resposta, tipo_resposta:tipo_quiz, perfil_resposta:perfil_resposta, id_pergunta:id_pergunta, id_quiz:id_quiz, id_resposta:id_resposta, ordem:ordem_resposta},
 							function(e_resp){
 							//console.log({texto:resposta, tipo_resposta:tipo_quiz, perfil_resposta:perfil_resposta, id_pergunta:id_pergunta, id_quiz:id_quiz, id_resposta:id_resposta});
 								if(e_resp == 'sucesso'){
@@ -440,7 +440,7 @@ var eventos_back = {
 				//Atualiza a pergunta			
 				$.getJSON(
 					'../update_pergunta_perfil',
-					{texto:nome, link_referencia:link, texto_link:texto, imagem:imagem, id_quiz:id_quiz, id_pergunta:id_pergunta},
+					{texto:nome, link_referencia:link, texto_link:texto, imagem:imagem, id_quiz:id_quiz, id_pergunta:id_pergunta, ordem:ordem},
 					function(retorno_edit_pergunta){
 						if(e.result == 'sucesso'){
 							//$(grupo).removeClass('edit');
