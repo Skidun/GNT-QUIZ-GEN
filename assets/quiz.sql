@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tempo de Geração: 05/07/2013 às 19:41:12
+-- Tempo de Geração: 10/07/2013 às 16:24:54
 -- Versão do Servidor: 5.5.31
 -- Versão do PHP: 5.4.6-1ubuntu1.2
 
@@ -69,14 +69,6 @@ CREATE TABLE IF NOT EXISTS `configuracoes` (
   KEY `id_quiz` (`id_quiz`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='Tabela de configuração que será aplicada a cada quiz.' AUTO_INCREMENT=3 ;
 
---
--- Extraindo dados da tabela `configuracoes`
---
-
-INSERT INTO `configuracoes` (`id`, `titulo_quiz_font_size`, `titulo_quiz_font_color`, `titulo_quiz_align`, `pergunta_quiz_font_size`, `pergunta_quiz_font_color`, `pergunta_quiz_align`, `link_ref_pergunta_font_size`, `link_ref_pergunta_font_color`, `link_ref_pergunta_align`, `resposta_pergunta_font_size`, `resposta_pergunta_font_color`, `resposta_pergunta_align`, `resposta_pergunta_bg_color`, `botao_perguntas_font_color`, `botao_perguntas_bg_color`, `quiz_bg_img`, `quiz_bg_color`, `resultado_titulo_quiz_font_size`, `resultado_titulo_quiz_font_color`, `resultado_titulo_quiz_align`, `resultado_titulo_faixa_font_size`, `resultado_titulo_faixa_font_color`, `resultado_titulo_faixa_align`, `resultado_porcentagem_font_size`, `resultado_porcentagem_font_color`, `resultado_porcentagem_align`, `resultado_descricao_font_size`, `resultado_descricao_font_color`, `resultado_descricao_align`, `resultado_linkref_font_size`, `resultado_linkref_font_color`, `resultado_linkref_align`, `resultado_botao_font_color`, `resultado_botao_bg_color`, `resultado_bg_img`, `resultado_bg_color`, `id_quiz`) VALUES
-(1, '20px', 'bf005f', 'center', '22px', '333333', 'left', '18px', '333333', 'left', '15px', '333333', 'left', '', 'ffffff', 'cc1e59', '', 'faab2a', '20px', '333333', 'left', '24px', '333333', 'left', '18px', '333333', 'left', '18px', '333333', 'left', '15px', '333333', 'left', 'ffffff', 'cc1e59', '/quiz-generate/assets/img/backgrounds/preview.png', 'faab2a', 36),
-(2, '20px', '333333', 'left', '24px', '333333', 'left', '16px', '333333', 'left', '15px', '333333', 'left', NULL, 'ffffff', 'cc1e59', NULL, 'faab2a', '20px', '333333', 'left', '24px', '333333', 'left', '18px', '333333', 'left', '18px', '333333', 'left', '15px', '333333', 'left', 'ffffff', 'cc1e59', NULL, 'faab2a', 37);
-
 -- --------------------------------------------------------
 
 --
@@ -112,19 +104,11 @@ CREATE TABLE IF NOT EXISTS `perfil` (
   `texto_link` mediumtext,
   `imagem` varchar(255) DEFAULT NULL,
   `data` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `ordem` int(11) NOT NULL,
   `id_quiz` tinyint(4) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `id_quiz` (`id_quiz`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='Tabela que definimos perfis de quiz do tipo perfil' AUTO_INCREMENT=13 ;
-
---
--- Extraindo dados da tabela `perfil`
---
-
-INSERT INTO `perfil` (`id`, `titulo`, `descricao`, `link_referencia`, `texto_link`, `imagem`, `data`, `id_quiz`) VALUES
-(7, 'Maromba master', 'Você é um maromba master, pega pesado na malhação, come bem, dorme bem, e sua suplementação é muito boa. Você está de parabéns.', 'http://corpoideal.com.br', 'Veja algumas dicas', '../../assets/server/php/files/photo-119458.jpg', '2013-06-28 16:02:30', 36),
-(9, 'Natureba', 'Você tem uma dieta balanceada, dorme bem e pratica atividades físicas regularmente. Parabéns você é uma pessoa saudável ', '#', 'Referência', '../../assets/server/php/files/corpo_saudavel.jpg', '2013-06-20 21:39:34', 36),
-(11, 'Frango', 'sadasdu oiuasdi uasoiduaosiduasoid ', '#', 'sem link', '../../assets/server/php/files/magrelo.jpg', '2013-07-05 20:19:31', 36);
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='Tabela que definimos perfis de quiz do tipo perfil' AUTO_INCREMENT=21 ;
 
 -- --------------------------------------------------------
 
@@ -133,26 +117,17 @@ INSERT INTO `perfil` (`id`, `titulo`, `descricao`, `link_referencia`, `texto_lin
 --
 
 CREATE TABLE IF NOT EXISTS `perguntas` (
-  `id` tinyint(4) NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `pergunta` text,
   `link_referencia` varchar(255) DEFAULT NULL,
   `texto_link` mediumtext,
   `imagem` varchar(255) DEFAULT NULL,
   `data` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `ordem` int(11) NOT NULL,
   `id_quiz` tinyint(4) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `id_quiz` (`id_quiz`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='Tabela de perguntas de cada Quiz' AUTO_INCREMENT=40 ;
-
---
--- Extraindo dados da tabela `perguntas`
---
-
-INSERT INTO `perguntas` (`id`, `pergunta`, `link_referencia`, `texto_link`, `imagem`, `data`, `id_quiz`) VALUES
-(32, 'Quantas vezes você malha na semana?', '#', 'sem link', '../../assets/server/php/files/post-05-atividade_fisica.jpg', '2013-06-27 18:53:41', 36),
-(33, 'Quantas horas por noite você dorme?', '#', 'saiba mais', '../../assets/server/php/files/sono.jpg', '2013-06-27 18:53:41', 36),
-(34, 'Quantas vezes você come por dia?', '', '', '../../assets/server/php/files/Comida1 (1).jpg', '2013-06-26 18:37:58', 36),
-(38, 'Quais suplementos você usa?', '#', 'saiba mais', '../../assets/server/php/files/sumplementos.jpg', '2013-06-27 18:39:32', 36);
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='Tabela de perguntas de cada Quiz' AUTO_INCREMENT=166 ;
 
 -- --------------------------------------------------------
 
@@ -171,14 +146,6 @@ CREATE TABLE IF NOT EXISTS `quiz` (
   KEY `id_usuario` (`id_usuario`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='Tabela de Quizes' AUTO_INCREMENT=38 ;
 
---
--- Extraindo dados da tabela `quiz`
---
-
-INSERT INTO `quiz` (`id`, `titulo`, `tipo`, `data_alteracao`, `data_criacao`, `id_usuario`) VALUES
-(36, 'Vida saudável', 'perfil', '2013-07-05 22:07:05', '2013-06-04', 1),
-(37, 'Teste Custom', 'perfil', '2013-07-05 20:51:30', '2013-07-04', 1);
-
 -- --------------------------------------------------------
 
 --
@@ -186,31 +153,17 @@ INSERT INTO `quiz` (`id`, `titulo`, `tipo`, `data_alteracao`, `data_criacao`, `i
 --
 
 CREATE TABLE IF NOT EXISTS `respostas` (
-  `id` tinyint(4) NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `resposta` mediumtext,
   `tipo_resposta` varchar(12) DEFAULT NULL,
   `perfil_resposta` int(11) DEFAULT NULL,
-  `id_pergunta` tinyint(4) DEFAULT NULL,
+  `id_pergunta` int(11) DEFAULT NULL,
   `id_quiz` tinyint(4) DEFAULT NULL,
   `ordem` int(11) NOT NULL,
   `data` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   KEY `id_quiz` (`id_quiz`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='Tabela de respostas de cada pergunta' AUTO_INCREMENT=46 ;
-
---
--- Extraindo dados da tabela `respostas`
---
-
-INSERT INTO `respostas` (`id`, `resposta`, `tipo_resposta`, `perfil_resposta`, `id_pergunta`, `id_quiz`, `ordem`, `data`) VALUES
-(30, '5 a 7 vezes', 'perfil', 7, 32, 36, 0, '2013-06-26 16:52:19'),
-(31, '3 a 4 vezes', 'perfil', 9, 32, 36, 0, '2013-06-26 16:52:19'),
-(33, '8 horas', 'perfil', 7, 33, 36, 0, '2013-06-26 16:45:36'),
-(34, '6 horas', 'perfil', 9, 33, 36, 0, '2013-06-26 16:45:36'),
-(36, '6 vezes', 'perfil', 7, 34, 36, 0, '2013-06-26 18:37:58'),
-(37, '4 a 6 vezes', 'perfil', 9, 34, 36, 0, '2013-06-26 18:37:58'),
-(42, 'Todos', 'perfil', 7, 38, 36, 0, '2013-06-26 20:14:40'),
-(43, 'Whey Protein e BCAAs', 'perfil', 9, 38, 36, 0, '2013-06-26 20:14:40');
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='Tabela de respostas de cada pergunta' AUTO_INCREMENT=272 ;
 
 -- --------------------------------------------------------
 
@@ -227,13 +180,6 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
   `data` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='Tabela de usu⳩os' AUTO_INCREMENT=2 ;
-
---
--- Extraindo dados da tabela `usuarios`
---
-
-INSERT INTO `usuarios` (`id`, `nome`, `email`, `senha`, `recoverkey`, `data`) VALUES
-(1, 'Wesley', 'wesley@skidun.com.br', '7940ab47468396569a906f75ff3f20ef', 'ba75aca9071f77600123fe9a3ec3a5bf', NULL);
 
 --
 -- Restrições para as tabelas dumpadas

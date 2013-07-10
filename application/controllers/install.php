@@ -23,7 +23,7 @@ class Install extends CI_Controller {
 		$data['emailUsuario'] = '';
 		$data['senhaUsuario'] = '';
 			
-		$this->load->view('login', $data);
+		$this->template->show('login', $data);
 	}
 	
 	public function run()
@@ -36,16 +36,21 @@ class Install extends CI_Controller {
 			 'email' => $this->input->post('txt-login'),
 			 'senha' => $this->input->post('txt-password'),
 			);
-			$this->user_model->create($insert);
+			$create = $this->user_model->create($insert);
+			if($create){
+				redirect('login');
+			}
+		}else{
+			redirect('login');
 		}
 		
 		//load view
-		$data['page_title'] = "Login";
+		#$data['page_title'] = "Login";
 		
-		$data['emailUsuario'] = '';
-		$data['senhaUsuario'] = '';
+		#$data['emailUsuario'] = '';
+		#$data['senhaUsuario'] = '';
 		
-		$this->load->view('login', $data);
+		#$this->template->show('login', $data);
 	}
 	
 }

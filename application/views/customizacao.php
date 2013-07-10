@@ -160,18 +160,19 @@
 							<div class="content">
 								<!--Imagem:-->
 										<form id="fileupload-perfil-customiza" action="<?php echo base_url();?>assets/server/php/" method="POST" enctype="multipart/form-data">
-										<div id="imagem-preview"><img id="alvo-perguntas" src="<?php echo base_url();?>assets/img/backgrounds/preview.png" /></div>
+										<div id="imagem-preview"><img id="alvo-perguntas" src="<?php if($customizacao['resultado_bg_img'] == "") {echo base_url().'assets/img/backgrounds/preview.png';}else{echo base_url()."assets/server/php/files/".$customizacao['quiz_bg_img'];}?>" /></div>
 										<span class="btn btn-success fileinput-button">
 											<input id="file" type="file"  />
 										</span>
 										</form>
+										<input type="hidden" name="bg_image_pergunta" id="bg_image_pergunta" value="<?php echo $customizacao['quiz_bg_img'];?>" />
 								<!--Cor de fundo:-->
 								<p class="alinha">Cor de fundo:</p>
 								<div class="input-picker"><input id="imagem-cor-fundo" name="imagem-cor-fundo" type="text" value="<?php echo $customizacao['quiz_bg_color'];?>" /></div>
 							</div>
 							
 						</div>
-						<div id="previewPerguntas" class="preview">
+						<div id="previewPerguntas" class="preview" style="background: <?php if($customizacao['resultado_bg_img'] == "") {echo "#".$customizacao['quiz_bg_color'];}else{echo "url(".base_url()."assets/server/php/files/".$customizacao['quiz_bg_img'].") top center !important;";}?>">
 							<div id="nome"><?php  echo $titulo;?></div>
 							<div id="texto">
 								<?php
@@ -397,15 +398,16 @@
 							</div>
 							<div class="content">
 								<!--Imagem:-->
-										<form id="fileupload-perfil-customiza-resultados" action="<?php echo base_url();?>assets/server/php/" method="POST" enctype="multipart/form-data">
-										<div id="imagem-preview"><img id="alvo-resultados" src="<?php echo base_url();?>assets/img/backgrounds/preview.png" /></div>
+										<form id="fileupload-perfil-customiza-resultados" action="<?php echo base_url();?>assets/server/php/index2.php" method="POST" enctype="multipart/form-data">
+										<div id="imagem-preview"><img id="alvo-resultados" src="<?php if($customizacao['resultado_bg_img'] == "") {echo base_url().'assets/img/backgrounds/preview.png';}else{echo base_url()."assets/server/php/files/".$customizacao['resultado_bg_img'];}?>" /></div>
 										<span class="btn btn-success fileinput-button">
 											<input id="file" type="file"  />
 										</span>
 										</form>
+										<input type="hidden" name="bg_image_resultado" id="bg_image_resultado" value="<?php echo $customizacao['resultado_bg_img'];?>"/>
 								<!--Cor de fundo:-->
 								<p class="alinha">Cor de fundo:</p>
-								<div class="input-picker"><input id="imagem-resultados-cor-fundo" name="imagem-resultados-cor-fundo" type="text" value="<?php echo $customizacao['resultado_bg_color'];?>" /></div>
+								<div class="input-picker"><input id="imagem-resultados-cor-fundo" name="imagem-resultados-cor-fundo" type="text" value="<?php echo $customizacao['resultado_bg_img'];?>" /></div>
 							</div>
 							
 						</div>

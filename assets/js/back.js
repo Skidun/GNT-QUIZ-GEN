@@ -326,17 +326,6 @@ var eventos_back = {
 		}
 		return false;
 	},
-	/*Prototipo
-	salva_perguntas: function()
-	{
-		$('.group').each(function(index){
-			var respostas = $(this).find('.sorteia .header');
-			$(respostas).each(function(index_resp){
-				console.log('Resposta-'+index+'-'+index_resp);
-			});
-		});
-	},
-	*/
 
 	salva_perguntas: function(url)
 	{
@@ -348,7 +337,7 @@ var eventos_back = {
 			//Variáveis que pegam os
 			var nome 		 = $('#nome-pergunta-'+index).val(), link = $('#link-pergunta-'+index).val(), texto = $('#texto-pergunta-'+index).val(), imagem = $('#alvo-pergunta-'+index).attr('src'), id_quiz = $('#id_quiz').val(), tipo_quiz = $('#tipo_quiz').val(), ordem = index;
 			var box_resposta = $(this).find('.sorteia .header');
-
+			//Valida se o campo de nome da pergunta 
 			if(nome == '' || nome == 'Preencha esse campo'){
 				$('#nome-pergunta-'+index).val('Preencha esse campo')
 				return false;
@@ -458,7 +447,6 @@ var eventos_back = {
 										}
 								}
 							});
-
 						}else{
 							//	alert('Ocorreu uma falha ao tentar cadastrar o quiz');
 						}
@@ -472,11 +460,11 @@ var eventos_back = {
 						}else{
 							window.location.href=url;
 						}*/
-					
 				});	
 			};//Fim da Edição da pergunta
 		});
 	},
+
 	redireciona:function(qtdGrupos, index, url, prox_url)
 	{
 		if((qtdGrupos-1) == index){
@@ -495,7 +483,7 @@ var eventos_back = {
 		var pergunta_tamanho = $('select[name="perguntas-tamanho"]').val(), perguntas_cor = $('input[name="perguntas-cor"]').val(), perguntas_alinhamento = $('input[name="iperguntas-alinhamento"]').val();
 		var referencia_tamanho = $('select[name="referencia-tamanho"]').val(),referencia_cor = $('input[name="referencia-cor"]').val(), referencia_alinhamento = $('#referencia-alinhamento').val() ;
 		var resposta_tamanho = $('select[name="respostas-tamanho"]').val(), resposta_cor = $('input[name="respostas-cor"]').val(), resposta_alinhamento = $('input[name="irespostas-alinhamento"]').val(), resposta_cor_fundo = $('input[name="respostas-cor-fundo"]').val();
-		var botoes_cor = $('input[name="botoes-cor"]').val(), botoes_cor_fundo = $('input[name="botoes-perguntas-cor-fundo"]').val(), pergunta_cor_fundo = $('input[name="imagem-cor-fundo"]').val(), pergunta_imagem_fundo = $('#alvo-perguntas').val();
+		var botoes_cor = $('input[name="botoes-cor"]').val(), botoes_cor_fundo = $('input[name="botoes-perguntas-cor-fundo"]').val(), pergunta_cor_fundo = $('input[name="imagem-cor-fundo"]').val(), pergunta_imagem_fundo = $('#bg_image_pergunta').val();
 		//Variáveis das configurações de resultados
 		var titulo_quiz_resultados_tamanho = $('select[name="titulo-resultados-tamanho"]').val(), titulo_quiz_resultados_cor = $('input[name="titulo-resultados-cor"]').val(), titulo_quiz_resultados_alinhamento = $('input[name="ititulo-resultados-alinhamento"]').val();
 		var titulo_resultatados_tamanho = $('select[name="perguntas-resultados-tamanho"]').val(), titulo_resultados_cor = $('input[name="perguntas-resultados-cor"]').val(), titulo_resultados_alinhamento = $('input[name="iperguntas-resultados-alinhamento"]').val();
@@ -503,7 +491,7 @@ var eventos_back = {
 		var descricao_tamanho = $('select[name="descricao-tamanho"]').val(), descricao_cor = $('input[name="descricao-cor"]').val(), descricao_alinhamento = $('input[name="idescricao-alinhamento"]').val();
 		var referencia_resultados_tamanho = $('select[name="referencia-resultados-tamanho"]').val(), referencia_resultados_cor = $('input[name="referencia-resultados-cor"]').val(), referencia_resultados_alinhamento = $('input[name="ireferencia-resultados-alinhamento"]').val();
 		var botoes_resultados_cor = $('input[name="botoes-resultados-cor"]').val(), botoes_resultados_cor_fundo = $('input[name="botoes-resultados-cor-fundo"]').val();
-		var imagem_resultados_fundo = $('img#alvo-resultados').attr('src'), resultados_cor_fundo = $('#imagem-resultados-cor-fundo').val();
+		var imagem_resultados_fundo = $('#bg_image_resultado').val(), resultados_cor_fundo = $('#imagem-resultados-cor-fundo').val();
 
 		console.log({id_config:id_config, id_quiz:id_quiz, titulo_tamanho:titulo_tamanho, titulo_cor:titulo_cor, titulo_alinhamento:titulo_alinhamento, pergunta_tamanho:pergunta_tamanho, perguntas_cor:perguntas_cor, perguntas_alinhamento:perguntas_alinhamento, referencia_tamanho:referencia_tamanho, referencia_cor:referencia_cor, referencia_alinhamento:referencia_alinhamento, resposta_tamanho:resposta_tamanho, resposta_cor:resposta_cor, resposta_alinhamento:resposta_alinhamento, resposta_cor_fundo:resposta_cor_fundo, botoes_cor:botoes_cor, botoes_cor_fundo:botoes_cor_fundo, pergunta_cor_fundo:pergunta_cor_fundo, pergunta_imagem_fundo:pergunta_imagem_fundo, titulo_quiz_resultados_tamanho:titulo_quiz_resultados_tamanho, titulo_quiz_resultados_cor:titulo_quiz_resultados_cor, titulo_quiz_resultados_alinhamento:titulo_quiz_resultados_alinhamento, titulo_resultatados_tamanho:titulo_resultatados_tamanho, titulo_resultados_cor:titulo_resultados_cor, titulo_resultados_alinhamento:titulo_resultados_alinhamento, acertos_tamanho:acertos_tamanho, acertos_cor:acertos_cor, acertos_alinhamento:acertos_alinhamento, descricao_tamanho:descricao_tamanho, descricao_cor:descricao_cor, descricao_alinhamento:descricao_alinhamento, referencia_resultados_tamanho:referencia_resultados_tamanho, referencia_resultados_cor:referencia_resultados_cor, referencia_resultados_alinhamento:referencia_resultados_alinhamento, botoes_resultados_cor:botoes_resultados_cor, botoes_resultados_cor_fundo:botoes_resultados_cor_fundo, imagem_resultados_fundo:imagem_resultados_fundo, resultados_cor_fundo:resultados_cor_fundo});
 

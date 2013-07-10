@@ -116,24 +116,26 @@ $(function(){
 	/*perguntas*/
 	$('#fileupload-perfil-customiza')
    .fileupload({
-        url: '../../assets/server/php/',
+        url: '../../assets/server/php/index2.php',
         dataType: 'json',
         done: function (e, data) {			
             $.each(data.result.files, function (index, file) {
 				$('#previewPerguntas').attr('style', 'background: url(../../assets/server/php/files/'+file.name+') !important;');
 				$('img#alvo-perguntas').attr('src','../../assets/server/php/files/'+file.name);
+				$('#bg_image_pergunta').val(file.name);
             });
         }
     });
 	/*resultados*/
 	$('#fileupload-perfil-customiza-resultados')
    .fileupload({
-        url: '../../assets/server/php/',
+        url: '../../assets/server/php/index2.php',
         dataType: 'json',
         done: function (e, data) {			
             $.each(data.result.files, function (index, file) {
 				$('img#alvo-resultados').attr('src','../../assets/server/php/files/'+file.name);
 				$('#previewResultados').attr('style', 'background: url(../../assets/server/php/files/'+file.name+') !important;');
+				$('#bg_image_resultado').val(file.name);
             });
         }
     });

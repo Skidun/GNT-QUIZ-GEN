@@ -10,6 +10,14 @@ class Login extends CI_Controller {
 
 	public function index()
 	{
+		$users = $this->user_model->get();
+		if($users){
+			$data['already_installed'] = TRUE;
+		}else{
+			$data['already_installed'] = FALSE;
+			redirect('install');
+		}
+
 		$data['page_title'] = "Login";
 		$data['email'] = '';
 		$data['senha'] = '';
