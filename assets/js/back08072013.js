@@ -1,5 +1,5 @@
 var eventos_back = {
-
+	
 	init: function()
 	{
 		$('#senha-login, #txt-password,  #txt-password-repeat').focus(function(){
@@ -109,15 +109,15 @@ var eventos_back = {
 		});
 
 		//Perfil 1
-		$('#btn-proxima-etapa-1-perfil').one('click',function(e){
+		$('#btn-proxima-etapa-1-perfil').click(function(e){
 			e.preventDefault();
 			var evento = 'perfil';
 			eventos_back.valida_timestamp(evento);
 		});
 
 		//Editar perfil
-		$('.group.salvo input, .group.salvo textarea, .group.salvo .quadro img, .group.salvo .sorteia .header .input input, .group.salvo .sorteia .header select, .group.salvo .sorteia .header.novo .input input, .group.salvo .sorteia .header.novo select').on('change',function(){
-				$(this).parents('.group').addClass('edit');
+		$('.group input, .group textarea, .group .quadro img, .group .sorteia .header .input input, .group .sorteia .header select, .group .sorteia .header.novo .input input, .group .sorteia .header.novo select').on('change',function(){
+			$(this).parents('.group').addClass('edit');
 		});
 		$('.group.salvo .sorteia .novo .input input[name="nome-resposta"], .group.salvo .sorteia .novo select[name="perfil-resposta"]').blur(function(){
 			$(this).parents('.group').removeClass('edit');
@@ -144,7 +144,7 @@ var eventos_back = {
 		});
 
 		//Customização
-		$('#btn-proxima-etapa-3-customizacao').one('click', function(e){
+		$('#btn-proxima-etapa-3-customizacao').click(function(e){
 			e.preventDefault();
 			var evento = 'customizacao';
 			eventos_back.valida_timestamp(evento);
@@ -157,7 +157,7 @@ var eventos_back = {
 			var url = this.href, id_quiz = this.rel, alvo = this.id;
 			var imagem = $('#alvo-'+alvo).attr('src').split('../../assets/server/php/files/');
 			var data_alteracao = $('#data_alteracao').val();
-
+			
 				$.get('../../quiz/valida_timestamp', {id:id_quiz, data_alteracao:data_alteracao}).done(
 					function(e){
 						if(e == 'ok'){
@@ -168,7 +168,7 @@ var eventos_back = {
 						}	
 					}
 				);
-
+			
 			return false;
 		});
 
@@ -177,7 +177,7 @@ var eventos_back = {
 			e.preventDefault();
 			var url = this.href, id_quiz = this.rel;
 			var data_alteracao = $('#data_alteracao').val();
-
+		
 			$.get('../../quiz/valida_timestamp', {id:id_quiz, data_alteracao:data_alteracao}).done(
 				function(e){
 					if(e == 'ok'){
@@ -241,7 +241,7 @@ var eventos_back = {
 	valida_timestamp: function(evento)
 	{
 		var data_alteracao = $('#data_alteracao').val(), id_quiz = $('#id_quiz').val();
-
+		
 		$.get('../../quiz/valida_timestamp', {id:id_quiz, data_alteracao:data_alteracao}).done(
 			function(e){
 				if(e == 'ok'){
@@ -252,7 +252,7 @@ var eventos_back = {
 					}else if(evento == 'customizacao'){
 						eventos_back.salva_customizacao();
 					}
-
+					
 				}else{
 					alert('A data de alteração do quiz é diferente da data que você tem armazenado na página, a página será atualizada para que as informações referente ao quiz sejam atualizadas');
 					//window.location.reload();
@@ -265,15 +265,15 @@ var eventos_back = {
 	salva_perfil: function(url)
 	{	
 		$('.group').each(function(index){
-			var titulo = $('#nome-perfil-'+index).val(), prox_url = $('#btn-proxima-etapa-1-perfil').attr('rel'), descricao =  $('#descricao-perfil-'+index).val(), link = $('#link-perfil-'+index).val(), texto = $('#texto-perfil-'+index).val(), imagem = $('#alvo-'+index).attr('src'), id_quiz = $('#id_quiz').val(), id_perfil = $('#id-perfil-'+index).val();
-			if(titulo == ''){
+			var titulo = $('#nome-perfil-'+index).val(), prox_url = $('#btn-proxima-etapa-1-perfil').attr('rel'), descricao =  $('#descricao-perfil-'+index).val(), link = $('#link-perfil-'+index).val(), texto = $('#texto-perfil-'+index).val(), imagem = $('#alvo-'+index).attr('src'), id_quiz = $('#id_quiz').val(), id_perfil = $('#id-perfil-'+index).val(), ordem = index;
+			if(titulo == '' || descricao == '' || link == '' || texto == '' || imagem == ''){
 				alert('Preencha todos os campos de cada perfil');
 				return false;
 			}else if(!$(this).hasClass('salvo')){
 				var grupo = $(this).attr('id', index);
-				$.getJSON(
+				$.get(
 					'../save_perfil',
-					{titulo:titulo, descricao:descricao, link_referencia:link, texto_link:texto, imagem:imagem, id_quiz:id_quiz},
+					{titulo:titulo, descricao:descricao, link_referencia:link, texto_link:texto, imagem:imagem, id_quiz:id_quiz, ordem:ordem},
 					function(e){
 						if(e.result == 'sucesso'){
 							$(grupo).removeClass('edit');
@@ -290,7 +290,7 @@ var eventos_back = {
 			}else if($(this).hasClass('edit')){
 				$.get(
 					'../update_perfil/',
-					{id:id_perfil, titulo:titulo, descricao:descricao, link_referencia:link, texto_link:texto, imagem:imagem},
+					{id:id_perfil, titulo:titulo, descricao:descricao, link_referencia:link, texto_link:texto, imagem:imagem, ordem:ordem},
 					function(e){
 						if(e == 'sucesso'){
 							$(grupo).removeClass('edit');
@@ -299,9 +299,7 @@ var eventos_back = {
 								window.location.href=prox_url;
 							}else{
 								window.location.href=url
-							}salva_customizacao()
-
-							return false;
+							}
 						}else{
 							console.log('houve uma falha');
 						}
@@ -313,7 +311,7 @@ var eventos_back = {
 				}else{
 					window.location.href=url
 				}
-			}
+			}	
 		});
 	},
 
@@ -342,8 +340,6 @@ var eventos_back = {
 	{
 		prox_url = $('#btn-proxima-etapa-2-perguntas').attr('href');
 		quiz_alteracao = $('#id_quiz').val();
-		//Inicia mapeia os elementos .group do documento
-
 		$('.group').each(function(index){
 			//Variáveis que pegam os
 			var nome 		 = $('#nome-pergunta-'+index).val(), link = $('#link-pergunta-'+index).val(), texto = $('#texto-pergunta-'+index).val(), imagem = $('#alvo-pergunta-'+index).attr('src'), id_quiz = $('#id_quiz').val(), tipo_quiz = $('#tipo_quiz').val(), ordem = index;
@@ -354,32 +350,33 @@ var eventos_back = {
 				return false;
 			}else if(!$(this).hasClass('salvo')){
 				var grupo = $(this).attr('id', index);
+				
 				//Verifica se os campos nome da pergunta, imagem e resposta não estão vazios.
 				$(this).find('.input input[name="nome-resposta"]').each(function(){
-				 	if(this.value == '' || this.value == 'Preencha esse campo'){
-				 		this.value='';
-				 		this.value="Preencha esse campo";
-				 		return false;
-				 	}
+					 	if(this.value == '' || this.value == 'Preencha esse campo'){
+					 		this.value='';
+					 		this.value="Preencha esse campo";
+					 		return false;
+					 	}
 				});
 
 				//Salva a pergunta via ajax
 				$.getJSON(
-					'../save_pergunta_perfil', 
+					'../save_pergunta_perfil',
 					{texto:nome, link_referencia:link, texto_link:texto, imagem:imagem, id_quiz:id_quiz, ordem:ordem},
-					function(e){							
+					function(e){
 						if(e.result == 'sucesso'){
 							$(grupo).addClass('salvo');
 							$(grupo).removeClass('edit');
+							$('#id-pergunta-'+index).val(e.id_pergunta);
 							//Vamos salvar a resposta agora
-							alert(e.id_pergunta);
+
 							$(box_resposta).each(function(index_resp){
-								var resposta 	= $(this).find('.input input[name="nome-resposta"]').val(), perfil_resposta = $(this).find('select[name=perfil-resposta]').val(), ordem_resp = index_resp;
+								var resposta 	= $(this).find('.input input[name="nome-resposta"]').val(), perfil_resposta = $(this).find('select[name=perfil-resposta]').val(), ordem = index_resp;
 							    //Log do cadastro
 							    console.log('Pergunta: '+nome+' ID: '+e.id_pergunta+' | Resposta: '+resposta+' - Perfil: '+perfil_resposta);
-									    
 							    $.get('../../respostas/save_resposta_perfil',
-								    {texto:resposta, tipo_resposta:tipo_quiz, perfil_resposta:perfil_resposta, id_pergunta:e.id_pergunta, id_quiz:id_quiz, ordem:ordem_resp},
+								    {texto:resposta, tipo_resposta:tipo_quiz, perfil_resposta:perfil_resposta, id_pergunta:e.id_pergunta, id_quiz:id_quiz, ordem:ordem},
 								    function(e_resp){
 								    	if(e_resp == 'sucesso'){
 								    		//log do cadastro da resposta
@@ -388,13 +385,13 @@ var eventos_back = {
 								    		//log do erro do cadastro da resposta
 								    		console.log('Falha ao cadastrar resposta');
 								    	}
-								   	}
-								);
+							    	}
+							    );
 							});
 						}else{
 							alert('Ocorreu uma falha ao tentar cadastrar a pergunta');
 						}
-				});
+					});
 			}else if($(this).hasClass('edit')){
 				//Variáveis que pegam os
 				//Verifica se os campos nome da pergunta, imagem e resposta não estão vazios.
@@ -403,30 +400,30 @@ var eventos_back = {
 				 		this.value='';
 				 		this.value="Preencha esse campo";
 				 		return false;
-					 	}
+				 	}
 				});
 
 				var id_pergunta = $(this).find('input[name="id-pergunta"]').val();
 				//Salva uma nova resposta ou atualiza as respostas existentes 
 				$(box_resposta).each(function(index_resp){
-					var resposta = $(this).find('.input input[name="nome-resposta"]').val(), id_resposta = $(this).find('.input input[name="id-resposta"]').val(),  perfil_resposta = $(this).find('select[name=perfil-resposta]').val();
+					var resposta = $(this).find('.input input[name="nome-resposta"]').val(), id_resposta = $(this).find('.input input[name="id-resposta"]').val(),  perfil_resposta = $(this).find('select[name=perfil-resposta]').val(), ordem_resposta = index_resp;
 				   	if($(this).hasClass('novo')){
 					   	$.get('../../respostas/save_resposta_perfil',
-						    {texto:resposta, tipo_resposta:tipo_quiz, perfil_resposta:perfil_resposta, id_pergunta:id_pergunta, id_quiz:id_quiz, ordem:index_resp},
+						    {texto:resposta, tipo_resposta:tipo_quiz, perfil_resposta:perfil_resposta, id_pergunta:id_pergunta, id_quiz:id_quiz, ordem:ordem_resposta},
 						    function(e_resp){
 							   	console.log({texto:resposta, tipo_resposta:tipo_quiz, perfil_resposta:perfil_resposta, id_pergunta:id_pergunta, id_quiz:id_quiz});
 							   	if(e_resp == 'sucesso'){
 							   		//log do cadastro da resposta
 									console.log('Sucesso');
 								}else{
-									//log do erro do cadastro da resposta
+								//log do erro do cadastro da resposta
 								 	console.log('Falha ao cadastrar resposta');
 								}
 							}
 						);
 					}else{
 					   	$.get('../../respostas/update_resposta_perfil',
-						   	{texto:resposta, tipo_resposta:tipo_quiz, perfil_resposta:perfil_resposta, id_pergunta:id_pergunta, id_quiz:id_quiz, id_resposta:id_resposta, ordem:index_resp},
+						   	{texto:resposta, tipo_resposta:tipo_quiz, perfil_resposta:perfil_resposta, id_pergunta:id_pergunta, id_quiz:id_quiz, id_resposta:id_resposta, ordem:ordem_resposta},
 							function(e_resp){
 							//console.log({texto:resposta, tipo_resposta:tipo_quiz, perfil_resposta:perfil_resposta, id_pergunta:id_pergunta, id_quiz:id_quiz, id_resposta:id_resposta});
 								if(e_resp == 'sucesso'){
@@ -434,60 +431,37 @@ var eventos_back = {
 								}else{
 									console.log('Falha ao atualizar resposta');
 								}
-					   		}
-					   	);			
-					}
+				    		}
+				    	);			
+				    }
 				});//Fim do Loop dos campos de respostas
 				//Atualiza a pergunta			
 				$.getJSON(
 					'../update_pergunta_perfil',
 					{texto:nome, link_referencia:link, texto_link:texto, imagem:imagem, id_quiz:id_quiz, id_pergunta:id_pergunta, ordem:ordem},
-					function(e){
+					function(retorno_edit_pergunta){
 						if(e.result == 'sucesso'){
-							$(grupo).removeClass('edit');
+							//$(grupo).removeClass('edit');
 							//Vamos salvar a resposta agora
-							//Após
-							//Atualiza a data de alteração do quiz
-								
-							$.get('../../quiz/update_timestamp', {id_quiz:quiz_alteracao}, function(e){
-								if(e == 'ok'){
-										if(!url){
-											window.location.href=prox_url;
-										}else{
-											window.location.href=url;
-										}
-								}
-							});
-
+							
 						}else{
-							//	alert('Ocorreu uma falha ao tentar cadastrar o quiz');
+						//	alert('Ocorreu uma falha ao tentar cadastrar o quiz');
 						}
 					});
-			}else{
-				//Atualiza a data de alteração do quiz
-				$.get('../../quiz/update_timestamp', {id_quiz:quiz_alteracao}, function(e){
-					
-						/*if(!url){
-							window.location.href=prox_url;
-						}else{
-							window.location.href=url;
-						}*/
-					
-				});	
 			};//Fim da Edição da pergunta
 		});
+		//Após
+		//Atualiza a data de alteração do quiz
+		$.get('../../quiz/update_timestamp', {id_quiz:quiz_alteracao}, function(e){
+			if(e == 'ok'){
+				if(!url){
+					window.location.href=prox_url;
+				}else{
+					window.location.href=url;
+				}
+			}
+		});
 	},
-	redireciona:function(qtdGrupos, index, url, prox_url)
-	{
-		if((qtdGrupos-1) == index){
-					if(!url || url == ''){
-						window.location.href=prox_url;
-					}else{
-						window.location.href=url;
-					}
-				};
-	},
-
 	salva_customizacao: function(url){
 		prox_url = $('#btn-proxima-etapa-3-customizacao').attr('href');
 		//Variáveis das configurações de Pergunstas e Respostas
@@ -504,9 +478,9 @@ var eventos_back = {
 		var referencia_resultados_tamanho = $('select[name="referencia-resultados-tamanho"]').val(), referencia_resultados_cor = $('input[name="referencia-resultados-cor"]').val(), referencia_resultados_alinhamento = $('input[name="ireferencia-resultados-alinhamento"]').val();
 		var botoes_resultados_cor = $('input[name="botoes-resultados-cor"]').val(), botoes_resultados_cor_fundo = $('input[name="botoes-resultados-cor-fundo"]').val();
 		var imagem_resultados_fundo = $('img#alvo-resultados').attr('src'), resultados_cor_fundo = $('#imagem-resultados-cor-fundo').val();
-
+		
 		console.log({id_config:id_config, id_quiz:id_quiz, titulo_tamanho:titulo_tamanho, titulo_cor:titulo_cor, titulo_alinhamento:titulo_alinhamento, pergunta_tamanho:pergunta_tamanho, perguntas_cor:perguntas_cor, perguntas_alinhamento:perguntas_alinhamento, referencia_tamanho:referencia_tamanho, referencia_cor:referencia_cor, referencia_alinhamento:referencia_alinhamento, resposta_tamanho:resposta_tamanho, resposta_cor:resposta_cor, resposta_alinhamento:resposta_alinhamento, resposta_cor_fundo:resposta_cor_fundo, botoes_cor:botoes_cor, botoes_cor_fundo:botoes_cor_fundo, pergunta_cor_fundo:pergunta_cor_fundo, pergunta_imagem_fundo:pergunta_imagem_fundo, titulo_quiz_resultados_tamanho:titulo_quiz_resultados_tamanho, titulo_quiz_resultados_cor:titulo_quiz_resultados_cor, titulo_quiz_resultados_alinhamento:titulo_quiz_resultados_alinhamento, titulo_resultatados_tamanho:titulo_resultatados_tamanho, titulo_resultados_cor:titulo_resultados_cor, titulo_resultados_alinhamento:titulo_resultados_alinhamento, acertos_tamanho:acertos_tamanho, acertos_cor:acertos_cor, acertos_alinhamento:acertos_alinhamento, descricao_tamanho:descricao_tamanho, descricao_cor:descricao_cor, descricao_alinhamento:descricao_alinhamento, referencia_resultados_tamanho:referencia_resultados_tamanho, referencia_resultados_cor:referencia_resultados_cor, referencia_resultados_alinhamento:referencia_resultados_alinhamento, botoes_resultados_cor:botoes_resultados_cor, botoes_resultados_cor_fundo:botoes_resultados_cor_fundo, imagem_resultados_fundo:imagem_resultados_fundo, resultados_cor_fundo:resultados_cor_fundo});
-
+				
 		$.get("../../customizacao/update/",
 			{id_config:id_config, id_quiz:id_quiz, titulo_tamanho:titulo_tamanho, titulo_cor:titulo_cor, titulo_alinhamento:titulo_alinhamento, pergunta_tamanho:pergunta_tamanho, pergunta_cor:perguntas_cor, perguntas_alinhamento:perguntas_alinhamento, referencia_tamanho:referencia_tamanho, referencia_cor:referencia_cor, referencia_alinhamento:referencia_alinhamento, resposta_tamanho:resposta_tamanho, resposta_cor:resposta_cor, resposta_alinhamento:resposta_alinhamento, resposta_cor_fundo:resposta_cor_fundo, botoes_cor:botoes_cor, botoes_cor_fundo:botoes_cor_fundo, pergunta_cor_fundo:pergunta_cor_fundo, pergunta_imagem_fundo:pergunta_imagem_fundo, titulo_quiz_resultados_tamanho:titulo_quiz_resultados_tamanho, titulo_quiz_resultados_cor:titulo_quiz_resultados_cor, titulo_quiz_resultados_alinhamento:titulo_quiz_resultados_alinhamento, titulo_resultatados_tamanho:titulo_resultatados_tamanho, titulo_resultados_cor:titulo_resultados_cor, titulo_resultados_alinhamento:titulo_resultados_alinhamento, acertos_tamanho:acertos_tamanho, acertos_cor:acertos_cor, acertos_alinhamento:acertos_alinhamento, descricao_tamanho:descricao_tamanho, descricao_cor:descricao_cor, descricao_alinhamento:descricao_alinhamento, referencia_resultados_tamanho:referencia_resultados_tamanho, referencia_resultados_cor:referencia_resultados_cor, referencia_resultados_alinhamento:referencia_resultados_alinhamento, botoes_resultados_cor:botoes_resultados_cor, botoes_resultados_cor_fundo:botoes_resultados_cor_fundo, imagem_resultados_fundo:imagem_resultados_fundo, resultados_cor_fundo:resultados_cor_fundo},
 			function(e){
@@ -529,11 +503,11 @@ var eventos_back = {
 			var resposta = new Array();
 			var id       = $('#id-quiz').val();
 			var tipo     = $('#tipo-quiz').val();
-
+			
 			$('#slideInner').animate({
 			    'marginLeft' : result
 			},200);
-
+			
 			$('.slide').fadeOut(20).delay(160).fadeIn(20);
 			$('#botoes').hide();
 			$('.loader').show();
@@ -565,7 +539,7 @@ var eventos_back = {
 	    			});
 				}
 			);
-
+			      
 	    }else{ alert('Marque pelo menos uma resposta.'); }
 	},
 

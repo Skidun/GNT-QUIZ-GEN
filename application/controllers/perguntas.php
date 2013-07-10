@@ -127,21 +127,11 @@ class Perguntas extends CI_Controller {
 		$data['imagem'] 		 = $this->input->get('imagem', true);
 		$data['ordem'] 		 	 = $this->input->get('ordem', true);
 		$data['id_quiz'] 		 = $this->input->get('id_quiz', true);
-		/*
-		$id_quiz 				 = $this->input->get('id_quiz', true);
-		$time_stamp				 = $this->input->get('data_alteracao');
 
-		$valida_quiz 			 = $this->quiz_model->get($id_quiz);
-		*/
 		$create = $this->pergunta_model->create($data);
 		if($create){
 			#Variáveis necessárias para atualização do time_stamp do quiz	
-
-			$this->db->where('id_quiz', $this->input->get('id_quiz', true));
-			$query = $this->db->get('perguntas');
-			$last = $query->last_row('array');
-			$id_pergunta = $last['id'];
-			$retorno = array('result'=>'sucesso', 'id_pergunta'=> $id_pergunta);	
+			$retorno = array('result'=>'sucesso', 'id_pergunta'=> $create);	
 			echo json_encode($retorno);
 		}else{
 			$retorno = array('result'=>'falha');
@@ -176,10 +166,10 @@ class Perguntas extends CI_Controller {
 	{
 		#Se caso a imagem não for a padrão ele precisa remove-la do servidor
 		if($this->input->get('imagem', true)){
-			$img_perfil	 = explode(',',$this->input->get('imagem'));
-			$dir     = 'assets/server/php/files/';
-			$imagem	 = $img_perfil[1];
-			$remove_imagem = unlink('./'.$dir.$imagem);
+			@$img_perfil	 = explode(',',$this->input->get('imagem'));
+			@$dir     = 'assets/server/php/files/';
+			@$imagem	 = $img_perfil[1];
+			@$remove_imagem = unlink('./'.$dir.$imagem);
 		}
 		$filtro	 = 'id_pergunta';
 		$id_quiz = $this->input->get('id_quiz');

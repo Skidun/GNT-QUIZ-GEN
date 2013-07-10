@@ -30,8 +30,8 @@ class Pergunta_model extends CI_Model {
     public function create($data)
     {                
         $this->db->insert($this->table, $data);
-
-        return (bool) $this->db->affected_rows();
+        return $this->db->insert_id();
+        //return (bool) $this->db->affected_rows();
     }
 
     public function update($id, $data)

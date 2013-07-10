@@ -92,25 +92,15 @@ $(function(){
 	}
 		
 	/*File Upload de Todas as Páginas*/
-	$('.fileupload').each(function (index) {
+		$('.fileupload').each(function (index) {
 			$(this).fileupload({
 				done: function (e, data) {
 					var filess= data.files[0];
 					var filenam = filess.name;
-					$(this).find('img#alvo-'+index).attr('src','../../assets/server/php/files/'+filenam);
+					$(this).find('#alvo-pergunta-'+index).attr('src','../../assets/server/php/files/'+filenam);
 				}
 			});
-	});
-
-	$('.fileupload#form-file-upload-pergunta').each(function (index) {
-			$(this).fileupload({
-				done: function (e, data) {
-					var filess= data.files[0];
-					var filenam = filess.name;
-					$(this).find('img#alvo-pergunta-'+index).attr('src','../../assets/server/php/files/'+filenam);
-				}
-			});
-	});
+		});
 	
 	//Perfil
 	/*perguntas*/
@@ -181,10 +171,8 @@ $(function(){
 		$(this).parent().find('.sorteia').append('<div class="header novo"><span class="icon"></span><a href="" class="excluir excluir-dois"></a><div class="input"><input type="text" name="nome-resposta" id="nome-resposta-'+id+'" rel="'+id+'" value="" size=""/></div><select name="perfil-resposta" id="perfil-resposta-'+id+'" class="default">'+option+'</select></div>');
 		//coloca o novo select no esquema
 		$('select[name="perfil-resposta"]').dropkick();
-		if($(this).parents('.group').hasClass('salvo')){
-			$(this).parents('.group').removeClass('edit');
-			$(this).parents('.group').addClass('edit');
-		}
+		$(this).parents('.group').removeClass('edit');
+		$(this).parents('.group').addClass('edit');
 		$('.excluir-um').click(function(){ $(this).parents('.group').remove(); });
 		$('.excluir-dois').click(function(){ $(this).parents('.header').remove(); return false;});  
 		return false;

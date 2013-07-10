@@ -7,6 +7,11 @@
 							<tr>
 								<td>todos os usuários</td>
 							</tr>
+							<?php if($this->session->flashdata('retorno')):?>
+								<tr>
+									<td><?php echo $this->session->flashdata('retorno');?></td>
+								</tr>
+							<?php endif;?>
 						</thead>
 						<tbody>
 							<?php 
