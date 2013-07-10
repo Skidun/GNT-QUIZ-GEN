@@ -15,6 +15,7 @@ class Install extends CI_Controller {
 		$users = $this->user_model->get();
 		if($users){
 			$data['already_installed'] = TRUE;
+			redirect('login');
 		}else{
 			$data['already_installed'] = FALSE;
 		}

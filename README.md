@@ -17,3 +17,4 @@ Sistema gerador de Quizes para o site do canal GNT.
 </ul>
 <h2>Documentação de funcionalidade da aplicação</h2>
 <a href="https://docs.google.com/a/skidun.com.br/document/d/1p58w87IsHUNFcaF7wb4AspSa-YkXghv9QdHSe9oD2Dw/edit" target="_blank">Documentação</a>
+<a href="https://drive.google.com/folderview?id=0B2--doe41tKdc3V6NGJHYVZELTg&usp=sharing" target="_blank">JPGs das telas do sistema</a>
