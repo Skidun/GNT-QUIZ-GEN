@@ -49,19 +49,56 @@
 									<div class="titulo-respostas">Respostas:</div>
 									
 									<div id="sortable0" class="sorteia">
-										
-												<div class="header">
-													<span class="icon"></span>
-													<a class="excluir excluir-dois"></a>
-													<div class="input"><input type="text" name="nome-resposta" id="nome-resposta-0" value="" size="" /></div>
-													<select name="perfil-resposta" id="perfil-resposta-0" class="default">
-														<?php echo $option_perfil;?>
-													</select>
-												</div>
-										
-									</div>
+												<?php 
+													switch ($tipo) {
+														case 'perfil':
+												?>		
+															<div class="header">
+																<span class="icon"></span>
+																<a class="excluir excluir-dois"></a>
+																<div class="input"><input type="text" name="nome-resposta" id="nome-resposta-0" value="" size="" /></div>
+																<select name="perfil-resposta" id="perfil-resposta-0" class="default">
+																	<?php echo $option_perfil;?>
+																</select>
+															</div>
+												<?php 
+													break;
+													case 'certo-ou-errado':
+												?>
+														<div class="header">
+															<span class="icon"></span>
+															<a class="excluir excluir-dois"></a>
+															<div class="input"><input type="text" name="nome-resposta" id="nome-resposta-0" value="" size="" /></div>
+															<div class="radio">
+																<label for="radio00" class="radioCustom"></label>
+																<input type="radio" id="radio00" value="0" name="grupo0" />
+																Esta é a resposta correta
+															</div>
+														</div>
 
-									<a id="nova-resposta-perfil" class="nova-resposta" href="javascript:void(0)"></a>
+														<div class="header">
+															<span class="icon"></span>
+															<a class="excluir excluir-dois"></a>
+															<div class="input"><input type="text" name="nome-resposta" id="nome-resposta-0" value="" size="" /></div>
+															<div class="radio">
+																<label for="radio10" class="radioCustom"></label>
+																<input type="radio" id="radio10" value="1" name="grupo0" />
+																Esta é a resposta correta
+															</div>
+														</div>
+												<?php break;?>
+												<?php }?>
+									</div>
+									<?php 
+										switch ($tipo) {
+											case 'perfil':
+												echo '<a id="nova-resposta-perfil" class="nova-resposta" href="javascript:void(0)"></a>';
+												break;
+											case 'certo-ou-errado':
+												
+											break;
+										}
+									?>
 								</div><!--respostas-->
 
 							</div><!--body-->							
@@ -71,7 +108,16 @@
 				</div><!--accordion-->			
 
 				<div class="holder">
-					<a id="nova-pergunta-perfil" class="nova-pergunta" href="#"></a>
+					<?php 
+						switch ($tipo) {
+							case 'perfil':
+								echo '<a id="nova-pergunta-perfil" class="nova-pergunta" href="#"></a>';
+							break;
+							case 'certo-ou-errado':
+								echo '<a id="nova-pergunta-certo" class="nova-pergunta" href="#"></a>';
+							break;
+						}
+					?>
 				</div>
 				
 				<a class="voltar" href="<?php echo base_url();?>quiz_tipo/<?php echo $tipo;?>/<?php echo $id;?>" rel="link-interno" title="voltar"></a>

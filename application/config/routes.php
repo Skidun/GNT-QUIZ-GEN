@@ -40,6 +40,8 @@
 
 $route['default_controller'] 		= "login/restrict";
 $route['404_override'] 				= '';
+$route['perguntas/certo-ou-errado/(:num)']= 'perguntas/faixa/$1';
+
 //Routes of controller Quiz
 $route['cadastrar-novo-quiz']	 	= "quiz/create";
 $route['visualizar-todos-quizes']	= "quiz";

@@ -361,7 +361,6 @@ var eventos_back = {
 							$(grupo).addClass('salvo');
 							$(grupo).removeClass('edit');
 							//Vamos salvar a resposta agora
-							alert(e.id_pergunta);
 							$(box_resposta).each(function(index_resp){
 								var resposta 	= $(this).find('.input input[name="nome-resposta"]').val(), perfil_resposta = $(this).find('select[name=perfil-resposta]').val(), ordem_resp = index_resp;
 							    //Log do cadastro

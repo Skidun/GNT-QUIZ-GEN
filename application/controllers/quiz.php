@@ -118,7 +118,7 @@ class Quiz extends CI_Controller {
 		        	
 		        	case 'certo-ou-errado':
 		        		//$this->session->set_flashdata('id_quiz', $id);
-		        		redirect('quiz_tipo/faixa/'.$id);
+		        		redirect('perguntas/certo-ou-errado/'.$id);
 		        		break;
 		        	
 		        	case 'resposta-certa':
