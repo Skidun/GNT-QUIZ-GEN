@@ -24,7 +24,7 @@
 										<ul class="menu-editar">
 											<li><div class="editar"></div>
 												<ul class="nav2">
-													<li><a href="#">nome e tipo</a></a></li>
+													<li><a href="#">nome</a></a></li>
 													<li><a href="#">perfis</a></a></li>
 													<li><a href="#">perguntas & respostas</a></a></li>
 													<li><a href="#">customizacao</a></a></li>
@@ -46,7 +46,7 @@
 										<ul class="menu-editar">
 											<li><div class="editar"></div>
 												<ul class="nav2">
-													<li><a href="#">nome e tipo</a></a></li>
+													<li><a href="#">nome</a></a></li>
 													<li><a href="#">perfis</a></a></li>
 													<li><a href="#">perguntas & respostas</a></a></li>
 													<li><a href="#">customizacao</a></a></li>
@@ -68,7 +68,7 @@
 										<ul class="menu-editar">
 											<li><div class="editar"></div>
 												<ul class="nav2">
-													<li><a href="#">nome e tipo</a></a></li>
+													<li><a href="#">nome</a></a></li>
 													<li><a href="#">perfis</a></a></li>
 													<li><a href="#">perguntas & respostas</a></a></li>
 													<li><a href="#">customizacao</a></a></li>
@@ -90,7 +90,7 @@
 										<ul class="menu-editar">
 											<li><div class="editar"></div>
 												<ul class="nav2">
-													<li><a href="#">nome e tipo</a></a></li>
+													<li><a href="#">nome</a></a></li>
 													<li><a href="#">perfis</a></a></li>
 													<li><a href="#">perguntas & respostas</a></a></li>
 													<li><a href="#">customizacao</a></a></li>
@@ -112,7 +112,7 @@
 										<ul class="menu-editar">
 											<li><div class="editar"></div>
 												<ul class="nav2">
-													<li><a href="#">nome e tipo</a></a></li>
+													<li><a href="#">nome</a></a></li>
 													<li><a href="#">perfis</a></a></li>
 													<li><a href="#">perguntas & respostas</a></a></li>
 													<li><a href="#">customizacao</a></a></li>
@@ -134,7 +134,7 @@
 										<ul class="menu-editar">
 											<li><div class="editar"></div>
 												<ul class="nav2">
-													<li><a href="#">nome e tipo</a></a></li>
+													<li><a href="#">nome</a></a></li>
 													<li><a href="#">perfis</a></a></li>
 													<li><a href="#">perguntas & respostas</a></a></li>
 													<li><a href="#">customizacao</a></a></li>

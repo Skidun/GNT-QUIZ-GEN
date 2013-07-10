@@ -23,6 +23,7 @@
 								<span class="icon"></span>
 								<div class="input"><input type="text" name="nome" value="" size="" /></div>
 								<span class="arrow"></span>
+								<span class="excluir excluir-um"></span>
 							</div>
 							<div class="body">							
 								<div id="perguntas">								
@@ -55,6 +56,7 @@
 										
 												<div class="header">
 													<span class="icon"></span>
+													<span class="excluir excluir-dois"></span>
 													<div class="input"><input type="text" name="nome" value="" size="" /></div>
 													<div class="radio">
 														<label for="radio00" class="radioCustom"></label>
@@ -65,6 +67,7 @@
 												
 												<div class="header">
 													<span class="icon"></span>
+													<span class="excluir excluir-dois"></span>
 													<div class="input"><input type="text" name="nome" value="" size="" /></div>
 													<div class="radio">
 														<label for="radio10" class="radioCustom"></label>

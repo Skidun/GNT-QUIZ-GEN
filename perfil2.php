@@ -24,6 +24,7 @@
 								<span class="icon"></span>
 								<div class="input"><input type="text" name="nome" value="" size="" /></div>
 								<span class="arrow"></span>
+								<span class="excluir excluir-um"></span>
 							</div>
 							<div class="body">							
 								<div id="perguntas">								
@@ -55,6 +56,7 @@
 										
 												<div class="header">
 													<span class="icon"></span>
+													<span class="excluir excluir-dois"></span>
 													<div class="input"><input type="text" name="nome" value="" size="" /></div>
 													<select name="resposta-00" class="default">
 														<option value="1">Amiga de todos</option>
@@ -64,6 +66,7 @@
 												
 												<div class="header">
 													<span class="icon"></span>
+													<span class="excluir excluir-dois"></span>
 													<div class="input"><input type="text" name="nome" value="" size="" /></div>
 													<select name="resposta-10" class="default">
 														<option value="1">Amiga de todos</option>

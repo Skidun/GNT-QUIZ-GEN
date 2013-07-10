@@ -22,6 +22,7 @@
 								<span class="icon"></span>
 								<div class="input"><input type="text" name="nome" value="" size="" /></div>
 								<span class="arrow"></span>
+								<span class="excluir excluir-um"></span>
 							</div>
 							<div class="body">
 								<!--O numero de identificacao do slider deve vir salvo do BD, o restante ele calcula dinamicamente para ser salvo-->
