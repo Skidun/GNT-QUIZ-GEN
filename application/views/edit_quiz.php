@@ -25,7 +25,7 @@
 						</tbody>
 					</table>					
 				</div>
-				<input type="submit" name="criar-quiz" class="criar-quiz" id="criar-quiz" value="" />
+				<input type="submit" name="criar-quiz" class="btn-editar-quiz" id="criar-quiz" value="" />
 				<?php echo form_close();?>
 			</div>
 		</div>

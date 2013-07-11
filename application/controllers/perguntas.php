@@ -216,7 +216,7 @@ class Perguntas extends CI_Controller {
 												<span class="icon"></span>
 												<div class="input"><input type="text" name="nome" id="nome-pergunta-'.$count.'" value="'.$pergunta->pergunta.'" size="" /></div>
 												<span class="arrow"></span>
-												<a href="'.site_url('remover-pergunta').'/'.$pergunta->id.'" id="pergunta-'.$count.'" rel="'.$pergunta->id_quiz.'" class="excluir excluir-um" title="Excluir esta perguta"></a>
+												<a href="'.site_url('remover-pergunta-ce').'/'.$pergunta->id.'" id="pergunta-'.$count.'" rel="'.$pergunta->id_quiz.'" class="excluir excluir-pergunta-ce" title="Excluir esta perguta"></a>
 											</div>
 											<div class="body">							
 												<div id="perguntas">								
@@ -290,6 +290,28 @@ class Perguntas extends CI_Controller {
 		$data['quantidade']		= $this->pergunta_model->count_rows($id);
 		#Chama a view dentro do template
 		$this->template->show('perguntas', $data);
+	}
+
+	#Método que salva a pergunta do tipo Certo ou Errado
+	public function save_pergunta_certo_ou_errado()
+	{
+		$data['pergunta'] 		 = $this->input->get('texto', true);
+		$data['link_referencia'] = $this->input->get('link_referencia', true);
+		$data['texto_link'] 	 = $this->input->get('texto_link', true);
+		$data['imagem'] 		 = $this->input->get('imagem', true);
+		$data['ordem'] 		 	 = $this->input->get('ordem', true);
+		$data['id_quiz'] 		 = $this->input->get('id_quiz', true);
+
+		$create = $this->pergunta_model->create($data);
+		if($create){
+			#Variáveis necessárias para atualização do time_stamp do quiz	
+			$retorno = array('result'=>'sucesso', 'id_pergunta'=> $create);	
+			echo json_encode($retorno);
+		}else{
+			$retorno = array('result'=>'falha');
+			echo json_encode($retorno);
+		}
+			
 	}
 }
 

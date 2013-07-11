@@ -43,9 +43,19 @@ class Quiz extends CI_Controller {
 							<li><div class="editar"></div>
 								<ul class="nav2">
 									<li><a href="'.site_url('editar-quiz').'/'.$quiz->id.'">nome</a></a></li>
-									<li><a href="'.site_url('quiz_tipo').'/'.$quiz->tipo.'/'.$quiz->id.'">perfis</a></a></li>
-									<li><a href="'.site_url('perguntas').'/'.$quiz->tipo.'/'.$quiz->id.'">perguntas & respostas</a></a></li>
-									<li><a href="'.site_url('customizacao/'.$quiz->tipo.'/'.$quiz->id).'">customizacao</a></a></li>
+									';
+									switch ($quiz->tipo) {
+										case 'perfil':
+					$tr .=					'<li><a href="'.site_url('quiz_tipo').'/'.$quiz->tipo.'/'.$quiz->id.'">perfis</a></a></li>
+											 <li><a href="'.site_url('perguntas').'/'.$quiz->tipo.'/'.$quiz->id.'">perguntas & respostas</a></a></li>';
+										break;
+
+										default:
+					$tr .=					'<li><a href="'.site_url('perguntas').'/'.$quiz->tipo.'/'.$quiz->id.'">perguntas & respostas</a></a></li>
+											 <li><a href="'.site_url('quiz_tipo').'/'.$quiz->tipo.'/'.$quiz->id.'">faixas de classificação</a></a></li>';
+											break;
+									}
+					$tr .=		'	<li><a href="'.site_url('customizacao/'.$quiz->tipo.'/'.$quiz->id).'">customizacao</a></a></li>
 									<li><a href="'.site_url('remover-quiz').'/'.$quiz->id.'" id="btn-excluir-quiz">excluir</a></a></li>
 								</ul>
 							</li>

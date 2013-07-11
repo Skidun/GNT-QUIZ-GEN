@@ -71,7 +71,7 @@
 															<div class="input"><input type="text" name="nome-resposta" id="nome-resposta-0" value="" size="" /></div>
 															<div class="radio">
 																<label for="radio00" class="radioCustom"></label>
-																<input type="radio" id="radio00" value="0" name="grupo0" />
+																<input type="radio" id="radio00" name="grupo0" value="" />
 																Esta é a resposta correta
 															</div>
 														</div>
@@ -82,7 +82,7 @@
 															<div class="input"><input type="text" name="nome-resposta" id="nome-resposta-0" value="" size="" /></div>
 															<div class="radio">
 																<label for="radio10" class="radioCustom"></label>
-																<input type="radio" id="radio10" value="1" name="grupo0" />
+																<input type="radio" id="radio10" name="grupo0" value=""/>
 																Esta é a resposta correta
 															</div>
 														</div>
@@ -119,9 +119,20 @@
 						}
 					?>
 				</div>
-				
-				<a class="voltar" href="<?php echo base_url();?>quiz_tipo/<?php echo $tipo;?>/<?php echo $id;?>" rel="link-interno" title="voltar"></a>
-				<a class="proxima-etapa" href="<?php echo base_url();?>customizacao/<?php echo $tipo;?>/<?php echo $id;?>" rel="link-interno" id="btn-proxima-etapa-2-perguntas" title="próxima etapa" onclick="return false;"></a>
-			
+				<?php 
+					switch ($tipo) {
+						case 'perfil':
+				?>
+							<a class="voltar" href="<?php echo base_url();?>quiz_tipo/<?php echo $tipo;?>/<?php echo $id;?>" rel="link-interno" title="voltar"></a>
+							<a class="proxima-etapa" href="<?php echo base_url();?>customizacao/<?php echo $tipo;?>/<?php echo $id;?>" rel="link-interno" id="btn-proxima-etapa-2-perguntas" title="próxima etapa" onclick="return false;"></a>
+				<?php
+						break;
+						case 'certo-ou-errado':
+				?>
+							<a class="proxima-etapa" href="<?php echo base_url();?>quiz_tipo/<?php echo $tipo;?>/<?php echo $id;?>" rel="link-interno" id="btn-proxima-etapa-1-perguntas-CE" title="próxima etapa" onclick="return false;"></a>
+				<?php
+						break; 
+					}
+				?>
 			</div>
 		</div>
