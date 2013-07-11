@@ -502,7 +502,7 @@ var eventos_back = {
 			if(nome == '' || nome == 'Preencha esse campo'){
 				$('#nome-pergunta-'+index).val('Preencha esse campo')
 				return false;
-			}else if(!$(this).hasClass('salvo')){
+			}else if(!$(this).hasClass('salvo') && !$(this).hasClass('edit')){
 				var grupo = $(this).attr('id', index);
 				//Verifica se os campos nome da pergunta, imagem e resposta não estão vazios.
 				$(this).find('.input input[name="nome-resposta"]').each(function(){
@@ -513,10 +513,15 @@ var eventos_back = {
 				 		return false;
 				 	}
 				});
-				//Salva a pergunta via ajax	
-				$.getJSON(
-					'../save_pergunta_certo_ou_errado', 
-					{texto:nome, link_referencia:link, texto_link:texto, imagem:imagem, id_quiz:id_quiz, ordem:ordem},
+				//Salva a pergunta via ajax
+				$.ajax({
+					url: '../save_pergunta_certo_ou_errado',
+					type: 'GET',
+					async: false,
+					dataType: 'JSON',
+					data: {texto:nome, link_referencia:link, texto_link:texto, imagem:imagem, id_quiz:id_quiz, ordem:ordem}
+				})
+				.done(
 					function(e){							
 						if(e.result == 'sucesso'){
 							$(grupo).addClass('salvo');
@@ -528,23 +533,27 @@ var eventos_back = {
 							    //Log do cadastro
 							    console.log('Pergunta: '+nome+' ID: '+e.id_pergunta+' | Resposta: '+resposta+' - Certo ou errado: '+certa_ou_errada);
 									    
-							    $.get('../../respostas/save_resposta_perfil',
-								    {texto:resposta, tipo_resposta:tipo_quiz, perfil_resposta:certa_ou_errada, id_pergunta:e.id_pergunta, id_quiz:id_quiz, ordem:ordem_resp},
-								    function(e_resp){
-								    	if(e_resp == 'sucesso'){
-								    		//log do cadastro da resposta
-								    		console.log('Sucesso');
-								    	}else{
-								    		//log do erro do cadastro da resposta
-								    		console.log('Falha ao cadastrar resposta');
-								    	}
-								   	}
-								);
+							    $.ajax({
+							    		url: '../../respostas/save_resposta_perfil',
+							    		type: 'GET',
+							    		async: false,
+							    		data: {texto:resposta, tipo_resposta:tipo_quiz, perfil_resposta:certa_ou_errada, id_pergunta:e.id_pergunta, id_quiz:id_quiz, ordem:ordem_resp},
+							    		success: function(e_resp){
+							    			if(e_resp == 'sucesso'){
+									    		//log do cadastro da resposta
+									    		console.log('Sucesso');
+									    	}else{
+									    		//log do erro do cadastro da resposta
+									    		console.log('Falha ao cadastrar resposta');
+									    	}
+							    		}
+							    });
 							});
 						}else{
 							alert('Ocorreu uma falha ao tentar cadastrar a pergunta');
 						}
-				});
+					}
+				);	
 				
 			}else if($(this).hasClass('edit')){
 				//Variáveis que pegam os
@@ -562,10 +571,13 @@ var eventos_back = {
 				$(box_resposta).each(function(index_resp){
 					var resposta = $(this).find('.input input[name="nome-resposta"]').val(), id_resposta = $(this).find('.input input[name="id-resposta"]').val(),  perfil_resposta = $(this).find('select[name=perfil-resposta]').val();
 				   	if($(this).hasClass('novo')){
-					   	$.get('../../respostas/save_resposta_perfil',
-						    {texto:resposta, tipo_resposta:tipo_quiz, perfil_resposta:perfil_resposta, id_pergunta:id_pergunta, id_quiz:id_quiz, ordem:index_resp},
-						    function(e_resp){
-							   	console.log({texto:resposta, tipo_resposta:tipo_quiz, perfil_resposta:perfil_resposta, id_pergunta:id_pergunta, id_quiz:id_quiz});
+					   	$.ajax({
+					   		url: '../../respostas/save_resposta_perfil',
+					   		type: 'GET',
+					   		async: false,
+					   		data: {texto:resposta, tipo_resposta:tipo_quiz, perfil_resposta:perfil_resposta, id_pergunta:id_pergunta, id_quiz:id_quiz, ordem:index_resp},
+					   		success: function(e_resp){
+					   			console.log({texto:resposta, tipo_resposta:tipo_quiz, perfil_resposta:perfil_resposta, id_pergunta:id_pergunta, id_quiz:id_quiz});
 							   	if(e_resp == 'sucesso'){
 							   		//log do cadastro da resposta
 									console.log('Sucesso');
@@ -573,12 +585,15 @@ var eventos_back = {
 									//log do erro do cadastro da resposta
 								 	console.log('Falha ao cadastrar resposta');
 								}
-							}
-						);
+					   		}
+					   	});
 					}else{
-					   	$.get('../../respostas/update_resposta_perfil',
-						   	{texto:resposta, tipo_resposta:tipo_quiz, perfil_resposta:perfil_resposta, id_pergunta:id_pergunta, id_quiz:id_quiz, id_resposta:id_resposta, ordem:index_resp},
-							function(e_resp){
+						$.ajax({
+					   		url: '../../respostas/update_resposta_perfil',
+					   		type: 'GET',
+					   		async: false,
+					   		data: {texto:resposta, tipo_resposta:tipo_quiz, perfil_resposta:perfil_resposta, id_pergunta:id_pergunta, id_quiz:id_quiz, id_resposta:id_resposta, ordem:index_resp},
+					   		success: function(e_resp){
 							//console.log({texto:resposta, tipo_resposta:tipo_quiz, perfil_resposta:perfil_resposta, id_pergunta:id_pergunta, id_quiz:id_quiz, id_resposta:id_resposta});
 								if(e_resp == 'sucesso'){
 								  	console.log('Sucesso');
@@ -586,44 +601,70 @@ var eventos_back = {
 									console.log('Falha ao atualizar resposta');
 								}
 					   		}
-					   	);			
+					   	});		
 					}
 				});//Fim do Loop dos campos de respostas
-				//Atualiza a pergunta			
-				$.getJSON(
-					'../update_pergunta_perfil',
-					{texto:nome, link_referencia:link, texto_link:texto, imagem:imagem, id_quiz:id_quiz, id_pergunta:id_pergunta, ordem:ordem},
-					function(e){
+				//Atualiza a pergunta
+				$.ajax({
+					url: '../update_pergunta_perfil',
+					async: false,
+					dataType: 'JSON',
+					data: {texto:nome, link_referencia:link, texto_link:texto, imagem:imagem, id_quiz:id_quiz, id_pergunta:id_pergunta, ordem:ordem},
+					success: function(e){
 						if(e.result == 'sucesso'){
 							$(grupo).removeClass('edit');
 							//Vamos salvar a resposta agora
 							//Após
 							//Atualiza a data de alteração do quiz
-								
-							$.get('../../quiz/update_timestamp', {id_quiz:quiz_alteracao}, function(e){
-								if(e == 'ok'){
-										if(!url){
-											window.location.href=prox_url;
-										}else{
-											window.location.href=url;
-										}
-								}
-							});
+							$.ajax({
+								url: '../../quiz/update_timestamp',
+								async: false,
+								data: {id_quiz:quiz_alteracao},
+								success: function(e){
+									if(e == 'ok'){
+											if(!url){
+												window.location.href=prox_url;
+											}else{
+												window.location.href=url;
+											}
+									}
+								}	
+							});	
+							
 						}else{
-							//	alert('Ocorreu uma falha ao tentar cadastrar o quiz');
+							alert('Ocorreu uma falha ao tentar cadastrar o quiz');
 						}
-					});
+					}
+				});			
 			}else{
 				//Atualiza a data de alteração do quiz
-				$.get('../../quiz/update_timestamp', {id_quiz:quiz_alteracao}, function(e){
+				$.ajax({
+					url: '../../quiz/update_timestamp',
+					async:false,
+					data: {id_quiz:quiz_alteracao},
+					success: function(e){
 					
 						if(!url){
 							window.location.href=prox_url;
 						}else{
 							window.location.href=url;
 						}
-				});	
+					}
+				});
 			};//Fim da Edição da pergunta
+		});
+		//Atualiza a data de alteração do quiz
+		$.ajax({
+			url: '../../quiz/update_timestamp',
+			async:false,
+			data: {id_quiz:quiz_alteracao},
+			success: function(e){	
+				if(!url){
+					window.location.href=prox_url;
+				}else{
+					window.location.href=url;
+				}
+			}
 		});
 	},
 

@@ -258,13 +258,28 @@ class Perguntas extends CI_Controller {
 																	<span class="icon"></span>
 																	<a href="'.site_url('remover-resposta').'/'.$resposta->id.'" class="excluir excluir-dois" rel="'.$resposta->id_quiz.'"></a>
 																	<div class="input">
-																	<input type="text" name="nome-resposta" id="nome-resposta-'.$count_resp.'" value="'.$resposta->resposta.'" size="" />
-																	<input type="hidden" name="id-resposta" id="id-resposta-'.$count_resp.'" value="'.$resposta->id.'"/>
-																	<div class="radio">
-																		<label for="radio00" class="radioCustom"></label>
-																		<input type="radio" id="radio00" value="0" name="grupo0" />
-																		Esta é a resposta correta
+																		<input type="text" name="nome-resposta" id="nome-resposta-'.$count_resp.'" value="'.$resposta->resposta.'" size="" />
+																		<input type="hidden" name="id-resposta" id="id-resposta-'.$count_resp.'" value="'.$resposta->id.'"/>
 																	</div>
+																	
+																	<div class="radio">
+											';
+					if($resposta->perfil_resposta == '10'){
+
+						$list_perguntas		.=							'<label for="radio10" class="radioCustom"></label>
+																		<input type="radio" id="radio'.$count_resp.'0" name="grupo'.$count_resp.$count.'" value="'.$resposta->perfil_resposta.'" checked="checked"/>
+																		Esta é a resposta correta
+																		';
+					
+					}else{
+						$list_perguntas		.=							'<label for="radio10" class="radioCustom"></label>
+																		 <input type="radio" id="radio'.$count_resp.'0" name="grupo'.$count_resp.$count.'" value="'.$resposta->perfil_resposta.'"/>
+																		 Esta é a resposta correta
+																		';
+
+														}												
+											
+					$list_perguntas 	.=	'
 																	</div>
 																</div>
 										';
