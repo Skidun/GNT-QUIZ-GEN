@@ -217,9 +217,13 @@ var eventos_back = {
 		// Eventos do quiz tipo Certo ou errado
 		//---------------------------------------
 		//Quando o usuário marca alguma resposta é atribuido a ela o peso 10
-		$('input:radio').on('click', function(){
+		$('.group').each(function(index){
+			$(this).find('input:radio').on('click', function(){
+				alert('uii, num cutuca');
+				$(this).parents('.group').addClass('edit');
 				$('input:radio').val(0)
 				$('input:radio:checked').val('10');
+			});
 		});
 		//Quando clicar em proxima etapa
 		$('#btn-proxima-etapa-1-perguntas-CE').on('click', function(event){
@@ -258,14 +262,15 @@ var eventos_back = {
 		}
 	},
 
-
-
 	valida_timestamp: function(evento)
 	{
 		var data_alteracao = $('#data_alteracao').val(), id_quiz = $('#id_quiz').val();
 
-		$.get('../../quiz/valida_timestamp', {id:id_quiz, data_alteracao:data_alteracao}).done(
-			function(e){
+		$.ajax({
+			url: '../../quiz/valida_timestamp',
+			async: false,
+			data: {id:id_quiz, data_alteracao:data_alteracao},
+			success: function(e){
 				if(e == 'ok'){
 					if(evento == 'perfil'){
 						eventos_back.salva_perfil();
@@ -282,7 +287,7 @@ var eventos_back = {
 					window.location.reload();
 				}	
 			}
-		);
+		});
 		return false;
 	},
 
@@ -295,10 +300,11 @@ var eventos_back = {
 				return false;
 			}else if(!$(this).hasClass('salvo')){
 				var grupo = $(this).attr('id', index);
-				$.getJSON(
-					'../save_perfil',
-					{titulo:titulo, descricao:descricao, link_referencia:link, texto_link:texto, imagem:imagem, id_quiz:id_quiz},
-					function(e){
+				$.ajax({
+					url: '../save_perfil',
+					async: false,
+					data: {titulo:titulo, descricao:descricao, link_referencia:link, texto_link:texto, imagem:imagem, id_quiz:id_quiz},
+					success: function(e){
 						if(e.result == 'sucesso'){
 							$(grupo).removeClass('edit');
 							$(grupo).addClass('salvo');
@@ -309,13 +315,14 @@ var eventos_back = {
 							}
 						}
 					}
-				);
+				});
 				console.log(index+' | Titulo: '+titulo+' Descrição: '+descricao+ ' link: '+link+' Texto do Link: '+texto+ ' Imagem: '+imagem);
 			}else if($(this).hasClass('edit')){
-				$.get(
-					'../update_perfil/',
-					{id:id_perfil, titulo:titulo, descricao:descricao, link_referencia:link, texto_link:texto, imagem:imagem},
-					function(e){
+				$.ajax({
+					url: '../update_perfil/',
+					async: false,
+					data: {id:id_perfil, titulo:titulo, descricao:descricao, link_referencia:link, texto_link:texto, imagem:imagem},
+					success: function(e){
 						if(e == 'sucesso'){
 							$(grupo).removeClass('edit');
 							$(grupo).removeClass('salvo');
@@ -330,7 +337,7 @@ var eventos_back = {
 							console.log('houve uma falha');
 						}
 					}
-				);
+				});
 			}else{
 				if(!url){
 					window.location.href=prox_url;
@@ -365,126 +372,148 @@ var eventos_back = {
 			if(nome == '' || nome == 'Preencha esse campo'){
 				$('#nome-pergunta-'+index).val('Preencha esse campo')
 				return false;
-			}else if(!$(this).hasClass('salvo')){
-				var grupo = $(this).attr('id', index);
-				//Verifica se os campos nome da pergunta, imagem e resposta não estão vazios.
-				$(this).find('.input input[name="nome-resposta"]').each(function(){
-				 	if(this.value == '' || this.value == 'Preencha esse campo'){
-				 		this.value='';
-				 		this.value="Preencha esse campo";
-				 		return false;
-				 	}
-				});
-
-				//Salva a pergunta via ajax
-				$.getJSON(
-					'../save_pergunta_perfil', 
-					{texto:nome, link_referencia:link, texto_link:texto, imagem:imagem, id_quiz:id_quiz, ordem:ordem},
-					function(e){							
-						if(e.result == 'sucesso'){
-							$(grupo).addClass('salvo');
-							$(grupo).removeClass('edit');
-							//Vamos salvar a resposta agora
-							$(box_resposta).each(function(index_resp){
-								var resposta 	= $(this).find('.input input[name="nome-resposta"]').val(), perfil_resposta = $(this).find('select[name=perfil-resposta]').val(), ordem_resp = index_resp;
-							    //Log do cadastro
-							    console.log('Pergunta: '+nome+' ID: '+e.id_pergunta+' | Resposta: '+resposta+' - Perfil: '+perfil_resposta);
-									    
-							    $.get('../../respostas/save_resposta_perfil',
-								    {texto:resposta, tipo_resposta:tipo_quiz, perfil_resposta:perfil_resposta, id_pergunta:e.id_pergunta, id_quiz:id_quiz, ordem:ordem_resp},
-								    function(e_resp){
-								    	if(e_resp == 'sucesso'){
-								    		//log do cadastro da resposta
-								    		console.log('Sucesso');
-								    	}else{
-								    		//log do erro do cadastro da resposta
-								    		console.log('Falha ao cadastrar resposta');
-								    	}
-								   	}
-								);
-							});
-						}else{
-							alert('Ocorreu uma falha ao tentar cadastrar a pergunta');
-						}
-				});
-			}else if($(this).hasClass('edit')){
-				//Variáveis que pegam os
-				//Verifica se os campos nome da pergunta, imagem e resposta não estão vazios.
-				$(this).find('.input input[name="nome-resposta"]').each(function(){
-					if(this.value == '' || this.value == 'Preencha esse campo'){
-				 		this.value='';
-				 		this.value="Preencha esse campo";
-				 		return false;
+			}else{
+				if(!$(this).hasClass('salvo')){
+					var grupo = $(this).attr('id', index);
+					//Verifica se os campos nome da pergunta, imagem e resposta não estão vazios.
+					$(this).find('.input input[name="nome-resposta"]').each(function(){
+					 	if(this.value == '' || this.value == 'Preencha esse campo'){
+					 		this.value='';
+					 		this.value="Preencha esse campo";
+					 		return false;
 					 	}
-				});
+					});
 
-				var id_pergunta = $(this).find('input[name="id-pergunta"]').val();
-				//Salva uma nova resposta ou atualiza as respostas existentes 
-				$(box_resposta).each(function(index_resp){
-					var resposta = $(this).find('.input input[name="nome-resposta"]').val(), id_resposta = $(this).find('.input input[name="id-resposta"]').val(),  perfil_resposta = $(this).find('select[name=perfil-resposta]').val();
-				   	if($(this).hasClass('novo')){
-					   	$.get('../../respostas/save_resposta_perfil',
-						    {texto:resposta, tipo_resposta:tipo_quiz, perfil_resposta:perfil_resposta, id_pergunta:id_pergunta, id_quiz:id_quiz, ordem:index_resp},
-						    function(e_resp){
-							   	console.log({texto:resposta, tipo_resposta:tipo_quiz, perfil_resposta:perfil_resposta, id_pergunta:id_pergunta, id_quiz:id_quiz});
-							   	if(e_resp == 'sucesso'){
-							   		//log do cadastro da resposta
-									console.log('Sucesso');
+					//Salva a pergunta via ajax
+					$.ajax({
+						url: '../save_pergunta_perfil',
+						dataType: 'JSON',
+						async: false,
+						data: {texto:nome, link_referencia:link, texto_link:texto, imagem:imagem, id_quiz:id_quiz, ordem:ordem},
+						success: function(e){							
+							if(e.result == 'sucesso'){
+								$(grupo).addClass('salvo');
+								$(grupo).removeClass('edit');
+								//Vamos salvar a resposta agora
+								$(box_resposta).each(function(index_resp){
+									var resposta 	= $(this).find('.input input[name="nome-resposta"]').val(), perfil_resposta = $(this).find('select[name=perfil-resposta]').val(), ordem_resp = index_resp;
+								    //Log do cadastro
+								    console.log('Pergunta: '+nome+' ID: '+e.id_pergunta+' | Resposta: '+resposta+' - Perfil: '+perfil_resposta);
+									$.ajax({
+											url: '../../respostas/save_resposta_perfil',
+											async: false,
+											data: {texto:resposta, tipo_resposta:tipo_quiz, perfil_resposta:perfil_resposta, id_pergunta:e.id_pergunta, id_quiz:id_quiz, ordem:ordem_resp},
+											success:function(e_resp){
+										    	if(e_resp == 'sucesso'){
+										    		//log do cadastro da resposta
+										    		console.log('Sucesso');
+										    	}else{
+										    		//log do erro do cadastro da resposta
+										    		console.log('Falha ao cadastrar resposta');
+										    	}
+									   		}  
+									});	    
+								});
+							}else{
+								alert('Ocorreu uma falha ao tentar cadastrar a pergunta');
+							}
+						}	
+					
+					});					
+				}else if($(this).hasClass('edit')){
+					//Variáveis que pegam os
+					//Verifica se os campos nome da pergunta, imagem e resposta não estão vazios.
+					$(this).find('.input input[name="nome-resposta"]').each(function(){
+						if(this.value == '' || this.value == 'Preencha esse campo'){
+					 		this.value='';
+					 		this.value="Preencha esse campo";
+					 		return false;
+						 	}
+					});
+
+					var id_pergunta = $(this).find('input[name="id-pergunta"]').val();
+					//Salva uma nova resposta ou atualiza as respostas existentes 
+					$(box_resposta).each(function(index_resp){
+						var resposta = $(this).find('.input input[name="nome-resposta"]').val(), id_resposta = $(this).find('.input input[name="id-resposta"]').val(),  perfil_resposta = $(this).find('select[name=perfil-resposta]').val();
+					   	if($(this).hasClass('novo')){
+						   	$.ajax({
+						   		url: '../../respostas/save_resposta_perfil',
+						   		async: false,
+						   		data: {texto:resposta, tipo_resposta:tipo_quiz, perfil_resposta:perfil_resposta, id_pergunta:id_pergunta, id_quiz:id_quiz, ordem:index_resp},
+						   		success: function(e_resp){
+								   	console.log({texto:resposta, tipo_resposta:tipo_quiz, perfil_resposta:perfil_resposta, id_pergunta:id_pergunta, id_quiz:id_quiz});
+								   	if(e_resp == 'sucesso'){
+								   		//log do cadastro da resposta
+										console.log('Sucesso');
+									}else{
+										//log do erro do cadastro da resposta
+									 	console.log('Falha ao cadastrar resposta');
+									}
+								}
+						   	});
+						}else{
+							//Se for só editar uma resposta existente ele simplesmente faz o update
+						   	$.ajax({
+						   		url: '../../respostas/update_resposta_perfil',
+						   		async: false,
+						   		data: {texto:resposta, tipo_resposta:tipo_quiz, perfil_resposta:perfil_resposta, id_pergunta:id_pergunta, id_quiz:id_quiz, id_resposta:id_resposta, ordem:index_resp},
+						   		success: function(e_resp){
+									if(e_resp == 'sucesso'){
+									  	console.log('Sucesso');
+									}else{
+										console.log('Falha ao atualizar resposta');
+									}
+						   		}
+						   	});		
+						}
+					});//Fim do Loop dos campos de respostas
+					//Atualiza a pergunta
+					$.ajax({
+						url: '../update_pergunta_perfil',
+						async: false,
+						dataType: 'JSON',
+						data: {texto:nome, link_referencia:link, texto_link:texto, imagem:imagem, id_quiz:id_quiz, id_pergunta:id_pergunta, ordem:ordem},
+						success: function(e){
+							if(e.result == 'sucesso'){
+								$(grupo).removeClass('edit');
+							}else{
+								alert('Ocorreu uma falha ao tentar atualizar a pergunta');
+							}
+						}
+					});			
+				}else{
+					//Atualiza a data de alteração do quiz
+					$.ajax({
+						url: '../../quiz/update_timestamp', 
+						async: false,
+						data: {id_quiz:quiz_alteracao}, 
+						success: function(e){
+							if(e == 'ok'){
+								if(!url){
+									window.location.href=prox_url;
 								}else{
-									//log do erro do cadastro da resposta
-								 	console.log('Falha ao cadastrar resposta');
+									window.location.href=url;
 								}
 							}
-						);
+						}
+					});	
+				};//Fim da Edição da pergunta
+			}
+		});
+		//Atualiza a data de alteração do quiz
+		$.ajax({
+			url: '../../quiz/update_timestamp', 
+			async: false,
+			data: {id_quiz:quiz_alteracao}, 
+			success: function(e){
+				if(e == 'ok'){
+					if(!url){
+						window.location.href=prox_url;
 					}else{
-					   	$.get('../../respostas/update_resposta_perfil',
-						   	{texto:resposta, tipo_resposta:tipo_quiz, perfil_resposta:perfil_resposta, id_pergunta:id_pergunta, id_quiz:id_quiz, id_resposta:id_resposta, ordem:index_resp},
-							function(e_resp){
-							//console.log({texto:resposta, tipo_resposta:tipo_quiz, perfil_resposta:perfil_resposta, id_pergunta:id_pergunta, id_quiz:id_quiz, id_resposta:id_resposta});
-								if(e_resp == 'sucesso'){
-								  	console.log('Sucesso');
-								}else{
-									console.log('Falha ao atualizar resposta');
-								}
-					   		}
-					   	);			
+						window.location.href=url;
 					}
-				});//Fim do Loop dos campos de respostas
-				//Atualiza a pergunta			
-				$.getJSON(
-					'../update_pergunta_perfil',
-					{texto:nome, link_referencia:link, texto_link:texto, imagem:imagem, id_quiz:id_quiz, id_pergunta:id_pergunta, ordem:ordem},
-					function(e){
-						if(e.result == 'sucesso'){
-							$(grupo).removeClass('edit');
-							//Vamos salvar a resposta agora
-							//Após
-							//Atualiza a data de alteração do quiz
-								
-							$.get('../../quiz/update_timestamp', {id_quiz:quiz_alteracao}, function(e){
-								if(e == 'ok'){
-										if(!url){
-											window.location.href=prox_url;
-										}else{
-											window.location.href=url;
-										}
-								}
-							});
-						}else{
-							//	alert('Ocorreu uma falha ao tentar cadastrar o quiz');
-						}
-					});
-			}else{
-				//Atualiza a data de alteração do quiz
-				$.get('../../quiz/update_timestamp', {id_quiz:quiz_alteracao}, function(e){
-					
-						if(!url){
-							window.location.href=prox_url;
-						}else{
-							window.location.href=url;
-						}
-				});	
-			};//Fim da Edição da pergunta
+				}
+			}
 		});
 	},
 
@@ -500,9 +529,9 @@ var eventos_back = {
 			var box_resposta = $(this).find('.sorteia .header');
 			//Valida se o campo de nome da pergunta 
 			if(nome == '' || nome == 'Preencha esse campo'){
-				$('#nome-pergunta-'+index).val('Preencha esse campo')
+				$('#nome-pergu"10"nta-'+index).val('Preencha esse campo')
 				return false;
-			}else if(!$(this).hasClass('salvo') && !$(this).hasClass('edit')){
+			}else if(!$(this).hasClass('salvo')){
 				var grupo = $(this).attr('id', index);
 				//Verifica se os campos nome da pergunta, imagem e resposta não estão vazios.
 				$(this).find('.input input[name="nome-resposta"]').each(function(){
@@ -622,11 +651,13 @@ var eventos_back = {
 								data: {id_quiz:quiz_alteracao},
 								success: function(e){
 									if(e == 'ok'){
+											/*
 											if(!url){
 												window.location.href=prox_url;
 											}else{
 												window.location.href=url;
 											}
+											*/
 									}
 								}	
 							});	
@@ -638,6 +669,7 @@ var eventos_back = {
 				});			
 			}else{
 				//Atualiza a data de alteração do quiz
+				/*
 				$.ajax({
 					url: '../../quiz/update_timestamp',
 					async:false,
@@ -651,9 +683,11 @@ var eventos_back = {
 						}
 					}
 				});
+				*/
 			};//Fim da Edição da pergunta
 		});
 		//Atualiza a data de alteração do quiz
+		return false;
 		$.ajax({
 			url: '../../quiz/update_timestamp',
 			async:false,
@@ -687,9 +721,11 @@ var eventos_back = {
 
 		console.log({id_config:id_config, id_quiz:id_quiz, titulo_tamanho:titulo_tamanho, titulo_cor:titulo_cor, titulo_alinhamento:titulo_alinhamento, pergunta_tamanho:pergunta_tamanho, perguntas_cor:perguntas_cor, perguntas_alinhamento:perguntas_alinhamento, referencia_tamanho:referencia_tamanho, referencia_cor:referencia_cor, referencia_alinhamento:referencia_alinhamento, resposta_tamanho:resposta_tamanho, resposta_cor:resposta_cor, resposta_alinhamento:resposta_alinhamento, resposta_cor_fundo:resposta_cor_fundo, botoes_cor:botoes_cor, botoes_cor_fundo:botoes_cor_fundo, pergunta_cor_fundo:pergunta_cor_fundo, pergunta_imagem_fundo:pergunta_imagem_fundo, titulo_quiz_resultados_tamanho:titulo_quiz_resultados_tamanho, titulo_quiz_resultados_cor:titulo_quiz_resultados_cor, titulo_quiz_resultados_alinhamento:titulo_quiz_resultados_alinhamento, titulo_resultatados_tamanho:titulo_resultatados_tamanho, titulo_resultados_cor:titulo_resultados_cor, titulo_resultados_alinhamento:titulo_resultados_alinhamento, acertos_tamanho:acertos_tamanho, acertos_cor:acertos_cor, acertos_alinhamento:acertos_alinhamento, descricao_tamanho:descricao_tamanho, descricao_cor:descricao_cor, descricao_alinhamento:descricao_alinhamento, referencia_resultados_tamanho:referencia_resultados_tamanho, referencia_resultados_cor:referencia_resultados_cor, referencia_resultados_alinhamento:referencia_resultados_alinhamento, botoes_resultados_cor:botoes_resultados_cor, botoes_resultados_cor_fundo:botoes_resultados_cor_fundo, imagem_resultados_fundo:imagem_resultados_fundo, resultados_cor_fundo:resultados_cor_fundo});
 
-		$.get("../../customizacao/update/",
-			{id_config:id_config, id_quiz:id_quiz, titulo_tamanho:titulo_tamanho, titulo_cor:titulo_cor, titulo_alinhamento:titulo_alinhamento, pergunta_tamanho:pergunta_tamanho, pergunta_cor:perguntas_cor, perguntas_alinhamento:perguntas_alinhamento, referencia_tamanho:referencia_tamanho, referencia_cor:referencia_cor, referencia_alinhamento:referencia_alinhamento, resposta_tamanho:resposta_tamanho, resposta_cor:resposta_cor, resposta_alinhamento:resposta_alinhamento, resposta_cor_fundo:resposta_cor_fundo, botoes_cor:botoes_cor, botoes_cor_fundo:botoes_cor_fundo, pergunta_cor_fundo:pergunta_cor_fundo, pergunta_imagem_fundo:pergunta_imagem_fundo, titulo_quiz_resultados_tamanho:titulo_quiz_resultados_tamanho, titulo_quiz_resultados_cor:titulo_quiz_resultados_cor, titulo_quiz_resultados_alinhamento:titulo_quiz_resultados_alinhamento, titulo_resultatados_tamanho:titulo_resultatados_tamanho, titulo_resultados_cor:titulo_resultados_cor, titulo_resultados_alinhamento:titulo_resultados_alinhamento, acertos_tamanho:acertos_tamanho, acertos_cor:acertos_cor, acertos_alinhamento:acertos_alinhamento, descricao_tamanho:descricao_tamanho, descricao_cor:descricao_cor, descricao_alinhamento:descricao_alinhamento, referencia_resultados_tamanho:referencia_resultados_tamanho, referencia_resultados_cor:referencia_resultados_cor, referencia_resultados_alinhamento:referencia_resultados_alinhamento, botoes_resultados_cor:botoes_resultados_cor, botoes_resultados_cor_fundo:botoes_resultados_cor_fundo, imagem_resultados_fundo:imagem_resultados_fundo, resultados_cor_fundo:resultados_cor_fundo},
-			function(e){
+		$.ajax({
+			url: '../../customizacao/update/',
+			async: false,
+			data: {id_config:id_config, id_quiz:id_quiz, titulo_tamanho:titulo_tamanho, titulo_cor:titulo_cor, titulo_alinhamento:titulo_alinhamento, pergunta_tamanho:pergunta_tamanho, pergunta_cor:perguntas_cor, perguntas_alinhamento:perguntas_alinhamento, referencia_tamanho:referencia_tamanho, referencia_cor:referencia_cor, referencia_alinhamento:referencia_alinhamento, resposta_tamanho:resposta_tamanho, resposta_cor:resposta_cor, resposta_alinhamento:resposta_alinhamento, resposta_cor_fundo:resposta_cor_fundo, botoes_cor:botoes_cor, botoes_cor_fundo:botoes_cor_fundo, pergunta_cor_fundo:pergunta_cor_fundo, pergunta_imagem_fundo:pergunta_imagem_fundo, titulo_quiz_resultados_tamanho:titulo_quiz_resultados_tamanho, titulo_quiz_resultados_cor:titulo_quiz_resultados_cor, titulo_quiz_resultados_alinhamento:titulo_quiz_resultados_alinhamento, titulo_resultatados_tamanho:titulo_resultatados_tamanho, titulo_resultados_cor:titulo_resultados_cor, titulo_resultados_alinhamento:titulo_resultados_alinhamento, acertos_tamanho:acertos_tamanho, acertos_cor:acertos_cor, acertos_alinhamento:acertos_alinhamento, descricao_tamanho:descricao_tamanho, descricao_cor:descricao_cor, descricao_alinhamento:descricao_alinhamento, referencia_resultados_tamanho:referencia_resultados_tamanho, referencia_resultados_cor:referencia_resultados_cor, referencia_resultados_alinhamento:referencia_resultados_alinhamento, botoes_resultados_cor:botoes_resultados_cor, botoes_resultados_cor_fundo:botoes_resultados_cor_fundo, imagem_resultados_fundo:imagem_resultados_fundo, resultados_cor_fundo:resultados_cor_fundo},
+			success: function(e){
 				if(e == 'sucesso'){
 					if(!url){
 						window.location.href=prox_url;
@@ -697,8 +733,8 @@ var eventos_back = {
 						window.location.href=url;
 					}
 				}
-			}	
-		);
+			}
+		});
 	},
 
 	visualizar_resultado: function()
@@ -723,9 +759,12 @@ var eventos_back = {
 				resposta.push($(this).val());
 			});
 
-			$.getJSON('../../visualizacao/resultado_'+tipo, 
-				{respostas:resposta, id_quiz:id},
-				function(e){
+			$.ajax({
+				url: '../../visualizacao/resultado_'+tipo,
+				async: false,
+				dataType: 'JSON',
+				data: {respostas:resposta, id_quiz:id},
+				success: function(e){
 					$('.loader').fadeOut();
 					$('#botoesResultado').show();
 					$('#resultado #texto .titulo').text(e.titulo);
@@ -744,8 +783,7 @@ var eventos_back = {
 				      manageControls();
 	    			});
 				}
-			);
-
+			});
 	    }else{ alert('Marque pelo menos uma resposta.'); }
 	},
 
