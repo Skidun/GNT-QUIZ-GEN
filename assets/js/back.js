@@ -227,7 +227,6 @@ var eventos_back = {
 		//Quando o usuário marca alguma resposta é atribuido a ela o peso 10
 		$('.group').each(function(index){
 			$(this).find('input:radio').on('click', function(){
-				alert('uii, num cutuca');
 				$(this).parents('.group').addClass('edit');
 				$('input:radio').val(0)
 				$('input:radio:checked').val('10');
