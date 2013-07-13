@@ -70,7 +70,7 @@
 															<a class="excluir excluir-dois"></a>
 															<div class="input"><input type="text" name="nome-resposta" id="nome-resposta-0" value="" size="" /></div>
 															<div class="radio">
-																<label for="radio00" class="radioCustom"></label>
+																<!-- <label for="radio00" class="radioCustom"></label> -->
 																<input type="radio" id="radio00" name="grupo0" value="" />
 																Esta é a resposta correta
 															</div>
@@ -81,7 +81,7 @@
 															<a class="excluir excluir-dois"></a>
 															<div class="input"><input type="text" name="nome-resposta" id="nome-resposta-0" value="" size="" /></div>
 															<div class="radio">
-																<label for="radio10" class="radioCustom"></label>
+																<!-- <label for="radio10" class="radioCustom"></label> -->
 																<input type="radio" id="radio10" name="grupo0" value=""/>
 																Esta é a resposta correta
 															</div>
@@ -125,6 +125,7 @@
 				?>
 							<a class="voltar" href="<?php echo base_url();?>quiz_tipo/<?php echo $tipo;?>/<?php echo $id;?>" rel="link-interno" title="voltar"></a>
 							<a class="proxima-etapa" href="<?php echo base_url();?>customizacao/<?php echo $tipo;?>/<?php echo $id;?>" rel="link-interno" id="btn-proxima-etapa-2-perguntas" title="próxima etapa" onclick="return false;"></a>
+
 				<?php
 						break;
 						case 'certo-ou-errado':
@@ -134,5 +135,8 @@
 						break; 
 					}
 				?>
+				<div class="loader" style="float: left; margin-top: 44px; display: none;">
+					<img src="<?php echo base_url();?>assets/img/ajax-loader.gif" />								
+				</div>
 			</div>
 		</div>

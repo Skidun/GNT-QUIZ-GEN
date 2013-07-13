@@ -1,6 +1,6 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 /*
-| -------------------------------------------------------------------
+| -----------------------------------------------------------------
 | AUTO-LOADER
 | -------------------------------------------------------------------
 | This file specifies which systems should be loaded by default.

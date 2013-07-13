@@ -141,7 +141,7 @@ class Quiz_tipo extends CI_Controller {
 		//$id_quiz = $this->session->flashdata('id_quiz');
 
 		$data  	= $this->quiz_model->get($id);
-		#$perfis = $this->perfil_model->get_all($id);
+		$perfis = $this->perfil_model->get_all($id);
 		$count = -1;
 		$grupo = '';
 		foreach($perfis->result() as $perfil){
@@ -184,7 +184,7 @@ class Quiz_tipo extends CI_Controller {
 
 		$data['perfis'] = $grupo;
 		$data['quantidade'] = $this->perfil_model->count_rows($id);
-		$this->template->show('perfil1', $data);
+		$this->template->show('faixa_ce', $data);
 	}
 
 }

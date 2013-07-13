@@ -258,6 +258,11 @@ class Quiz extends CI_Controller {
 			}
 		
 	}
+	#show base_url
+	public function show_base_url()
+	{
+		echo base_url();
+	}
 
 }
 

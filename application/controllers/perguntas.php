@@ -266,14 +266,14 @@ class Perguntas extends CI_Controller {
 											';
 					if($resposta->perfil_resposta == '10'){
 
-						$list_perguntas		.=							'<label for="radio10" class="radioCustom"></label>
-																		<input type="radio" id="radio'.$count_resp.'0" name="grupo'.$count_resp.$count.'" value="'.$resposta->perfil_resposta.'" checked="checked"/>
+						$list_perguntas		.=							'<!--<label for="radio10" class="radioCustom"></label>-->
+																		<input type="radio" id="radio'.$count_resp.'0" name="grupo'.$count.$count.'" value="'.$resposta->perfil_resposta.'" checked="checked"/>
 																		Esta é a resposta correta
 																		';
 					
 					}else{
-						$list_perguntas		.=							'<label for="radio10" class="radioCustom"></label>
-																		 <input type="radio" id="radio'.$count_resp.'0" name="grupo'.$count_resp.$count.'" value="'.$resposta->perfil_resposta.'"/>
+						$list_perguntas		.=							'<!--<label for="radio10" class="radioCustom"></label>-->
+																		 <input type="radio" id="radio'.$count_resp.'0" name="grupo'.$count.$count.'" value="'.$resposta->perfil_resposta.'"/>
 																		 Esta é a resposta correta
 																		';
 
@@ -288,7 +288,6 @@ class Perguntas extends CI_Controller {
 				$list_perguntas		.=  '													
 													</div>
 
-													<a id="nova-resposta-perfil" class="nova-resposta" href="javascript:void(0)"></a>
 												</div><!--respostas-->
 
 											</div><!--body-->							
@@ -325,8 +324,56 @@ class Perguntas extends CI_Controller {
 		}else{
 			$retorno = array('result'=>'falha');
 			echo json_encode($retorno);
+		}	
+	}
+
+	#Método que atualiza as perguntas
+	public function update_pergunta_certo_ou_errado()
+	{
+		$id 					 = $this->input->get('id_pergunta', true);
+		$data['pergunta'] 		 = $this->input->get('texto', true);
+		$data['link_referencia'] = $this->input->get('link_referencia', true);
+		$data['texto_link'] 	 = $this->input->get('texto_link', true);
+		$data['imagem'] 		 = $this->input->get('imagem', true);
+		$data['ordem'] 		 	 = $this->input->get('ordem', true);
+		//$data['id_quiz'] 		 = $this->input->get('id_quiz', true);
+
+		$update = $this->pergunta_model->update($id, $data);
+		if($update == TRUE){
+			#Variáveis necessárias para atualização do time_stamp do quiz
+			$retorno = array('result'=>'sucesso');
+			echo json_encode($retorno);
+		}else{
+			$retorno = array('result'=>'falha');
+			echo json_encode($retorno);
 		}
-			
+	}
+
+	#Método que remove a pergunta
+	public function remove_pergunta_ce($id)
+	{
+		#Se caso a imagem não for a padrão ele precisa remove-la do servidor
+		if($this->input->get('imagem', true)){
+			@$img_perfil	 = explode(',',$this->input->get('imagem'));
+			@$dir     = 'assets/server/php/files/';
+			@$imagem	 = $img_perfil[1];
+			@$remove_imagem = unlink('./'.$dir.$imagem);
+		}
+		$filtro	 = 'id_pergunta';
+		$id_quiz = $this->input->get('id_quiz');
+		$resposta= $this->resposta_model->delete($id, $id_quiz, $filtro);
+		#if($resposta){
+			$result  = $this->pergunta_model->delete($id, $id_quiz);
+			if($result):
+				$this->session->flashdata('retorno', 'Pergunta excluida com sucesso!');
+				redirect('perguntas/certo-ou-errado/'.$id_quiz,'refresh');
+			else:
+				$this->session->flashdata('retorno', 'Falha o excluir a pergunta!');
+				redirect('perguntas/certo-ou-errado/'.$id_quiz,'refresh');
+			endif;
+		#}else{
+		#	echo 'Não foi possível excluir a pergunta';
+		#}
 	}
 }
 
