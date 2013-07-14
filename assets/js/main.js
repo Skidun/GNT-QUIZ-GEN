@@ -98,6 +98,7 @@ $(function(){
 					var filess= data.files[0];
 					var filenam = filess.name;
 					$(this).find('img#alvo-'+index).attr('src','../../assets/server/php/files/'+filenam);
+					$(this).find('img#alvo').attr('src','../../assets/server/php/files/'+filenam);
 				}
 			});
 	});
@@ -575,11 +576,11 @@ $(function(){
 				step: 10,
 				values: [ 0, 10 ],
 				slide: function( event, ui ) {
-					$( ".amountIni"+calculaSlider ).val( ui.values[ 0 ] + "pts" );
-					$( ".amountFin"+calculaSlider ).val( ui.values[ 1 ] + "pts" );
+					$( ".amountIni"+calculaSlider ).val( ui.values[ 0 ]+ "pts");
+					$( ".amountFin"+calculaSlider ).val( ui.values[ 1 ]+ "pts");
 				}
 			});
-		 $( ".amountIni"+calculaSlider ).val( $( "#slider"+calculaSlider ).slider( "values", 0 ) + "pts" );
+		 $( ".amountIni"+calculaSlider ).val( $( "#slider"+calculaSlider ).slider( "values", 0 )+ "pts" );
 		 $( ".amountFin"+calculaSlider ).val( $( "#slider"+calculaSlider ).slider( "values", 1 ) + "pts" );
 	 }
 	 /*botao faixas de classificacao*/
@@ -599,12 +600,12 @@ $(function(){
 							step: 10,
 							values: [ 0, 10 ],
 							slide: function( event, ui ) {
-								$( ".amountIni"+(tamanho+1) ).val( ui.values[ 0 ] + "pts" );
-								$( ".amountFin"+(tamanho+1) ).val( ui.values[ 1 ] + "pts" );
+								$( ".amountIni"+(tamanho+1) ).val( ui.values[ 0 ]+" pts");
+								$( ".amountFin"+(tamanho+1) ).val( ui.values[ 1 ]+" pts");
 							}
 						});
-				 $( ".amountIni"+(tamanho+1) ).val( $( "#slider"+(tamanho+1) ).slider( "values", 0 ) + "pts" );
-				 $( ".amountFin"+(tamanho+1) ).val( $( "#slider"+(tamanho+1) ).slider( "values", 1 ) + "pts" );
+				 $( ".amountIni"+(tamanho+1) ).val( $( "#slider"+(tamanho+1) ).slider( "values", 0 ));
+				 $( ".amountFin"+(tamanho+1) ).val( $( "#slider"+(tamanho+1) ).slider( "values", 1 ));
 				 
 				//coloca o novo elemento de accordion no esquema
 				$( "#accordion" ).accordion('destroy');
@@ -614,7 +615,7 @@ $(function(){
 				});
 				/*tem que resetar o fileupload e chamar de novo*/		
 					$('.fileupload').bind('fileuploaddestroy');
-					$(".fileupload").each(function(){$(this).fileupload({done:function(e,t){var n=t.files[0];var r=n.name;$(this).find("#alvo").attr("src",".../assets/server/php/files/"+r)}})})
+					$(".fileupload").each(function(){$(this).fileupload({done:function(e,t){var n=t.files[0];var r=n.name;$(this).find("#alvo").attr("src",""+base_url+"assets/server/php/files/"+r)}})})
 				//scrolla pro fim da página
 				$('html, body').animate({scrollTop:$(document).height()}, 1000);
 				return false;

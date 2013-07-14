@@ -44,6 +44,7 @@ $route['404_override'] 				= '';
 $route['perguntas/certo-ou-errado/(:num)']= 'perguntas/faixa/$1';
 $route['quiz_tipo/certo-ou-errado/(:num)']= 'quiz_tipo/faixa/$1';
 $route['customizacao/certo-ou-errado/(:num)']= 'customizacao/faixa/$1';
+$route['remover-faixa/(:num)']= 'faixa/remove_faixa/$1';
 
 //Routes of controller Quiz
 $route['cadastrar-novo-quiz']	 	= "quiz/create";

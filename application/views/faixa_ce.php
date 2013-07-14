@@ -8,7 +8,13 @@
 				?>
 			
 				<div id="accordion">
+					<?php
+						echo '<input type="hidden" id="data_alteracao" value="'.$data_alteracao.'" />';
+						echo '<input type="hidden" id="id_quiz" name="id_quiz" value="'.$id.'" />';
+						echo '<input type="hidden" name="tipo_quiz" id="tipo_quiz" value="'.$tipo.'" />';
 					
+						if($quantidade == 0){
+					?>
 					<div class="group">
 							<div class="header">
 								<span class="icon"></span>
@@ -43,7 +49,12 @@
 									
 								</div>
 							</div>
-					</div>	
+					</div>
+					<?php
+						}else{
+							echo $faixas;
+						}
+					?>	
 					
 				</div><!--accordion-->
 				
@@ -51,8 +62,10 @@
 					<a id="novaFaixa" class="novaFaixa" href="#"></a>
 				</div>
 				
-				<a class="voltar" href="#"></a>
-				<a class="proxima-etapa" href="#"></a>
-			
+				<a class="voltar" href="<?php echo base_url();?>perguntas/<?php echo $tipo;?>/<?php echo $id;?>"></a>
+				<a class="proxima-etapa" id="proxima-etapa-2-faixa-ce" href="<?php echo base_url();?>customizacao/<?php echo $tipo;?>/<?php echo $id;?>"></a>
+				<div class="loader" style="float: left; margin: 44px 10px 44px 10px; display: none;">
+					<img src="<?php echo base_url();?>assets/img/ajax-loader.gif" />								
+				</div>
 			</div>
 		</div>

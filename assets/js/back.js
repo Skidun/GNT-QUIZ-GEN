@@ -200,6 +200,28 @@ var eventos_back = {
 			return false;
 		});
 
+		$(document).on('click', '.excluir-faixa', function(e){
+			e.preventDefault();
+			
+			var url = this.href, id_quiz = $('#id_quiz').val(), alvo = this.id;
+			var imagem = $(this).siblings('.quadro #alvo').attr('src');
+			var data_alteracao = $('#data_alteracao').val();
+			alert(id_quiz+" / "+data_alteracao+" - "+url);
+			$.get('../../quiz/valida_timestamp', {id:id_quiz, data_alteracao:data_alteracao}).done(
+				function(e){
+					if(e == 'ok'){
+						eventos_back.remove_faixa(url, id_quiz);
+					}else{
+						alert('A data de alteração do quiz é diferente da data que você tem armazenado na página, a página será atualizada para que as informações referente ao quiz sejam atualizadas');
+						window.location.reload();
+					}	
+				}
+			);
+
+
+			return false;
+		});
+
 
 		//Remover uma resposta
 		$(document).on('click', '.excluir-dois', function(e){
@@ -224,7 +246,7 @@ var eventos_back = {
 		//
 		// Eventos do quiz tipo Certo ou errado
 		//---------------------------------------
-		//Quando o usuário marca alguma resposta é atribuido a ela o peso 10
+		//Quando o usuário marca alguma resposta como correta é atribuido a ela o peso 10
 		$('.group').each(function(index){
 			$(this).find('input:radio').on('click', function(){
 				$(this).parents('.group').addClass('edit');
@@ -239,6 +261,43 @@ var eventos_back = {
 			$(this).hide();
 			$('.loader').fadeIn();
 			eventos_back.valida_timestamp(evento);
+		});
+
+		$('#proxima-etapa-2-faixa-ce').on('click', function(event){
+			event.preventDefault();
+			var evento 		= 'certo-ou-errado-faixa'
+			var prox_url 	= this.href;
+			//Quando o botão for clicado ele remove o botao próximo e voltar para que as requisições não sejam interrompidas por outro cliques
+			$(this).fadeOut();
+			$('.voltar').fadeOut();
+			$('.loader').fadeIn(); 
+			//Faz a validação de time stemp antes de a função de salvar 
+			eventos_back.valida_timestamp(evento, prox_url);
+			//Return false, inibe o evento href do link
+			return false;
+		});
+
+		//Slider de faixas já existentes
+		$('.group.salvo').each(function(index){
+			var de = $(this).find('.amountIni'+index).val();
+			var ate = $(this).find('.amountFin'+index).val();
+			$( "#slider"+index ).slider({
+					range: true,
+					min: 0,
+					max: 100,
+					step: 10,
+					values: [ de, ate ],
+					slide: function( event, ui ) {
+						$( ".amountIni"+index ).val( ui.values[ 0 ]+ "pts");
+						$( ".amountFin"+index ).val( ui.values[ 1 ]+ "pts");
+					},
+					change: function(event, ui){
+						$(this).parents('.group').removeClass('edit');
+						$(this).parents('.group').addClass('edit');
+					}
+				});
+			 $( ".amountIni"+index).val( $( "#slider"+index).slider( "values", 0 )+ "pts" );
+			 $( ".amountFin"+index).val( $( "#slider"+index).slider( "values", 1 ) + "pts" );
 		});
 	},	
 
@@ -271,26 +330,32 @@ var eventos_back = {
 		}
 	},
 
-	valida_timestamp: function(evento)
+	valida_timestamp: function(evento, prox_url)
 	{
 		var data_alteracao = $('#data_alteracao').val(), id_quiz = $('#id_quiz').val();
-
 		$.ajax({
 			url: '../../quiz/valida_timestamp',
 			async: false,
 			data: {id:id_quiz, data_alteracao:data_alteracao},
 			success: function(e){
 				if(e == 'ok'){
-					if(evento == 'perfil'){
-						eventos_back.salva_perfil();
-					}else if(evento == 'perguntas'){
-						eventos_back.salva_perguntas();	
-					}else if(evento == 'customizacao'){
-						eventos_back.salva_customizacao();
-					}else if(evento == 'certo-ou-errado'){
-						eventos_back.salva_perguntas_CE();
-					}
-
+					switch(evento){
+						case 'perfil':
+							eventos_back.salva_perfil();
+						break;
+						case 'perguntas':
+							eventos_back.salva_perguntas();
+						break;
+						case 'customizacao':
+							eventos_back.salva_customizacao();
+						break;
+						case 'certo-ou-errado':
+							eventos_back.salva_perguntas_CE();
+						break;
+						case 'certo-ou-errado-faixa':
+							eventos_back.salva_faixa_ce(prox_url);
+						break;				
+					}	
 				}else{
 					alert('A data de alteração do quiz é diferente da data que você tem armazenado na página, a página será atualizada para que as informações referente ao quiz sejam atualizadas');
 					window.location.reload();
@@ -672,6 +737,77 @@ var eventos_back = {
 		});
 	},
 
+	salva_faixa_ce: function(url, prox_url)
+	{
+		var id_quiz = $('#id_quiz').val();
+		//Essa chamada ajax serve pra pegar o Base URL do PHP	
+		$.ajax({
+			url: '../../quiz/show_base_url',
+			async: false,
+			success: function(base_url){
+				$('.group').each(function(indexs){
+					//Variáveis dos campos que serão salvos
+					var titulo 	   = $(this).find('input[name="nome"]').val(), descricao = $(this).find('textarea[name="descricao"]').val(), link = $(this).find('input[name="link"]').val();
+					var texto_link = $(this).find('input[name="texto"]').val(), campo_imagem 	= $(this).find('img#alvo').attr('src');
+					var range_inicial = $(this).find('#amountIni').val(), range_final = $(this).find('#amountFin').val();
+					var id_faixa = $(this).find('#id-faixa').val();
+					//Verifica se a imagem se foi ou não feito upload de uma nova imagem
+					if(campo_imagem == base_url+'assets/img/backgrounds/imagem.png'){
+						var imagem = '';
+					}else{
+						var imagem = campo_imagem;
+					}
+					//Valida o campo de titulo
+					if(titulo == ''){
+						alert('O título da faixa e o range de pontuação são campos obrigatórios');
+						return false;
+					}else{
+						console.log('Faixa: '+titulo+' Descrição: '+descricao+'	link referencia: '+link+' Texto do link: '+texto_link+' Range Inicial: '+range_inicial+' Range Final: '+range_final+' Imagem: '+imagem);
+						//Verifica se essa faixa é nova
+						if(!$(this).hasClass('salvo')){
+							$.ajax({
+								url: base_url+'faixa/save_faixa',
+								async: false,
+								data: {range_de:range_inicial, range_ate:range_final, titulo:titulo, descricao:descricao, link_referencia:link, texto_link:texto_link, imagem:imagem, id_quiz:id_quiz},
+								success: function(e){
+									if(e == 'sucesso'){
+										console.log('Faixa cadastrada com sucesso');
+									}
+								}
+							});
+						//Ou vai editar uma faixa já cadastrada	
+						}else if($(this).hasClass('edit')){
+							alert(id_faixa)
+							$.ajax({
+								url: base_url+'faixa/update_faixa/'+id_faixa,
+								async: false,
+								data: {range_de:range_inicial, range_ate:range_final, titulo:titulo, descricao:descricao, link_referencia:link, texto_link:texto_link, imagem:imagem, id_quiz:id_quiz},
+								success: function(e){
+									if(e == 'sucesso'){
+										console.log('Faixa cadastrada com sucesso');
+									}
+								}
+							});
+						}//Fim do edit	
+					}//Fim do Senão
+				});//Fim do loop no .group
+			}//Fecha o success do base_url
+		});//Fim do ajax que pega o base_url
+		//Atualiza a data de alteração do quiz
+		$.ajax({
+			url: '../../quiz/update_timestamp',
+			async:false,
+			data: {id_quiz:id_quiz},
+			success: function(e){	
+				if(!url){
+					window.location.href=prox_url;
+				}else{
+					window.location.href=url;
+				}
+			}
+		});
+	},
+
 	salva_customizacao: function(url){
 		prox_url = $('#btn-proxima-etapa-3-customizacao').attr('href');
 		//Variáveis das configurações de Pergunstas e Respostas
@@ -767,6 +903,20 @@ var eventos_back = {
 			}else{
 				window.location.href=url+'?id_quiz='+id_quiz+'&imagem='+imagem;
 			}
+		}
+		return false;
+	},
+
+	remove_faixa: function(url, id_quiz, base_url)
+	{
+		var confirmacao = confirm('Tem certeza que deseja excluir essa faixa de classificação, uma vez excluida tal ação não poderá ser revertida?'+base_url);
+		if(confirmacao)
+		{
+			//if(imagem == base_url+'assets/img/backgrounds/imagem.png'){
+				window.location.href=url+'?id_quiz='+id_quiz;
+			//}else{
+			//	window.location.href=url+'?id_quiz='+id_quiz+'&imagem='+imagem;
+			//}
 		}
 		return false;
 	},
