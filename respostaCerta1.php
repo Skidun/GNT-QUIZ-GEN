@@ -21,7 +21,7 @@
 					
 							<div class="header">
 								<span class="icon"></span>
-								<div class="input"><input type="text" name="nome" value="" size="" /></div>
+								<div class="input"><input type="text" name="nome" value="Título" size="" /></div>
 								<span class="arrow"></span>
 								<span class="excluir excluir-um"></span>
 							</div>
