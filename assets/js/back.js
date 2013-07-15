@@ -221,8 +221,6 @@ var eventos_back = {
 
 			return false;
 		});
-
-
 		//Remover uma resposta
 		$(document).on('click', '.excluir-dois', function(e){
 			e.preventDefault();

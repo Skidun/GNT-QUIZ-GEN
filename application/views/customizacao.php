@@ -36,10 +36,10 @@
 								<!--Alinhamento:-->
 								<p class="alinha">Alinhamento:</p>
 								<div id="alinha-inner" class="titulo-alinhamento">
-									<div id="left" <?php if($customizacao['titulo_quiz_align'] == 'left') echo 'class="ativo"';?>></div>
-									<div id="center" <?php if($customizacao['titulo_quiz_align'] == 'center') echo 'class="ativo"';?>></div>
-									<div id="right" <?php if($customizacao['titulo_quiz_align'] == 'right') echo 'class="ativo"';?>></div>
-									<div id="justify" <?php if($customizacao['titulo_quiz_align'] == 'justify') echo 'class="ativo"';?>></div>
+									<div id="left" <?php if(str_replace(" ", "", $customizacao['titulo_quiz_align']) == 'left') echo 'class="ativo"';?>></div>
+									<div id="center" <?php if(str_replace(" ", "", $customizacao['titulo_quiz_align']) == 'center') echo 'class="ativo"';?>></div>
+									<div id="right" <?php if(str_replace(" ", "", $customizacao['titulo_quiz_align']) == 'right') echo 'class="ativo"';?>></div>
+									<div id="justify" <?php if(str_replace(" ", "", $customizacao['titulo_quiz_align']) == 'justify') echo 'class="ativo"';?>></div>
 								</div>
 								<!--passa o valor Alinhamento escondido-->
 								<input name="ititulo-alinhamento" id="titulo_quiz_align" type="hidden" value="text-align: <?php echo $customizacao['titulo_quiz_align']?>;" />
@@ -159,8 +159,8 @@
 							</div>
 							<div class="content">
 								<!--Imagem:-->
-										<form id="fileupload-perfil-customiza" action="<?php echo base_url();?>assets/server/php/" method="POST" enctype="multipart/form-data">
-										<div id="imagem-preview"><img id="alvo-perguntas" src="<?php if($customizacao['resultado_bg_img'] == "") {echo base_url().'assets/img/backgrounds/preview.png';}else{echo base_url()."assets/server/php/files/".$customizacao['quiz_bg_img'];}?>" /></div>
+										<form id="fileupload-perfil-customiza" action="<?php echo base_url();?>assets/server/php/index2.php" method="POST" enctype="multipart/form-data">
+										<div id="imagem-preview"><img id="alvo-perguntas" src="<?php if($customizacao['quiz_bg_img'] == "") {echo base_url().'assets/img/backgrounds/preview.png';}else{echo base_url()."assets/server/php/files/".$customizacao['quiz_bg_img'];}?>" /></div>
 										<span class="btn btn-success fileinput-button">
 											<input id="file" type="file"  />
 										</span>
@@ -172,19 +172,19 @@
 							</div>
 							
 						</div>
-						<div id="previewPerguntas" class="preview" style="background: <?php if($customizacao['resultado_bg_img'] == "") {echo "#".$customizacao['quiz_bg_color'];}else{echo "url(".base_url()."assets/server/php/files/".$customizacao['quiz_bg_img'].") top center !important;";}?>">
-							<div id="nome"><?php  echo $titulo;?></div>
+						<div id="previewPerguntas" class="preview" style="background: <?php if($customizacao['quiz_bg_img'] == "") {echo "#".$customizacao['quiz_bg_color'];}else{echo "url(".base_url()."assets/server/php/files/".$customizacao['quiz_bg_img'].") top center !important;";}?>">
+							<div id="nome" style="font-size:<?php echo $customizacao['titulo_quiz_font_size'];?>; color:#<?php echo $customizacao['titulo_quiz_font_color'];?>; text-align:<?php echo $customizacao['titulo_quiz_align'];?>;"><?php  echo $titulo;?></div>
 							<div id="texto">
 								<?php
 									if($perguntas == NULL){
 								?>
-								<div class="titulo">Lorem ipsum dolor sit amet, consectetuer adipiscing elit.?</div>
-								<div class="subtitulo"><a href="#" target="_blank">Link referência</a></div>
+								<div class="titulo" style="font-size:<?php echo $customizacao['pergunta_quiz_font_size'];?>.'; color:#<?php echo $customizacao['pergunta_quiz_font_color'];?>; text-align:<?php echo $customizacao['pergunta_quiz_align'];?>;">Lorem ipsum dolor sit amet, consectetuer adipiscing elit.?</div>
+								<div class="subtitulo" style="font-size: <?php echo $customizacao['link_ref_pergunta_align'];?>;"><a href="#" target="_blank" style="font-size:<?php echo $customizacao['link_ref_pergunta_font_size'];?>; color:#<?php echo $customizacao['link_ref_pergunta_font_color'];?>;">Link referência</a></div>
 								<?php 
 									}else{
 								?>
-								<div class="titulo"><?php echo $perguntas['pergunta'];?></div>
-								<div class="subtitulo"><a href="<?php echo $perguntas['link_referencia'];?>" target="_blank"><?php echo $perguntas['texto_link'];?></a></div>
+								<div class="titulo" style="font-size:<?php echo $customizacao['pergunta_quiz_font_size'];?>; color:#<?php echo $customizacao['pergunta_quiz_font_color'];?>; text-align:<?php echo $customizacao['pergunta_quiz_align'];?>;"><?php echo $perguntas['pergunta'];?></div>
+								<div class="subtitulo" style="font-size: <?php echo $customizacao['link_ref_pergunta_align'];?>;"><a href="<?php echo $perguntas['link_referencia'];?>" target="_blank" style="font-size:<?php echo $customizacao['link_ref_pergunta_font_size'];?>; color:#<?php echo $customizacao['link_ref_pergunta_font_color'];?>;"><?php echo $perguntas['texto_link'];?></a></div>
 								<?php }?>
 								<table class="respostas">
 									<?php 
@@ -207,7 +207,7 @@
 										}else{
 										foreach($respostas as $resposta):
 									?>
-										<tr>
+										<tr style="font-size:<?php echo $customizacao['resposta_pergunta_font_size'];?>; color:#<?php echo $customizacao['resposta_pergunta_font_color'];?>; text-align:<?php echo $customizacao['resposta_pergunta_align'];?>;">
 											<td><input type="radio" name="resposta" value="<?php echo $resposta->perfil_resposta;?>" /></td>
 											<td><?php echo $resposta->resposta;?></td>
 										</tr>
@@ -218,8 +218,8 @@
 								<img id="alvo-pergunta" src="<?php if($perguntas == NULL){echo base_url()."assets/img/backgrounds/imagem2.png";}else{echo $perguntas['imagem'];}?>" />
 							</div>
 							<div id="botoes">
-								<a href="#" class="anterior" title="Anterior">&laquo; Anterior</a>
-								<a href="#" class="proximo" title="Próximo">Próximo &raquo;</a>
+								<a href="#" class="anterior" title="Anterior" style="color:#<?php echo $customizacao['botao_perguntas_font_color'];?>; background-color:#<?php echo $customizacao['botao_perguntas_bg_color'];?>;">&laquo; Anterior</a>
+								<a href="#" class="proximo" title="Próximo" style="color:#<?php echo $customizacao['botao_perguntas_font_color'];?>; background-color:#<?php echo $customizacao['botao_perguntas_bg_color'];?>;">Próximo &raquo;</a>
 							</div>
 						</div>
 					</div>
@@ -407,30 +407,30 @@
 										<input type="hidden" name="bg_image_resultado" id="bg_image_resultado" value="<?php echo $customizacao['resultado_bg_img'];?>"/>
 								<!--Cor de fundo:-->
 								<p class="alinha">Cor de fundo:</p>
-								<div class="input-picker"><input id="imagem-resultados-cor-fundo" name="imagem-resultados-cor-fundo" type="text" value="<?php echo $customizacao['resultado_bg_img'];?>" /></div>
+								<div class="input-picker"><input id="imagem-resultados-cor-fundo" name="imagem-resultados-cor-fundo" type="text" value="<?php echo $customizacao['resultado_bg_color'];?>" /></div>
 							</div>
 							
 						</div>
 						
-						<div id="previewResultados" class="preview">
-							<div id="nome"><?php echo $titulo;?></div>
+						<div id="previewResultados" class="preview" style="background: <?php if($customizacao['resultado_bg_img'] == "") {echo "#".$customizacao['resultado_bg_color'];}else{echo "url(".base_url()."assets/server/php/files/".$customizacao['resultado_bg_img'].") top center !important;";}?>">
+							<div id="nome" style="font-size: <?php echo $customizacao['resultado_titulo_quiz_font_size'];?>;color: #<?php echo $customizacao['resultado_titulo_quiz_font_color'];?>; text-align:<?php echo $customizacao['resultado_titulo_quiz_align'];?>;"><?php echo $titulo;?></div>
 							<?php 
 								if($perfis != null){
 							?>
 							<div id="texto">
-								<div class="titulo"><?php echo $perfis['titulo'];?></div>								
+								<div class="titulo" style="font-size: <?php echo $customizacao['resultado_titulo_faixa_font_size'];?>;color: #<?php echo $customizacao['resultado_titulo_faixa_font_color'];?>; text-align:<?php echo $customizacao['resultado_titulo_faixa_align'];?>;"><?php echo $perfis['titulo'];?></div>								
 								<div class="resultado">
-									<p class="descricao"><?php echo $perfis['descricao'];?></p>
-									<div class="saibaMais"><a href="<?php echo $perfis['link_referencia'];?>"><?php echo $perfis['texto_link'];?></a></div>
+									<p class="descricao" style="font-size:<?php echo $customizacao['resultado_descricao_font_size'];?>; color:#<?php echo $customizacao['resultado_descricao_font_color']?>; text-align:<?php echo $customizacao['resultado_descricao_align'];?>;"><?php echo $perfis['descricao'];?></p>
+									<div class="saibaMais"><a href="<?php echo $perfis['link_referencia'];?>" style="font-size: <?php echo $customizacao['resultado_linkref_font_size'];?>; color:#<?php echo $customizacao['resultado_linkref_font_color'];?>; text-align:<?php echo $customizacao['resultado_linkref_align'];?>;"><?php echo $perfis['texto_link'];?></a></div>
 								
 									<div id="botoesResultado">
-										<a href="#" class="anterior" title="jogar novamente">&laquo; jogar novamente</a>
-										<a href="#" class="proximo" title="ver gabarito">ver gabarito</a>
+										<a href="#" class="anterior" title="jogar novamente" style="color: #<?php echo $customizacao['resultado_botao_font_color'];?>;background-color: #<?php echo $customizacao['resultado_botao_bg_color'];?>;">&laquo; jogar novamente</a>
+										<a href="#" class="proximo" title="ver gabarito" style="color: #<?php echo $customizacao['resultado_botao_font_color'];?>;background-color: #<?php echo $customizacao['resultado_botao_bg_color'];?>;">ver gabarito</a>
 									</div>
 								
 								</div>								
 							</div>
-							<div id="imagem">
+							<div id="imagem" style="margin-bottom: 10px;">
 								<!--<img id="alvo--" src="<?php echo base_url();?>assets/img/backgrounds/imagem2.png" />-->
 								<img id="alvo--" src="<?php echo $perfis['imagem'];?>" />
 							</div>

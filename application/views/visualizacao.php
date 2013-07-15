@@ -26,7 +26,6 @@
 							    </div>
 							    <div style="clear: both;"></div>
 							    <?php echo $perguntas;?>
-
 							  </div>
 							</div>
 							<!-- Slideshow HTML -->
@@ -40,6 +39,6 @@
 									<img src="<?php echo base_url();?>assets/img/ajax-loader.gif" />
 								</div>
 								<!--Chama a página de resultado, só aparece ao final do slideshow-->
-								<a href="#" id="chamaResultado" title="Próximo" style="color:#<?php echo $customizacao['botao_perguntas_font_color'];?>; background-color:#<?php echo $customizacao['botao_perguntas_bg_color'];?>;">Resultado &raquo;</a>
+								<a href="#" id="chamaResultado" rel="<?php echo $tipo;?>" title="Próximo" style="color:#<?php echo $customizacao['botao_perguntas_font_color'];?>; background-color:#<?php echo $customizacao['botao_perguntas_bg_color'];?>;">Resultado &raquo;</a>
 							</div>
 						</div>

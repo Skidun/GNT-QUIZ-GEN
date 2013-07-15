@@ -782,7 +782,12 @@ $(document).ready(function(){
 			var result = ( parseInt($('#slideInner').css('margin-left'))-620 );
 			var resposta = new Array();
 			var id       = $('#id-quiz').val();
-			var tipo     = $('#tipo-quiz').val();
+			if($('#tipo-quiz').val() == 'certo-ou-errado'){
+				var tipo     = 'faixa';	
+			}else{
+				var tipo     = $('#tipo-quiz').val();
+			}
+			
 			
 			$('#slideInner').animate({
 			    'marginLeft' : result
@@ -790,7 +795,8 @@ $(document).ready(function(){
 			
 			$('.slide').fadeOut(20).delay(160)
 			$('.slide-resultado').fadeIn(20);
-			$('#botoes').hide();
+			$('#botoes #anterior, #botoes #proximo').hide();
+			$('#chamaResultado').hide();
 			$('.loader').show();
 
 			$('input:radio:checked').each(function(){
@@ -798,31 +804,33 @@ $(document).ready(function(){
 				resposta.push($(this).val());
 			});
 			console.log(resposta);
-			$.getJSON('../../visualizacao/resultado_'+tipo, 
-				{respostas:resposta, id_quiz:id},
-				function(e){
-					$('.loader').fadeOut();
-					$('#botoesResultado').show();
-					$('#resultado #texto .titulo').text(e.titulo);
-					$('#resultado #texto .resultado .descricao').text(e.descricao);
-					$('#resultado #texto .resultado .saibaMais a').attr('href', e.link_referencia).text(e.texto_link);
-					$('#resultado #imagem #alvo-perguntas').attr('src', e.imagem).text(e.texto_link);
+					$.ajax({
+						url: '../../visualizacao/resultado_'+tipo,
+						dataType: 'JSON',
+						async: false,
+						data: {respostas:resposta, id_quiz:id},
+						success: function(e){
+							$('.loader').fadeOut();
+							$('#botoesResultado').show();
+							$('#resultado #texto .titulo').text(e.titulo);
+							$('#resultado #texto .resultado .descricao').text(e.descricao);
+							$('#resultado #texto .resultado .saibaMais a').attr('href', e.link_referencia).text(e.texto_link);
+							$('#resultado #imagem #alvo-perguntas').attr('src', e.imagem).text(e.texto_link);
 
-			      	$('#botoesResultado .anterior').click(function(){ location.reload() });
-			      	$('#botoesResultado .proximo').click(function(){ 
-			      	$('#slideInner').css('margin-left','0');
-			      	$('input[type="radio"]:checked').parent().next().css('text-decoration','underline');
-				      $('.slide-resultado').hide();
-				      $('.slide').fadeIn();
-				      $('#botoes').show();
-				      $('#botoesResultado').hide();
-				      currentPosition = ($(this).attr('id')=='proximo') 
-					    ? currentPosition+1 : currentPosition-1;
-				      manageControls();
-	    			});
-				}
-			);
-			      
+					      	$('#botoesResultado .anterior').click(function(){ location.reload() });
+					      	$('#botoesResultado .proximo').click(function(){ 
+						      	$('#slideInner').css('margin-left','0');
+						      	$('input[type="radio"]:checked').parent().next().css('text-decoration','underline');
+							      $('.slide-resultado').hide();
+							      $('.slide').fadeIn();
+							      $('#botoes').show();
+							      $('#botoesResultado').hide();
+							      currentPosition = ($(this).attr('id')=='proximo') 
+								    ? currentPosition+1 : currentPosition-1;
+							      manageControls();
+							});
+						}
+					});
 	    }else{ alert('Marque pelo menos uma resposta.'); } 
 
     });

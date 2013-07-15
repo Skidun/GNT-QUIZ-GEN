@@ -165,7 +165,7 @@ class Quiz_tipo extends CI_Controller {
 								</div>
 								<div class="texto">
 									<label for="descricao">Descrição</label>
-									<div class="textarea"><textarea name="descricao" cols="" rows="">'.$faixa->texto.'</textarea></div>
+									<div class="textarea"><textarea name="descricao" cols="" rows="">'.$faixa->descricao.'</textarea></div>
 									<label for="link">Link de referência:</label>
 									<div class="input"><input type="text" name="link" value="'.$faixa->link_referencia.'" size="" /></div>
 									<label for="texto">Texto do link de referência:</label>
