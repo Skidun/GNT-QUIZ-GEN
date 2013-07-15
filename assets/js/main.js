@@ -768,7 +768,7 @@ $(document).ready(function(){
 		      $('#botoesResultado .anterior').click(function(){ location.reload() });
 		      $('#botoesResultado .proximo').click(function(){ 
 		      	$('#slideInner').css('margin-left','0');
-		      	$('input[type="radio"]:checked').parent().next().css('text-decoration','underline');
+		      	$('input[type="radio"][value="10"]').parent().next().css('text-decoration','underline');
 			      $('#botoes').show();
 			      $('#botoesResultado').hide();
 			      currentPosition = ($(this).attr('id')=='proximo') 

@@ -17,7 +17,7 @@
 												<td>Só pensa nas coisas que quer fazer sozinha: pedalar, assistir a um filme, cuidar da casa...</td>
 											</tr>
 											<tr>
-												<td><input type="radio" name="resposta0" value="1" /></td>
+												<td><input type="radio" name="resposta0" value="10" /></td>
 												<td>Liga para os amigos e pergunta se alguém tem um cara interessante. e bonito para te apresentar.</td>
 											</tr>
 										</table>
@@ -37,7 +37,7 @@
 												<td>Só pensa nas coisas que quer fazer sozinha: pedalar, assistir a um filme, cuidar da casa...</td>
 											</tr>
 											<tr>
-												<td><input type="radio" name="resposta1" value="1" /></td>
+												<td><input type="radio" name="resposta1" value="10" /></td>
 												<td>Liga para os amigos e pergunta se alguém tem um cara interessante. e bonito para te apresentar.</td>
 											</tr>
 										</table>
