@@ -29,9 +29,10 @@ class Faixa_model extends CI_Model {
         return $this->db->get($this->table);
     }
 
-    public function get_resposta($id)
+    public function get_resposta($id, $pontuacao)
     {                
-        $this->db->where('id', $id);
+        $this->db->having('id_quiz', $id);
+        $this->db->where('range_de', $pontuacao)->or_where('range_ate', $pontuacao);
         $get = $this->db->get($this->table);
             
         return $get->row_array();

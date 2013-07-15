@@ -172,7 +172,7 @@
 							</div>
 							
 						</div>
-						<div id="previewPerguntas" class="preview" style="background: <?php if($customizacao['quiz_bg_img'] == "") {echo "#".$customizacao['quiz_bg_color'];}else{echo "url(".base_url()."assets/server/php/files/".$customizacao['quiz_bg_img'].") top center !important;";}?>">
+						<div id="previewPerguntas" class="preview" style="background: <?php if($customizacao['quiz_bg_img'] == "") {echo "#".$customizacao['quiz_bg_color'];}else{echo "url(".base_url()."assets/server/php/files/".$customizacao['quiz_bg_img'].") top center !important #".$customizacao['quiz_bg_color'].";";}?>">
 							<div id="nome" style="font-size:<?php echo $customizacao['titulo_quiz_font_size'];?>; color:#<?php echo $customizacao['titulo_quiz_font_color'];?>; text-align:<?php echo $customizacao['titulo_quiz_align'];?>;"><?php  echo $titulo;?></div>
 							<div id="texto">
 								<?php

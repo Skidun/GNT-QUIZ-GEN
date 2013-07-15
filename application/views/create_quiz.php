@@ -20,8 +20,8 @@
 									<select name="tipo" class="default" id="tipoQuiz">
 										<option value="perfil">Perfil</option>
 										<option value="certo-ou-errado">Certo ou Errado</option>
-										<option value="resposta-certa">Resposta Certa</option>
-										<option value="apenas-uma">Apenas uma resposta correta</option>
+										<option value="resposta_certa">Resposta Certa</option>
+										<option value="apenas_uma">Apenas uma resposta correta</option>
 									</select>
 									</div>
 								</td>

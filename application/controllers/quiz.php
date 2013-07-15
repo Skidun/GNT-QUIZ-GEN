@@ -19,6 +19,7 @@ class Quiz extends CI_Controller {
 		if(!$this->session->userdata('logado')){
 			redirect('login');
 		}
+		$this->load->model('faixa_model');
 	}
 	
 	public function index($de_paginacao=0)
@@ -131,14 +132,14 @@ class Quiz extends CI_Controller {
 		        		redirect('perguntas/certo-ou-errado/'.$id);
 		        		break;
 		        	
-		        	case 'resposta-certa':
+		        	case 'resposta_certa':
 		        		$this->session->set_flashdata('id_quiz', $id);
 		        		redirect('quiz_tipo/resposta_certa/'.$id);
 		        		break;
 
-		        	case 'apenas-uma':
+		        	case 'apenas_uma':
 		        		$this->session->set_flashdata('id_quiz', $id);
-		        		redirect('quiz_tipo/apenas_uma/'.$id);
+		        		redirect('perguntas/apenas_uma/'.$id);
 		        		break;		
 		        }
 			}
@@ -218,6 +219,7 @@ class Quiz extends CI_Controller {
 	{
 		$data = $id;
 		$this->perfil_model->quiz_delete($data);
+		$this->faixa_model->quiz_delete($data);
 		$this->pergunta_model->quiz_delete($data);
 		$this->resposta_model->quiz_delete($data);
 		$this->customizacao_model->quiz_delete($data);

@@ -86,7 +86,30 @@
 																Esta é a resposta correta
 															</div>
 														</div>
-												<?php break;?>
+												<?php 
+													break;
+													case 'apenas_uma':
+												?>
+													<div class="header">
+														<span class="icon"></span>
+														<span class="excluir excluir-dois"></span>
+														<div class="input"><input type="text" name="nome-resposta" value="" size="" /></div>
+														<div class="radio">
+															<input type="radio" id="radio00" value="0" name="grupo0" />
+															Esta é a resposta correta
+														</div>
+													</div>
+													
+													<div class="header">
+														<span class="icon"></span>
+														<span class="excluir excluir-dois"></span>
+														<div class="input"><input type="text" name="nome-resposta" value="" size="" /></div>
+														<div class="radio">
+															<input type="radio" id="radio10" value="1" name="grupo0" />
+															Esta é a resposta correta
+														</div>
+													</div>
+													<?php break; ?>
 												<?php }?>
 									</div>
 									<?php 
@@ -94,8 +117,8 @@
 											case 'perfil':
 												echo '<a id="nova-resposta-perfil" class="nova-resposta" href="javascript:void(0)"></a>';
 												break;
-											case 'certo-ou-errado':
-												
+											case 'apenas_uma':
+												echo '<a id="nova-resposta-respostaCerta" class="nova-resposta" href="javascript:void(0)"></a>';
 											break;
 										}
 									?>
@@ -116,6 +139,9 @@
 							case 'certo-ou-errado':
 								echo '<a id="nova-pergunta-certo" class="nova-pergunta" href="#"></a>';
 							break;
+							case 'apenas_uma':
+								echo '<a id="nova-pergunta-respostaCerta" class="nova-pergunta" href="#"></a>';
+							break;
 						}
 					?>
 				</div>
@@ -128,7 +154,7 @@
 
 				<?php
 						break;
-						case 'certo-ou-errado':
+						default:
 				?>
 							<a class="proxima-etapa" href="<?php echo base_url();?>quiz_tipo/<?php echo $tipo;?>/<?php echo $id;?>" rel="link-interno" id="btn-proxima-etapa-1-perguntas-CE" title="próxima etapa" onclick="return false;"></a>
 				<?php

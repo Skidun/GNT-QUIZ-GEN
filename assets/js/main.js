@@ -631,39 +631,54 @@ $(function(){
 		//por exemplo, resposta-21, é o select do grupo 2(#sortable2) e o segundo select desse grupo
 		var respostaNumero = $(this).parent().find('.sorteia').attr('id').slice(-1);
 		var grupoNumero = $(this).parent().find(".header").length;
-		$(this).parent().find('.sorteia').append('<div class="header"><span class="icon"></span><a class="excluir excluir-dois"></a><div class="input"><input type="text" name="nome" value="" size=""/></div><div class="radio"><label for="radio'+grupoNumero+respostaNumero+'" class="radioCustom"></label><input type="radio" id="radio'+grupoNumero+respostaNumero+'" value="'+grupoNumero+'" name="grupo'+respostaNumero+'"/>Esta é a resposta correta</div></div>');
+		$(this).parent().find('.sorteia').append('<div class="header"><span class="icon"></span><a class="excluir excluir-dois"></a><div class="input"><input type="text" name="nome-resposta" value="" size=""/></div><div class="radio"><input type="radio" id="radio'+grupoNumero+respostaNumero+'" value="'+grupoNumero+'" name="grupo'+respostaNumero+'"/> Esta é a resposta correta</div></div>');
 		//coloca o novo radio no esquema
-		$( "#radio"+grupoNumero+respostaNumero ).button();
+		//$( "#radio"+grupoNumero+respostaNumero ).button();
 		$(this).parents('.group').removeClass('edit');
 		$(this).parents('.group').addClass('edit');
 		$('.excluir-um').click(function(){ $(this).parents('.group').remove(); });
-		$('.excluir-dois').click(function(){ $(this).parents('.header').remove(); });  
+		$('.excluir-dois').click(function(){ $(this).parents('.header').remove(); });
+		$('input:radio').on('click', function(){
+			$('input:radio').val(0)
+			$('input:radio:checked').val('10');
+		});  
 		return false;
 	});
 	/*botão nova pergunta*/
 	$(document).on('click','#nova-pergunta-respostaCerta',function(){
-		//gera uma combinacao unica de numero para o novo select[name], assim não dá conflito
-		//por exemplo, resposta-21, é o select do grupo 2(#sortable2) e o segundo select desse grupo
-		var grupoNumero = $('.group').last().find(".header").length;
-		$("#accordion2").append('<div class="group"><div class="header"><span class="icon"></span><div class="input"><input type="text" name="nome" value="" size=""/></div><span class="arrow"></span><a class="excluir excluir-um"></a></div><div class="body"><div id="perguntas"><div class="texto"><label for="link">Link de referência:</label><div class="input"><input type="text" name="link" value="" size=""/></div><label for="texto">Texto do link de referência:</label><div class="input"><input type="text" name="texto" value="" size=""/></div></div><div class="imagem"><label for="imagem">Imagem relacionada:<span>Dimensões: 240px x 260px</span></label><form class="fileupload" action="../../assets/server/php/" method="POST" enctype="multipart/form-data"><div class="quadro"><img id="alvo" src="assets/img/backgrounds/imagem.png" name="imagem"/></div><span class="btn btn-success fileinput-button"><input id="file" type="file"/></span></form></div></div><div id="respostas"><div class="titulo-respostas">Respostas:</div><div id="sortable'+$(".sorteia").length+'" class="sorteia"><div class="header"><span class="icon"></span><div class="input"><input type="text" name="nome" value="" size=""/></div><div class="radio"><label for="radio0'+$(".sorteia").length+'" class="radioCustom"></label><input type="radio" id="radio0'+$(".sorteia").length+'" value="0" name="grupo'+$(".sorteia").length+'"/>Esta é a resposta correta</div></div></div><a id="nova-resposta-respostaCerta" class="nova-resposta" href="javascript:void(0)"></a></div></div></div>');
-		//coloca o novo elemento de accordion no esquema
-		$("#accordion2").accordion('destroy').sortable('destroy');
-		$("#accordion2").accordion({active:$("#accordion2 .sorteia").length-1,header:"> div > .header"}).sortable({axis:"y",handle:".header",stop:function(event,ui){ui.item.children(".header").triggerHandler("focusout")}});
-		//coloca o novo radio no esquema
-		$( "#radio0"+($(".sorteia").length-1) ).button();
-			//calcula quantos sortables tem e carrega
-			var length = $(".sorteia").length;
-			for( i=0; i < length; i++){
-				$("#sortable"+i).sortable();
-			}
-		/*tem que resetar o fileupload e chamar de novo*/		
-			$('.fileupload').bind('fileuploaddestroy');
-			$(".fileupload").each(function(){$(this).fileupload({done:function(e,t){var n=t.files[0];var r=n.name;$(this).find("#alvo").attr("src","assets/server/php/files/"+r)}})})
-		//scrolla pro fim da página
-		$('html, body').animate({scrollTop:$(document).height()}, 1000);
-		$('.excluir-um').click(function(){ $(this).parents('.group').remove(); });
-		$('.excluir-dois').click(function(){ $(this).parents('.header').remove(); });
-		return false;
+		$.ajax({
+				url: '../../quiz/show_base_url',
+				async: false,
+				success: function(e){
+					var base_url = e;
+					var count = $('.group').length;
+					var id = count++;
+					var id_resposta = $('.header').length;
+					var tamanho = $(".sorteia").length;
+					//gera uma combinacao unica de numero para o novo select[name], assim não dá conflito
+					//por exemplo, resposta-21, é o select do grupo 2(#sortable2) e o segundo select desse grupo
+					var grupoNumero = $('.group').last().find(".header").length;
+					$("#accordion2").append('<div class="group"><div class="header"><span class="icon"></span><div class="input"><input type="text" name="nome" id="nome-pergunta-'+id+'" value="" size=""/></div><span class="arrow"></span><a class="excluir excluir-um"></a></div><div class="body"><div id="perguntas"><div class="texto"><label for="link">Link de referência:</label><div class="input"><input type="text" name="link" id="link-pergunta-'+id+'" value="" size=""/></div><label for="texto">Texto do link de referência:</label><div class="input"><input type="text" name="texto" id="texto-pergunta-'+id+'" value="" size=""/></div></div><div class="imagem"><label for="imagem">Imagem relacionada:<span>Dimensões: 240px x 260px</span></label><form class="fileupload" action="'+base_url+'assets/server/php/" method="POST" enctype="multipart/form-data"><div class="quadro"><img id="alvo-pergunta-'+id+'" src="'+base_url+'assets/img/backgrounds/imagem.png" name="imagem"/></div><span class="btn btn-success fileinput-button"><input id="file" type="file"/></span></form></div></div><div id="respostas"><div class="titulo-respostas">Respostas:</div><div id="sortable'+$(".sorteia").length+'" class="sorteia"><div class="header"><span class="icon"></span><a class="excluir excluir-dois"></a><div class="input"><input type="text" name="nome-resposta" value="" size=""/></div><div class="radio"><input type="radio" id="radio0'+$(".sorteia").length+'" value="0" name="grupo'+$(".sorteia").length+'"/> Esta é a resposta correta</div></div></div><a id="nova-resposta-respostaCerta" class="nova-resposta" href="javascript:void(0)"></a></div></div></div>');
+					//coloca o novo elemento de accordion no esquema
+					$("#accordion2").accordion('destroy').sortable('destroy');
+					$("#accordion2").accordion({active:$("#accordion2 .sorteia").length-1,header:"> div > .header"}).sortable({axis:"y",handle:".header",stop:function(event,ui){ui.item.children(".header").triggerHandler("focusout")}});
+					//coloca o novo radio no esquema
+					//$( "#radio0"+($(".sorteia").length-1) ).button();
+						//calcula quantos sortables tem e carrega
+						var length = $(".sorteia").length;
+						for( i=0; i < length; i++){
+							$("#sortable"+i).sortable();
+						}
+					/*tem que resetar o fileupload e chamar de novo*/		
+						$('.fileupload').bind('fileuploaddestroy');
+						$(".fileupload").each(function(){$(this).fileupload({done:function(e,t){var n=t.files[0];var r=n.name;$(this).find("#alvo").attr("src","../../assets/server/php/files/"+r)}})})
+					//scrolla pro fim da página
+					$('html, body').animate({scrollTop:$(document).height()}, 1000);
+					$('.excluir-um').click(function(){ $(this).parents('.group').remove(); });
+					$('.excluir-dois').click(function(){ $(this).parents('.header').remove(); });
+					return false;
+				}
+		});		
 	});
 	
 	//Varias Respostas > perguntas e respostas
@@ -815,7 +830,11 @@ $(document).ready(function(){
 							$('#resultado #texto .titulo').text(e.titulo);
 							$('#resultado #texto .resultado .descricao').text(e.descricao);
 							$('#resultado #texto .resultado .saibaMais a').attr('href', e.link_referencia).text(e.texto_link);
-							$('#resultado #imagem #alvo-perguntas').attr('src', e.imagem).text(e.texto_link);
+							if(e.imagem == ''){
+								$('#resultado #imagem').hide();
+							}else{
+								$('#resultado #imagem #alvo-perguntas').show().attr('src', e.imagem).text(e.texto_link);
+							}
 
 					      	$('#botoesResultado .anterior').click(function(){ location.reload() });
 					      	$('#botoesResultado .proximo').click(function(){ 

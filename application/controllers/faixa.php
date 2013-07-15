@@ -23,7 +23,7 @@ class Faixa extends CI_Controller {
 		$data['range_de']		=	$this->input->get('range_de', true);
 		$data['range_ate']		=	$this->input->get('range_ate', true);
 		$data['titulo']			=	$this->input->get('titulo', 	true);
-		$data['texto']			=	$this->input->get('descricao', true);
+		$data['descricao']		=	$this->input->get('descricao', true);
 		$data['link_referencia']=	$this->input->get('link_referencia', true);
 		$data['texto_link']		=	$this->input->get('texto_link', true);
 		$data['imagem']			=	$this->input->get('imagem', true);

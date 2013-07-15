@@ -98,16 +98,131 @@ var eventos_back = {
 		//Botões Salvar e sair
 		$('#salvar-e-sair-quiz_tipo').click(function(){
 			var url = this.href;
-			eventos_back.salva_perfil(url);
+			var tipo = this.rel;
+			switch(tipo){
+				case 'perfil':
+					eventos_back.salva_perfil(url);
+				break;
+				case 'certo-ou-errado':
+					eventos_back.salva_faixa_ce(url);
+				break;	
+			}
+			
 			return false;
 		});
 
 		$('#salvar-e-sair-perguntas').click(function(){
 			var url = this.href;
-			eventos_back.salva_perguntas(url);
+			var tipo = this.rel;
+
+			switch(tipo){
+				case 'perfil':
+					eventos_back.salva_perguntas(url);
+				break;
+				case 'certo-ou-errado':
+					eventos_back.salva_perguntas_CE(url);
+				break;
+				case 'apenas_uma':
+					eventos_back.salva_perguntas_CE(url);
+				break;
+
+			}
+			
 			return false;
 		});
 
+		$('#salvar-e-sair-customizacao').click(function(){
+			var url = this.href;
+			var tipo = this.rel;
+			
+			eventos_back.salva_customizacao(url);
+			
+			return false;
+		});
+
+		//Menu de navegação
+		$('.faixasClassificacao').on('click', function(event){
+			event.preventDefault();
+			var url		= this.href;
+			var controlador  	= this.rel;
+			var tipo 			= $('#tipo_quiz').val();
+
+			switch(controlador){
+				case 'perguntas':
+						var evento = 'certo-ou-errado'
+						eventos_back.valida_timestamp(evento, url);
+				break;
+				case 'quiz_tipo':
+						var evento = 'certo-ou-errado-faixa'
+						eventos_back.valida_timestamp(evento, url);
+				break;
+				case 'customizacao':
+						var evento = 'customizacao'
+						eventos_back.salva_customizacao(url);
+				break;
+				case 'visualizacao':
+						var evento = 'visualizacao'
+						window.location.href=url;
+				break;
+			}
+
+			return false;
+		});
+		//Perguntas
+		$('.perguntas').on('click', function(event){
+			event.preventDefault();
+			var url		= this.href;
+			var controlador  	= this.rel;
+			var tipo 			= $('#tipo_quiz').val();
+
+			switch(controlador){
+				case 'perguntas':
+						var evento = 'certo-ou-errado'
+						eventos_back.valida_timestamp(evento, url);
+				break;
+				case 'quiz_tipo':
+						var evento = 'certo-ou-errado-faixa'
+						eventos_back.valida_timestamp(evento, url);
+				break;
+				case 'customizacao':
+						var evento = 'customizacao'
+						eventos_back.salva_customizacao(url);
+				break;
+				case 'visualizacao':
+						var evento = 'visualizacao'
+						window.location.href=url;
+				break;
+			}
+
+			return false;
+		});
+		$('.customizacao').on('click', function(event){
+			event.preventDefault();
+			var url		= this.href;
+			var controlador  	= this.rel;
+			var tipo 			= $('#tipo_quiz').val();
+
+			switch(controlador){
+				case 'perguntas':
+						var evento = 'certo-ou-errado'
+						eventos_back.valida_timestamp(evento, url);
+				break;
+				case 'quiz_tipo':
+						var evento = 'certo-ou-errado-faixa'
+						eventos_back.valida_timestamp(evento, url);
+				break;
+				case 'customizacao':
+						var evento = 'customizacao'
+						eventos_back.salva_customizacao(url);
+				break;
+				case 'visualizacao':
+						var evento = 'visualizacao'
+						window.location.href=url;
+				break;
+			}
+
+			return false;
+		});
 		//Perfil 1
 		$('#btn-proxima-etapa-1-perfil').one('click',function(e){
 			e.preventDefault();
@@ -206,7 +321,6 @@ var eventos_back = {
 			var url = this.href, id_quiz = $('#id_quiz').val(), alvo = this.id;
 			var imagem = $(this).siblings('.quadro #alvo').attr('src');
 			var data_alteracao = $('#data_alteracao').val();
-			alert(id_quiz+" / "+data_alteracao+" - "+url);
 			$.get('../../quiz/valida_timestamp', {id:id_quiz, data_alteracao:data_alteracao}).done(
 				function(e){
 					if(e == 'ok'){
@@ -255,10 +369,11 @@ var eventos_back = {
 		//Quando clicar em proxima etapa
 		$('#btn-proxima-etapa-1-perguntas-CE').on('click', function(event){
 			event.preventDefault();
+			var url    = this.href;
 			var evento = 'certo-ou-errado';
 			$(this).hide();
 			$('.loader').fadeIn();
-			eventos_back.valida_timestamp(evento);
+			eventos_back.valida_timestamp(evento, url);
 		});
 
 		$('#proxima-etapa-2-faixa-ce').on('click', function(event){
@@ -328,7 +443,7 @@ var eventos_back = {
 		}
 	},
 
-	valida_timestamp: function(evento, prox_url)
+	valida_timestamp: function(evento, prox_url, url)
 	{
 		var data_alteracao = $('#data_alteracao').val(), id_quiz = $('#id_quiz').val();
 		$.ajax({
@@ -345,13 +460,13 @@ var eventos_back = {
 							eventos_back.salva_perguntas();
 						break;
 						case 'customizacao':
-							eventos_back.salva_customizacao();
+							eventos_back.salva_customizacao(url);
 						break;
 						case 'certo-ou-errado':
-							eventos_back.salva_perguntas_CE();
+							eventos_back.salva_perguntas_CE(url);
 						break;
 						case 'certo-ou-errado-faixa':
-							eventos_back.salva_faixa_ce(prox_url);
+							eventos_back.salva_faixa_ce(prox_url, url);
 						break;				
 					}	
 				}else{
@@ -602,7 +717,10 @@ var eventos_back = {
 			var box_resposta = $(this).find('.sorteia .header');
 			//Valida se o campo de nome da pergunta 
 			if(nome == '' || nome == 'Preencha esse campo'){
-				$('#nome-pergu"10"nta-'+index).val('Preencha esse campo')
+				$('#nome-pergunta-'+index).val('Preencha esse campo');
+				alert('Preencha todos os campos');
+				$('.loader').hide();
+				$('.proxima-etapa').show();
 				return false;
 			}else{
 				if(!$(this).hasClass('salvo')){
@@ -775,7 +893,6 @@ var eventos_back = {
 							});
 						//Ou vai editar uma faixa já cadastrada	
 						}else if($(this).hasClass('edit')){
-							alert(id_faixa)
 							$.ajax({
 								url: base_url+'faixa/update_faixa/'+id_faixa,
 								async: false,
@@ -830,13 +947,13 @@ var eventos_back = {
 			async: false,
 			data: {id_config:id_config, id_quiz:id_quiz, titulo_tamanho:titulo_tamanho, titulo_cor:titulo_cor, titulo_alinhamento:titulo_alinhamento, pergunta_tamanho:pergunta_tamanho, pergunta_cor:perguntas_cor, perguntas_alinhamento:perguntas_alinhamento, referencia_tamanho:referencia_tamanho, referencia_cor:referencia_cor, referencia_alinhamento:referencia_alinhamento, resposta_tamanho:resposta_tamanho, resposta_cor:resposta_cor, resposta_alinhamento:resposta_alinhamento, resposta_cor_fundo:resposta_cor_fundo, botoes_cor:botoes_cor, botoes_cor_fundo:botoes_cor_fundo, pergunta_cor_fundo:pergunta_cor_fundo, pergunta_imagem_fundo:pergunta_imagem_fundo, titulo_quiz_resultados_tamanho:titulo_quiz_resultados_tamanho, titulo_quiz_resultados_cor:titulo_quiz_resultados_cor, titulo_quiz_resultados_alinhamento:titulo_quiz_resultados_alinhamento, titulo_resultatados_tamanho:titulo_resultatados_tamanho, titulo_resultados_cor:titulo_resultados_cor, titulo_resultados_alinhamento:titulo_resultados_alinhamento, acertos_tamanho:acertos_tamanho, acertos_cor:acertos_cor, acertos_alinhamento:acertos_alinhamento, descricao_tamanho:descricao_tamanho, descricao_cor:descricao_cor, descricao_alinhamento:descricao_alinhamento, referencia_resultados_tamanho:referencia_resultados_tamanho, referencia_resultados_cor:referencia_resultados_cor, referencia_resultados_alinhamento:referencia_resultados_alinhamento, botoes_resultados_cor:botoes_resultados_cor, botoes_resultados_cor_fundo:botoes_resultados_cor_fundo, imagem_resultados_fundo:imagem_resultados_fundo, resultados_cor_fundo:resultados_cor_fundo},
 			success: function(e){
-				if(e == 'sucesso'){
+				//if(e == 'sucesso'){
 					if(!url){
 						window.location.href=prox_url;
 					}else{
 						window.location.href=url;
 					}
-				}
+				//}
 			}
 		});
 	},
