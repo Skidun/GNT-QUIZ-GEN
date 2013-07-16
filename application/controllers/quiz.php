@@ -134,7 +134,7 @@ class Quiz extends CI_Controller {
 		        	
 		        	case 'resposta_certa':
 		        		$this->session->set_flashdata('id_quiz', $id);
-		        		redirect('quiz_tipo/resposta_certa/'.$id);
+		        		redirect('perguntas/resposta_certa/'.$id);
 		        		break;
 
 		        	case 'apenas_uma':
@@ -183,22 +183,39 @@ class Quiz extends CI_Controller {
 										<table class="respostas" style="font-size:'.$customizacao['resposta_pergunta_font_size'].'; color:#'.$customizacao['resposta_pergunta_font_color'].'; text-align:'.$customizacao['resposta_pergunta_align'].';">
 										';
 						$respostas					= $this->resposta_model->get_all($pergunta->id);
-						foreach($respostas->result() as $resposta):				
-						$html_perguntas.='
-											<tr>
-												<td><input type="radio" name="resposta'.$count_resposta.'" value="'.$resposta->perfil_resposta.'" /></td>
-												<td>'.$resposta->resposta.'</td>
-											</tr>
-										';
+						foreach($respostas->result() as $resposta):
+							if($resposta->tipo_resposta != 'resposta_certa'){				
+								$html_perguntas.='
+													<tr>
+														<td><input type="radio" name="resposta'.$count_resposta.'" value="'.$resposta->perfil_resposta.'" /></td>
+														<td>'.$resposta->resposta.'</td>
+													</tr>
+												';
+							}else{
+								$html_perguntas.='
+													<tr>
+														<td><input type="checkbox" name="resposta'.$count_resposta.'" value="'.$resposta->perfil_resposta.'" /></td>
+														<td>'.$resposta->resposta.'</td>
+													</tr>
+												';
+							}
 						endforeach;											
 			$html_perguntas	.=	'
 										</table>
 									</div>
-									<div id="imagem" style="background: #fdd595;">
+								';
+								if($pergunta->imagem == base_url().'assets/img/backgrounds/imagem.png' || $pergunta->imagem == '../../assets/img/backgrounds/imagem.png'){
+			$html_perguntas .=	'
+									</div>
+								';
+								}else{
+			$html_perguntas .=	'
+								<div id="imagem" style="background: #fdd595;">
 										<img id="alvo-perguntas" src="'.$pergunta->imagem.'" />
 									</div>
 							    </div>
-			';
+								';
+			}
 		}
 		#Array com as informações que são enviados para a view
 		$data  						= $this->quiz_model->get($id);

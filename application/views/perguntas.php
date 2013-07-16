@@ -20,7 +20,7 @@
 					<div class="group" id="0">					
 							<div class="header">
 								<span class="icon"></span>
-								<div class="input"><input type="text" name="nome" id="nome-pergunta-0" value="" size="" /></div>
+								<div class="input"><input type="text" name="nome-pergunta" id="nome-pergunta-0" value="" size="" /></div>
 								<span class="arrow"></span>
 								<span class="excluir excluir-um"></span>
 							</div>
@@ -109,8 +109,34 @@
 															Esta é a resposta correta
 														</div>
 													</div>
-													<?php break; ?>
-												<?php }?>
+												<?php 
+													break;
+													case 'resposta_certa':
+												?>
+													<div class="header">
+														<span class="icon"></span>
+														<span class="excluir excluir-dois"></span>
+														<div class="input"><input type="text" name="nome-resposta" value="" size="" /></div>
+														<div class="checkbox">
+															<input type="checkbox" id="checkbox00" value="0" name="grupo0" />
+															Esta é a resposta correta
+														</div>
+													</div>
+													
+													<div class="header">
+														<span class="icon"></span>
+														<span class="excluir excluir-dois"></span>
+														<div class="input"><input type="text" name="nome-resposta" value="" size="" /></div>
+														<div class="checkbox">
+															<input type="checkbox" id="checkbox10" value="1" name="grupo0" />
+															Esta é a resposta correta
+														</div>
+													</div>
+										
+												<?php 
+													break;
+													}
+												?>
 									</div>
 									<?php 
 										switch ($tipo) {
@@ -119,6 +145,9 @@
 												break;
 											case 'apenas_uma':
 												echo '<a id="nova-resposta-respostaCerta" class="nova-resposta" href="javascript:void(0)"></a>';
+											break;
+											case 'resposta_certa':
+												echo '<a id="nova-resposta-variasRespostas" class="nova-resposta" href="javascript:void(0)"></a>';
 											break;
 										}
 									?>
@@ -142,6 +171,9 @@
 							case 'apenas_uma':
 								echo '<a id="nova-pergunta-respostaCerta" class="nova-pergunta" href="#"></a>';
 							break;
+							case 'resposta_certa':
+								echo '<a id="nova-pergunta-variasRespostas" class="nova-pergunta" href="#"></a>';
+							break;	
 						}
 					?>
 				</div>

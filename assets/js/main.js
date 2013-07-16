@@ -572,7 +572,7 @@ $(function(){
 		$( "#slider"+calculaSlider ).slider({
 				range: true,
 				min: 0,
-				max: 100,
+				max: 200,
 				step: 10,
 				values: [ 0, 10 ],
 				slide: function( event, ui ) {
@@ -596,7 +596,7 @@ $(function(){
 				$( "#slider"+(tamanho+1) ).slider({
 							range: true,
 							min: 0,
-							max: 100,
+							max: 200,
 							step: 10,
 							values: [ 0, 10 ],
 							slide: function( event, ui ) {
@@ -671,7 +671,7 @@ $(function(){
 						}
 					/*tem que resetar o fileupload e chamar de novo*/		
 						$('.fileupload').bind('fileuploaddestroy');
-						$(".fileupload").each(function(){$(this).fileupload({done:function(e,t){var n=t.files[0];var r=n.name;$(this).find("#alvo").attr("src","../../assets/server/php/files/"+r)}})})
+						$(".fileupload").each(function(index){$(this).fileupload({done:function(e,t){var n=t.files[0];var r=n.name;$(this).find("#alvo-pergunta-"+index).attr("src","../../assets/server/php/files/"+r)}})})
 					//scrolla pro fim da página
 					$('html, body').animate({scrollTop:$(document).height()}, 1000);
 					$('.excluir-um').click(function(){ $(this).parents('.group').remove(); });
@@ -683,43 +683,66 @@ $(function(){
 	
 	//Varias Respostas > perguntas e respostas
 	//$( "#checkbox00,#checkbox10,#checkbox01" ).button();
-	/*checkbox, vê quantos tem na página e gera por id dinamicamente*/
+	/*checkbox, vê quantos tem na página e gera por id dinamicamente
     var ids = $.map($('input[type="checkbox"]'), function(elt) {
 		$( "#"+elt.id ).button();
-	});	
+	});*/
 	/*botao nova resposta*/
 	$(document).on('click','#nova-resposta-variasRespostas',function(){
 		//gera uma combinacao unica de numero para o novo select[name], assim não dá conflito
 		//por exemplo, resposta-21, é o select do grupo 2(#sortable2) e o segundo select desse grupo
 		var respostaNumero = $(this).parent().find('.sorteia').attr('id').slice(-1);
 		var grupoNumero = $(this).parent().find(".header").length;
-		$(this).parent().find('.sorteia').append('<div class="header"><span class="icon"></span><div class="input"><input type="text" name="nome" value="" size=""/></div><div class="checkbox"><label for="checkbox'+grupoNumero+respostaNumero+'" class="checkboxCustom"></label><input type="checkbox" id="checkbox'+grupoNumero+respostaNumero+'" value="'+grupoNumero+'" name="grupo'+respostaNumero+'"/>Esta é a resposta correta</div></div>');
+		$(this).parent().find('.sorteia').append('<div class="header"><span class="icon"></span><a class="excluir excluir-dois"></a><div class="input"><input type="text" name="nome-resposta" value="" size=""/></div><div class="checkbox"><input type="checkbox" id="checkbox'+grupoNumero+respostaNumero+'" value="0" name="grupo'+respostaNumero+'"/> Esta é a resposta correta</div></div>');
 		//coloca o novo checkbox no esquema
-		$( "#checkbox"+grupoNumero+respostaNumero ).button();
+		//$( "#checkbox"+grupoNumero+respostaNumero ).button();
+		$('.group').each(function(index){
+			$(this).find('input:checkbox').on('click', function(){
+				$('input:checkbox').val(0)
+				$('input:checkbox:checked').val('10');
+			});
+		});
 		return false;
 	});
 	/*botao nova pergunta*/
 	$(document).on('click','#nova-pergunta-variasRespostas',function(){
-		//gera uma combinacao unica de numero para o novo select[name], assim não dá conflito
-		//por exemplo, resposta-21, é o select do grupo 2(#sortable2) e o segundo select desse grupo
-		var grupoNumero = $('.group').last().find(".header").length;
-		$("#accordion2").append('<div class="group"><div class="header"><span class="icon"></span><div class="input"><input type="text" name="nome" value="" size=""/></div><span class="arrow"></span></div><div class="body"><div id="perguntas"><div class="texto"><label for="link">Link de referência:</label><div class="input"><input type="text" name="link" value="" size=""/></div><label for="texto">Texto do link de referência:</label><div class="input"><input type="text" name="texto" value="" size=""/></div></div><div class="imagem"><label for="imagem">Imagem relacionada:<span>Dimensões: 240px x 260px</span></label><form class="fileupload" action="../../assets/server/php/" method="POST" enctype="multipart/form-data"><div class="quadro"><img id="alvo" src="assets/img/backgrounds/imagem.png" name="imagem"/></div><span class="btn btn-success fileinput-button"><input id="file" type="file"/></span></form></div></div><div id="respostas"><div class="titulo-respostas">Respostas:</div><div id="sortable'+$(".sorteia").length+'" class="sorteia"><div class="header"><span class="icon"></span><div class="input"><input type="text" name="nome" value="" size=""/></div><div class="checkbox"><label for="checkbox0'+$(".sorteia").length+'" class="checkboxCustom"></label><input type="checkbox" id="checkbox0'+$(".sorteia").length+'" value="0" name="grupo'+$(".sorteia").length+'"/>Esta é a resposta correta</div></div></div><a id="nova-resposta-variasRespostas" class="nova-resposta" href="javascript:void(0)"></a></div></div></div>');
-		//coloca o novo elemento de accordion no esquema
-		$("#accordion2").accordion('destroy').sortable('destroy');
-		$("#accordion2").accordion({active:$("#accordion2 .sorteia").length-1,header:"> div > .header"}).sortable({axis:"y",handle:".header",stop:function(event,ui){ui.item.children(".header").triggerHandler("focusout")}});
-		//coloca o novo checkbox no esquema
-		$( "#checkbox0"+($(".sorteia").length-1) ).button();
-		//calcula quantos sortables tem e carrega
-		var length = $(".sorteia").length;
-		for( i=0; i < length; i++){
-			$("#sortable"+i).sortable();
-		}
-		/*tem que resetar o fileupload e chamar de novo*/		
-			$('.fileupload').bind('fileuploaddestroy');
-			$(".fileupload").each(function(){$(this).fileupload({done:function(e,t){var n=t.files[0];var r=n.name;$(this).find("#alvo").attr("src","assets/server/php/files/"+r)}})})
-		//scrolla pro fim da página
-		$('html, body').animate({scrollTop:$(document).height()}, 1000);
-		return false;
+		$.ajax({
+				url: '../../quiz/show_base_url',
+				async: false,
+				success: function(e){
+					var base_url = e;
+					var count = $('.group').length;
+					var id = count++;
+					var id_resposta = $('.header').length;
+					var tamanho = $(".sorteia").length;
+					//gera uma combinacao unica de numero para o novo select[name], assim não dá conflito
+					//por exemplo, resposta-21, é o select do grupo 2(#sortable2) e o segundo select desse grupo
+					var grupoNumero = $('.group').last().find(".header").length;
+					$("#accordion2").append('<div class="group"><div class="header"><span class="icon"></span><div class="input"><input type="text" name="nome-pergunta" id="nome-pergunta-'+id+'" value="" size=""/></div><span class="arrow"></span><a class="excluir excluir-um"></a></div><div class="body"><div id="perguntas"><div class="texto"><label for="link">Link de referência:</label><div class="input"><input type="text" name="link-pergunta" id="link-pergunta-'+id+'" value="" size=""/></div><label for="texto">Texto do link de referência:</label><div class="input"><input type="text" name="texto-pergunta" id="texto-pergunta-'+id+'" value="" size=""/></div></div><div class="imagem"><label for="imagem">Imagem relacionada:<span>Dimensões: 240px x 260px</span></label><form class="fileupload" action="'+base_url+'assets/server/php/" method="POST" enctype="multipart/form-data"><div class="quadro"><img id="alvo-pergunta-'+id+'" src="'+base_url+'assets/img/backgrounds/imagem.png" name="imagem"/></div><span class="btn btn-success fileinput-button"><input id="file" type="file"/></span></form></div></div><div id="respostas"><div class="titulo-respostas">Respostas:</div><div id="sortable'+$(".sorteia").length+'" class="sorteia"><div class="header"><span class="icon"></span><a class="excluir excluir-dois"></a><div class="input"><input type="text" name="nome-resposta" value="" size=""/></div><div class="checkbox"><input type="checkbox" id="checkbox0'+$(".sorteia").length+'" value="0" name="grupo'+$(".sorteia").length+'"/> Esta é a resposta correta</div></div></div><a id="nova-resposta-variasRespostas" class="nova-resposta" href="javascript:void(0)"></a></div></div></div>');
+					//coloca o novo elemento de accordion no esquema
+					$("#accordion2").accordion('destroy').sortable('destroy');
+					$("#accordion2").accordion({active:$("#accordion2 .sorteia").length-1,header:"> div > .header"}).sortable({axis:"y",handle:".header",stop:function(event,ui){ui.item.children(".header").triggerHandler("focusout")}});
+					//coloca o novo checkbox no esquema
+					//$( "#checkbox0"+($(".sorteia").length-1) ).button();
+					//calcula quantos sortables tem e carrega
+					var length = $(".sorteia").length;
+					for( i=0; i < length; i++){
+						$("#sortable"+i).sortable();
+					}
+					/*tem que resetar o fileupload e chamar de novo*/		
+						$('.fileupload').bind('fileuploaddestroy');
+						$(".fileupload").each(function(){$(this).fileupload({done:function(e,t){var n=t.files[0];var r=n.name;$(this).find("#alvo-pergunta-"+id).attr("src",base_url+"assets/server/php/files/"+r)}})})
+					//scrolla pro fim da página
+					$('html, body').animate({scrollTop:$(document).height()}, 1000);
+					$('.group').each(function(index){
+						$(this).find('input:checkbox').on('click', function(){
+							$('input:checkbox').val(0)
+							$('input:checkbox:checked').val('10');
+						});
+					});
+					return false;
+				}
+		});		
 	});
 	
 });
@@ -813,6 +836,18 @@ $(document).ready(function(){
 			$('#botoes #anterior, #botoes #proximo').hide();
 			$('#chamaResultado').hide();
 			$('.loader').show();
+
+			if($('#tipo-quiz').val() != 'resposta_certa'){
+				$('input:radio:checked').each(function(){
+					//resposta.push(this);
+					resposta.push($(this).val());
+				});
+			}else{
+				$('input:checkbox:checked').each(function(){
+					//resposta.push(this);
+					resposta.push($(this).val());
+				 });
+			}
 
 			$('input:radio:checked').each(function(){
 			//resposta.push(this);

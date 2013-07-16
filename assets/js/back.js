@@ -125,6 +125,9 @@ var eventos_back = {
 				case 'apenas_uma':
 					eventos_back.salva_perguntas_CE(url);
 				break;
+				case 'resposta_certa':
+					eventos_back.salva_perguntas_CE(url);
+				break;
 
 			}
 			
@@ -361,9 +364,29 @@ var eventos_back = {
 		//Quando o usuário marca alguma resposta como correta é atribuido a ela o peso 10
 		$('.group').each(function(index){
 			$(this).find('input:radio').on('click', function(){
+				$('input:radio').val(0)
+				$('input:radio:checked').val('10');
+			});
+		});
+		$('.group.salvo').each(function(index){
+			$(this).find('input:radio').on('click', function(){
 				$(this).parents('.group').addClass('edit');
 				$('input:radio').val(0)
 				$('input:radio:checked').val('10');
+			});
+		});
+		//Quando o usuário marca alguma resposta como correta é atribuido a ela o peso 10
+		$('.group').each(function(index){
+			$(this).find('input:checkbox').on('click', function(){
+				$('input:checkbox').val(0)
+				$('input:checkbox:checked').val('10');
+			});
+		});
+		$('.group.salvo').each(function(index){
+			$(this).find('input:checkbox').on('click', function(){
+				$(this).parents('.group').addClass('edit');
+				$('input:checkbox').val(0)
+				$('input:checkbox:checked').val('10');
 			});
 		});
 		//Quando clicar em proxima etapa
@@ -374,6 +397,7 @@ var eventos_back = {
 			$(this).hide();
 			$('.loader').fadeIn();
 			eventos_back.valida_timestamp(evento, url);
+			return false;
 		});
 
 		$('#proxima-etapa-2-faixa-ce').on('click', function(event){
@@ -397,7 +421,7 @@ var eventos_back = {
 			$( "#slider"+index ).slider({
 					range: true,
 					min: 0,
-					max: 100,
+					max: 200,
 					step: 10,
 					values: [ de, ate ],
 					slide: function( event, ui ) {
@@ -441,6 +465,8 @@ var eventos_back = {
 		}else{
 			document.form_quiz_create.submit();
 		}
+
+		return false;
 	},
 
 	valida_timestamp: function(evento, prox_url, url)
@@ -750,7 +776,12 @@ var eventos_back = {
 								//Vamos salvar a resposta agora
 								$(box_resposta).each(function(index_resp){
 									var resposta 	= $(this).find('.input input[name="nome-resposta"]').val(), ordem_resp = index_resp;
-									var certa_ou_errada = $(this).find('input:radio').val();
+									if(tipo_quiz != 'resposta_certa'){
+										var certa_ou_errada = $(this).find('input:radio').val();	
+									}else{
+										var certa_ou_errada = $(this).find('input:checkbox').val();
+									}
+									
 								    //Log do cadastro
 								    console.log('Pergunta: '+nome+' ID: '+e.id_pergunta+' | Resposta: '+resposta+' - Certo ou errado: '+certa_ou_errada);
 										    
@@ -790,7 +821,11 @@ var eventos_back = {
 					//Salva uma nova resposta ou atualiza as respostas existentes 
 					$(box_resposta).each(function(index_resp){
 						var resposta = $(this).find('.input input[name="nome-resposta"]').val(), id_resposta = $(this).find('.input input[name="id-resposta"]').val(),  perfil_resposta = $(this).find('select[name=perfil-resposta]').val();
-						var certa_ou_errada = $(this).find('input:radio').val();
+						if(tipo_quiz != 'resposta_certa'){
+							var certa_ou_errada = $(this).find('input:radio').val();	
+						}else{
+							var certa_ou_errada = $(this).find('input:checkbox').val();
+						}
 						$.ajax({
 							url: '../../respostas/update_resposta_perfil',
 						   	type: 'GET',
@@ -838,7 +873,7 @@ var eventos_back = {
 				}//Fim da Edição da pergunta
 			} 
 		});
-		//Atualiza a data de alteração do quiz
+		//Atualiza a data de alteração do quiz	
 		$.ajax({
 			url: '../../quiz/update_timestamp',
 			async:false,
@@ -967,6 +1002,7 @@ var eventos_back = {
 			var id       = $('#id-quiz').val();
 			var tipo     = $('#tipo-quiz').val();
 
+			confirm(tipo);
 			$('#slideInner').animate({
 			    'marginLeft' : result
 			},200);
@@ -974,11 +1010,17 @@ var eventos_back = {
 			$('.slide').fadeOut(20).delay(160).fadeIn(20);
 			$('#botoes').hide();
 			$('.loader').show();
-
-			$('input:radio:checked').each(function(){
-			//resposta.push(this);
-				resposta.push($(this).val());
-			});
+			if(tipo != 'resposta_certa'){
+				$('input:radio:checked').each(function(){
+					//resposta.push(this);
+					resposta.push($(this).val());
+				});
+			}else{
+				 $('input:checkbox:checked').each(function(){
+					//resposta.push(this);
+						resposta.push($(this).val());
+				 });
+			}
 
 			$.ajax({
 				url: '../../visualizacao/resultado_'+tipo,
