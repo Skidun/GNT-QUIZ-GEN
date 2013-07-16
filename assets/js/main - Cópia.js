@@ -738,6 +738,7 @@ $(document).ready(function(){
 	        'marginLeft' : slideWidth*(-currentPosition)
 	      },200);
 	      $('.slide').fadeOut(20).delay(160).fadeIn(20);
+
   	}else{
   		alert('Marque pelo menos uma resposta.');
   	}
@@ -762,53 +763,20 @@ $(document).ready(function(){
 		        'marginLeft' : result
 		      },200);
 		      $('.slide').fadeOut(20).delay(160).fadeIn(20);
-		      $('#botoes').remove();
+		      $('#botoes').hide();
 		      $('#botoesResultado').show();
-			  
+		      $('#botoesResultado .anterior').click(function(){ location.reload() });
+		      $('#botoesResultado .proximo').click(function(){ 
+		      	$('#slideInner').css('margin-left','0');
+		      	$('input[type="radio"][value="10"]').parent().next().css('text-decoration','underline');
+			      $('#botoes').show();
+			      $('#botoesResultado').hide();
+			      currentPosition = ($(this).attr('id')=='proximo') 
+				    ? currentPosition+1 : currentPosition-1;
+			      manageControls();
+    				});
     	}else{ alert('Marque pelo menos uma resposta.'); }
 
     });
-	
-	$('#botoesResultado .anterior').click(function(){ location.reload(true); });
-	$('#botoesResultado .proximo').click(function(){ 
-		$('#slideInner').css('margin-left','0');
-		$('input[type="radio"][value="10"]').parent().next().css('text-decoration','underline');
-		$('#botoesResultado').hide();
-		$('#quizVisualizacao').append(
-			'<div id="botoes">'+
-				'<a href="#" id="anterior" class="control" title="Anterior" style="color:#ffffff; background-color:#cc1e59;">&laquo; Anterior</a>'+
-				'<a href="#" id="proximo" class="control" title="Próximo" style="color:#ffffff; background-color:#cc1e59;">Próximo &raquo;</a>'+
-				'<a href="#" id="chamaResultado" title="Próximo" style="color:#ffffff; background-color:#cc1e59;">Resultado &raquo;</a>'+
-			'</div>');
-		var currentPosition = 0;
-		$('#anterior').hide();
-
-		$('.control')
-			.bind('click', function(){		
-				// Determine new position
-				  currentPosition = ($(this).attr('id')=='proximo') 
-				? currentPosition+1 : currentPosition-1;
-			  
-				  // Hide / show controls
-				  manageControls(currentPosition);
-				  // Move slideInner using margin-left
-				  $('#slideInner').animate({
-					'marginLeft' : slideWidth*(-currentPosition)
-				  },200);
-				  $('.slide').fadeOut(20).delay(160).fadeIn(20);
-				  
-		});		  
-		
-		$('#chamaResultado').bind('click',function(){
-		      var result = ( parseInt($('#slideInner').css('margin-left'))-620 );
-		      $('#slideInner').animate({
-		        'marginLeft' : result
-		      },200);
-		      $('.slide').fadeOut(20).delay(160).fadeIn(20);
-		      $('#botoes').remove();
-		      $('#botoesResultado').show();			
-		});
-		
-	});	
 
 });
