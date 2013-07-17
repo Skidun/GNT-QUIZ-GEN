@@ -15,7 +15,7 @@
 						<div class="group" id="0">
 							<div class="header">
 								<span class="icon"></span>
-								<div class="input"><input type="text" name="nome" id="nome-perfil-0" value="" size="" /></div>
+								<div class="input"><input type="text" name="nome" id="nome-perfil-0" value="Título" size="" /></div>
 								<span class="arrow"></span>
 								<a href="#" class="excluir excluir-um remover-perfil"></a>
 							</div>
