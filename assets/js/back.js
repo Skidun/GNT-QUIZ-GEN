@@ -105,7 +105,13 @@ var eventos_back = {
 				break;
 				case 'certo-ou-errado':
 					eventos_back.salva_faixa_ce(url);
-				break;	
+				break;
+				case 'resposta_certa':
+					eventos_back.salva_faixa_ce(url);
+				break;
+				case 'apenas_uma':
+					eventos_back.salva_faixa_ce(url);
+				break;			
 			}
 			
 			return false;
@@ -144,8 +150,44 @@ var eventos_back = {
 		});
 
 		//Menu de navegação
-		$('.faixasClassificacao').on('click', function(event){
-			event.preventDefault();
+		$('.perfis').on('click', function(e){
+			e.preventDefault();
+			var url		= this.href;
+			var controlador  	= this.rel;
+			var tipo 			= $('#tipo_quiz').val();
+			
+			switch(controlador){
+				case 'perguntas':
+						if(tipo != 'perfil'){
+							var evento = 'certo-ou-errado';
+						}else{
+							var evento = 'perguntas';
+						}
+						eventos_back.valida_timestamp(evento, url);
+				break;
+				case 'quiz_tipo':
+						if(tipo != 'perfil'){
+							var evento = 'certo-ou-errado-faixa';
+						}else{
+							var evento = 'perfil'
+						}
+
+						eventos_back.valida_timestamp(evento, url);
+				break;
+				case 'customizacao':
+						var evento = 'customizacao'
+						eventos_back.salva_customizacao(url);
+				break;
+				case 'visualizacao':
+						var evento = 'visualizacao'
+						window.location.href=url;
+				break;
+			}
+
+			return false;
+		});
+		$('.faixasClassificacao').on('click', function(e){
+			e.preventDefault();
 			var url		= this.href;
 			var controlador  	= this.rel;
 			var tipo 			= $('#tipo_quiz').val();
@@ -171,20 +213,27 @@ var eventos_back = {
 
 			return false;
 		});
-		//Perguntas
-		$('.perguntas').on('click', function(event){
-			event.preventDefault();
+		$('.perguntas').on('click', function(e){
+			e.preventDefault();
 			var url		= this.href;
 			var controlador  	= this.rel;
 			var tipo 			= $('#tipo_quiz').val();
 
 			switch(controlador){
 				case 'perguntas':
-						var evento = 'certo-ou-errado'
+						if(tipo != 'perfil'){
+							var evento = 'certo-ou-errado';
+						}else{
+							var perfil = 'perguntas';
+						}
 						eventos_back.valida_timestamp(evento, url);
 				break;
 				case 'quiz_tipo':
-						var evento = 'certo-ou-errado-faixa'
+						if(tipo != 'perfil'){
+							var evento = 'certo-ou-errado-faixa';
+						}else{
+							var evento = 'perfil';
+						}	
 						eventos_back.valida_timestamp(evento, url);
 				break;
 				case 'customizacao':
@@ -199,8 +248,43 @@ var eventos_back = {
 
 			return false;
 		});
-		$('.customizacao').on('click', function(event){
-			event.preventDefault();
+		$('.customizacao').on('click', function(e){
+			e.preventDefault();
+			var url		= this.href;
+			var controlador  	= this.rel;
+			var tipo 			= $('#tipo_quiz').val();
+
+			switch(controlador){
+				case 'perguntas':
+						if(tipo != 'perfil'){
+							var evento = 'certo-ou-errado';
+						}else{
+							var evento = 'perguntas';
+						}
+						eventos_back.valida_timestamp(evento, url);
+				break;
+				case 'quiz_tipo':
+						if(tipo != 'perfil'){
+							var evento = 'certo-ou-errado-faixa'	
+						}else{
+							var evento = 'perfil';
+						}
+						eventos_back.valida_timestamp(evento, url);
+				break;
+				case 'customizacao':
+						var evento = 'customizacao'
+						eventos_back.salva_customizacao(url);
+				break;
+				case 'visualizacao':
+						var evento = 'visualizacao'
+						window.location.href=url;
+				break;
+			}
+
+			return false;
+		});
+		$('.visualizacao').on('click', function(e){
+			e.preventDefault();
 			var url		= this.href;
 			var controlador  	= this.rel;
 			var tipo 			= $('#tipo_quiz').val();
@@ -469,7 +553,7 @@ var eventos_back = {
 		return false;
 	},
 
-	valida_timestamp: function(evento, prox_url, url)
+	valida_timestamp: function(evento, url)
 	{
 		var data_alteracao = $('#data_alteracao').val(), id_quiz = $('#id_quiz').val();
 		$.ajax({
@@ -477,13 +561,13 @@ var eventos_back = {
 			async: false,
 			data: {id:id_quiz, data_alteracao:data_alteracao},
 			success: function(e){
-				if(e == 'ok'){
+				//if(e == 'ok'){
 					switch(evento){
 						case 'perfil':
-							eventos_back.salva_perfil();
+							eventos_back.salva_perfil(url);
 						break;
 						case 'perguntas':
-							eventos_back.salva_perguntas();
+							eventos_back.salva_perguntas(url);
 						break;
 						case 'customizacao':
 							eventos_back.salva_customizacao(url);
@@ -492,13 +576,13 @@ var eventos_back = {
 							eventos_back.salva_perguntas_CE(url);
 						break;
 						case 'certo-ou-errado-faixa':
-							eventos_back.salva_faixa_ce(prox_url, url);
+							eventos_back.salva_faixa_ce(url);
 						break;				
 					}	
-				}else{
-					alert('A data de alteração do quiz é diferente da data que você tem armazenado na página, a página será atualizada para que as informações referente ao quiz sejam atualizadas');
-					window.location.reload();
-				}	
+				//}else{
+					//alert('A data de alteração do quiz é diferente da data que você tem armazenado na página, a página será atualizada para que as informações referente ao quiz sejam atualizadas');
+					//window.location.reload();
+				//}	
 			}
 		});
 		return false;
@@ -509,7 +593,10 @@ var eventos_back = {
 		$('.group').each(function(index){
 			var titulo = $('#nome-perfil-'+index).val(), prox_url = $('#btn-proxima-etapa-1-perfil').attr('rel'), descricao =  $('#descricao-perfil-'+index).val(), link = $('#link-perfil-'+index).val(), texto = $('#texto-perfil-'+index).val(), imagem = $('#alvo-'+index).attr('src'), id_quiz = $('#id_quiz').val(), id_perfil = $('#id-perfil-'+index).val();
 			if(titulo == ''){
-				alert('Preencha todos os campos de cada perfil');
+				//alert('Preencha todos os campos de cada perfil');
+				if(url != ''){
+					window.location.href=url;
+				}
 				return false;
 			}else if(!$(this).hasClass('salvo')){
 				var grupo = $(this).attr('id', index);
@@ -584,6 +671,9 @@ var eventos_back = {
 			//Valida se o campo de nome da pergunta 
 			if(nome == '' || nome == 'Preencha esse campo'){
 				$('#nome-pergunta-'+index).val('Preencha esse campo')
+				if(url != ''){
+					window.location.href=url;
+				}
 				return false;
 			}else{
 				if(!$(this).hasClass('salvo')){

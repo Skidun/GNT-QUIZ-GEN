@@ -5,6 +5,7 @@
 			
 				<?php $this->template->menu3('perfil1');?>
 				<input type="hidden" id="data_alteracao" value="<?php echo $data_alteracao;?>" />			
+				<input type="hidden" id="tipo_quiz" value="<?php echo $tipo;?>" />			
 				<div id="accordion">
 						<?php
 							if($quantidade != 0){
