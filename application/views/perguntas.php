@@ -20,7 +20,7 @@
 					<div class="group" id="0">					
 							<div class="header">
 								<span class="icon"></span>
-								<div class="input"><input type="text" name="nome-pergunta" id="nome-pergunta-0" value="" size="" /></div>
+								<div class="input"><input type="text" name="nome-pergunta" id="nome-pergunta-0" value="Título" size="" /></div>
 								<span class="arrow"></span>
 								<span class="excluir excluir-um"></span>
 							</div>
