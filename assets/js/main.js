@@ -72,7 +72,8 @@ $(function(){
 	.accordion({
 		active: false,
 		header: "> div > .header",
-		heightStyle: "content"
+		heightStyle: "content",
+		collapsible: true
 	})
 	.sortable({
 		axis: "y",
