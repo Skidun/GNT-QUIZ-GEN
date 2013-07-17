@@ -147,7 +147,34 @@ $(function(){
 	$("#novo-perfil").click(function(){
 		var count = $('.group').length;
 		var id = count++;
-		$('#accordion').append('<div class="group" id="'+id+'"><div class="header"><span class="icon"></span><div class="input"><input type="text" name="nome" id="nome-perfil-'+id+'"  value="" size=""/></div><span class="arrow"></span><span class="excluir excluir-um"></span></div><div class="body"><div class="texto"><label for="descricao">Descrição</label><div class="textarea"><textarea name="descricao" id="descricao-perfil-'+id+'" cols="" rows=""></textarea></div><label for="link">Link de referência:</label><div class="input"><input type="text" name="link" id="link-perfil-'+id+'" value="" size=""/></div><label for="texto">Texto do link de referência:</label><div class="input"><input type="text" name="texto" id="texto-perfil-'+id+'" value="" size=""/></div></div><div class="imagem"><label for="imagem">Imagem relacionada:<span>Dimensões: 240px x 260px</span></label><form class="fileupload" action="../../assets/server/php/" method="POST" enctype="multipart/form-data"><div class="quadro"><img id="alvo-'+id+'" src="../../assets/img/backgrounds/imagem.png" name="imagem"/></div><span class="btn btn-success fileinput-button"><input id="file" type="file"/></span></form></div></div></div>');
+		$('#accordion').append(
+			'<div class="group" id="'+id+'">'+
+				'<div class="header">'+
+					'<span class="icon"></span>'+
+					'<div class="input"><input type="text" name="nome" id="nome-perfil-'+id+'"  value="Título" size=""/></div>'+
+					'<span class="arrow"></span>'+
+					'<span class="excluir excluir-um"></span>'+
+				'</div>'+
+				'<div class="body">'+
+					'<div class="texto">'+
+						'<label for="descricao">Descrição</label>'+
+						'<div class="textarea"><textarea name="descricao" id="descricao-perfil-'+id+'" cols="" rows=""></textarea></div>'+
+						'<label for="link">Link de referência:</label>'+
+						'<div class="input"><input type="text" name="link" id="link-perfil-'+id+'" value="" size=""/></div>'+
+						'<label for="texto">Texto do link de referência:</label>'+
+						'<div class="input"><input type="text" name="texto" id="texto-perfil-'+id+'" value="" size=""/></div>'+
+					'</div>'+
+					'<div class="imagem">'+
+						'<label for="imagem">Imagem relacionada:<span>Dimensões: 240px x 260px</span></label>'+
+						'<form class="fileupload" action="../../assets/server/php/" method="POST" enctype="multipart/form-data">'+
+							'<div class="quadro">'+
+								'<img id="alvo-'+id+'" src="../../assets/img/backgrounds/imagem.png" name="imagem"/>'+
+							'</div>'+
+							'<span class="btn btn-success fileinput-button"><input id="file" type="file"/></span>'+
+						'</form>'+
+					'</div>'+
+				'</div>'+
+			'</div>');		
 		/*bota o accordion no esquema*/
 		$( "#accordion" ).accordion('destroy').sortable('destroy');		
 		$( "#accordion" ).accordion({active:($('.header').length-1),header: "> div > .header",heightStyle: "content"}).sortable({axis: "y",handle: ".header",stop: function( event, ui ) {ui.item.children( ".header" ).triggerHandler( "focusout" );}});
