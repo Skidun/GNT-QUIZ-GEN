@@ -52,7 +52,7 @@ class Customizacao extends CI_Controller {
 		$data['respostas']  	= $respostas->result();
 		$data['perfis'] 		= $perfis;
 		$data['page_title']		=	'Customização do quiz';
-		if($perguntas == NULL){
+		if($perguntas == 0){
 			redirect('perguntas/certo-ou-errado/'.$id);
 		}
 		$this->template->show('customizacao', $data);
