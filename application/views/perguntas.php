@@ -28,7 +28,7 @@
 								<div id="perguntas">								
 									<div class="texto">
 										<label for="link">Link de referência:</label>
-										<div class="input"><input type="text" name="link" id="link-pergunta-0" value="" size="" /></div>
+										<div class="input"><input type="text" name="link" id="link-pergunta-0" value="http://" size="" /></div>
 										<label for="texto">Texto do link de referência:</label>
 										<div class="input"><input type="text" name="texto" id="texto-pergunta-0" value="" size="" /></div>
 									</div>

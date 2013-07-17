@@ -312,7 +312,7 @@
 								<input name="iacertos-tamanho" type="hidden" value="font-size:18px;" />
 								<!--Cor da fonte:-->
 								<p>Cor da fonte:</p>
-								<div class="input-picker"><input id="acertos-cor" name="acertos-cor" type="text" value="333333" /></div>
+								<div class="input-picker"><input id="acertos-cor" name="acertos-cor" type="text" value="<?php echo $customizacao['resultado_porcentagem_font_color'];?>" /></div>
 								<!--Alinhamento:-->
 								<p class="alinha">Alinhamento:</p>
 								<div id="alinha-inner" class="acertos-alinhamento">
