@@ -115,12 +115,12 @@ $(function(){
 	});
 	
 	//Perfil
-	$('.group input[name="nome"]').focus(function(){
+	$('.group').find('input[name="nome"]').focus(function(){
 			if(this.value == 'Título'){
 				this.value='';
 			}
 		});
-		$('.group input[name="nome"]').blur(function(){
+		$('.group').find('input[name="nome"]').blur(function(){
 			if(this.value == ''){
 				this.value='Título';
 			}
@@ -199,12 +199,12 @@ $(function(){
 				}
 			});
 		});
-		$('.group input[name="nome"]').focus(function(){
+		$('.group').find('input[name="nome"]').focus(function(){
 			if(this.value == 'Título'){
 				this.value='';
 			}
 		});
-		$('.group input[name="nome"]').blur(function(){
+		$('.group').find('input[name="nome"]').blur(function(){
 			if(this.value == ''){
 				this.value='Título';
 			}
@@ -306,17 +306,19 @@ $(function(){
 		$('html, body').animate({scrollTop:$(document).height()}, 1000);
 		$('.excluir-um').click(function(){ $(this).parents('.group').remove(); });
 		$('.excluir-dois').click(function(){ $(this).parents('.header').remove(); return false;});
-		return false;
-		$('.group input[name="nome"]').focus(function(){
+		$('.group').find('input[name="nome"]').focus(function(){
 			if(this.value == 'Título'){
 				this.value='';
 			}
 		});
-		$('.group input[name="nome"]').blur(function(){
+		$('.group').find('input[name="nome"]').blur(function(){
 			if(this.value == ''){
 				this.value='Título';
 			}
 		});
+
+		return false;
+		
 	});
 
 	//Editor de Texto
@@ -705,12 +707,12 @@ $(function(){
 					//scrolla pro fim da página
 					$('html, body').animate({scrollTop:$(document).height()}, 1000);
 
-					$('.group input[name="nome"]').focus(function(){
+					$('.group').find('input[name="nome"]').focus(function(){
 						if(this.value == 'Título'){
 							this.value='';
 						}
 					});
-					$('.group input[name="nome"]').blur(function(){
+					$('.group').find('input[name="nome"]').blur(function(){
 						if(this.value == ''){
 							this.value='Título';
 						}
@@ -805,6 +807,16 @@ $(function(){
 					$(".fileupload").each(function(){$(this).fileupload({done:function(e,t){var n=t.files[0];var r=n.name;$(this).find("#alvo").attr("src",""+base_url+"assets/server/php/files/"+r)}})})
 				//scrolla pro fim da página
 				$('html, body').animate({scrollTop:$(document).height()}, 1000);
+				$('.group').find('input[name="nome"]').focus(function(){
+					if(this.value == 'Título'){
+						this.value='';
+					}
+				});
+				$('.group').find('input[name="nome"]').blur(function(){
+					if(this.value == ''){
+						this.value='Título';
+					}
+				});
 				return false;
 			}
 		});
@@ -1002,12 +1014,12 @@ $(function(){
 							$('input:checkbox:checked').val('10');
 						});
 					});
-					$('.group input[name="nome"]').focus(function(){
+					$('.group').find('input[name="nome"]').focus(function(){
 						if(this.value == 'Título'){
 							this.value='';
 						}
 					});
-					$('.group input[name="nome"]').blur(function(){
+					$('.group').find('input[name="nome"]').blur(function(){
 						if(this.value == ''){
 							this.value='Título';
 						}
