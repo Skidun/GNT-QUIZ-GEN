@@ -1604,6 +1604,7 @@ p {
 #quizVisualizacao .subtitulo{
   font-family: 'Conv_Amaranth-Italic';  
   line-height: 120%;
+  text-decoration: underline;
 }
 #quizVisualizacao .respostas{
   font-family: 'Conv_Amaranth';
