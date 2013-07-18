@@ -7,7 +7,7 @@
 				<div id="perfilVisualizacao" class="item">
 						
 						<!--A altura do iframe é gerada dinamicamente, de acordo com a altura final do quiz-->
-						<iframe class="janela" src="<?php echo base_url();?>quiz/show_quiz/<?php echo $id;?>" width="620" height="400" scrolling="no" frameborder="0"></iframe>
+						<iframe class="janela" src="<?php echo base_url();?>quiz/show_quiz/<?php echo $id;?>" width="620" height="" scrolling="no" frameborder="0"></iframe>
 						
 						<!--Passa o código escondido numa textarea, para exibir como texto na textarea de baixo-->
 						<textarea name="quizCode" id="quizCode" cols="" rows="">

@@ -1008,12 +1008,16 @@ $(function(){
 	});
 	
 });
-/*Calcula o tamanho do Iframe
-$(function(){
-	var altura = $('iframe.janela').contents().find('#quizVisualizacao').height();
-	$('iframe.janela').attr('height',altura);
-});
-*/
+/*Calcula o tamanho do Iframe*/
+jQuery.fn.alturaIframe = function(){
+	return this.each(function(){
+		var altura = $('iframe').contents().find('#quizVisualizacao').height();
+		$(this).attr('height',altura);
+	});
+};
+
+$('iframe.janela').alturaIframe();
+
 //Lógica do slideshow da Visualização
 $(document).ready(function(){
   var currentPosition = 0;
@@ -1128,6 +1132,7 @@ $(document).ready(function(){
 							$('#resultado #texto .pontuacao').text("Você fez "+e.pontuacao+" ponto(s).");
 							$('#resultado #texto .resultado .descricao').text(e.descricao);
 							$('#resultado #texto .resultado .saibaMais a').attr('href', e.link_referencia).text(e.texto_link);
+							window.parent.$('iframe.janela').alturaIframe();
 							if(e.imagem == '' || e.imagem == '../../assets/img/backgrounds/imagem.png' || e.imagem == 'http://gntquizgen.tk/homolog/assets/img/backgrounds/imagem.png'){
 								$('#resultado #imagem').hide();
 							}else{
