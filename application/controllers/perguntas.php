@@ -34,8 +34,8 @@ class Perguntas extends CI_Controller {
 		}
 		#Gera as options de perfis para cada resposta
 		foreach($perfis->result() as $perfil){
-			$option_perfil .= '<option value="'.$perfil->id.'">'.character_limiter($perfil->titulo, 30).'</option>';
-			$options_select[$perfil->id] = character_limiter($perfil->titulo, 30);
+			$option_perfil .= '<option value="'.$perfil->id.'">'.character_limiter($perfil->titulo, 25).'</option>';
+			$options_select[$perfil->id] = character_limiter($perfil->titulo, 25);
 		}
 		#Gera a listagem de perguntas e suas respostas
 		$count = -1;

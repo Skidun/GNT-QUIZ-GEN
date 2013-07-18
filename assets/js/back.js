@@ -183,7 +183,6 @@ var eventos_back = {
 						window.location.href=url;
 				break;
 			}
-
 			return false;
 		});
 		$('.faixasClassificacao').on('click', function(e){
@@ -590,9 +589,10 @@ var eventos_back = {
 
 	salva_perfil: function(url)
 	{	
+		var prox_url = $('#btn-proxima-etapa-1-perfil').attr('rel');
 		$('.group').each(function(index){
-			var titulo = $('#nome-perfil-'+index).val(), prox_url = $('#btn-proxima-etapa-1-perfil').attr('rel'), descricao =  $('#descricao-perfil-'+index).val(), link = $('#link-perfil-'+index).val(), texto = $('#texto-perfil-'+index).val(), imagem = $('#alvo-'+index).attr('src'), id_quiz = $('#id_quiz').val(), id_perfil = $('#id-perfil-'+index).val();
-			if(titulo == ''){
+			var titulo = $('#nome-perfil-'+index).val(), descricao =  $('#descricao-perfil-'+index).val(), link = $('#link-perfil-'+index).val(), texto = $('#texto-perfil-'+index).val(), imagem = $('#alvo-'+index).attr('src'), id_quiz = $('#id_quiz').val(), id_perfil = $('#id-perfil-'+index).val();
+			if(titulo == '' || titulo == 'Título'){
 				//alert('Preencha todos os campos de cada perfil');
 				if(url != ''){
 					window.location.href=url;
@@ -608,11 +608,6 @@ var eventos_back = {
 						if(e.result == 'sucesso'){
 							$(grupo).removeClass('edit');
 							$(grupo).addClass('salvo');
-							if(!url){
-								window.location.href=prox_url;
-							}else{
-								window.location.href=url
-							}
 						}
 					}
 				});
@@ -626,23 +621,25 @@ var eventos_back = {
 						if(e == 'sucesso'){
 							$(grupo).removeClass('edit');
 							$(grupo).removeClass('salvo');
-							if(!url){
-								window.location.href=prox_url;
-							}else{
-								window.location.href=url
-							}salva_customizacao()
-
-							return false;
 						}else{
 							console.log('houve uma falha');
 						}
 					}
 				});
-			}else{
-				if(!url){
-					window.location.href=prox_url;
-				}else{
-					window.location.href=url
+			}
+		});
+		var quiz_alteracao = $('#id_quiz').val();
+		$.ajax({
+			url: '../../quiz/update_timestamp', 
+			async: false,
+			data: {id_quiz:quiz_alteracao}, 
+			success: function(e){
+				if(e == 'ok'){
+					if(!url){
+						window.location.href=prox_url;
+					}else{
+						window.location.href=url;
+					}
 				}
 			}
 		});
@@ -777,34 +774,15 @@ var eventos_back = {
 						dataType: 'JSON',
 						data: {texto:nome, link_referencia:link, texto_link:texto, imagem:imagem, id_quiz:id_quiz, id_pergunta:id_pergunta, ordem:ordem},
 						success: function(e){
-							if(e.result == 'sucesso'){
+							//if(e.result == 'sucesso'){
 								$(grupo).removeClass('edit');
-							}else{
-								alert('Ocorreu uma falha ao tentar atualizar a pergunta');
-							}
+							//}
 						}
 					});			
-				}else{
-					//Atualiza a data de alteração do quiz
-					$.ajax({
-						url: '../../quiz/update_timestamp', 
-						async: false,
-						data: {id_quiz:quiz_alteracao}, 
-						success: function(e){
-							if(e == 'ok'){
-								if(!url){
-									window.location.href=prox_url;
-								}else{
-									window.location.href=url;
-								}
-							}
-						}
-					});	
-				};//Fim da Edição da pergunta
+				}
 			}
 		});
 		//Atualiza a data de alteração do quiz
-		
 		$.ajax({
 			url: '../../quiz/update_timestamp', 
 			async: false,
