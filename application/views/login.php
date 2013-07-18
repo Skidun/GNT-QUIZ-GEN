@@ -4,7 +4,7 @@
 				<form class="login" action="<?php if($already_installed){ echo base_url()."login/validate";}else{echo base_url()."install/run";}?>" method="post">
 					<div class="input"><input type="text" name="txt-login" value="email" size="" /></div>
 					<div class="input"><input type="text" name="txt-password" value="senha" id="senha-login" size="" /></div>
-					<div class="enviada-erro" <?php if(isset($error)){echo 'style="display:block;"';}?>><?php if(isset($error)){echo "E-mail e senha informados estão incorretos.";}?></div>
+					<div class="enviada-erro" <?php if(isset($error)){echo 'style="display:block;"';}?>><?php if(isset($error)){echo "E-mail ou senha informados estão incorretos.";}?></div>
 					<div class="submit"><input type="submit" name="entrar" value="" size="" /></div>
 					<a class="esqueceu" href="javascript:void(0);">Esqueceu a senha?</a>
 				</form>
