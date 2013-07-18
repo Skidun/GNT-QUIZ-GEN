@@ -1083,7 +1083,10 @@ $(document).ready(function(){
      $('#chamaResultado').bind('click',function(){
     	if ($('input[name=resposta'+ currentPosition +']:checked').length) {
 	    	//se estiver tudo ok, libera o resultado
-			var result = ( parseInt($('#slideInner').css('margin-left'))-620 );
+		      $('#quizVisualizacao.questoes').hide();
+			  $('#quizVisualizacao.resultados').show();
+		      $('#botoes').remove();
+			
 			var resposta = new Array();
 			var id       = $('#id-quiz').val();
 			if($('#tipo-quiz').val() == 'certo-ou-errado'){
@@ -1091,16 +1094,7 @@ $(document).ready(function(){
 			}else{
 				var tipo     = $('#tipo-quiz').val();
 			}
-			
-			
-			$('#slideInner').animate({
-			    'marginLeft' : result
-			},200);
-			
-			$('.slide').fadeOut(20).delay(160)
-			$('.slide-resultado').fadeIn(20);
-			$('#botoes #anterior, #botoes #proximo').hide();
-			$('#chamaResultado').hide();
+
 			$('.loader').show();
 
 			if($('#tipo-quiz').val() != 'resposta_certa'){
@@ -1127,12 +1121,11 @@ $(document).ready(function(){
 						data: {respostas:resposta, id_quiz:id},
 						success: function(e){
 							$('.loader').fadeOut();
-							$('#botoesResultado').show();
 							$('#resultado #texto .titulo').text(e.titulo);
 							$('#resultado #texto .pontuacao').text("Você fez "+e.pontuacao+" ponto(s).");
 							$('#resultado #texto .resultado .descricao').text(e.descricao);
 							$('#resultado #texto .resultado .saibaMais a').attr('href', e.link_referencia).text(e.texto_link);
-							window.parent.$('iframe.janela').alturaIframe();
+							$('iframe.janela').alturaIframe();
 							if(e.imagem == '' || e.imagem == '../../assets/img/backgrounds/imagem.png' || e.imagem == 'http://gntquizgen.tk/homolog/assets/img/backgrounds/imagem.png'){
 								$('#resultado #imagem').hide();
 							}else{
@@ -1141,15 +1134,42 @@ $(document).ready(function(){
 
 					      	$('#botoesResultado .anterior').click(function(){ location.reload(true) });
 					      	$('#botoesResultado .proximo').click(function(){ 
-						      	$('#slideInner').css('margin-left','0');
-						      	$('input[type="radio"][value="10"] , input[type="checkbox"][value="10"]').parent().next().css('text-decoration','underline');
-							      $('.slide-resultado').hide();
-							      $('.slide').fadeIn();
-							      $('#botoes').show();
-							      $('#botoesResultado').hide();
-							      currentPosition = ($(this).attr('id')=='proximo') 
-								    ? currentPosition+1 : currentPosition-1;
-							      manageControls();
+
+								$('#quizVisualizacao.questoes').show();
+								$('#quizVisualizacao.resultados').hide();
+								$('#slideInner').css('margin-left','0');
+								$('input[type="radio"][value="10"] , input[type="checkbox"][value="10"]').parent().next().css('text-decoration','underline');
+								$('#quizVisualizacao').append(
+									'<div id="botoes">'+
+										'<a href="#" id="anterior" class="control" title="Anterior" style="color:#ffffff; background-color:#cc1e59;">&laquo; Anterior</a>'+
+										'<a href="#" id="proximo" class="control" title="Próximo" style="color:#ffffff; background-color:#cc1e59;">Próximo &raquo;</a>'+
+										'<a href="#" id="chamaResultado" title="Próximo" style="color:#ffffff; background-color:#cc1e59;">Resultado &raquo;</a>'+
+									'</div>');
+								var currentPosition = 0;
+								$('#anterior').hide();
+
+								$('.control')
+									.bind('click', function(){		
+										// Determine new position
+										  currentPosition = ($(this).attr('id')=='proximo') 
+										? currentPosition+1 : currentPosition-1;
+									  
+										  // Hide / show controls
+										  manageControls(currentPosition);
+										  // Move slideInner using margin-left
+										  $('#slideInner').animate({
+											'marginLeft' : slideWidth*(-currentPosition)
+										  },200);
+										  $('.slide').fadeOut(20).delay(160).fadeIn(20);
+										  
+								});		  
+								
+								$('#chamaResultado').bind('click',function(){
+									  $('#quizVisualizacao.questoes').hide();
+									  $('#quizVisualizacao.resultados').show();
+									  $('#botoes').remove();			
+								});								
+							
 							});
 						}
 					});

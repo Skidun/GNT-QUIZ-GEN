@@ -1694,6 +1694,9 @@ p {
   margin:0 auto;
   width:600px; /* reduce by 20 pixels to avoid horizontal scroll */
 }
+#quizVisualizacao.resultados{
+	display:none;
+}
 #quizVisualizacao .resultado .descricao{
   letter-spacing: -1px;
   line-height: 120%;
@@ -1704,7 +1707,6 @@ p {
   font-family: 'Conv_Amaranth';
 }
 #quizVisualizacao #botoesResultado{
-  display: none;
   float: left;
   margin: 57px 0 22px 0;
   width: 280px;
