@@ -474,13 +474,13 @@ p {
   z-index: 1;
   zoom: 1;
 }
-#conteudo .nav-perfil a.anterior {
-  background-position: 0 0;
+#conteudo .nav-perfil .anterior {
+  float: left;
+  background: url("../img/botoes/nav-perfil.png") 0 0 no-repeat;
   width: 50px;
+  height: 50px;
+  position: relative;
   z-index: 2;
-}
-#conteudo .nav-perfil a.anterior:hover {
-  background-position: -100px 0;
 }
 #conteudo .nav-perfil a.perfis {
   background-position: 0 -50px;
@@ -532,14 +532,14 @@ p {
 #conteudo .nav-perfil a.faixasClassificacao.ativo {
   background-position: -230px -250px;
 }
-#conteudo .nav-perfil a.proximo {
-  background-position: -50px 0;
+#conteudo .nav-perfil .proximo {
+  float: left;
+  background: url("../img/botoes/nav-perfil.png") -50px 0 no-repeat;
   width: 50px;
+  height: 50px;
+  position: relative;
   margin: 0 0 0 -16px;
   z-index: 2;
-}
-#conteudo .nav-perfil a.proximo:hover {
-  background-position: -150px 0;
 }
 #conteudo .proxima-etapa {
   background: url("../img/botoes/proxima-etapa.png") 0 0 no-repeat;
