@@ -122,6 +122,9 @@ p {
   width: 242px;
   height: 38px;
 }
+#inicio .esqueci .submit{
+  background: url("../img/botoes/inicio-enviar.png") 0 0 no-repeat;
+}
 #inicio .login .submit input,
 #inicio .esqueci .submit input,
 #inicio .criar .submit input {
