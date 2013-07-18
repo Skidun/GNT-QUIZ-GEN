@@ -115,6 +115,16 @@ $(function(){
 	});
 	
 	//Perfil
+	$('.group input[name="nome"]').focus(function(){
+			if(this.value == 'Título'){
+				this.value='';
+			}
+		});
+		$('.group input[name="nome"]').blur(function(){
+			if(this.value == ''){
+				this.value='Título';
+			}
+		});
 	/*perguntas*/
 	$('#fileupload-perfil-customiza')
    .fileupload({
@@ -160,7 +170,7 @@ $(function(){
 						'<label for="descricao">Descrição</label>'+
 						'<div class="textarea"><textarea name="descricao" id="descricao-perfil-'+id+'" cols="" rows=""></textarea></div>'+
 						'<label for="link">Link de referência:</label>'+
-						'<div class="input"><input type="text" name="link" id="link-perfil-'+id+'" value="" size=""/></div>'+
+						'<div class="input"><input type="text" name="link" id="link-perfil-'+id+'" value="http://" size=""/></div>'+
 						'<label for="texto">Texto do link de referência:</label>'+
 						'<div class="input"><input type="text" name="texto" id="texto-perfil-'+id+'" value="" size=""/></div>'+
 					'</div>'+
@@ -188,6 +198,16 @@ $(function(){
 					$(this).find('#alvo-'+index).attr('src','../../assets/server/php/files/'+filenam);
 				}
 			});
+		});
+		$('.group input[name="nome"]').focus(function(){
+			if(this.value == 'Título'){
+				this.value='';
+			}
+		});
+		$('.group input[name="nome"]').blur(function(){
+			if(this.value == ''){
+				this.value='Título';
+			}
 		});		
 		/*scrolla pro fim da página*/
 		$('.excluir-um').click(function(){ $(this).parents('.group').remove(); });
@@ -240,7 +260,7 @@ $(function(){
 					'<div id="perguntas">'+
 						'<div class="texto">'+
 							'<label for="link">Link de referência:</label>'+
-							'<div class="input"><input type="text" name="link" id="link-pergunta-'+id+'" value="" size=""/></div>'+
+							'<div class="input"><input type="text" name="link" id="link-pergunta-'+id+'" value="http://" size=""/></div>'+
 							'<label for="texto">Texto do link de referência:</label>'+
 							'<div class="input"><input type="text" name="texto" id="texto-pergunta-'+id+'" value="" size=""/></div>'+
 						'</div>'+
@@ -287,6 +307,16 @@ $(function(){
 		$('.excluir-um').click(function(){ $(this).parents('.group').remove(); });
 		$('.excluir-dois').click(function(){ $(this).parents('.header').remove(); return false;});
 		return false;
+		$('.group input[name="nome"]').focus(function(){
+			if(this.value == 'Título'){
+				this.value='';
+			}
+		});
+		$('.group input[name="nome"]').blur(function(){
+			if(this.value == ''){
+				this.value='Título';
+			}
+		});
 	});
 
 	//Editor de Texto
@@ -616,7 +646,7 @@ $(function(){
 								'<div id="perguntas">'+
 									'<div class="texto">'+
 										'<label for="link">Link de referência:</label>'+
-										'<div class="input"><input type="text" name="link" id="link-pergunta-'+id+'" value="" size=""/></div>'+
+										'<div class="input"><input type="text" name="link" id="link-pergunta-'+id+'" value="http://" size=""/></div>'+
 										'<label for="texto">Texto do link de referência:</label>'+
 										'<div class="input"><input type="text" name="texto" id="texto-pergunta-'+id+'" value="" size=""/></div>'+
 									'</div>'+
@@ -674,6 +704,17 @@ $(function(){
 					});
 					//scrolla pro fim da página
 					$('html, body').animate({scrollTop:$(document).height()}, 1000);
+
+					$('.group input[name="nome"]').focus(function(){
+						if(this.value == 'Título'){
+							this.value='';
+						}
+					});
+					$('.group input[name="nome"]').blur(function(){
+						if(this.value == ''){
+							this.value='Título';
+						}
+					});
 					return false;
 				}
 			})
@@ -725,7 +766,7 @@ $(function(){
 									'<textarea name="descricao" cols="" rows=""></textarea>'+
 								'</div>'+
 								'<label for="link">Link de referência:</label>'+
-								'<div class="input"><input type="text" name="link" value="" size=""/></div>'+
+								'<div class="input"><input type="text" name="link" value="http://" size=""/></div>'+
 								'<label for="texto">Texto do link de referência:</label>'+
 								'<div class="input"><input type="text" name="texto" value="" size=""/></div>'+
 							'</div>'+
@@ -816,7 +857,7 @@ $(function(){
 								'<div id="perguntas">'+
 									'<div class="texto">'+
 										'<label for="link">Link de referência:</label>'+
-										'<div class="input"><input type="text" name="link" id="link-pergunta-'+id+'" value="" size=""/></div>'+
+										'<div class="input"><input type="text" name="link" id="link-pergunta-'+id+'" value="http://" size=""/></div>'+
 										'<label for="texto">Texto do link de referência:</label>'+
 										'<div class="input"><input type="text" name="texto" id="texto-pergunta-'+id+'" value="" size=""/></div>'+
 									'</div>'+
@@ -912,7 +953,7 @@ $(function(){
 								'<div id="perguntas">'+
 									'<div class="texto">'+
 										'<label for="link">Link de referência:</label>'+
-										'<div class="input"><input type="text" name="link-pergunta" id="link-pergunta-'+id+'" value="" size=""/></div>'+
+										'<div class="input"><input type="text" name="link-pergunta" id="link-pergunta-'+id+'" value="http://" size=""/></div>'+
 										'<label for="texto">Texto do link de referência:</label>'+
 										'<div class="input"><input type="text" name="texto-pergunta" id="texto-pergunta-'+id+'" value="" size=""/></div>'+
 									'</div>'+
@@ -960,6 +1001,16 @@ $(function(){
 							$('input:checkbox').val(0)
 							$('input:checkbox:checked').val('10');
 						});
+					});
+					$('.group input[name="nome"]').focus(function(){
+						if(this.value == 'Título'){
+							this.value='';
+						}
+					});
+					$('.group input[name="nome"]').blur(function(){
+						if(this.value == ''){
+							this.value='Título';
+						}
 					});
 					return false;
 				}

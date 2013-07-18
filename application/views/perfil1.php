@@ -24,7 +24,7 @@
 									<label for="descricao">Descrição</label>
 									<div class="textarea"><textarea name="descricao" id="descricao-perfil-0" cols="" rows=""></textarea></div>
 									<label for="link">Link de referência:</label>
-									<div class="input"><input type="text" name="link" id="link-perfil-0" value="" size="" /></div>
+									<div class="input"><input type="text" name="link" id="link-perfil-0" value="http://" size="" /></div>
 									<label for="texto">Texto do link de referência:</label>
 									<div class="input"><input type="text" name="texto" id="texto-perfil-0" value="" size="" /></div>
 								</div>

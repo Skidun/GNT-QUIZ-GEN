@@ -33,7 +33,7 @@
 									<label for="descricao">Descrição</label>
 									<div class="textarea"><textarea name="descricao" cols="" rows=""></textarea></div>
 									<label for="link">Link de referência:</label>
-									<div class="input"><input type="text" name="link" value="" size="" /></div>
+									<div class="input"><input type="text" name="link" value="http://" size="" /></div>
 									<label for="texto">Texto do link de referência:</label>
 									<div class="input"><input type="text" name="texto" value="" size="" /></div>
 								</div>
