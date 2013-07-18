@@ -40,28 +40,6 @@ $(function(){
 		$(this).attr('type','password');
 	});
 	
-	//Todos os quizes
-	/*Paginacao*/
-	$('.carregar-mais').click(function(){
-		/*simula carregamento de 10 links*/
-		for (var i=0;i<9;i++)
-		{
-			var titulo	 					= 'Quiz de maquiagem';
-			var tipo 						= 'várias respostas corretas';
-			var dataEdicao 					= '13/11/2012';
-			var linkVerEmbutir 			= '#';
-			var linkNomeTipo 			= '#';
-			var linkPerfis 				= '#';
-			var linkPerguntasRespostas 	= '#';
-			var linkCustomizacao 			= '#';
-			var linkExcluir 				= '#';
-			$('.box tbody').append('<tr><td><div class="texto"><p>'+titulo+'</p><span>tipo: '+tipo+' | editado em: '+dataEdicao+'</span></div><div class="botoes"><a class="ver-e-embutir" href="'+linkVerEmbutir+'"></a><ul class="menu-editar"><li><div class="editar"></div><ul class="nav2"><li><a href="'+linkNomeTipo+'">nome e tipo</a></a></li><li><a href="'+linkPerfis+'">perfis</a></a></li><li><a href="'+linkPerguntasRespostas+'">perguntas & respostas</a></a></li><li><a href="'+linkCustomizacao+'">customizacao</a></a></li><li><a href="'+linkExcluir+'">excluir</a></a></li></ul></li></ul></div></td></tr>');
-		}
-		/*scrolla pro fim da página*/
-		$('html, body').animate({scrollTop:$(document).height()}, 1000);
-		return false;
-	});
-	
 	//Novo Quiz
 	$('.default').dropkick();
 	$('select[name="perfil-resposta"]').dropkick();
@@ -300,8 +278,8 @@ $(function(){
 			$("#sortable"+i).sortable();
 		}
 		/*tem que resetar o fileupload e chamar de novo*/		
-			$('.fileupload').bind('fileuploaddestroy');
-			$(".fileupload").each(function(){$(this).fileupload({done:function(e,t){var n=t.files[0];var r=n.name;$(this).find("#alvo-pergunta-"+id).attr("src","../../assets/server/php/files/"+r)}})})
+		$('.fileupload').bind('fileuploaddestroy');
+		$(".fileupload").each(function(){$(this).fileupload({done:function(e,t){var n=t.files[0];var r=n.name;$(this).find("#alvo-pergunta-"+id).attr("src","../../assets/server/php/files/"+r)}})})
 		//scrolla pro fim da página
 		$('html, body').animate({scrollTop:$(document).height()}, 1000);
 		$('.excluir-um').click(function(){ $(this).parents('.group').remove(); });
