@@ -1156,10 +1156,10 @@ $(document).ready(function(){
 								$('#resultado #imagem #alvo-perguntas').show().attr('src', e.imagem).text(e.texto_link);
 							}
 
-					      	$('#botoesResultado .anterior').click(function(){ location.reload() });
+					      	$('#botoesResultado .anterior').click(function(){ location.reload(true) });
 					      	$('#botoesResultado .proximo').click(function(){ 
 						      	$('#slideInner').css('margin-left','0');
-						      	$('input[type="radio"]:checked').parent().next().css('text-decoration','underline');
+						      	$('input[type="radio"][value="10"] , input[type="checkbox"][value="10"]').parent().next().css('text-decoration','underline');
 							      $('.slide-resultado').hide();
 							      $('.slide').fadeIn();
 							      $('#botoes').show();
