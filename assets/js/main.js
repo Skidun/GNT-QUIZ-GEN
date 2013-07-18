@@ -891,6 +891,7 @@ $(document).ready(function(){
 							$('.loader').fadeOut();
 							$('#botoesResultado').show();
 							$('#resultado #texto .titulo').text(e.titulo);
+							$('#resultado #texto .pontuacao').text("Você fez "+e.pontuacao+" pt(s).");
 							$('#resultado #texto .resultado .descricao').text(e.descricao);
 							$('#resultado #texto .resultado .saibaMais a').attr('href', e.link_referencia).text(e.texto_link);
 							if(e.imagem == '' || e.imagem == '../../assets/img/backgrounds/imagem.png' || e.imagem == 'http://gntquizgen.tk/homolog/assets/img/backgrounds/imagem.png'){
