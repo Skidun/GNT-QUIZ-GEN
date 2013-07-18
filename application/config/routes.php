@@ -52,7 +52,8 @@ $route['remover-faixa/(:num)']= 'faixa/remove_faixa/$1';
 
 //Routes of controller Quiz
 $route['cadastrar-novo-quiz']	 	= "quiz/create";
-$route['visualizar-todos-quizes']	= "quiz";
+$route['visualizar-todos-quizes']	= "quiz/all";
+$route['visualizar-todos-quizes/(:num)']	= "quiz/all/$1";
 $route['ver-quiz/(:num)']			= "quiz/show_quiz/$1";
 $route['salvar-quiz']			 	= "quiz/save";
 $route['editar-quiz/(:num)']	 	= "quiz/edit/$1";

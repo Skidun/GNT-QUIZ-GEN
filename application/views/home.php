@@ -15,7 +15,7 @@
 						<tfoot>
 							<tr>
 								<td>
-									<a class="carregar-mais" href="#">carregar mais quizes</a>
+									<span class="carregar-mais" ><?php  echo $html_paginacao;?></span>
 								</td>
 							</tr>
 						</tfoot>

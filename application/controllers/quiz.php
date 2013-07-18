@@ -22,7 +22,12 @@ class Quiz extends CI_Controller {
 		$this->load->model('faixa_model');
 	}
 	
-	public function index($de_paginacao=0)
+	public function index()
+	{
+		$this->all();
+	}
+
+	public function all($de_paginacao=0)
 	{	
 		$data['page_title'] = 'Dashboard';
 		# Preparando o limite da paginação
@@ -69,9 +74,9 @@ class Quiz extends CI_Controller {
 
         $numero_links =  $total / $this->quizes_pagina; 
         # Paginação
-        $config_paginacao['base_url']   = site_url('dashboard');
+        $config_paginacao['base_url']   = site_url('visualizar-todos-quizes');
         $config_paginacao['total_rows'] = $total;
-        $config_paginacao['uri_segment'] = 4;
+        $config_paginacao['uri_segment'] = 2;
         $config_paginacao['num_links'] = $numero_links;
         $config_paginacao['per_page'] = $this->quizes_pagina;
         
