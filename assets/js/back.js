@@ -18,13 +18,14 @@ var eventos_back = {
 			e.preventDefault();
 			var email = $('#email-login-recover').val();
 
-			if(email == '' || email == 'email'){
+			if(email == 'email'){
 				$('.enviada-erro').show().text('Por favor! Informe um e-mail');
-				//$('#email-login-recover').focus(function(){});
+				//alert('Email errado');
+				return false;
 			}else{
 				eventos_back.recovery(email);
 			}
-
+			
 			$('#email-login-recover').focus(function(){
 				$('.enviada-erro').hide().text('');
 			});
@@ -524,10 +525,12 @@ var eventos_back = {
 	//Executa a operação de recovey no banco de dados
 	recovery: function(email)
 	{	
-		$.getJSON(
-			'login/recovery',
-			{email:email},
-			function(e){
+		$.ajax({
+			url:'login/recovery',
+			async: false,
+			data: {email:email},
+			datarType: 'JSON',
+			success: function(e){
 				if(e.result == "sucesso"){
 					$('#email-recover-div, #bt-esqueci-senha-div').hide();
 					$('#status-enviada').show().text('Foi lhe enviado um e-mail com uma url para reconfiguração da senha.');
@@ -536,7 +539,7 @@ var eventos_back = {
 					$('.enviada-erro').show().text(e.erro);
 				}
 			}
-		);
+		});
 	},
 
 	valida_quiz: function()
