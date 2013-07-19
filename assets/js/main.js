@@ -867,7 +867,7 @@ $(function(){
 		//por exemplo, resposta-21, é o select do grupo 2(#sortable2) e o segundo select desse grupo
 		var respostaNumero = $(this).parent().find('.sorteia').attr('id').slice(-1);
 		var grupoNumero = $(this).parent().find(".header").length;
-		$(this).parent().find('.sorteia').append('<div class="header"><span class="icon"></span><a class="excluir excluir-dois"></a><div class="input"><input type="text" name="nome-resposta" value="" size=""/></div><div class="radio"><input type="radio" id="radio'+grupoNumero+respostaNumero+'" value="'+grupoNumero+'" name="grupo'+respostaNumero+'"/> Esta é a resposta correta</div></div>');
+		$(this).parent().find('.sorteia').append('<div class="header novo"><span class="icon"></span><a class="excluir excluir-dois"></a><div class="input"><input type="text" name="nome-resposta" value="" size=""/></div><div class="radio"><input type="radio" id="radio'+grupoNumero+respostaNumero+'" value="'+grupoNumero+'" name="grupo'+respostaNumero+'"/> Esta é a resposta correta</div></div>');
 		//coloca o novo radio no esquema
 		//$( "#radio"+grupoNumero+respostaNumero ).button();
 		$(this).parents('.group').removeClass('edit');
@@ -956,6 +956,16 @@ $(function(){
 								}
 							})
 						})
+					$('.group').find('input[name="nome"]').focus(function(){
+					if(this.value == 'Título'){
+						this.value='';
+					}
+					});
+					$('.group').find('input[name="nome"]').blur(function(){
+						if(this.value == ''){
+							this.value='Título';
+						}
+					});	
 					//scrolla pro fim da página
 					$('html, body').animate({scrollTop:$(document).height()}, 1000);
 					$('.excluir-um').click(function(){ $(this).parents('.group').remove(); });
@@ -977,7 +987,7 @@ $(function(){
 		//por exemplo, resposta-21, é o select do grupo 2(#sortable2) e o segundo select desse grupo
 		var respostaNumero = $(this).parent().find('.sorteia').attr('id').slice(-1);
 		var grupoNumero = $(this).parent().find(".header").length;
-		$(this).parent().find('.sorteia').append('<div class="header"><span class="icon"></span><a class="excluir excluir-dois"></a><div class="input"><input type="text" name="nome-resposta" value="" size=""/></div><div class="checkbox"><input type="checkbox" id="checkbox'+grupoNumero+respostaNumero+'" value="0" name="grupo'+respostaNumero+'"/> Esta é a resposta correta</div></div>');
+		$(this).parent().find('.sorteia').append('<div class="header novo"><span class="icon"></span><a class="excluir excluir-dois"></a><div class="input"><input type="text" name="nome-resposta" value="" size=""/></div><div class="checkbox"><input type="checkbox" id="checkbox'+grupoNumero+respostaNumero+'" value="0" name="grupo'+respostaNumero+'"/> Esta é a resposta correta</div></div>');
 		//coloca o novo checkbox no esquema
 		//$( "#checkbox"+grupoNumero+respostaNumero ).button();
 		$('.group').each(function(index){
@@ -1075,12 +1085,12 @@ $(function(){
 							$('input:checkbox:checked').val('10');
 						});
 					});
-					$('.group').find('input[name="nome"]').focus(function(){
+					$('.group').find('input[name="nome"], input[name="nome-pergunta"]').focus(function(){
 						if(this.value == 'Título'){
 							this.value='';
 						}
 					});
-					$('.group').find('input[name="nome"]').blur(function(){
+					$('.group').find('input[name="nome"], input[name="nome-pergunta"]').blur(function(){
 						if(this.value == ''){
 							this.value='Título';
 						}

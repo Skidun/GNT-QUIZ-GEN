@@ -899,20 +899,55 @@ var eventos_back = {
 						}else{
 							var certa_ou_errada = $(this).find('input:checkbox').val();
 						}
-						$.ajax({
-							url: '../../respostas/update_resposta_perfil',
-						   	type: 'GET',
-						   	async: false,
-						   	data: {texto:resposta, tipo_resposta:tipo_quiz, perfil_resposta:certa_ou_errada, id_pergunta:id_pergunta, id_quiz:id_quiz, id_resposta:id_resposta, ordem:index_resp},
-						   	success: function(e_resp){
-							//console.log({texto:resposta, tipo_resposta:tipo_quiz, perfil_resposta:perfil_resposta, id_pergunta:id_pergunta, id_quiz:id_quiz, id_resposta:id_resposta});
-								if(e_resp == 'sucesso'){
-									console.log('Sucesso');
-								}else{
-									console.log('Falha ao atualizar resposta');
+						if(tipo_quiz != 'certo-ou-errado'){
+						   	if($(this).hasClass('novo')){
+							   	$.ajax({
+							   		url: '../../respostas/save_resposta_perfil',
+							   		async: false,
+							   		data: {texto:resposta, tipo_resposta:tipo_quiz, perfil_resposta:certa_ou_errada, id_pergunta:id_pergunta, id_quiz:id_quiz, ordem:index_resp},
+							   		success: function(e_resp){
+									   	console.log({texto:resposta, tipo_resposta:tipo_quiz, perfil_resposta:certa_ou_errada, id_pergunta:id_pergunta, id_quiz:id_quiz});
+									   	if(e_resp == 'sucesso'){
+									   		//log do cadastro da resposta
+											console.log('Sucesso');
+										}else{
+											//log do erro do cadastro da resposta
+										 	console.log('Falha ao cadastrar resposta');
+										}
 									}
-						   		}
-						   	});		
+							   	});
+							}else{
+								$.ajax({
+								url: '../../respostas/update_resposta_perfil',
+							   	type: 'GET',
+							   	async: false,
+							   	data: {texto:resposta, tipo_resposta:tipo_quiz, perfil_resposta:certa_ou_errada, id_pergunta:id_pergunta, id_quiz:id_quiz, id_resposta:id_resposta, ordem:index_resp},
+							   	success: function(e_resp){
+								//console.log({texto:resposta, tipo_resposta:tipo_quiz, perfil_resposta:perfil_resposta, id_pergunta:id_pergunta, id_quiz:id_quiz, id_resposta:id_resposta});
+									if(e_resp == 'sucesso'){
+										console.log('Sucesso');
+									}else{
+										console.log('Falha ao atualizar resposta');
+										}
+							   		}
+							   	});
+							}
+						}else{
+							$.ajax({
+								url: '../../respostas/update_resposta_perfil',
+							   	type: 'GET',
+							   	async: false,
+							   	data: {texto:resposta, tipo_resposta:tipo_quiz, perfil_resposta:certa_ou_errada, id_pergunta:id_pergunta, id_quiz:id_quiz, id_resposta:id_resposta, ordem:index_resp},
+							   	success: function(e_resp){
+								//console.log({texto:resposta, tipo_resposta:tipo_quiz, perfil_resposta:perfil_resposta, id_pergunta:id_pergunta, id_quiz:id_quiz, id_resposta:id_resposta});
+									if(e_resp == 'sucesso'){
+										console.log('Sucesso');
+									}else{
+										console.log('Falha ao atualizar resposta');
+										}
+							   		}
+							   	});
+						}   			
 					});//Fim do Loop dos campos de respostas
 					//Atualiza a pergunta
 					$.ajax({
@@ -1130,7 +1165,7 @@ var eventos_back = {
 		var confirmacao = confirm('Tem certeza que deseja excluir essa pergunta, uma vez excluido, todas as respostas relacionadas a esse pergunta também serão excluidas?');
 		if(confirmacao)
 		{
-			if(imagem == 'http://localhost:8080/quiz-generate/assets/img/backgrounds/imagem.png' || imagem == '../../assets/img/backgrounds/imagem.png'){
+			if(imagem == 'http://localhost:8080/quiz-generate/assets/img/backgrounds/imagem.png'  || imagem == 'http://gntquizgen/homolog/assets/img/backgrounds/imagem.png'|| imagem == '../../assets/img/backgrounds/imagem.png'){
 				window.location.href=url+'?id_quiz='+id_quiz;
 			}else{
 				window.location.href=url+'?id_quiz='+id_quiz+'&imagem='+imagem;
@@ -1158,7 +1193,20 @@ var eventos_back = {
 		var confirmacao = confirm('Tem certeza que deseja excluir essa resposta?');
 		if(confirmacao)
 		{
-				window.location.href=url+'?id_quiz='+id_quiz;
+				$.ajax({
+					url: url,
+					async: false,
+					data: {id_quiz:id_quiz},
+					success: function(e){
+						$('.excluir-dois').each(function(){
+							if(this.href == url){
+								$(this).parents('.header').fadeOut();
+							}
+						});
+						
+					}
+				});
+				//window.location.href=url+'?id_quiz='+id_quiz;
 		}
 		return false;
 	}  

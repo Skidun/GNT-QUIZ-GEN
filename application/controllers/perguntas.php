@@ -402,7 +402,7 @@ class Perguntas extends CI_Controller {
 				#Fecha as listagem de perguntas já com suas respostas inclusas
 				$list_perguntas		.=  '													
 													</div>
-
+													<a id="nova-resposta-respostaCerta" class="nova-resposta" href="javascript:void(0)"></a>
 												</div><!--respostas-->
 
 											</div><!--body-->							
@@ -589,7 +589,7 @@ class Perguntas extends CI_Controller {
 				#Fecha as listagem de perguntas já com suas respostas inclusas
 				$list_perguntas		.=  '													
 													</div>
-
+													<a id="nova-resposta-variasRespostas" class="nova-resposta" href="javascript:void(0)"></a>
 												</div><!--respostas-->
 
 											</div><!--body-->							
