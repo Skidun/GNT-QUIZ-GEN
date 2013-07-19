@@ -535,7 +535,6 @@ var eventos_back = {
 				if(e.result == "sucesso"){
 					$('#email-recover-div, #bt-esqueci-senha-div').hide();
 					$('#status-enviada').show().text('Foi enviado um e-mail com uma url para reconfiguração da senha.');
-
 				}else{
 					console.log(e.erro);
 					$('.enviada-erro').text(e.erro).show();
@@ -671,7 +670,7 @@ var eventos_back = {
 			var nome 		 = $('#nome-pergunta-'+index).val(), link = $('#link-pergunta-'+index).val(), texto = $('#texto-pergunta-'+index).val(), imagem = $('#alvo-pergunta-'+index).attr('src'), id_quiz = $('#id_quiz').val(), tipo_quiz = $('#tipo_quiz').val(), ordem = index;
 			var box_resposta = $(this).find('.sorteia .header');
 			//Valida se o campo de nome da pergunta 
-			if(nome == '' || nome == 'Preencha esse campo'){
+			if(nome == '' || nome == 'Preencha esse campo' || nome == 'Título'){
 				$('#nome-pergunta-'+index).val('Preencha esse campo')
 				if(url != ''){
 					window.location.href=url;
@@ -802,6 +801,7 @@ var eventos_back = {
 				}
 			}
 		});
+
 	},
 
 	salva_perguntas_CE: function(url)
@@ -1068,6 +1068,7 @@ var eventos_back = {
 
 	visualizar_resultado: function()
 	{
+		/*
 		if ($('input[name=resposta'+ currentPosition +']:checked').length) {
 	    	//se estiver tudo ok, libera o resultado
 			var result = ( parseInt($('#slideInner').css('margin-left'))-620 );
@@ -1121,6 +1122,7 @@ var eventos_back = {
 				}
 			});
 	    }else{ alert('Marque pelo menos uma resposta.'); }
+	    */
 	},
 
 	remove_pergunta: function(url, id_quiz, imagem)

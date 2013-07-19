@@ -10,7 +10,7 @@ class Quiz extends CI_Controller {
 	 * 
 	 */
 
-	private $quizes_pagina = 20;
+	private $quizes_pagina = 10;
 
 	public function __construct()
 	{

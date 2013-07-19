@@ -38,23 +38,21 @@ class Visualizacao extends CI_Controller {
 	{
 		#Recebe um array com todas as resposta do usuário
 		$resposta_user 	 = $this->input->get('respostas', TRUE);
-		#Inicia a variável d contagem x com o valor 0
-		$x="";
-		#Inicia faz um loop para varrer as respostas do usuário e verificar se existe uma  
-		for($i=0;$i<count($resposta_user);$i++){
-        	# Se alguma resposta se repetir na maioria dos indices, ela é escolhida como resposta
-        	if($x == $resposta_user[$i]) {
-        		#Eu pergo o perfil usando como filtro o ID do perfil vencedor
-        	}
-      		$x = $resposta_user[$i];
-      		$resposta_perfil = $this->perfil_model->get_resposta($x);
-		}
+		#Calcula os valores iguais da array
+		$calculo = array_count_values($resposta_user);
+		#Pega o perfil que foi respondido mais vezes
+		$maior = max($calculo);
+		#Como o $maior retorna value mas o ID do perfil é uma Key, precisamos pegar a Key que tem o value $maior
+		$x = array_keys($calculo, $maior);
+		#Inicia a variável d contagem x com o valor 
+		$resposta_perfil = $this->perfil_model->get_resposta($x[0]);
 		#Popula o array Data com os valores do Perfil
 		$data['titulo']			= $resposta_perfil['titulo'];
 		$data['descricao']		= $resposta_perfil['descricao'];
 		$data['link_referencia']= $resposta_perfil['link_referencia'];
 		$data['texto_link']		= $resposta_perfil['texto_link'];
 		$data['imagem']			= $resposta_perfil['imagem'];
+		$data['id']				= $resposta_perfil['id'];
 		#PHP gera um JSON do resultado
 		echo json_encode($data);
 	}

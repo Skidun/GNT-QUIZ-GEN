@@ -77,8 +77,8 @@ $(function(){
 				done: function (e, data) {
 					var filess= data.files[0];
 					var filenam = filess.name;
-					$(this).find('img#alvo-'+index).attr('src','../../assets/server/php/files/'+filenam);
-					$(this).find('img#alvo').attr('src','../../assets/server/php/files/'+filenam);
+					$(this).find('img#alvo-'+index).attr('src','../../assets/server/php/files/'+filess.name);
+					$(this).find('img#alvo').attr('src','../../assets/server/php/files/'+filess.name);
 				}
 			});
 	});
@@ -86,7 +86,7 @@ $(function(){
 	$('.fileupload#form-file-upload-pergunta').each(function (index) {
 			$(this).fileupload({
 				done: function (e, data) {
-					var filess= data.files[0];
+					var filess= data.files[1];
 					var filenam = filess.name;
 					$(this).find('img#alvo-pergunta-'+index).attr('src','../../assets/server/php/files/'+filenam);
 				}
@@ -1131,7 +1131,7 @@ $(document).ready(function(){
 							$('.slides-resultado #texto .resultado .saibaMais a').attr('href', e.link_referencia).text(e.texto_link);
 							//$('iframe.janela').alturaIframe();
 							if(e.imagem == '' || e.imagem == '../../assets/img/backgrounds/imagem.png' || e.imagem == 'http://gntquizgen.tk/homolog/assets/img/backgrounds/imagem.png'){
-								$('#resultado #imagem').hide();
+								$('#resultado #imagem').remove();
 							}else{
 								$('#resultado #imagem #alvo-perguntas').show().attr('src', e.imagem).text(e.texto_link);
 							}

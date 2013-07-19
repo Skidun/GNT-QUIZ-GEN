@@ -36,7 +36,7 @@
 										<div class="saibaMais pontuacao" style="font-size: <?php echo $customizacao['resultado_porcentagem_font_size'];?>;color: #<?php echo $customizacao['resultado_porcentagem_font_color'];?>; text-align:<?php echo $customizacao['resultado_porcentagem_align'];?>;"></div>
 										<div class="resultado">
 											<p class="descricao" style="font-size:<?php echo $customizacao['resultado_descricao_font_size'];?>; color:#<?php echo $customizacao['resultado_descricao_font_color']?>; text-align:<?php echo $customizacao['resultado_descricao_align'];?>;"></p>
-											<div class="saibaMais"><a href="#"  style="font-size: <?php echo $customizacao['resultado_linkref_font_size'];?>; color:#<?php echo $customizacao['resultado_linkref_font_color'];?>; text-align:<?php echo $customizacao['resultado_linkref_align'];?>;"></a></div>
+											<div class="saibaMais"><a href="#" target="_blank"  style="font-size: <?php echo $customizacao['resultado_linkref_font_size'];?>; color:#<?php echo $customizacao['resultado_linkref_font_color'];?>; text-align:<?php echo $customizacao['resultado_linkref_align'];?>;"></a></div>
 										
 											<div id="botoesResultado">
 												<a href="#" class="anterior" title="jogar novamente" style="color: #<?php echo $customizacao['resultado_botao_font_color'];?>;background-color: #<?php echo $customizacao['resultado_botao_bg_color'];?>;">&laquo; jogar novamente</a>
