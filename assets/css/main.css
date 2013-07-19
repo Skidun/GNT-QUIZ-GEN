@@ -1804,3 +1804,11 @@ color: #666666;
 	left: 0;
 	top: 0;
 }
+#fileupload-perfil-customiza .descricao,
+#fileupload-perfil-customiza-resultados .descricao{
+	font-style: italic;
+	color:#666666;
+	display: block;
+	margin-top:10px;
+	font-size: 13px;
+}
