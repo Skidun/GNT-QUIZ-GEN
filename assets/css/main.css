@@ -1804,7 +1804,7 @@ color: #666666;
 	left: 0;
 	top: 0;
 }
-.descricao{
+.content .descricao{
 	display:block;
 	margin-top:10px;
 	color:#666666;
@@ -1838,7 +1838,7 @@ color: #666666;
 .definicoes input[type='radio']:checked+label{
 	background:url('../img/botoes/radio.png') 0 -22px no-repeat;
 }
-.excluir{
+.content .excluir{
 	background:url('../img/botoes/excluir.png') 0 0 no-repeat;
 	width:42px;
 	height:38px;

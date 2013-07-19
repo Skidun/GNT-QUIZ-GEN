@@ -115,6 +115,9 @@ class Customizacao extends CI_Controller {
 		$data['botao_perguntas_font_color']			=	$this->input->get('botoes_cor', TRUE);
 		$data['botao_perguntas_bg_color']			=	$this->input->get('botoes_cor_fundo', TRUE);
 		$data['quiz_bg_img']						=	$this->input->get('pergunta_imagem_fundo', TRUE);
+		$data['quiz_bg_img_repeat']					=	$this->input->get('quiz_bg_img_repeat', TRUE);
+		$data['quiz_bg_img_align_horizontal']		=	$this->input->get('quiz_bg_img_align_horizontal', TRUE);
+		$data['quiz_bg_img_align_vertical']			=	$this->input->get('quiz_bg_img_align_vertical', TRUE);
 		$data['quiz_bg_color']						=	$this->input->get('pergunta_cor_fundo', TRUE);
 		$data['resultado_titulo_quiz_font_size']	=	$this->input->get('titulo_quiz_resultados_tamanho', TRUE);
 		$data['resultado_titulo_quiz_font_color']	=	$this->input->get('titulo_quiz_resultados_cor', TRUE);
@@ -134,6 +137,9 @@ class Customizacao extends CI_Controller {
 		$data['resultado_botao_font_color']			=	$this->input->get('botoes_resultados_cor', TRUE);
 		$data['resultado_botao_bg_color']			=	$this->input->get('botoes_resultados_cor_fundo', TRUE);
 		$data['resultado_bg_img']					=	$this->input->get('imagem_resultados_fundo', TRUE);
+		$data['resultado_bg_img_repeat']			=	$this->input->get('resultado_bg_img_repeat', TRUE);
+		$data['resultado_bg_img_align_horizontal']	=	$this->input->get('resultado_bg_img_repeat', TRUE);
+		$data['resultado_bg_img_align_vertical']	=	$this->input->get('resultado_bg_img_align_vertical', TRUE);
 		$data['resultado_bg_color']					=	$this->input->get('resultados_cor_fundo', TRUE);
 		$id_quiz									=	$this->input->get('id_quiz', TRUE);
 

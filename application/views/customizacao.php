@@ -157,7 +157,7 @@
 								<p>Imagem de fundo</p>
 								<span class="arrow"></span>
 							</div>
-							<div class="content">
+							<div class="content perguntas-bg-img-conf">
 								<!--Imagem:-->
 										<form id="fileupload-perfil-customiza" action="<?php echo base_url();?>assets/server/php/index2.php" method="POST" enctype="multipart/form-data">
 										<div id="imagem-preview"><img id="alvo-perguntas" src="<?php if($customizacao['quiz_bg_img'] == "") {echo base_url().'assets/img/backgrounds/preview.png';}else{echo base_url()."assets/server/php/files/".$customizacao['quiz_bg_img'];}?>" /></div>
@@ -170,25 +170,25 @@
 										<input type="hidden" name="bg_image_pergunta" id="bg_image_pergunta" value="<?php echo $customizacao['quiz_bg_img'];?>" />
 								<div style="clear:both"></div>
 								<p class="alinha">Repetir imagem?</p>
-									<div class="definicoes"><input type="radio" name="repete-imagem" value="repeat-x" id="repeat-x" /><label for="repeat-x">repetir horizontalmente</label></div>
-									<div class="definicoes"><input type="radio" name="repete-imagem" value="repeat-y" id="repeat-y" /><label for="repeat-y">repetir verticalmente</label></div>
-									<div class="definicoes"><input type="radio" name="repete-imagem" value="repeat" id="repeat" /><label for="repeat">repetir para todos os lados</label></div>
-									<div class="definicoes"><input type="radio" name="repete-imagem" value="no-repeat" id="no-repeat" /><label for="no-repeat">não repetir</label></div>
+									<div class="definicoes"><input type="radio" name="repete-imagem-perguntas" value="repeat-x" id="repeat-x" /><label for="repeat-x">repetir horizontalmente</label></div>
+									<div class="definicoes"><input type="radio" name="repete-imagem-perguntas" value="repeat-y" id="repeat-y" /><label for="repeat-y">repetir verticalmente</label></div>
+									<div class="definicoes"><input type="radio" name="repete-imagem-perguntas" value="repeat" id="repeat" /><label for="repeat">repetir para todos os lados</label></div>
+									<div class="definicoes"><input type="radio" name="repete-imagem-perguntas" value="no-repeat" id="no-repeat" checked="checked" /><label for="no-repeat">não repetir</label></div>
 								<p class="alinha">Alinhamento horizontal:</p>
-									<div class="definicoes"><input type="radio" name="alinhaH-imagem" value="left" /><label for="left">à esquerda</label></div>
-									<div class="definicoes"><input type="radio" name="alinhaH-imagem" value="center" /><label for="center">ao centro</label></div>
-									<div class="definicoes"><input type="radio" name="alinhaH-imagem" value="right" /><label for="right">à direita</label></div>
+									<div class="definicoes"><input type="radio" name="alinhaH-imagem-perguntas" value="left" checked="checked" /><label for="left">à esquerda</label></div>
+									<div class="definicoes"><input type="radio" name="alinhaH-imagem-perguntas" value="center" /><label for="center">ao centro</label></div>
+									<div class="definicoes"><input type="radio" name="alinhaH-imagem-perguntas" value="right" /><label for="right">à direita</label></div>
 								<p class="alinha">Alinhamento vertical:</p>
-									<div class="definicoes"><input type="radio" name="alinhaV-imagem" value="top" /><label for="top">ao topo</label></div>
-									<div class="definicoes"><input type="radio" name="alinhaV-imagem" value="center" /><label for="center">ao centro</label></div>
-									<div class="definicoes"><input type="radio" name="alinhaV-imagem" value="bottom" /><label for="bottom">à base</label></div>
+									<div class="definicoes"><input type="radio" name="alinhaV-imagem-perguntas" value="top" checked="checked" /><label for="top">ao topo</label></div>
+									<div class="definicoes"><input type="radio" name="alinhaV-imagem-perguntas" value="center" /><label for="center">ao centro</label></div>
+									<div class="definicoes"><input type="radio" name="alinhaV-imagem-perguntas" value="bottom" /><label for="bottom">à base</label></div>
 								<!--Cor de fundo:-->
 								<p class="alinha">Cor de fundo:</p>
 								<div class="input-picker"><input id="imagem-cor-fundo" name="imagem-cor-fundo" type="text" value="<?php echo $customizacao['quiz_bg_color'];?>" /></div>
 							</div>
 							
 						</div>
-						<div id="previewPerguntas" class="preview" style="background: <?php if($customizacao['quiz_bg_img'] == "") {echo "#".$customizacao['quiz_bg_color'];}else{echo "url(".base_url()."assets/server/php/files/".$customizacao['quiz_bg_img'].") top center !important #".$customizacao['quiz_bg_color'].";";}?>">
+						<div id="previewPerguntas" class="preview" style="background: <?php if($customizacao['quiz_bg_img'] == "") {echo "#".$customizacao['quiz_bg_color'];}else{echo "url(".base_url()."assets/server/php/files/".$customizacao['quiz_bg_img'].")  ".$customizacao['quiz_bg_img_align_horizontal']." ".$customizacao['quiz_bg_img_align_vertical']." ".$customizacao['quiz_bg_img_repeat']." !important #".$customizacao['quiz_bg_color'].";";}?>">
 							<div id="nome" style="font-size:<?php echo $customizacao['titulo_quiz_font_size'];?>; color:#<?php echo $customizacao['titulo_quiz_font_color'];?>; text-align:<?php echo $customizacao['titulo_quiz_align'];?>;"><?php  echo $titulo;?></div>
 							<div id="texto">
 								<?php
@@ -418,7 +418,7 @@
 								<p>Imagem de fundo</p>
 								<span class="arrow"></span>
 							</div>
-							<div class="content">
+							<div class="content resultados-img-bg-conf">
 								<!--Imagem:-->
 										<form id="fileupload-perfil-customiza-resultados" action="<?php echo base_url();?>assets/server/php/index2.php" method="POST" enctype="multipart/form-data">
 										<div id="imagem-preview"><img id="alvo-resultados" src="<?php if($customizacao['resultado_bg_img'] == "") {echo base_url().'assets/img/backgrounds/preview.png';}else{echo base_url()."assets/server/php/files/".$customizacao['resultado_bg_img'];}?>" /></div>
@@ -434,13 +434,13 @@
 									<div class="definicoes"><input type="radio" name="repete-imagem" value="repeat-x" id="repeat-x" /><label for="repeat-x">repetir horizontalmente</label></div>
 									<div class="definicoes"><input type="radio" name="repete-imagem" value="repeat-y" id="repeat-y" /><label for="repeat-y">repetir verticalmente</label></div>
 									<div class="definicoes"><input type="radio" name="repete-imagem" value="repeat" id="repeat" /><label for="repeat">repetir para todos os lados</label></div>
-									<div class="definicoes"><input type="radio" name="repete-imagem" value="no-repeat" id="no-repeat" /><label for="no-repeat">não repetir</label></div>
+									<div class="definicoes"><input type="radio" name="repete-imagem" value="no-repeat" id="no-repeat" checked="checked"/><label for="no-repeat">não repetir</label></div>
 								<p class="alinha">Alinhamento horizontal:</p>
-									<div class="definicoes"><input type="radio" name="alinhaH-imagem" value="left" /><label for="left">à esquerda</label></div>
+									<div class="definicoes"><input type="radio" name="alinhaH-imagem" value="left" checked="checked"/><label for="left">à esquerda</label></div>
 									<div class="definicoes"><input type="radio" name="alinhaH-imagem" value="center" /><label for="center">ao centro</label></div>
 									<div class="definicoes"><input type="radio" name="alinhaH-imagem" value="right" /><label for="right">à direita</label></div>
 								<p class="alinha">Alinhamento vertical:</p>
-									<div class="definicoes"><input type="radio" name="alinhaV-imagem" value="top" /><label for="top">ao topo</label></div>
+									<div class="definicoes"><input type="radio" name="alinhaV-imagem" value="top" checked="checked"/><label for="top">ao topo</label></div>
 									<div class="definicoes"><input type="radio" name="alinhaV-imagem" value="center" /><label for="center">ao centro</label></div>
 									<div class="definicoes"><input type="radio" name="alinhaV-imagem" value="bottom" /><label for="bottom">à base</label></div>
 								<!--Cor de fundo:-->
@@ -450,7 +450,7 @@
 							
 						</div>
 						
-						<div id="previewResultados" class="preview" style="background: <?php if($customizacao['resultado_bg_img'] == "") {echo "#".$customizacao['resultado_bg_color'];}else{echo "url(".base_url()."assets/server/php/files/".$customizacao['resultado_bg_img'].") top center !important;";}?>">
+						<div id="previewResultados" class="preview" style="background: <?php if($customizacao['resultado_bg_img'] == "") {echo "#".$customizacao['resultado_bg_color'];}else{echo "url(".base_url()."assets/server/php/files/".$customizacao['resultado_bg_img'].")  ".$customizacao['resultado_bg_img_align_horizontal']." ".$customizacao['resultado_bg_img_align_vertical']." ".$customizacao['resultado_bg_img_repeat']." !important #".$customizacao['resultado_bg_color'].";";}?>">
 							<div id="nome" style="font-size: <?php echo $customizacao['resultado_titulo_quiz_font_size'];?>;color: #<?php echo $customizacao['resultado_titulo_quiz_font_color'];?>; text-align:<?php echo $customizacao['resultado_titulo_quiz_align'];?>;"><?php echo $titulo;?></div>
 							<?php 
 								if($perfis != null){

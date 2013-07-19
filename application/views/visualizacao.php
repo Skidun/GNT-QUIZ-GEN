@@ -27,7 +27,7 @@
 						</div>
 						
 						<!--Resultado-->
-						<div id="quizVisualizacao" class="quiz resultados" style="background: <?php if($customizacao['resultado_bg_img'] == "") {echo "#".$customizacao['resultado_bg_color'];}else{echo "url(".base_url()."assets/server/php/files/".$customizacao['resultado_bg_img'].") top center !important;";}?>">
+						<div id="quizVisualizacao" class="quiz resultados" style="background: <?php if($customizacao['resultado_bg_img'] == "") {echo "#".$customizacao['resultado_bg_color'];}else{echo "url(".base_url()."assets/server/php/files/".$customizacao['resultado_bg_img'].") ".$customizacao['resultado_bg_img_align_horizontal']." ".$customizacao['resultado_bg_img_align_vertical']." ".$customizacao['resultado_bg_img_repeat']." !important ".$customizacao['resultado_bg_color'].";";}?>">
 							<div id="nome" style="font-size: <?php echo $customizacao['resultado_titulo_quiz_font_size'];?>;color: #<?php echo $customizacao['resultado_titulo_quiz_font_color'];?>; text-align:<?php echo $customizacao['resultado_titulo_quiz_align'];?>;"><?php echo $titulo;?></div>
 							
 							    <div class="slides-resultado">
