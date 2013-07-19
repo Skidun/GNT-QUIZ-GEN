@@ -1804,11 +1804,49 @@ color: #666666;
 	left: 0;
 	top: 0;
 }
-#fileupload-perfil-customiza .descricao,
-#fileupload-perfil-customiza-resultados .descricao{
-	font-style: italic;
-	color:#666666;
-	display: block;
+.descricao{
+	display:block;
 	margin-top:10px;
-	font-size: 13px;
+	color:#666666;
+	font-size:13px;
+	font-style:italic;
+}
+.definicoes{
+	color:#666666;
+	font-size:15px;
+	font-style:italic;
+	margin:5px 0;
+	display: inline-block;
+	width: 100%;
+	position:relative;
+}
+.definicoes input[type='radio']{
+    opacity: 0;
+    width: 22px;
+	height:22px;
+	position:absolute;
+	top:0;
+	left:0;
+	cursor: pointer;
+}
+.definicoes input[type="radio"]+label{
+	background:url('../img/botoes/radio.png') left top no-repeat;
+    margin: 0;
+    clear: none;
+    padding: 1px 0 1px 35px;    	
+}
+.definicoes input[type='radio']:checked+label{
+	background:url('../img/botoes/radio.png') 0 -22px no-repeat;
+}
+.excluir{
+	background:url('../img/botoes/excluir.png') 0 0 no-repeat;
+	width:42px;
+	height:38px;
+	position:absolute;
+	z-index:5;
+	bottom:-63px;
+	right:10px;
+}
+form{
+	position:relative;
 }

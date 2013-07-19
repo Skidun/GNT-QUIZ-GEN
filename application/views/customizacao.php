@@ -165,8 +165,23 @@
 										<span class="btn btn-success fileinput-button">
 											<input id="file" type="file"  />
 										</span>
+										<a href="javascript:void(0);" class="excluir"></a>
 										</form>
 										<input type="hidden" name="bg_image_pergunta" id="bg_image_pergunta" value="<?php echo $customizacao['quiz_bg_img'];?>" />
+								<div style="clear:both"></div>
+								<p class="alinha">Repetir imagem?</p>
+									<div class="definicoes"><input type="radio" name="repete-imagem" value="repeat-x" id="repeat-x" /><label for="repeat-x">repetir horizontalmente</label></div>
+									<div class="definicoes"><input type="radio" name="repete-imagem" value="repeat-y" id="repeat-y" /><label for="repeat-y">repetir verticalmente</label></div>
+									<div class="definicoes"><input type="radio" name="repete-imagem" value="repeat" id="repeat" /><label for="repeat">repetir para todos os lados</label></div>
+									<div class="definicoes"><input type="radio" name="repete-imagem" value="no-repeat" id="no-repeat" /><label for="no-repeat">não repetir</label></div>
+								<p class="alinha">Alinhamento horizontal:</p>
+									<div class="definicoes"><input type="radio" name="alinhaH-imagem" value="left" /><label for="left">à esquerda</label></div>
+									<div class="definicoes"><input type="radio" name="alinhaH-imagem" value="center" /><label for="center">ao centro</label></div>
+									<div class="definicoes"><input type="radio" name="alinhaH-imagem" value="right" /><label for="right">à direita</label></div>
+								<p class="alinha">Alinhamento vertical:</p>
+									<div class="definicoes"><input type="radio" name="alinhaV-imagem" value="top" /><label for="top">ao topo</label></div>
+									<div class="definicoes"><input type="radio" name="alinhaV-imagem" value="center" /><label for="center">ao centro</label></div>
+									<div class="definicoes"><input type="radio" name="alinhaV-imagem" value="bottom" /><label for="bottom">à base</label></div>
 								<!--Cor de fundo:-->
 								<p class="alinha">Cor de fundo:</p>
 								<div class="input-picker"><input id="imagem-cor-fundo" name="imagem-cor-fundo" type="text" value="<?php echo $customizacao['quiz_bg_color'];?>" /></div>
@@ -411,8 +426,23 @@
 										<span class="btn btn-success fileinput-button">
 											<input id="file" type="file"  />
 										</span>
+										<a href="javascript:void(0);" class="excluir"></a>
 										</form>
 										<input type="hidden" name="bg_image_resultado" id="bg_image_resultado" value="<?php echo $customizacao['resultado_bg_img'];?>"/>
+								<div style="clear:both"></div>
+								<p class="alinha">Repetir imagem?</p>
+									<div class="definicoes"><input type="radio" name="repete-imagem" value="repeat-x" id="repeat-x" /><label for="repeat-x">repetir horizontalmente</label></div>
+									<div class="definicoes"><input type="radio" name="repete-imagem" value="repeat-y" id="repeat-y" /><label for="repeat-y">repetir verticalmente</label></div>
+									<div class="definicoes"><input type="radio" name="repete-imagem" value="repeat" id="repeat" /><label for="repeat">repetir para todos os lados</label></div>
+									<div class="definicoes"><input type="radio" name="repete-imagem" value="no-repeat" id="no-repeat" /><label for="no-repeat">não repetir</label></div>
+								<p class="alinha">Alinhamento horizontal:</p>
+									<div class="definicoes"><input type="radio" name="alinhaH-imagem" value="left" /><label for="left">à esquerda</label></div>
+									<div class="definicoes"><input type="radio" name="alinhaH-imagem" value="center" /><label for="center">ao centro</label></div>
+									<div class="definicoes"><input type="radio" name="alinhaH-imagem" value="right" /><label for="right">à direita</label></div>
+								<p class="alinha">Alinhamento vertical:</p>
+									<div class="definicoes"><input type="radio" name="alinhaV-imagem" value="top" /><label for="top">ao topo</label></div>
+									<div class="definicoes"><input type="radio" name="alinhaV-imagem" value="center" /><label for="center">ao centro</label></div>
+									<div class="definicoes"><input type="radio" name="alinhaV-imagem" value="bottom" /><label for="bottom">à base</label></div>
 								<!--Cor de fundo:-->
 								<p class="alinha">Cor de fundo:</p>
 								<div class="input-picker"><input id="imagem-resultados-cor-fundo" name="imagem-resultados-cor-fundo" type="text" value="<?php echo $customizacao['resultado_bg_color'];?>" /></div>
