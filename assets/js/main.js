@@ -79,7 +79,11 @@ $(function(){
 					var filenam = filess.name;
 					$(this).find('img#alvo-'+index).attr('src','../../assets/server/php/files/'+filenam);
 					$(this).find('img#alvo').attr('src','../../assets/server/php/files/'+filenam);
-				}
+					$('img.carregando').remove();
+				},
+				progressall: function (e, data) {
+					$('img#alvo-'+index).parent().append('<img src="../../assets/img/ajax-loader.gif" alt="carregando..." class="carregando"> ');
+				}				
 			});
 	});
 
@@ -89,6 +93,10 @@ $(function(){
 					var filess= data.files[0];
 					var filenam = filess.name;
 					$(this).find('img#alvo-pergunta-'+index).attr('src','../../assets/server/php/files/'+filenam);
+					$('img.carregando').remove();
+				},
+				progressall: function (e, data) {
+					$('img#alvo-pergunta-'+index).parent().append('<img src="../../assets/img/ajax-loader.gif" alt="carregando..." class="carregando"> ');
 				}
 			});
 	});
@@ -114,7 +122,11 @@ $(function(){
 				$('#previewPerguntas').attr('style', 'background: url(../../assets/server/php/files/'+file.name+') !important;');
 				$('img#alvo-perguntas').attr('src','../../assets/server/php/files/'+file.name);
 				$('#bg_image_pergunta').val(file.name);
+				$('img.carregando').remove();
             });
+        },
+        progressall: function (e, data) {
+            $('img#alvo-perguntas').parent().append('<img src="../../assets/img/ajax-loader.gif" alt="carregando..." class="carregando"> ');
         }
     });
 	/*resultados*/
@@ -127,7 +139,11 @@ $(function(){
 				$('img#alvo-resultados').attr('src','../../assets/server/php/files/'+file.name);
 				$('#previewResultados').attr('style', 'background: url(../../assets/server/php/files/'+file.name+') !important;');
 				$('#bg_image_resultado').val(file.name);
+				$('img.carregando').remove();
             });
+        },
+        progressall: function (e, data) {
+            $('img#alvo-resultados').parent().append('<img src="../../assets/img/ajax-loader.gif" alt="carregando..." class="carregando"> ');
         }
     });
 			
@@ -175,6 +191,10 @@ $(function(){
 					var filess= data.files[0];
 					var filenam = filess.name;
 					$(this).find('#alvo-'+index).attr('src','../../assets/server/php/files/'+filenam);
+					$('img.carregando').remove();
+				},
+				progressall: function (e, data) {
+					$('#alvo-'+index).parent().append('<img src="../../assets/img/ajax-loader.gif" alt="carregando..." class="carregando"> ');
 				}
 			});
 		});
@@ -280,7 +300,19 @@ $(function(){
 		}
 		/*tem que resetar o fileupload e chamar de novo*/		
 		$('.fileupload').bind('fileuploaddestroy');
-		$(".fileupload").each(function(){$(this).fileupload({done:function(e,t){var n=t.files[0];var r=n.name;$(this).find("#alvo-pergunta-"+id).attr("src","../../assets/server/php/files/"+r)}})})
+		$(".fileupload").each(function(){
+			$(this).fileupload({
+				done:function(e,t){
+					var n=t.files[0];
+					var r=n.name;
+					$(this).find("#alvo-pergunta-"+id).attr("src","../../assets/server/php/files/"+r);
+					$('img.carregando').remove();
+				},
+				progressall: function (e, data) {
+					$("#alvo-pergunta-"+id).parent().append('<img src="../../assets/img/ajax-loader.gif" alt="carregando..." class="carregando"> ');
+				}
+			})
+		});
 		//scrolla pro fim da página
 		$('html, body').animate({scrollTop:$(document).height()}, 1000);
 		$('.excluir-um').click(function(){ $(this).parents('.group').remove(); });
@@ -677,7 +709,19 @@ $(function(){
 					}
 					/*tem que resetar o fileupload e chamar de novo*/		
 					$('.fileupload').bind('fileuploaddestroy');
-					$(".fileupload").each(function(){$(this).fileupload({done:function(e,t){var n=t.files[0];var r=n.name;$(this).find("#alvo-pergunta-"+id).attr("src","../../assets/server/php/files/"+r)}})})
+					$(".fileupload").each(function(){
+						$(this).fileupload({
+							done:function(e,t){
+								var n=t.files[0];
+								var r=n.name;
+								$(this).find("#alvo-pergunta-"+id).attr("src","../../assets/server/php/files/"+r);
+								$('img.carregando').remove();
+							},
+							progressall: function (e, data) {
+								$("#alvo-pergunta-"+id).parent().append('<img src="../../assets/img/ajax-loader.gif" alt="carregando..." class="carregando"> ');
+							}
+						})
+					})
 					//Atribui valor 10 ao value checado
 					$('input:radio').on('click', function(){
 						$('input:radio').val(0)
@@ -783,7 +827,19 @@ $(function(){
 				});
 				/*tem que resetar o fileupload e chamar de novo*/		
 					$('.fileupload').bind('fileuploaddestroy');
-					$(".fileupload").each(function(){$(this).fileupload({done:function(e,t){var n=t.files[0];var r=n.name;$(this).find("#alvo").attr("src",""+base_url+"assets/server/php/files/"+r)}})})
+					$(".fileupload").each(function(){
+						$(this).fileupload({
+							done:function(e,t){
+								var n=t.files[0];
+								var r=n.name;
+								$(this).find("#alvo").attr("src",""+base_url+"assets/server/php/files/"+r);
+								$('img.carregando').remove();
+							},
+							progressall: function (e, data) {
+								$("#alvo").parent().append('<img src="../../assets/img/ajax-loader.gif" alt="carregando..." class="carregando"> ');
+							}
+						})
+					})
 				//scrolla pro fim da página
 				$('html, body').animate({scrollTop:$(document).height()}, 1000);
 				$('.group').find('input[name="nome"]').focus(function(){
@@ -885,7 +941,19 @@ $(function(){
 						}
 					/*tem que resetar o fileupload e chamar de novo*/		
 						$('.fileupload').bind('fileuploaddestroy');
-						$(".fileupload").each(function(index){$(this).fileupload({done:function(e,t){var n=t.files[0];var r=n.name;$(this).find("#alvo-pergunta-"+index).attr("src","../../assets/server/php/files/"+r)}})})
+						$(".fileupload").each(function(index){
+							$(this).fileupload({
+								done:function(e,t){
+									var n=t.files[0];
+									var r=n.name;
+									$(this).find("#alvo-pergunta-"+index).attr("src","../../assets/server/php/files/"+r);
+									$('img.carregando').remove();
+								},
+								progressall: function (e, data) {
+									$("#alvo-pergunta-"+index).parent().append('<img src="../../assets/img/ajax-loader.gif" alt="carregando..." class="carregando"> ');
+								}
+							})
+						})
 					//scrolla pro fim da página
 					$('html, body').animate({scrollTop:$(document).height()}, 1000);
 					$('.excluir-um').click(function(){ $(this).parents('.group').remove(); });
@@ -984,7 +1052,19 @@ $(function(){
 					}
 					/*tem que resetar o fileupload e chamar de novo*/		
 						$('.fileupload').bind('fileuploaddestroy');
-						$(".fileupload").each(function(){$(this).fileupload({done:function(e,t){var n=t.files[0];var r=n.name;$(this).find("#alvo-pergunta-"+id).attr("src",base_url+"assets/server/php/files/"+r)}})})
+						$(".fileupload").each(function(){
+							$(this).fileupload({
+								done:function(e,t){
+									var n=t.files[0];
+									var r=n.name;
+									$(this).find("#alvo-pergunta-"+id).attr("src",base_url+"assets/server/php/files/"+r);
+									$('img.carregando').remove();
+								},
+								progressall: function (e, data) {
+									$("#alvo-pergunta-"+id).parent().append('<img src="../../assets/img/ajax-loader.gif" alt="carregando..." class="carregando"> ');
+								}
+							})
+						})
 					//scrolla pro fim da página
 					$('html, body').animate({scrollTop:$(document).height()}, 1000);
 					$('.group').each(function(index){

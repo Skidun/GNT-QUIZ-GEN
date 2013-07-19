@@ -1792,3 +1792,14 @@ color: #666666;
   margin:0;
   padding: 0;
 }
+.quadro{
+	position: relative;
+}
+#imagem-preview{
+	position: relative;
+}
+.carregando{
+	position: absolute;
+	left: 0;
+	top: 0;
+}
