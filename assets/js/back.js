@@ -13,7 +13,7 @@ var eventos_back = {
 				$(this).attr('type', 'text');
 			}
 		});
-
+		
 		$('#btn-esqueci-senha').click(function(e){
 			e.preventDefault();
 			var email = $('#email-login-recover').val();
@@ -32,7 +32,7 @@ var eventos_back = {
 
 			return false;	
 		});
-
+		
 		$('#txt-login').blur(function(){
 			var validaEmail = /(^[a-z]([a-z_\.]*)@([a-z_\.]*)([.][a-z]{3})$)|(^[a-z]([a-z_\.]*)@([a-z_\.]*)(\.[a-z]{3})(\.[a-z]{2})*$)/i;
 
@@ -55,7 +55,7 @@ var eventos_back = {
 				$('#bt-reset-senha').removeAttr('disabled');
 			}
 		});
-
+		
 		$('#bt-reset-senha').click(function(e){
 			e.preventDefault();
 
@@ -69,6 +69,7 @@ var eventos_back = {
 				document.form_reset_pass.submit();
 			}
 		});
+
 		//Tela Criar Quiz
 		$('#criar-quiz').click(function(e){
 			e.preventDefault();
@@ -529,14 +530,15 @@ var eventos_back = {
 			url:'login/recovery',
 			async: false,
 			data: {email:email},
-			datarType: 'JSON',
+			dataType: 'JSON',
 			success: function(e){
 				if(e.result == "sucesso"){
 					$('#email-recover-div, #bt-esqueci-senha-div').hide();
-					$('#status-enviada').show().text('Foi lhe enviado um e-mail com uma url para reconfiguração da senha.');
+					$('#status-enviada').show().text('Foi enviado um e-mail com uma url para reconfiguração da senha.');
 
 				}else{
-					$('.enviada-erro').show().text(e.erro);
+					console.log(e.erro);
+					$('.enviada-erro').text(e.erro).show();
 				}
 			}
 		});

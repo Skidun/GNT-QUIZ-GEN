@@ -27,26 +27,28 @@
 						</div>
 						
 						<!--Resultado-->
-						<div id="quizVisualizacao" class="quiz resultados" style="background:#cc0000;">
-							<div id="nome" style="font-size:20px; color:#333333; text-align:left;">Que tipo de solteira você é?</div>
+						<div id="quizVisualizacao" class="quiz resultados" style="background: <?php if($customizacao['resultado_bg_img'] == "") {echo "#".$customizacao['resultado_bg_color'];}else{echo "url(".base_url()."assets/server/php/files/".$customizacao['resultado_bg_img'].") top center !important;";}?>">
+							<div id="nome" style="font-size: <?php echo $customizacao['resultado_titulo_quiz_font_size'];?>;color: #<?php echo $customizacao['resultado_titulo_quiz_font_color'];?>; text-align:<?php echo $customizacao['resultado_titulo_quiz_align'];?>;"><?php echo $titulo;?></div>
 							
 							    <div class="slides-resultado">
 									<div id="texto">
-										<div class="titulo" style="font-size: 24px;color: #333333; text-align:left;">Pegadora</div>								
+										<div class="titulo" style="font-size: <?php echo $customizacao['resultado_titulo_faixa_font_size'];?>;color: #<?php echo $customizacao['resultado_titulo_faixa_font_color'];?>; text-align:<?php echo $customizacao['resultado_titulo_faixa_align'];?>;"></div>								
+										<div class="saibaMais pontuacao" style="font-size: <?php echo $customizacao['resultado_porcentagem_font_size'];?>;color: #<?php echo $customizacao['resultado_porcentagem_font_color'];?>; text-align:<?php echo $customizacao['resultado_porcentagem_align'];?>;"></div>
 										<div class="resultado">
-											<p class="descricao" style="font-size:18px; color:#333333; text-align:left;">Você é a pegadora! Enquanto o 'certo' não aparece, você se diverte com os 'errados'!</p>
-											<p class="descricao" style="font-size:18px; color:#333333; text-align:left;">Brincadeiras à parte, você não tem medo de explorar sua sexualidade e seus desejos enquanto não tem um relacionamento sério à vista. O importante é curtir a vida!</p>
-											<div class="saibaMais"><a href="#" style="font-size: 15px; color:#333333; text-align:left;">saiba mais</a></div>
+											<p class="descricao" style="font-size:<?php echo $customizacao['resultado_descricao_font_size'];?>; color:#<?php echo $customizacao['resultado_descricao_font_color']?>; text-align:<?php echo $customizacao['resultado_descricao_align'];?>;"></p>
+											<div class="saibaMais"><a href="#"  style="font-size: <?php echo $customizacao['resultado_linkref_font_size'];?>; color:#<?php echo $customizacao['resultado_linkref_font_color'];?>; text-align:<?php echo $customizacao['resultado_linkref_align'];?>;"></a></div>
 										
 											<div id="botoesResultado">
-												<a href="#" class="anterior" title="jogar novamente" style="color: #ffffff;background-color: #cc1e59;">&laquo; jogar novamente</a>
-												<a href="#" class="proximo" title="ver gabarito" style="color: #ffffff;background-color: #cc1e59;">ver gabarito</a>
+												<a href="#" class="anterior" title="jogar novamente" style="color: #<?php echo $customizacao['resultado_botao_font_color'];?>;background-color: #<?php echo $customizacao['resultado_botao_bg_color'];?>;">&laquo; jogar novamente</a>
+												<?php if($tipo != 'perfil'):?>
+													<a href="#" class="proximo" title="ver gabarito" style="color: #<?php echo $customizacao['resultado_botao_font_color'];?>;background-color: #<?php echo $customizacao['resultado_botao_bg_color'];?>;">ver gabarito</a>
+												<?php endif;?>
 											</div>
 										
 										</div>								
 									</div>
 									<div id="imagem" style="background: #fdd595;">
-										<img id="alvo-perguntas" src="assets/img/backgrounds/imagem2.png" />
+										<img id="alvo-perguntas" src="" />
 									</div>
 							    </div>
 								

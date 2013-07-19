@@ -40,6 +40,9 @@ class Login extends CI_Controller {
 				'email'=> $result['email'],
 			));
 			redirect('visualizar-todos-quizes');
+		}else{
+			$this->session->set_flashdata('erro-login', 'Erro');
+			redirect('login', 'refresh');
 		}
 		
 		//load view
@@ -86,7 +89,7 @@ class Login extends CI_Controller {
         	$result = $this->user_model->reset_pass($email, $recoverKey, $data);
 
         	if($result){
-        		$this->session->set_flashdata('pass_recovery', 'Sua senha foi salva com sucesso');
+        		$this->session->set_flashdata('pass_recovery', 'Sua senha foi salva com sucesso, agora você já pode usa-la para fazer login');
         		redirect('login', 'refresh');
         	}else{
         		$this->session->set_flashdata('pass_recovery', 'Houve um erro ao tentar resetar sua senha tente novamente');
@@ -98,14 +101,33 @@ class Login extends CI_Controller {
 	//Recovery Password
 	public function recovery()
 	{
-		$email =  $this->input->get('email');
+		$email =  $this->input->get('email', TRUE);
 		$data['recoverKey'] = md5(time().date('Y-m-d'));
+		$mensagem = "Você esqueceu sua senha e solicitou um recadastramento. Para criar uma nova senha acesse o link abaixo.
+		<br/><br/>
+		<small>*Caso não tenha solicitado o recadastramento desconsidere esse e-mail.</small>
+		<p>Link para recadastrar senha: ".base_url()."login/resetPass/".$data['recoverKey']." </p>
+
+					";
 
 		$result = $this->user_model->recovery($email, $data);
 
 		if($result){
-			//Antes desse ponto ele irá enviar o códgio por e-mail mas como o teste é local.
-			echo json_encode(array('result' => 'sucesso', 'recoverKey' => $data['recoverKey']));
+			//Configurações do envio de e-mail
+			$config['protocol'] = 'sendmail';
+			//$config['mailpath'] = '/usr/sbin/sendmail';
+			//$config['charset'] = 'iso-8859-1';
+			//$config['wordwrap'] = TRUE;
+			$config['mailtype'] = 'html';
+			$this->email->initialize($config);
+			$this->email->from('wesley@skidun.com.br', 'GNT [Quizes]');
+			$this->email->to($email); 
+			//$this->email->cc('wsadesigner@gmail.com');  
+			$this->email->subject('Recuperação de senha GNT [Quizes]');
+			$this->email->message($mensagem);
+			//envio de e-mail
+			$this->email->send();
+			echo json_encode(array('result' => 'sucesso', 'recoverKey' => $data['recoverKey'], 'status_send'=> $this->email->print_debugger()));	
 		}else{
 			echo json_encode(array('result' => 'falha', 'erro' => 'E-mail não pertence a nenhum usuário'));
 		}

@@ -25,13 +25,14 @@ $(function(){
 		$('form.login').slideUp(200);
 		$('form.esqueci').delay(400).slideDown(200);
 	});
-	
+	/*
 	$('.esqueci input[type="submit"]').click(function(){
 		$('.enviada').show();
 		$('.esqueci .input').hide();
 	});
-	
+	*/
 	$('.esqueci .login-voltar').click(function(){
+		$('.enviada-erro').text('');
 		$('form.esqueci').slideUp(200);
 		$('form.login').delay(400).slideDown(200);
 	});
@@ -1016,7 +1017,8 @@ jQuery.fn.alturaIframe = function(){
 	});
 };
 
-$('iframe.janela').alturaIframe();
+//Existe um bug nesse calcula na maioria das vezes não seta altura no ifrime precisei retirar altura para testar os meus ajustes.
+//$('iframe.janela').alturaIframe();
 
 //Lógica do slideshow da Visualização
 $(document).ready(function(){
@@ -1121,11 +1123,13 @@ $(document).ready(function(){
 						data: {respostas:resposta, id_quiz:id},
 						success: function(e){
 							$('.loader').fadeOut();
-							$('#resultado #texto .titulo').text(e.titulo);
-							$('#resultado #texto .pontuacao').text("Você fez "+e.pontuacao+" ponto(s).");
-							$('#resultado #texto .resultado .descricao').text(e.descricao);
-							$('#resultado #texto .resultado .saibaMais a').attr('href', e.link_referencia).text(e.texto_link);
-							$('iframe.janela').alturaIframe();
+							$('.slides-resultado #texto .titulo').text(e.titulo);
+							if(tipo != 'perfil'){
+							$('.slides-resultado #texto .pontuacao').text("Você fez "+e.pontuacao+" ponto(s).");
+							}
+							$('.slides-resultado #texto .resultado .descricao').text(e.descricao);
+							$('.slides-resultado #texto .resultado .saibaMais a').attr('href', e.link_referencia).text(e.texto_link);
+							//$('iframe.janela').alturaIframe();
 							if(e.imagem == '' || e.imagem == '../../assets/img/backgrounds/imagem.png' || e.imagem == 'http://gntquizgen.tk/homolog/assets/img/backgrounds/imagem.png'){
 								$('#resultado #imagem').hide();
 							}else{

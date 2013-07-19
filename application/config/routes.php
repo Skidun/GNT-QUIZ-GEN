@@ -73,5 +73,6 @@ $route['remover-pergunta/(:num)']	= "perguntas/remove_pergunta/$1";
 $route['remover-pergunta-ce/(:num)']= "perguntas/remove_pergunta_ce/$1";
 $route['remover-resposta/(:num)']	= "respostas/remove_resposta/$1";
 
+
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */
