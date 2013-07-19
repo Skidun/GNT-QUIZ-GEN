@@ -80,14 +80,12 @@ $(function(){
 
 					$(this).find('img#alvo-'+index).attr('src','../../assets/server/php/files/'+filenam);
 					$(this).find('img#alvo').attr('src','../../assets/server/php/files/'+filenam);
-				}
-					$(this).find('img#alvo-'+index).attr('src','../../assets/server/php/files/'+filenam);
-					$(this).find('img#alvo').attr('src','../../assets/server/php/files/'+filenam);
 					$('img.carregando').remove();
 				},
 				progressall: function (e, data) {
 					$('img#alvo-'+index).parent().append('<img src="../../assets/img/ajax-loader.gif" alt="carregando..." class="carregando"> ');
 				}				
+
 			});
 	});
 
@@ -1215,9 +1213,9 @@ $(document).ready(function(){
 							$('.slides-resultado #texto .resultado .saibaMais a').attr('href', e.link_referencia).text(e.texto_link);
 							//$('iframe.janela').alturaIframe();
 							if(e.imagem == '' || e.imagem == '../../assets/img/backgrounds/imagem.png' || e.imagem == 'http://gntquizgen.tk/homolog/assets/img/backgrounds/imagem.png'){
-								$('#resultado #imagem').remove();
+								$('.slides-resultado #imagem').remove();
 							}else{
-								$('#resultado #imagem #alvo-perguntas').show().attr('src', e.imagem).text(e.texto_link);
+								$('.slides-resultado #imagem img#alvo-perguntas').attr('src', e.imagem).show();
 							}
 
 					      	$('#botoesResultado .anterior').click(function(){ location.reload(true) });
