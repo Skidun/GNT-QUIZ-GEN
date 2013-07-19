@@ -29,7 +29,7 @@
 									<div class="input"><input type="text" name="texto" id="texto-perfil-0" value="" size="" /></div>
 								</div>
 								<div class="imagem">
-									<label for="imagem">Imagem relacionada:<span>Dimensões: 240px x 260px</span></label>
+									<label for="imagem">Imagem relacionada:<span>Dimensões: 240px x 260px<br />Formatos: JPG, PNG e GIF<br />Tamanho: 1MB</span></label>
 									
 									<form class="fileupload" action="<?php echo base_url();?>assets/server/php/" method="POST" enctype="multipart/form-data">
 										<div class="quadro"><img id="alvo-0" src="<?php echo site_url('assets/img/backgrounds/imagem.png');?>" name="imagem" /></div>

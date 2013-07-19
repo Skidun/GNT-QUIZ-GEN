@@ -154,7 +154,7 @@ $(function(){
 						'<div class="input"><input type="text" name="texto" id="texto-perfil-'+id+'" value="" size=""/></div>'+
 					'</div>'+
 					'<div class="imagem">'+
-						'<label for="imagem">Imagem relacionada:<span>Dimensões: 240px x 260px</span></label>'+
+						'<label for="imagem">Imagem relacionada:<span>Dimensões: 240px x 260px<br />Formatos: JPG, PNG e GIF<br />Tamanho: 1MB</span></label>'+
 						'<form class="fileupload" action="../../assets/server/php/" method="POST" enctype="multipart/form-data">'+
 							'<div class="quadro">'+
 								'<img id="alvo-'+id+'" src="../../assets/img/backgrounds/imagem.png" name="imagem"/>'+
@@ -244,7 +244,7 @@ $(function(){
 							'<div class="input"><input type="text" name="texto" id="texto-pergunta-'+id+'" value="" size=""/></div>'+
 						'</div>'+
 						'<div class="imagem">'+
-							'<label for="imagem">Imagem relacionada:<span>Dimensões: 240px x 260px</span></label>'+
+							'<label for="imagem">Imagem relacionada:<span>Dimensões: 240px x 260px<br />Formatos: JPG, PNG e GIF<br />Tamanho: 1MB</span></label>'+
 							'<form class="fileupload" action="../../assets/server/php/" method="POST" enctype="multipart/form-data">'+
 								'<div class="quadro"><img id="alvo-pergunta-'+id+'" src="../../assets/img/backgrounds/imagem.png" name="imagem"/></div>'+
 								'<span class="btn btn-success fileinput-button"><input id="file" type="file"/></span>'+
@@ -632,7 +632,7 @@ $(function(){
 										'<div class="input"><input type="text" name="texto" id="texto-pergunta-'+id+'" value="" size=""/></div>'+
 									'</div>'+
 									'<div class="imagem">'+
-										'<label for="imagem">Imagem relacionada:<span>Dimensões: 240px x 260px</span></label>'+
+										'<label for="imagem">Imagem relacionada:<span>Dimensões: 240px x 260px<br />Formatos: JPG, PNG e GIF<br />Tamanho: 1MB</span></label>'+
 										'<form class="fileupload" action="'+base_url+'assets/server/php/" method="POST" enctype="multipart/form-data">'+
 											'<div class="quadro"><img id="alvo-pergunta-'+id+'" src="'+base_url+'assets/img/backgrounds/imagem.png" name="imagem" id="alvo-pergunta-'+id+'"/></div>'+
 											'<span class="btn btn-success fileinput-button"><input id="file" type="file"/></span>'+
@@ -752,7 +752,7 @@ $(function(){
 								'<div class="input"><input type="text" name="texto" value="" size=""/></div>'+
 							'</div>'+
 							'<div class="imagem">'+
-								'<label for="imagem">Imagem relacionada:<span>Dimensões: 240px x 260px</span></label>'+
+								'<label for="imagem">Imagem relacionada:<span>Dimensões: 240px x 260px<br />Formatos: JPG, PNG e GIF<br />Tamanho: 1MB</span></label>'+
 								'<form class="fileupload" action="'+base_url+'assets/server/php/" method="POST" enctype="multipart/form-data">'+
 									'<div class="quadro"><img id="alvo" src="'+base_url+'assets/img/backgrounds/imagem.png" name="imagem"/></div>'+
 									'<span class="btn btn-success fileinput-button"><input id="file" type="file"/></span>'+
@@ -853,7 +853,7 @@ $(function(){
 										'<div class="input"><input type="text" name="texto" id="texto-pergunta-'+id+'" value="" size=""/></div>'+
 									'</div>'+
 									'<div class="imagem">'+
-										'<label for="imagem">Imagem relacionada:<span>Dimensões: 240px x 260px</span></label>'+
+										'<label for="imagem">Imagem relacionada:<span>Dimensões: 240px x 260px<br />Formatos: JPG, PNG e GIF<br />Tamanho: 1MB</span></label>'+
 										'<form class="fileupload" action="'+base_url+'assets/server/php/" method="POST" enctype="multipart/form-data">'+
 											'<div class="quadro"><img id="alvo-pergunta-'+id+'" src="'+base_url+'assets/img/backgrounds/imagem.png" name="imagem"/></div>'+
 											'<span class="btn btn-success fileinput-button"><input id="file" type="file"/></span>'+
@@ -949,7 +949,7 @@ $(function(){
 										'<div class="input"><input type="text" name="texto-pergunta" id="texto-pergunta-'+id+'" value="" size=""/></div>'+
 									'</div>'+
 									'<div class="imagem">'+
-										'<label for="imagem">Imagem relacionada:<span>Dimensões: 240px x 260px</span></label>'+
+										'<label for="imagem">Imagem relacionada:<span>Dimensões: 240px x 260px<br />Formatos: JPG, PNG e GIF<br />Tamanho: 1MB</span></label>'+
 										'<form class="fileupload" action="'+base_url+'assets/server/php/" method="POST" enctype="multipart/form-data">'+
 											'<div class="quadro"><img id="alvo-pergunta-'+id+'" src="'+base_url+'assets/img/backgrounds/imagem.png" name="imagem"/></div>'+
 											'<span class="btn btn-success fileinput-button"><input id="file" type="file"/></span>'+

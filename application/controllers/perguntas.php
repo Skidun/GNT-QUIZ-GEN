@@ -59,7 +59,7 @@ class Perguntas extends CI_Controller {
 														<div class="input"><input type="text" name="texto" id="texto-pergunta-'.$count.'" value="'.$pergunta->texto_link.'" size="" /></div>
 													</div>
 													<div class="imagem">
-														<label for="imagem">Imagem relacionada:<span>Dimensões: 240px x 260px</span></label>
+														<label for="imagem">Imagem relacionada:<span>Dimensões: 240px x 260px<br />Formatos: JPG, PNG e GIF<br />Tamanho: 1MB</span></label>
 														
 														<form class="fileupload" id="form-file-upload-pergunta" action="'.base_url().'assets/server/php/" method="POST" enctype="multipart/form-data">
 															<div class="quadro"><img id="alvo-pergunta-'.$count.'" src="'.str_replace('../../', '../../', $pergunta->imagem).'" name="imagem" /></div>
@@ -227,7 +227,7 @@ class Perguntas extends CI_Controller {
 														<div class="input"><input type="text" name="texto" id="texto-pergunta-'.$count.'" value="'.$pergunta->texto_link.'" size="" /></div>
 													</div>
 													<div class="imagem">
-														<label for="imagem">Imagem relacionada:<span>Dimensões: 240px x 260px</span></label>
+														<label for="imagem">Imagem relacionada:<span>Dimensões: 240px x 260px<br />Formatos: JPG, PNG e GIF<br />Tamanho: 1MB</span></label>
 														
 														<form class="fileupload" id="form-file-upload-pergunta" action="'.base_url().'assets/server/php/" method="POST" enctype="multipart/form-data">
 															<div class="quadro"><img id="alvo-pergunta-'.$count.'" src="'.str_replace('../../', '../../', $pergunta->imagem).'" name="imagem" /></div>
@@ -342,7 +342,7 @@ class Perguntas extends CI_Controller {
 														<div class="input"><input type="text" name="texto" id="texto-pergunta-'.$count.'" value="'.$pergunta->texto_link.'" size="" /></div>
 													</div>
 													<div class="imagem">
-														<label for="imagem">Imagem relacionada:<span>Dimensões: 240px x 260px</span></label>
+														<label for="imagem">Imagem relacionada:<span>Dimensões: 240px x 260px<br />Formatos: JPG, PNG e GIF<br />Tamanho: 1MB</span></label>
 														
 														<form class="fileupload" id="form-file-upload-pergunta" action="'.base_url().'assets/server/php/" method="POST" enctype="multipart/form-data">
 															<div class="quadro"><img id="alvo-pergunta-'.$count.'" src="'.str_replace('../../', '../../', $pergunta->imagem).'" name="imagem" /></div>
@@ -527,7 +527,7 @@ class Perguntas extends CI_Controller {
 														<div class="input"><input type="text" name="texto" id="texto-pergunta-'.$count.'" value="'.$pergunta->texto_link.'" size="" /></div>
 													</div>
 													<div class="imagem">
-														<label for="imagem">Imagem relacionada:<span>Dimensões: 240px x 260px</span></label>
+														<label for="imagem">Imagem relacionada:<span>Dimensões: 240px x 260px<br />Formatos: JPG, PNG e GIF<br />Tamanho: 1MB</span></label>
 														
 														<form class="fileupload" id="form-file-upload-pergunta" action="'.base_url().'assets/server/php/" method="POST" enctype="multipart/form-data">
 															<div class="quadro"><img id="alvo-pergunta-'.$count.'" src="'.str_replace('../../', '../../', $pergunta->imagem).'" name="imagem" /></div>

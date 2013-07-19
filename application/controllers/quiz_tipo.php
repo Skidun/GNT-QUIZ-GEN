@@ -63,7 +63,7 @@ class Quiz_tipo extends CI_Controller {
 									
 								</div>
 								<div class="imagem">
-									<label for="imagem">Imagem relacionada:<span>Dimensões: 240px x 260px</span></label>
+									<label for="imagem">Imagem relacionada:<span>Dimensões: 240px x 260px<br />Formatos: JPG, PNG e GIF<br />Tamanho: 1MB</span></label>
 									
 									<form class="fileupload" action="'.site_url('assets/server/php/').'" method="POST" enctype="multipart/form-data">
 										<div class="quadro"><img id="alvo-'.$count.'" src="'.$perfil->imagem.'" name="imagem" /></div>
@@ -173,7 +173,7 @@ class Quiz_tipo extends CI_Controller {
 									<input type="hidden" id="id-faixa" name="id-faixa" value="'.$faixa->id.'" />
 								</div>
 								<div class="imagem">
-									<label for="imagem">Imagem relacionada:<span>Dimensões: 240px x 260px</span></label>
+									<label for="imagem">Imagem relacionada:<span>Dimensões: 240px x 260px<br />Formatos: JPG, PNG e GIF<br />Tamanho: 1MB</span></label>
 						';
 						if($faixa->imagem == ''){			
 							$grupo.='	<form class="fileupload" action="'.base_url().'assets/server/php/" method="POST" enctype="multipart/form-data">
@@ -242,7 +242,7 @@ class Quiz_tipo extends CI_Controller {
 									<input type="hidden" id="id-faixa" name="id-faixa" value="'.$faixa->id.'" />
 								</div>
 								<div class="imagem">
-									<label for="imagem">Imagem relacionada:<span>Dimensões: 240px x 260px</span></label>
+									<label for="imagem">Imagem relacionada:<span>Dimensões: 240px x 260px<br />Formatos: JPG, PNG e GIF<br />Tamanho: 1MB</span></label>
 						';
 						if($faixa->imagem == ''){			
 							$grupo.='	<form class="fileupload" action="'.base_url().'assets/server/php/" method="POST" enctype="multipart/form-data">
@@ -311,7 +311,7 @@ class Quiz_tipo extends CI_Controller {
 									<input type="hidden" id="id-faixa" name="id-faixa" value="'.$faixa->id.'" />
 								</div>
 								<div class="imagem">
-									<label for="imagem">Imagem relacionada:<span>Dimensões: 240px x 260px</span></label>
+									<label for="imagem">Imagem relacionada:<span>Dimensões: 240px x 260px<br />Formatos: JPG, PNG e GIF<br />Tamanho: 1MB</span></label>
 						';
 						if($faixa->imagem == ''){			
 							$grupo.='	<form class="fileupload" action="'.base_url().'assets/server/php/" method="POST" enctype="multipart/form-data">
