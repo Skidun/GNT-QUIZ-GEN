@@ -804,6 +804,7 @@ p {
   font-family: 'Conv_Amaranth-Italic';
   font-size: 16px;
   line-height: 120%;
+  text-decoration: underline;
 }
 #conteudo .item .body .preview #texto .subtitulo a {
   color: #333333;
