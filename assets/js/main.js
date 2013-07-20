@@ -75,12 +75,16 @@ $(function(){
 	$('.fileupload').each(function (index) {
 			$(this).fileupload({
 				done: function (e, data) {
-					var filess= data.files[0];
-					var filenam = filess.name;
+						var filess= data.files[0];
+						var filenam = filess.name;
 
-					$(this).find('img#alvo-'+index).attr('src','../../assets/server/php/files/'+filenam);
-					$(this).find('img#alvo').attr('src','../../assets/server/php/files/'+filenam);
-					$('img.carregando').remove();
+						var chamaString = JSON.parse(data.result);
+						console.log( chamaString.files[0].name );
+						
+						$(this).find('img#alvo-'+index).attr('src','../../assets/server/php/files/'+chamaString.files[0].name);
+						$(this).find('img#alvo').attr('src','../../assets/server/php/files/'+chamaString.files[0].name);
+						
+						$('img.carregando').remove();
 				},
 				progressall: function (e, data) {
 					$('img#alvo-'+index).parent().append('<img src="../../assets/img/ajax-loader.gif" alt="carregando..." class="carregando"> ');
@@ -92,10 +96,16 @@ $(function(){
 	$('.fileupload#form-file-upload-pergunta').each(function (index) {
 			$(this).fileupload({
 				done: function (e, data) {
-					var filess= data.files[0];
-					var filenam = filess.name;
-					$(this).find('img#alvo-pergunta-'+index).attr('src','../../assets/server/php/files/'+filenam);
-					$('img.carregando').remove();
+						var filess= data.files[0];
+						var filenam = filess.name;
+							
+						var chamaString = JSON.parse(data.result);
+						console.log( chamaString.files[0].name );
+						
+						$(this).find('img#alvo-pergunta-'+index).attr('src','../../assets/server/php/files/'+chamaString.files[0].name);
+						
+						$('img.carregando').remove();
+
 				},
 				progressall: function (e, data) {
 					$('img#alvo-pergunta-'+index).parent().append('<img src="../../assets/img/ajax-loader.gif" alt="carregando..." class="carregando"> ');
@@ -192,7 +202,11 @@ $(function(){
 				done: function (e, data) {
 					var filess= data.files[0];
 					var filenam = filess.name;
-					$(this).find('#alvo-'+index).attr('src','../../assets/server/php/files/'+filenam);
+					
+						var chamaString = JSON.parse(data.result);
+						console.log( chamaString.files[0].name );					
+					
+					$(this).find('#alvo-'+index).attr('src','../../assets/server/php/files/'+chamaString.files[0].name);
 					$('img.carregando').remove();
 				},
 				progressall: function (e, data) {
@@ -307,7 +321,11 @@ $(function(){
 				done:function(e,t){
 					var n=t.files[0];
 					var r=n.name;
-					$(this).find("#alvo-pergunta-"+id).attr("src","../../assets/server/php/files/"+r);
+					
+						var chamaString = JSON.parse(data.result);
+						console.log( chamaString.files[0].name );					
+					
+					$(this).find("#alvo-pergunta-"+id).attr("src","../../assets/server/php/files/"+chamaString.files[0].name);
 					$('img.carregando').remove();
 				},
 				progressall: function (e, data) {
@@ -716,14 +734,18 @@ $(function(){
 							done:function(e,t){
 								var n=t.files[0];
 								var r=n.name;
-								$(this).find("#alvo-pergunta-"+id).attr("src","../../assets/server/php/files/"+r);
+								
+								var chamaString = JSON.parse(data.result);
+								console.log( chamaString.files[0].name );								
+								
+								$(this).find("#alvo-pergunta-"+id).attr("src","../../assets/server/php/files/"+chamaString.files[0].name);
 								$('img.carregando').remove();
 							},
 							progressall: function (e, data) {
 								$("#alvo-pergunta-"+id).parent().append('<img src="../../assets/img/ajax-loader.gif" alt="carregando..." class="carregando"> ');
 							}
 						})
-					})
+					});
 					//Atribui valor 10 ao value checado
 					$('input:radio').on('click', function(){
 						$('input:radio').val(0)
@@ -834,7 +856,11 @@ $(function(){
 							done:function(e,t){
 								var n=t.files[0];
 								var r=n.name;
-								$(this).find("#alvo").attr("src",""+base_url+"assets/server/php/files/"+r);
+								
+								var chamaString = JSON.parse(data.result);
+								console.log( chamaString.files[0].name );								
+								
+								$(this).find("#alvo").attr("src",""+base_url+"assets/server/php/files/"+chamaString.files[0].name);
 								$('img.carregando').remove();
 							},
 							progressall: function (e, data) {
@@ -948,7 +974,11 @@ $(function(){
 								done:function(e,t){
 									var n=t.files[0];
 									var r=n.name;
-									$(this).find("#alvo-pergunta-"+index).attr("src","../../assets/server/php/files/"+r);
+									
+									var chamaString = JSON.parse(data.result);
+									console.log( chamaString.files[0].name );									
+									
+									$(this).find("#alvo-pergunta-"+index).attr("src","../../assets/server/php/files/"+chamaString.files[0].name);
 									$('img.carregando').remove();
 								},
 								progressall: function (e, data) {
@@ -1069,7 +1099,11 @@ $(function(){
 								done:function(e,t){
 									var n=t.files[0];
 									var r=n.name;
-									$(this).find("#alvo-pergunta-"+id).attr("src",base_url+"assets/server/php/files/"+r);
+									
+									var chamaString = JSON.parse(data.result);
+									console.log( chamaString.files[0].name );									
+									
+									$(this).find("#alvo-pergunta-"+id).attr("src",base_url+"assets/server/php/files/"+chamaString.files[0].name);
 									$('img.carregando').remove();
 								},
 								progressall: function (e, data) {
@@ -1224,7 +1258,7 @@ $(document).ready(function(){
 							//$('iframe.janela').alturaIframe();
 							if(e.imagem == '' || e.imagem == '../../assets/img/backgrounds/imagem.png' || e.imagem == 'http://gntquizgen.tk/homolog/assets/img/backgrounds/imagem.png'){
 								$('.slides-resultado #imagem').remove();
-								$('.slides-resultado #texto').css('width','auto');
+								$('.slides-resultado #texto').css('width','580px');
 							}else{
 								$('.slides-resultado #imagem img#alvo-perguntas').attr('src', e.imagem).show();
 							}
