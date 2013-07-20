@@ -188,8 +188,14 @@ class Quiz extends CI_Controller {
 			$count_resposta++;
 			$html_perguntas .= '
 									<div class="slide">
-									<div id="texto">
-										<div class="titulo" style="font-size:'.$customizacao['pergunta_quiz_font_size'].'; color:#'.$customizacao['pergunta_quiz_font_color'].'; text-align:'.$customizacao['pergunta_quiz_align'].';">'.$pergunta->pergunta.'</div>
+								';
+			if($pergunta->imagem == base_url().'assets/img/backgrounds/imagem.png' || $pergunta->imagem == '../../assets/img/backgrounds/imagem.png'){					
+				$html_perguntas	.=		'<div id="texto" style="width:580px">';
+			}else{
+				$html_perguntas	.=		'<div id="texto">';
+			}					
+			
+			$html_perguntas	.=		'		<div class="titulo" style="font-size:'.$customizacao['pergunta_quiz_font_size'].'; color:#'.$customizacao['pergunta_quiz_font_color'].'; text-align:'.$customizacao['pergunta_quiz_align'].';">'.$pergunta->pergunta.'</div>
 										<div class="subtitulo" style="text-align:'.$customizacao['link_ref_pergunta_align'].'"><a href="'.$pergunta->link_referencia.'" target="_blank" style="font-size:'.$customizacao['link_ref_pergunta_font_size'].'; color:#'.$customizacao['link_ref_pergunta_font_color'].';">'.$pergunta->texto_link.'</a></div>
 										<table class="respostas" style="font-size:'.$customizacao['resposta_pergunta_font_size'].'; color:#'.$customizacao['resposta_pergunta_font_color'].'; text-align:'.$customizacao['resposta_pergunta_align'].';">
 										';
