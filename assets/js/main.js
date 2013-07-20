@@ -1224,6 +1224,7 @@ $(document).ready(function(){
 							//$('iframe.janela').alturaIframe();
 							if(e.imagem == '' || e.imagem == '../../assets/img/backgrounds/imagem.png' || e.imagem == 'http://gntquizgen.tk/homolog/assets/img/backgrounds/imagem.png'){
 								$('.slides-resultado #imagem').remove();
+								$('.slides-resultado #texto').css('width','auto');
 							}else{
 								$('.slides-resultado #imagem img#alvo-perguntas').attr('src', e.imagem).show();
 							}
@@ -1272,4 +1273,12 @@ $(document).ready(function(){
 	    }else{ alert('Marque pelo menos uma resposta.'); } 
 
     });
+});
+
+//Impede o accordion de fechar quando clica no titulo
+$(function(){
+	$('#accordion .header input[name="nome"], #accordion2 .header input[name="nome"]').click(function(e){
+		$(this).parents('.header').next('.body').slideDown();
+		e.stopPropagation();
+	});
 });
