@@ -776,6 +776,7 @@ p {
   float: right;
   background: #faab2a;
   width: 620px;
+  height: 400px;
 }
 #conteudo .item .body .preview #nome {
   font-family: 'Conv_Amaranth-Bold';
@@ -1623,11 +1624,13 @@ p {
   border:0;
   float: left;
   width: 620px;
+  height: 400px;
   overflow: hidden;
 }
 #quizVisualizacao{
   float: left;
   width: 620px;
+  height: 400px;
 }
 #quizVisualizacao #nome{
   font-family: 'Conv_Amaranth-Bold';

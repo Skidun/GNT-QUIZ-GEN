@@ -37,6 +37,7 @@ class Quiz extends CI_Controller {
         $total = $this->quiz_model->count_rows();
 		$tr = '';
         foreach($quizes->result() as $quiz){
+        	$perguntas_total = $this->pergunta_model->count_rows($quiz->id);
         	$tr .= '<tr>
 						<td>';
 			$tr .= '<div class="texto">
@@ -44,8 +45,13 @@ class Quiz extends CI_Controller {
 						<span>tipo: '.$quiz->tipo.' | editado em: '.date('d-m-Y', strtotime($quiz->data_alteracao)).'</span>
 				   </div>
 				   <div class="botoes">
-						<a class="ver-e-embutir" href="'.site_url("visualizacao/".$quiz->tipo."/".$quiz->id).'"></a>
-						<ul class="menu-editar">
+				   ';
+			if($perguntas_total != 0){	   
+				$tr .= '<a class="ver-e-embutir" href="'.site_url("visualizacao/".$quiz->tipo."/".$quiz->id).'"></a>';
+			}else{
+				$tr .= '<a class="ver-e-embutir desabilitado" href="javascript:void();"></a>';
+			}		
+			$tr	.=	'	<ul class="menu-editar">
 							<li><div class="editar"></div>
 								<ul class="nav2">
 									<li><a href="'.site_url('editar-quiz').'/'.$quiz->id.'">nome</a></a></li>

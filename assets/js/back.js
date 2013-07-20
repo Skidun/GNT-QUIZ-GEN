@@ -521,6 +521,21 @@ var eventos_back = {
 			 $( ".amountIni"+index).val( $( "#slider"+index).slider( "values", 0 )+ "pts" );
 			 $( ".amountFin"+index).val( $( "#slider"+index).slider( "values", 1 ) + "pts" );
 		});
+		//Excluir BG Resultado
+		$('.excluir-bg-resultado').on('click', function(e){
+			e.preventDefault();
+			$('img#alvo-perguntass').remove();
+			$('#previewResultados').css('background-image', '');
+			$('#bg_image_resultado').val('');
+			$(this).prev().prev().prev('#imagem-preview').html('<img id="alvo-resultados" src="../../assets/img/backgrounds/preview.png">');
+		});
+		$('.excluir-bg-quiz').on('click', function(e){
+			e.preventDefault();
+			$('img#alvo-resultados').remove();
+			$('#previewPerguntas').css('background-image', '');
+			$('#bg_image_pergunta').val('');
+			$(this).prev().prev().prev('#imagem-preview').html('<img id="alvo-resultados" src="../../assets/img/backgrounds/preview.png">');
+		});
 	},	
 
 	//Executa a operação de recovey no banco de dados

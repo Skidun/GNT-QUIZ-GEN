@@ -118,13 +118,14 @@ class Visualizacao extends CI_Controller {
 			#A varíavel $range cria um array com um range entre o número incial e numero final da faixa de classificação
 			$range = range($numero_inicio, $numero_fim);
 			#Se a pontuação recebida do js (as respostas do usuário) estiver no range
-			if(in_array($pontuacao, $range)){	
+			if(in_array($pontuacao/2, $range)){	
 				#Ele pega o numero final e seta na variável $filtro, assim sempre teremos um valor que já existe em algum ponto da faixa de classificação
 				#Ou range_de ou range_ate
 				$filtro = $numero_fim;
 				break;
 			}
 		};
+		echo $filtro;
 		#Inicia faz um loop para varrer as respostas do usuário e verificar se existe uma  
 		$resposta_faixa = $this->faixa_model->get_resposta($id, $filtro);
 
@@ -134,7 +135,7 @@ class Visualizacao extends CI_Controller {
 		$data['link_referencia']= $resposta_faixa['link_referencia'];
 		$data['texto_link']		= $resposta_faixa['texto_link'];
 		$data['imagem']			= $resposta_faixa['imagem'];
-		$data['pontuacao']		= $pontuacao;
+		$data['pontuacao']		= $pontuacao/2;
 		#PHP gera um JSON do resultado
 		echo json_encode($data);
 	}
@@ -185,13 +186,13 @@ class Visualizacao extends CI_Controller {
 			#A varíavel $range cria um array com um range entre o número incial e numero final da faixa de classificação
 			$range = range($numero_inicio, $numero_fim);
 			#Se a pontuação recebida do js (as respostas do usuário) estiver no range
-			if(in_array($pontuacao, $range)){	
+			if(in_array($pontuacao/2, $range)){	
 				#Ele pega o numero final e seta na variável $filtro, assim sempre teremos um valor que já existe em algum ponto da faixa de classificação
 				#Ou range_de ou range_ate
 				$filtro = $numero_fim;
 				break;
 			}
-		};
+		}
 		#Inicia faz um loop para varrer as respostas do usuário e verificar se existe uma  
 		$resposta_faixa = $this->faixa_model->get_resposta($id, $filtro);
 
@@ -201,7 +202,7 @@ class Visualizacao extends CI_Controller {
 		$data['link_referencia']= $resposta_faixa['link_referencia'];
 		$data['texto_link']		= $resposta_faixa['texto_link'];
 		$data['imagem']			= $resposta_faixa['imagem'];
-		$data['pontuacao']		= $pontuacao;
+		$data['pontuacao']		= $pontuacao/2;
 		#PHP gera um JSON do resultado
 		echo json_encode($data);
 	}
@@ -236,7 +237,7 @@ class Visualizacao extends CI_Controller {
 			#A varíavel $range cria um array com um range entre o número incial e numero final da faixa de classificação
 			$range = range($numero_inicio, $numero_fim);
 			#Se a pontuação recebida do js (as respostas do usuário) estiver no range
-			if(in_array($pontuacao, $range)){	
+			if(in_array($pontuacao/2, $range)){	
 				#Ele pega o numero final e seta na variável $filtro, assim sempre teremos um valor que já existe em algum ponto da faixa de classificação
 				#Ou range_de ou range_ate
 				$filtro = $numero_fim;
@@ -252,7 +253,7 @@ class Visualizacao extends CI_Controller {
 		$data['link_referencia']= $resposta_faixa['link_referencia'];
 		$data['texto_link']		= $resposta_faixa['texto_link'];
 		$data['imagem']			= $resposta_faixa['imagem'];
-		$data['pontuacao']		= $pontuacao;
+		$data['pontuacao']		= $pontuacao/2;
 		#PHP gera um JSON do resultado
 		echo json_encode($data);
 	}

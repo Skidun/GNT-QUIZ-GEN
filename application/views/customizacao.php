@@ -165,10 +165,13 @@
 										<span class="btn btn-success fileinput-button">
 											<input id="file" type="file"  />
 										</span>
-										<a href="javascript:void(0);" class="excluir"></a>
+										<a href="javascript:void(0);" class="excluir excluir-bg-quiz"></a>
 										</form>
 										<input type="hidden" name="bg_image_pergunta" id="bg_image_pergunta" value="<?php echo $customizacao['quiz_bg_img'];?>" />
 								<div style="clear:both"></div>
+								<?php 
+									if($customizacao['quiz_bg_img_repeat'] == ''){
+								?>
 								<p class="alinha">Repetir imagem?</p>
 									<div class="definicoes"><input type="radio" name="repete-imagem-perguntas" value="repeat-x" id="repeat-x" /><label for="repeat-x">repetir horizontalmente</label></div>
 									<div class="definicoes"><input type="radio" name="repete-imagem-perguntas" value="repeat-y" id="repeat-y" /><label for="repeat-y">repetir verticalmente</label></div>
@@ -183,12 +186,27 @@
 									<div class="definicoes"><input type="radio" name="alinhaV-imagem-perguntas" value="center" /><label for="center">ao centro</label></div>
 									<div class="definicoes"><input type="radio" name="alinhaV-imagem-perguntas" value="bottom" /><label for="bottom">à base</label></div>
 								<!--Cor de fundo:-->
+								<?php }else{?>
+								<p class="alinha">Repetir imagem?</p>
+									<div class="definicoes"><input type="radio" name="repete-imagem-perguntas" value="repeat-x" <?php if($customizacao['quiz_bg_img_repeat'] == 'repeat-x') echo 'checked="checked"';?> id="repeat-x" /><label for="repeat-x">repetir horizontalmente</label></div>
+									<div class="definicoes"><input type="radio" name="repete-imagem-perguntas" value="repeat-y" <?php if($customizacao['quiz_bg_img_repeat'] == 'repeat-y') echo 'checked="checked"';?> id="repeat-y" /><label for="repeat-y">repetir verticalmente</label></div>
+									<div class="definicoes"><input type="radio" name="repete-imagem-perguntas" value="repeat" <?php if($customizacao['quiz_bg_img_repeat'] == 'repeat') echo 'checked="checked"';?> id="repeat" /><label for="repeat">repetir para todos os lados</label></div>
+									<div class="definicoes"><input type="radio" name="repete-imagem-perguntas" value="no-repeat" id="no-repeat" <?php if($customizacao['quiz_bg_img_repeat'] == 'no-repeat') echo 'checked="checked"';?> /><label for="no-repeat">não repetir</label></div>
+								<p class="alinha">Alinhamento horizontal:</p>
+									<div class="definicoes"><input type="radio" name="alinhaH-imagem-perguntas" value="left" <?php if($customizacao['quiz_bg_img_align_horizontal'] == 'left') echo 'checked="checked"';?> /><label for="left">à esquerda</label></div>
+									<div class="definicoes"><input type="radio" name="alinhaH-imagem-perguntas" value="center" <?php if($customizacao['quiz_bg_img_align_horizontal'] == 'center') echo 'checked="checked"';?> /><label for="center">ao centro</label></div>
+									<div class="definicoes"><input type="radio" name="alinhaH-imagem-perguntas" value="right" <?php if($customizacao['quiz_bg_img_align_horizontal'] == 'right') echo 'checked="checked"';?> /><label for="right">à direita</label></div>
+								<p class="alinha">Alinhamento vertical:</p>
+									<div class="definicoes"><input type="radio" name="alinhaV-imagem-perguntas" value="top" <?php if($customizacao['quiz_bg_img_align_vertical'] == 'top') echo 'checked="checked"';?> /><label for="top">ao topo</label></div>
+									<div class="definicoes"><input type="radio" name="alinhaV-imagem-perguntas" value="center" <?php if($customizacao['quiz_bg_img_align_vertical'] == 'center') echo 'checked="checked"';?>/><label for="center">ao centro</label></div>
+									<div class="definicoes"><input type="radio" name="alinhaV-imagem-perguntas" value="bottom" <?php if($customizacao['quiz_bg_img_align_vertical'] == 'bottom') echo 'checked="checked"';?> /><label for="bottom">à base</label></div>
+								<?php }?>
 								<p class="alinha">Cor de fundo:</p>
 								<div class="input-picker"><input id="imagem-cor-fundo" name="imagem-cor-fundo" type="text" value="<?php echo $customizacao['quiz_bg_color'];?>" /></div>
 							</div>
 							
 						</div>
-						<div id="previewPerguntas" class="preview" style="background: <?php if($customizacao['quiz_bg_img'] == "") {echo "#".$customizacao['quiz_bg_color'];}else{echo "url(".base_url()."assets/server/php/files/".$customizacao['quiz_bg_img'].")  ".$customizacao['quiz_bg_img_align_horizontal']." ".$customizacao['quiz_bg_img_align_vertical']." ".$customizacao['quiz_bg_img_repeat']." !important #".$customizacao['quiz_bg_color'].";";}?>">
+						<div id="previewPerguntas" class="preview" style="background: <?php if($customizacao['quiz_bg_img'] == "") {echo "#".$customizacao['quiz_bg_color'];}else{echo "url('".base_url()."assets/server/php/files/".$customizacao['quiz_bg_img']."') ".$customizacao['quiz_bg_img_align_horizontal']." ".$customizacao['quiz_bg_img_align_vertical']." ".$customizacao['quiz_bg_img_repeat']." #".$customizacao['quiz_bg_color'].";";}?>">
 							<div id="nome" style="font-size:<?php echo $customizacao['titulo_quiz_font_size'];?>; color:#<?php echo $customizacao['titulo_quiz_font_color'];?>; text-align:<?php echo $customizacao['titulo_quiz_align'];?>;"><?php  echo $titulo;?></div>
 							<div id="texto">
 								<?php
@@ -426,10 +444,11 @@
 										<span class="btn btn-success fileinput-button">
 											<input id="file" type="file"  />
 										</span>
-										<a href="javascript:void(0);" class="excluir"></a>
+										<a href="javascript:void(0);" class="excluir excluir-bg-resultado"></a>
 										</form>
 										<input type="hidden" name="bg_image_resultado" id="bg_image_resultado" value="<?php echo $customizacao['resultado_bg_img'];?>"/>
 								<div style="clear:both"></div>
+								<?php if($customizacao['resultado_bg_img_repeat'] ==''){?>
 								<p class="alinha">Repetir imagem?</p>
 									<div class="definicoes"><input type="radio" name="repete-imagem" value="repeat-x" id="repeat-x" /><label for="repeat-x">repetir horizontalmente</label></div>
 									<div class="definicoes"><input type="radio" name="repete-imagem" value="repeat-y" id="repeat-y" /><label for="repeat-y">repetir verticalmente</label></div>
@@ -443,6 +462,21 @@
 									<div class="definicoes"><input type="radio" name="alinhaV-imagem" value="top" checked="checked"/><label for="top">ao topo</label></div>
 									<div class="definicoes"><input type="radio" name="alinhaV-imagem" value="center" /><label for="center">ao centro</label></div>
 									<div class="definicoes"><input type="radio" name="alinhaV-imagem" value="bottom" /><label for="bottom">à base</label></div>
+								<?php }else{?>
+								<p class="alinha">Repetir imagem?</p>
+									<div class="definicoes"><input type="radio" name="repete-imagem" value="repeat-x" <?php if($customizacao['resultado_bg_img_repeat'] == 'repeat-x') echo 'checked="checked"';?> id="repeat-x" /><label for="repeat-x">repetir horizontalmente</label></div>
+									<div class="definicoes"><input type="radio" name="repete-imagem" value="repeat-y" <?php if($customizacao['resultado_bg_img_repeat'] == 'repeat-y') echo 'checked="checked"';?> id="repeat-y" /><label for="repeat-y">repetir verticalmente</label></div>
+									<div class="definicoes"><input type="radio" name="repete-imagem" value="repeat" <?php if($customizacao['resultado_bg_img_repeat'] == 'repeat') echo 'checked="checked"';?> id="repeat" /><label for="repeat">repetir para todos os lados</label></div>
+									<div class="definicoes"><input type="radio" name="repete-imagem" value="no-repeat" <?php if($customizacao['resultado_bg_img_repeat'] == 'no-repeat') echo 'checked="checked"';?> id="no-repeat"/><label for="no-repeat">não repetir</label></div>
+								<p class="alinha">Alinhamento horizontal:</p>
+									<div class="definicoes"><input type="radio" name="alinhaH-imagem" value="left" <?php if($customizacao['resultado_bg_img_align_horizontal'] == 'left') echo 'checked="checked"';?>/><label for="left">à esquerda</label></div>
+									<div class="definicoes"><input type="radio" name="alinhaH-imagem" value="center" <?php if($customizacao['resultado_bg_img_align_horizontal'] == 'center') echo 'checked="checked"';?> /><label for="center">ao centro</label></div>
+									<div class="definicoes"><input type="radio" name="alinhaH-imagem" value="right" <?php if($customizacao['resultado_bg_img_align_horizontal'] == 'right') echo 'checked="checked"';?> /><label for="right">à direita</label></div>
+								<p class="alinha">Alinhamento vertical:</p>
+									<div class="definicoes"><input type="radio" name="alinhaV-imagem" value="top" <?php if($customizacao['resultado_bg_img_align_vertical'] == 'top') echo 'checked="checked"';?>/><label for="top">ao topo</label></div>
+									<div class="definicoes"><input type="radio" name="alinhaV-imagem" value="center" <?php if($customizacao['resultado_bg_img_align_vertical'] == 'center') echo 'checked="checked"';?> /><label for="center">ao centro</label></div>
+									<div class="definicoes"><input type="radio" name="alinhaV-imagem" value="bottom" <?php if($customizacao['resultado_bg_img_align_vertical'] == 'bottom') echo 'checked="checked"';?> /><label for="bottom">à base</label></div>
+								<?php }?>
 								<!--Cor de fundo:-->
 								<p class="alinha">Cor de fundo:</p>
 								<div class="input-picker"><input id="imagem-resultados-cor-fundo" name="imagem-resultados-cor-fundo" type="text" value="<?php echo $customizacao['resultado_bg_color'];?>" /></div>
@@ -450,7 +484,7 @@
 							
 						</div>
 						
-						<div id="previewResultados" class="preview" style="background: <?php if($customizacao['resultado_bg_img'] == "") {echo "#".$customizacao['resultado_bg_color'];}else{echo "url(".base_url()."assets/server/php/files/".$customizacao['resultado_bg_img'].")  ".$customizacao['resultado_bg_img_align_horizontal']." ".$customizacao['resultado_bg_img_align_vertical']." ".$customizacao['resultado_bg_img_repeat']." !important #".$customizacao['resultado_bg_color'].";";}?>">
+						<div id="previewResultados" class="preview" style="background: <?php if($customizacao['resultado_bg_img'] == "") {echo "#".$customizacao['resultado_bg_color'];}else{echo "url('".base_url()."assets/server/php/files/".$customizacao['resultado_bg_img']."') ".$customizacao['resultado_bg_img_align_horizontal']." ".$customizacao['resultado_bg_img_align_vertical']." ".$customizacao['resultado_bg_img_repeat']." #".$customizacao['resultado_bg_color'];}?>">
 							<div id="nome" style="font-size: <?php echo $customizacao['resultado_titulo_quiz_font_size'];?>;color: #<?php echo $customizacao['resultado_titulo_quiz_font_color'];?>; text-align:<?php echo $customizacao['resultado_titulo_quiz_align'];?>;"><?php echo $titulo;?></div>
 							<?php 
 								if($perfis != null){
