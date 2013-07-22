@@ -1670,7 +1670,8 @@ p {
 #quizVisualizacao #botoes{
   float: left;
   width: 580px;
-  margin: 110px 20px;
+  margin: 20px;
+  bottom: 0;
 }
 #quizVisualizacao #botoes a{
   width: 110px;
