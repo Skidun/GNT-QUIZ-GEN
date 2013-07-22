@@ -1714,8 +1714,10 @@ p {
 }
 #quizVisualizacao #botoesResultado{
   float: left;
-  margin: 120px 0 22px 0;
+  margin: 0 0 10px 0;
   width: 280px;
+  bottom: 0;
+  position: fixed;
 }
 #quizVisualizacao #botoesResultado a{
   height: 40px;
