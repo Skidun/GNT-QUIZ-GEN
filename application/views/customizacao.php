@@ -161,7 +161,7 @@
 								<!--Imagem:-->
 										<form id="fileupload-perfil-customiza" action="<?php echo base_url();?>assets/server/php/index2.php" method="POST" enctype="multipart/form-data">
 										<div id="imagem-preview"><img id="alvo-perguntas" src="<?php if($customizacao['quiz_bg_img'] == "") {echo base_url().'assets/img/backgrounds/preview.png';}else{echo base_url()."assets/server/php/files/".$customizacao['quiz_bg_img'];}?>" /></div>
-										<span class="descricao">Imagens de 640 x 400px ou proporcionais, peso máximo de 1mb e as extensões aceitas são png, jpg ou gif.</span>
+										<span class="descricao">Imagens de 640 x 400px ou proporcionais, peso máximo de 1mb e as extensões aceitas são png, jpg ou gif. Nomes sem acentos e caracteres especiais.</span>
 										<span class="btn btn-success fileinput-button">
 											<input id="file" type="file"  />
 										</span>
@@ -440,7 +440,7 @@
 								<!--Imagem:-->
 										<form id="fileupload-perfil-customiza-resultados" action="<?php echo base_url();?>assets/server/php/index2.php" method="POST" enctype="multipart/form-data">
 										<div id="imagem-preview"><img id="alvo-resultados" src="<?php if($customizacao['resultado_bg_img'] == "") {echo base_url().'assets/img/backgrounds/preview.png';}else{echo base_url()."assets/server/php/files/".$customizacao['resultado_bg_img'];}?>" /></div>
-										<span class="descricao">Imagens de 640 x 400px ou proporcionais, peso máximo de 1mb e as extensões aceitas são png, jpg ou gif.</span>
+										<span class="descricao">Imagens de 640 x 400px ou proporcionais, peso máximo de 1mb e as extensões aceitas são png, jpg ou gif. Nomes sem acentos e caracteres especiais.</span>
 										<span class="btn btn-success fileinput-button">
 											<input id="file" type="file"  />
 										</span>
