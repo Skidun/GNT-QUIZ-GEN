@@ -206,7 +206,13 @@
 							</div>
 							
 						</div>
-						<div id="previewPerguntas" class="preview" style="background: <?php if($customizacao['quiz_bg_img'] == "") {echo "#".$customizacao['quiz_bg_color'];}else{echo "url('".base_url()."assets/server/php/files/".$customizacao['quiz_bg_img']."') ".$customizacao['quiz_bg_img_align_horizontal']." ".$customizacao['quiz_bg_img_align_vertical']." ".$customizacao['quiz_bg_img_repeat']." #".$customizacao['quiz_bg_color'].";";}?>">
+						<?php 
+							if($customizacao['quiz_bg_color'] != ''){
+						?>
+							<div id="previewPerguntas" class="preview" style="background: <?php if($customizacao['quiz_bg_img'] == "") {echo "#".$customizacao['quiz_bg_color'];}else{echo "url('".base_url()."assets/server/php/files/".$customizacao['quiz_bg_img']."') ".$customizacao['quiz_bg_img_align_horizontal']." ".$customizacao['quiz_bg_img_align_vertical']." ".$customizacao['quiz_bg_img_repeat']." #".$customizacao['quiz_bg_color'].";";}?>">
+						<?php }else{?>
+							<div id="previewPerguntas" class="preview" style="background: <?php if($customizacao['quiz_bg_img'] == "") {echo "#".$customizacao['quiz_bg_color'];}else{echo "url('".base_url()."assets/server/php/files/".$customizacao['quiz_bg_img']."') ".$customizacao['quiz_bg_img_align_horizontal']." ".$customizacao['quiz_bg_img_align_vertical']." ".$customizacao['quiz_bg_img_repeat'].";";}?>">
+						<?php }?>	
 							<div id="nome" style="font-size:<?php echo $customizacao['titulo_quiz_font_size'];?>; color:#<?php echo $customizacao['titulo_quiz_font_color'];?>; text-align:<?php echo $customizacao['titulo_quiz_align'];?>;"><?php  echo $titulo;?></div>
 							<div id="texto">
 								<?php
@@ -483,8 +489,13 @@
 							</div>
 							
 						</div>
-						
-						<div id="previewResultados" class="preview" style="background: <?php if($customizacao['resultado_bg_img'] == "") {echo "#".$customizacao['resultado_bg_color'];}else{echo "url('".base_url()."assets/server/php/files/".$customizacao['resultado_bg_img']."') ".$customizacao['resultado_bg_img_align_horizontal']." ".$customizacao['resultado_bg_img_align_vertical']." ".$customizacao['resultado_bg_img_repeat']." #".$customizacao['resultado_bg_color'];}?>">
+						<?php
+							if($customizacao['resultado_bg_color']){
+						?>
+							<div id="previewResultados" class="preview" style="background: <?php if($customizacao['resultado_bg_img'] == "") {echo "#".$customizacao['resultado_bg_color'];}else{echo "url('".base_url()."assets/server/php/files/".$customizacao['resultado_bg_img']."') ".$customizacao['resultado_bg_img_align_horizontal']." ".$customizacao['resultado_bg_img_align_vertical']." ".$customizacao['resultado_bg_img_repeat']." #".$customizacao['resultado_bg_color'].";";}?>">
+						<?php }else{?>
+							<div id="previewResultados" class="preview" style="background: <?php if($customizacao['resultado_bg_img'] == "") {echo "#".$customizacao['resultado_bg_color'];}else{echo "url('".base_url()."assets/server/php/files/".$customizacao['resultado_bg_img']."') ".$customizacao['resultado_bg_img_align_horizontal']." ".$customizacao['resultado_bg_img_align_vertical']." ".$customizacao['resultado_bg_img_repeat']." ;";}?>">
+						<?php }?>	
 							<div id="nome" style="font-size: <?php echo $customizacao['resultado_titulo_quiz_font_size'];?>;color: #<?php echo $customizacao['resultado_titulo_quiz_font_color'];?>; text-align:<?php echo $customizacao['resultado_titulo_quiz_align'];?>;"><?php echo $titulo;?></div>
 							<?php 
 								if($perfis != null){
