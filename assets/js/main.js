@@ -1317,7 +1317,7 @@ $(document).ready(function(){
 							$('.slides-resultado #texto .resultado .descricao').text(e.descricao);
 							$('.slides-resultado #texto .resultado .saibaMais a').attr('href', e.link_referencia).text(e.texto_link);
 							//$('iframe.janela').alturaIframe();
-							if(e.imagem == '' || e.imagem == '../../assets/img/backgrounds/imagem.png' || e.imagem == 'http://gntquizgen.tk/homolog/assets/img/backgrounds/imagem.png'){
+							if(e.imagem == '' || e.imagem == '../../assets/img/backgrounds/imagem.png' || e.imagem == 'http://gntquizgen.tk/homolog/assets/img/backgrounds/imagem.png' || e.imagem == 'http://gntquizgen.tk/sistema/assets/img/backgrounds/imagem.png'){
 								$('.slides-resultado #imagem').remove();
 								$('.slides-resultado #texto').css('width','580px');
 							}else{

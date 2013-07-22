@@ -125,7 +125,6 @@ class Visualizacao extends CI_Controller {
 				break;
 			}
 		};
-		echo $filtro;
 		#Inicia faz um loop para varrer as respostas do usuário e verificar se existe uma  
 		$resposta_faixa = $this->faixa_model->get_resposta($id, $filtro);
 

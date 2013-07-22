@@ -41,7 +41,7 @@ class Usuarios extends CI_Controller {
 	{
 		$this->form_validation->set_rules('nome', 'Nome', 'trim|required');
 		$this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email|is_unique[usuarios.email]');
-		$this->form_validation->set_rules('senha', 'Senha', 'trim|required|matches[confirmaSenha]|md5');
+		$this->form_validation->set_rules('senha', 'Senha', 'trim|required|matches[confirmaSenha]');
 		$this->form_validation->set_rules('confirmaSenha', 'Confirma Senha', 'trim|required');
 
 		if($this->form_validation->run() == false){
@@ -66,8 +66,8 @@ class Usuarios extends CI_Controller {
 	public function update()
 	{
 		$this->form_validation->set_rules('nome', 'Nome', 'trim|required');
-		$this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email|is_unique[usuarios.email]');
-		$this->form_validation->set_rules('senha', 'Password', 'trim|required|matches[confirmaSenha]|md5');
+		$this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email');
+		$this->form_validation->set_rules('senha', 'Password', 'trim|required|matches[confirmaSenha]');
 		$this->form_validation->set_rules('confirmaSenha', 'Confirma Senha', 'trim|required');
 
 		if($this->form_validation->run() == false){
