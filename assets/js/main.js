@@ -1373,7 +1373,7 @@ $(document).ready(function(){
 //Impede o accordion de fechar quando clica no titulo
 $(function(){
 	$('#accordion .header input[name="nome"], #accordion2 .header input[name="nome"]').click(function(e){
-		$(this).parents('.header').next('.body').slideDown();
+		//$(this).parents('.header').next('.body').slideDown();
 		e.stopPropagation();
 	});
 });
