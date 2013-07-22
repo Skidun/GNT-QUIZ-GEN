@@ -1008,7 +1008,7 @@ p {
 }
 #conteudo .item .body .editor .content #imagem-preview img {
   width: 240px;
-  height: 260px;
+  /*height: 260px;*/
 }
 #conteudo .item .body .editor .content .fileinput-button {
   float: left;
