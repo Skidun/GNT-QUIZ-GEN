@@ -603,6 +603,25 @@ $(function(){
 		$('input[name="irespostas-alinhamento"]').val('text-align:'+this.id+';');
 		$('#previewPerguntas .respostas').css('text-align',this.id);
 	});
+	//Posicinamento do Backgound das Perguntas
+	$('input:radio[name="repete-imagem-perguntas"]').each(function(){
+		$(this).on('click', function(e){
+			e.preventDefault();
+			$('#previewPerguntas').css('background-repeat', this.value);
+		});
+	});
+	$('input:radio[name="alinhaH-imagem-perguntas"]').each(function(){
+		$(this).on('click', function(e){
+			e.preventDefault();
+			$('#previewPerguntas').css('background-position-x', this.value);
+		});
+	});
+	$('input:radio[name="alinhaV-imagem-perguntas"]').each(function(){
+		$(this).on('click', function(e){
+			e.preventDefault();
+			$('#previewPerguntas').css('background-position-y', this.value);
+		});
+	});
 	//////Resultados
 	$('.titulo-resultados-alinhamento div').click(function(){
 		$(this).siblings().removeClass('ativo');
@@ -634,7 +653,25 @@ $(function(){
 		$('input[name="ireferencia-resultados-alinhamento"]').val('text-align:'+this.id+';');
 		$('#previewResultados .saibaMais').css('text-align',this.id);
 	});
-
+	//Posicionamento do background das respostas
+	$('input:radio[name="repete-imagem"]').each(function(){
+		$(this).on('click', function(e){
+			e.preventDefault();
+			$('#previewPerguntas').css('background-repeat', this.value);
+		});
+	});
+	$('input:radio[name="alinhaH-imagem"]').each(function(){
+		$(this).on('click', function(e){
+			e.preventDefault();
+			$('#previewPerguntas').css('background-position-x', this.value);
+		});
+	});
+	$('input:radio[name="alinhaV-imagem"]').each(function(){
+		$(this).on('click', function(e){
+			e.preventDefault();
+			$('#previewPerguntas').css('background-position-y', this.value);
+		});
+	});
 	//Gerador de Código
 	var code = $("textarea#quizCode").val();
 	$('textarea#codigo').val($.trim(code));
