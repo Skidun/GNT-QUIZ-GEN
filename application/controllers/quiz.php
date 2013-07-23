@@ -42,8 +42,13 @@ class Quiz extends CI_Controller {
 						<td>';
 			$tr .= '<div class="texto">
 						<p>'.$quiz->titulo.'</p>
-						<span>tipo: '.$quiz->tipo.' | editado em: '.date('d-m-Y', strtotime($quiz->data_alteracao)).'</span>
-				   </div>
+					';	
+			if($quiz->tipo != 'resposta_certa'){
+				$tr	.=	'<span>tipo: '.$quiz->tipo.' | editado em: '.date('d-m-Y', strtotime($quiz->data_alteracao)).'</span>';
+			}else{
+				$tr	.=	'<span>tipo: Várias respostas certas | editado em: '.date('d-m-Y', strtotime($quiz->data_alteracao)).'</span>';
+			}
+			$tr .=	'   </div>
 				   <div class="botoes">
 				   ';
 			if($perguntas_total != 0){	   

@@ -3,7 +3,7 @@
 				<a class="logo-link" href="<?php echo base_url();?>"><div class="logo"></div></a>
 				<div class="descricao">
 					<p><?php echo $titulo;?></p>
-					<span>tipo: <?php echo $tipo?></span>
+					<span>tipo: <?php if($tipo != 'resposta_certa'){echo $tipo;}else{ echo "Várias respostas certas";}?></span>
 					<input type="hidden" id="id_quiz" name="id_quiz" value="<?php echo $id;?>" /> 
 					 
 				</div>
