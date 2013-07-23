@@ -66,6 +66,7 @@ class Perguntas extends CI_Controller {
 															<span class="btn btn-success fileinput-button">
 																<input id="file" type="file" />
 															</span>
+															<a href="javascript:void(0);" class="excluir excluir-imagem"></a>
 														</form>
 														<input type="hidden" id="id-pergunta-'.$count.'" name="id-pergunta" value="'.$pergunta->id.'" />
 													</div>
@@ -234,6 +235,7 @@ class Perguntas extends CI_Controller {
 															<span class="btn btn-success fileinput-button">
 																<input id="file" type="file" />
 															</span>
+															<a href="javascript:void(0);" class="excluir excluir-imagem"></a>
 														</form>
 														<input type="hidden" id="id-pergunta-'.$count.'" name="id-pergunta" value="'.$pergunta->id.'" />
 													</div>
@@ -349,6 +351,7 @@ class Perguntas extends CI_Controller {
 															<span class="btn btn-success fileinput-button">
 																<input id="file" type="file" />
 															</span>
+															<a href="javascript:void(0);" class="excluir excluir-imagem"></a>
 														</form>
 														<input type="hidden" id="id-pergunta-'.$count.'" name="id-pergunta" value="'.$pergunta->id.'" />
 													</div>
@@ -534,6 +537,7 @@ class Perguntas extends CI_Controller {
 															<span class="btn btn-success fileinput-button">
 																<input id="file" type="file" />
 															</span>
+															<a href="javascript:void(0);" class="excluir excluir-imagem"></a>
 														</form>
 														<input type="hidden" id="id-pergunta-'.$count.'" name="id-pergunta" value="'.$pergunta->id.'" />
 													</div>

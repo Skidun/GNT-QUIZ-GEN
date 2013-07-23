@@ -188,6 +188,7 @@ $(function(){
 								'<img id="alvo-'+id+'" src="../../assets/img/backgrounds/imagem.png" name="imagem"/>'+
 							'</div>'+
 							'<span class="btn btn-success fileinput-button"><input id="file" type="file"/></span>'+
+							'<a href="javascript:void(0);" class="excluir excluir-imagem"></a>'+
 						'</form>'+
 					'</div>'+
 				'</div>'+
@@ -284,6 +285,7 @@ $(function(){
 							'<form class="fileupload" action="../../assets/server/php/" method="POST" enctype="multipart/form-data">'+
 								'<div class="quadro"><img id="alvo-pergunta-'+id+'" src="../../assets/img/backgrounds/imagem.png" name="imagem"/></div>'+
 								'<span class="btn btn-success fileinput-button"><input id="file" type="file"/></span>'+
+								'<a href="javascript:void(0);" class="excluir excluir-imagem"></a>'+
 							'</form>'+
 							'<input type="hidden" id="id-pergunta-'+id+'" name="id-pergunta" value="" />'+
 						'</div>'+
@@ -749,6 +751,7 @@ $(function(){
 										'<form class="fileupload" action="'+base_url+'assets/server/php/" method="POST" enctype="multipart/form-data">'+
 											'<div class="quadro"><img id="alvo-pergunta-'+id+'" src="'+base_url+'assets/img/backgrounds/imagem.png" name="imagem" id="alvo-pergunta-'+id+'"/></div>'+
 											'<span class="btn btn-success fileinput-button"><input id="file" type="file"/></span>'+
+											'<a href="javascript:void(0);" class="excluir excluir-imagem"></a>'+
 										'</form>'+
 									'</div>'+
 								'</div>'+
@@ -885,6 +888,7 @@ $(function(){
 								'<form class="fileupload" action="'+base_url+'assets/server/php/" method="POST" enctype="multipart/form-data">'+
 									'<div class="quadro"><img id="alvo" src="'+base_url+'assets/img/backgrounds/imagem.png" name="imagem"/></div>'+
 									'<span class="btn btn-success fileinput-button"><input id="file" type="file"/></span>'+
+									'<a href="javascript:void(0);" class="excluir excluir-imagem"></a>'+
 								'</form>'+
 							'</div>'+
 						'</div>'+
@@ -1002,6 +1006,7 @@ $(function(){
 										'<form class="fileupload" action="'+base_url+'assets/server/php/" method="POST" enctype="multipart/form-data">'+
 											'<div class="quadro"><img id="alvo-pergunta-'+id+'" src="'+base_url+'assets/img/backgrounds/imagem.png" name="imagem"/></div>'+
 											'<span class="btn btn-success fileinput-button"><input id="file" type="file"/></span>'+
+											'<a href="javascript:void(0);" class="excluir excluir-imagem"></a>'+
 										'</form>'+
 									'</div>'+
 								'</div>'+
@@ -1124,6 +1129,7 @@ $(function(){
 										'<form class="fileupload" action="'+base_url+'assets/server/php/" method="POST" enctype="multipart/form-data">'+
 											'<div class="quadro"><img id="alvo-pergunta-'+id+'" src="'+base_url+'assets/img/backgrounds/imagem.png" name="imagem"/></div>'+
 											'<span class="btn btn-success fileinput-button"><input id="file" type="file"/></span>'+
+											'<a href="javascript:void(0);" class="excluir excluir-imagem"></a>'+
 										'</form>'+
 									'</div>'+
 								'</div>'+

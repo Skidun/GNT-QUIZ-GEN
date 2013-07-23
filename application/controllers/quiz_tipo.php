@@ -70,6 +70,7 @@ class Quiz_tipo extends CI_Controller {
 										<span class="btn btn-success fileinput-button">
 											<input id="file" type="file" id="" />
 										</span>
+										<a href="javascript:void(0);" class="excluir excluir-imagem"></a>
 									</form>
 									<input type="hidden" name="id-perfil-'.$count.'" id="id-perfil-'.$count.'" value="'.$perfil->id.'" />
 								</div>
@@ -181,6 +182,7 @@ class Quiz_tipo extends CI_Controller {
 											<span class="btn btn-success fileinput-button">
 												<input id="file" type="file" />
 											</span>
+											<a href="javascript:void(0);" class="excluir excluir-imagem"></a>
 										</form>
 									';
 						}else{
@@ -190,6 +192,7 @@ class Quiz_tipo extends CI_Controller {
 										<span class="btn btn-success fileinput-button">
 												<input id="file" type="file" />
 										</span>
+										<a href="javascript:void(0);" class="excluir excluir-imagem"></a>
 									</form>
 									';
 						}			
@@ -250,6 +253,7 @@ class Quiz_tipo extends CI_Controller {
 											<span class="btn btn-success fileinput-button">
 												<input id="file" type="file" />
 											</span>
+											<a href="javascript:void(0);" class="excluir excluir-imagem"></a>
 										</form>
 									';
 						}else{
@@ -259,6 +263,7 @@ class Quiz_tipo extends CI_Controller {
 										<span class="btn btn-success fileinput-button">
 												<input id="file" type="file" />
 										</span>
+										<a href="javascript:void(0);" class="excluir excluir-imagem"></a>
 									</form>
 									';
 						}			
@@ -319,6 +324,7 @@ class Quiz_tipo extends CI_Controller {
 											<span class="btn btn-success fileinput-button">
 												<input id="file" type="file" />
 											</span>
+											<a href="javascript:void(0);" class="excluir excluir-imagem"></a>
 										</form>
 									';
 						}else{
