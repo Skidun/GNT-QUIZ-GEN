@@ -837,6 +837,7 @@ p {
 #conteudo .item .body .preview #texto .resultado .saibaMais a {
   color: #333333;
   font-size: 15px;
+  text-decoration: underline;
 }
 #conteudo .item .body .preview #texto #botoesResultado {
   float: left;
@@ -1675,7 +1676,6 @@ p {
   width: 580px;
   margin: 20px;
   bottom: 0;
-  position:fixed
 }
 #quizVisualizacao #botoes a{
   width: 110px;

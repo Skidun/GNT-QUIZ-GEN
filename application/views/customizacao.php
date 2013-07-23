@@ -219,13 +219,7 @@
 									if($perguntas == NULL){
 								?>
 								<div class="titulo" style="font-size:<?php echo $customizacao['pergunta_quiz_font_size'];?>.'; color:#<?php echo $customizacao['pergunta_quiz_font_color'];?>; text-align:<?php echo $customizacao['pergunta_quiz_align'];?>;">Lorem ipsum dolor sit amet, consectetuer adipiscing elit.?</div>
-								<div class="subtitulo" style="font-size: <?php echo $customizacao['link_ref_pergunta_align'];?>;"><a href="#" target="_blank" style="font-size:<?php echo $customizacao['link_ref_pergunta_font_size'];?>; color:#<?php echo $customizacao['link_ref_pergunta_font_color'];?>;">Link referência</a></div>
-								<?php 
-									}else{
-								?>
-								<div class="titulo" style="font-size:<?php echo $customizacao['pergunta_quiz_font_size'];?>; color:#<?php echo $customizacao['pergunta_quiz_font_color'];?>; text-align:<?php echo $customizacao['pergunta_quiz_align'];?>;"><?php echo $perguntas['pergunta'];?></div>
-								<div class="subtitulo" style="font-size: <?php echo $customizacao['link_ref_pergunta_align'];?>;"><a href="<?php echo $perguntas['link_referencia'];?>" target="_blank" style="font-size:<?php echo $customizacao['link_ref_pergunta_font_size'];?>; color:#<?php echo $customizacao['link_ref_pergunta_font_color'];?>;"><?php echo $perguntas['texto_link'];?></a></div>
-								<?php }?>
+								
 								<table class="respostas">
 									<?php 
 										if($respostas == NULL){
@@ -258,7 +252,50 @@
 											<td><?php echo $resposta->resposta;?></td>
 										</tr>
 									<?php }endforeach;}?>
-								</table>
+								</table>								
+								
+								<div class="subtitulo" style="font-size: <?php echo $customizacao['link_ref_pergunta_align'];?>;"><a href="#" target="_blank" style="font-size:<?php echo $customizacao['link_ref_pergunta_font_size'];?>; color:#<?php echo $customizacao['link_ref_pergunta_font_color'];?>;">Link referência</a></div>
+								<?php 
+									}else{
+								?>
+								<div class="titulo" style="font-size:<?php echo $customizacao['pergunta_quiz_font_size'];?>; color:#<?php echo $customizacao['pergunta_quiz_font_color'];?>; text-align:<?php echo $customizacao['pergunta_quiz_align'];?>;"><?php echo $perguntas['pergunta'];?></div>
+								
+								<table class="respostas">
+									<?php 
+										if($respostas == NULL){
+											echo '
+													<tr>
+														<td><input type="radio" name="resposta" value="#" /></td>
+														<td>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</td>
+													</tr>
+													<tr>
+														<td><input type="radio" name="resposta" value="#" /></td>
+														<td>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</td>
+													</tr>
+													<tr>
+														<td><input type="radio" name="resposta" value="#" /></td>
+														<td>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</td>
+													</tr>
+
+											';
+										}else{
+										foreach($respostas as $resposta):
+									?>
+										<?php if($tipo != 'resposta_certa'){?>
+										<tr style="font-size:<?php echo $customizacao['resposta_pergunta_font_size'];?>; color:#<?php echo $customizacao['resposta_pergunta_font_color'];?>; text-align:<?php echo $customizacao['resposta_pergunta_align'];?>;">
+											<td><input type="radio" name="resposta" value="<?php echo $resposta->perfil_resposta;?>" /></td>
+											<td><?php echo $resposta->resposta;?></td>
+										</tr>
+										<?php }else{?>
+										<tr style="font-size:<?php echo $customizacao['resposta_pergunta_font_size'];?>; color:#<?php echo $customizacao['resposta_pergunta_font_color'];?>; text-align:<?php echo $customizacao['resposta_pergunta_align'];?>;">
+											<td><input type="checkbox" name="resposta" value="<?php echo $resposta->perfil_resposta;?>" /></td>
+											<td><?php echo $resposta->resposta;?></td>
+										</tr>
+									<?php }endforeach;}?>
+								</table>								
+								
+								<div class="subtitulo" style="font-size: <?php echo $customizacao['link_ref_pergunta_align'];?>;"><a href="<?php echo $perguntas['link_referencia'];?>" target="_blank" style="font-size:<?php echo $customizacao['link_ref_pergunta_font_size'];?>; color:#<?php echo $customizacao['link_ref_pergunta_font_color'];?>;"><?php echo $perguntas['texto_link'];?></a></div>
+								<?php }?>
 							</div>
 							<div id="imagem">
 								<img id="alvo-pergunta" src="<?php if($perguntas == NULL){echo base_url()."assets/img/backgrounds/imagem2.png";}else{echo $perguntas['imagem'];}?>" />
