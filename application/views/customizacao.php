@@ -549,6 +549,9 @@
 				<?php }else{?>
 				<a class="voltar" href="#" rel="link-interno" title="voltar"></a>
 				<a class="proxima-etapa" href="<?php echo base_url();?>visualizacao/<?php echo $tipo;?>/<?php echo $id;?>" rel="link-interno" id="btn-proxima-etapa-3-customizacao" title="próxima etapa"></a>
+				<div class="loader" style="float: left; margin-top: 44px; display: none;">
+					<img src="<?php echo base_url();?>assets/img/ajax-loader.gif" />								
+				</div>
 				<?php }?>
 			</div>
 		</div>

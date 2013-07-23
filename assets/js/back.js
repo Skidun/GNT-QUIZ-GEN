@@ -314,6 +314,8 @@ var eventos_back = {
 		//Perfil 1
 		$('#btn-proxima-etapa-1-perfil').one('click',function(e){
 			e.preventDefault();
+			$(this).hide();
+			$('.loader').show();
 			var evento = 'perfil';
 			eventos_back.valida_timestamp(evento);
 		});
@@ -347,9 +349,9 @@ var eventos_back = {
 		//Perguntas
 		$('#btn-proxima-etapa-2-perguntas').click(function(e){
 			e.preventDefault();
-			var evento = 'perguntas';
 			$(this).hide();
-			$('.loader').fadeIn();
+			$('.loader').show();
+			var evento = 'perguntas';
 			eventos_back.valida_timestamp(evento);
 			return false;
 		});
@@ -357,6 +359,8 @@ var eventos_back = {
 		//Customização
 		$('#btn-proxima-etapa-3-customizacao').one('click', function(e){
 			e.preventDefault();
+			$(this).hide();
+			$('.loader').show();
 			var evento = 'customizacao';
 			eventos_back.valida_timestamp(evento);
 			return false;

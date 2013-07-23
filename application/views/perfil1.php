@@ -51,6 +51,9 @@
 				</div>
 				
 				<a class="proxima-etapa" id="btn-proxima-etapa-1-perfil" rel="<?php echo base_url();?>perguntas/perfil/<?php echo $id;?>"></a>
-			
+				
+				<div class="loader" style="float: left; margin-top: 44px; display: none;">
+					<img src="<?php echo base_url();?>assets/img/ajax-loader.gif" />								
+				</div>
 			</div>
 		</div>
