@@ -1672,6 +1672,7 @@ p {
   width: 580px;
   margin: 20px;
   bottom: 0;
+  position:fixed
 }
 #quizVisualizacao #botoes a{
   width: 110px;
@@ -1853,6 +1854,15 @@ color: #666666;
 	z-index:5;
 	bottom:-63px;
 	right:10px;
+}
+.fileupload .excluir{
+	background:url('../img/botoes/excluir.png') 0 0 no-repeat;
+	width:42px;
+	height:38px;
+	position:absolute;
+	z-index:5;
+	bottom:0;
+	right:20px;
 }
 form{
 	position:relative;
