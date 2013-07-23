@@ -837,6 +837,7 @@ p {
 #conteudo .item .body .preview #texto .resultado .saibaMais a {
   color: #333333;
   font-size: 15px;
+  text-decoration: underline;
 }
 #conteudo .item .body .preview #texto #botoesResultado {
   float: left;
