@@ -481,22 +481,22 @@ var eventos_back = {
 		//Quando clicar em proxima etapa
 		$('#btn-proxima-etapa-1-perguntas-CE').on('click', function(event){
 			event.preventDefault();
-			var url    = this.href;
-			var evento = 'certo-ou-errado';
 			$(this).hide();
 			$('.loader').fadeIn();
+			var url    = this.href;
+			var evento = 'certo-ou-errado';
 			eventos_back.valida_timestamp(evento, url);
 			return false;
 		});
 
 		$('#proxima-etapa-2-faixa-ce').on('click', function(event){
 			event.preventDefault();
-			var evento 		= 'certo-ou-errado-faixa'
-			var prox_url 	= this.href;
 			//Quando o botão for clicado ele remove o botao próximo e voltar para que as requisições não sejam interrompidas por outro cliques
 			$(this).fadeOut();
 			$('.voltar').fadeOut();
 			$('.loader').fadeIn(); 
+			var evento 		= 'certo-ou-errado-faixa'
+			var prox_url 	= this.href;
 			//Faz a validação de time stemp antes de a função de salvar 
 			eventos_back.valida_timestamp(evento, prox_url);
 			//Return false, inibe o evento href do link
