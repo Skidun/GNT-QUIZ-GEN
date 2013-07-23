@@ -45,6 +45,7 @@
 											<span class="btn btn-success fileinput-button">
 												<input id="file" type="file" />
 											</span>
+											<a href="javascript:void(0);" class="excluir excluir-imagem"></a>
 										</form>
 									
 								</div>
