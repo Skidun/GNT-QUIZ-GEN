@@ -540,6 +540,35 @@ var eventos_back = {
 			$('#bg_image_pergunta').val('');
 			$(this).prev().prev().prev('#imagem-preview').html('<img id="alvo-resultados" src="../../assets/img/backgrounds/preview.png">');
 		});
+		//Remove Imagens dos elementos
+		$('.excluir-imagem').on('click', function(e){
+			e.preventDefault();
+			var box_img = $(this).siblings('.quadro');
+			var imagem  = $(this).siblings('.quadro').find('img').attr('src');
+			var img_id  = $(this).siblings('.quadro').find('img').attr('id');
+			$(this).parents('.group').addClass('edit');  
+			$.ajax({
+				url: '../../quiz/show_base_url',
+				async: false,
+				success: function(e){
+					var base_url = e;
+					if(imagem == base_url+'assets/img/backgrounds/imagem.png' || imagem == '../../assets/img/backgrounds/imagem.png'){
+						alert('Não existe imagem para ser excluida');
+					}else{
+						$.ajax({
+							url: base_url+'quiz/remove_image',
+							data: {imagem:imagem},
+							async: false,
+							success: function(e){
+								$(box_img).remove('img');
+								$(box_img).html('<img id="'+img_id+'" src="../../assets/img/backgrounds/imagem.png">');
+							}
+						});
+					}
+				}
+			});
+		});
+		
 	},	
 
 	//Executa a operação de recovey no banco de dados

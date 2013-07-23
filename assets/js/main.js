@@ -228,6 +228,33 @@ $(function(){
 		/*scrolla pro fim da página*/
 		$('.excluir-um').click(function(){ $(this).parents('.group').remove(); });
 		$('html, body').animate({scrollTop:$(document).height()}, 1000);
+		//Remove Imagens dos elementos
+		$('.excluir-imagem').on('click', function(e){
+			e.preventDefault();
+			var box_img = $(this).siblings('.quadro');
+			var imagem  = $(this).siblings('.quadro').find('img').attr('src');
+			var img_id  = $(this).siblings('.quadro').find('img').attr('id');  
+			$.ajax({
+				url: '../../quiz/show_base_url',
+				async: false,
+				success: function(e){
+					var base_url = e;
+					if(imagem == base_url+'assets/img/backgrounds/imagem.png' || imagem == '../../assets/img/backgrounds/imagem.png'){
+						alert('Não existe imagem para ser excluida');
+					}else{
+						$.ajax({
+							url: base_url+'quiz/remove_image',
+							data: {imagem:imagem},
+							async: false,
+							success: function(e){
+								$(box_img).remove('img');
+								$(box_img).html('<img id="'+img_id+'" src="../../assets/img/backgrounds/imagem.png">');
+							}
+						});
+					}
+				}
+			});
+		});
 		return false;
 	});
 	
@@ -320,8 +347,8 @@ $(function(){
 		$('.fileupload').bind('fileuploaddestroy');
 		$(".fileupload").each(function(){
 			$(this).fileupload({
-				done:function(e,t){
-					var n=t.files[0];
+				done:function(e,data){
+					var n=data.files[0];
 					var r=n.name;
 					
 						var chamaString = JSON.parse(data.result);
@@ -348,6 +375,33 @@ $(function(){
 			if(this.value == ''){
 				this.value='Título';
 			}
+		});
+		//Remove Imagens dos elementos
+		$('.excluir-imagem').on('click', function(e){
+			e.preventDefault();
+			var box_img = $(this).siblings('.quadro');
+			var imagem  = $(this).siblings('.quadro').find('img').attr('src');
+			var img_id  = $(this).siblings('.quadro').find('img').attr('id');  
+			$.ajax({
+				url: '../../quiz/show_base_url',
+				async: false,
+				success: function(e){
+					var base_url = e;
+					if(imagem == base_url+'assets/img/backgrounds/imagem.png' || imagem == '../../assets/img/backgrounds/imagem.png'){
+						alert('Não existe imagem para ser excluida');
+					}else{
+						$.ajax({
+							url: base_url+'quiz/remove_image',
+							data: {imagem:imagem},
+							async: false,
+							success: function(e){
+								$(box_img).remove('img');
+								$(box_img).html('<img id="'+img_id+'" src="../../assets/img/backgrounds/imagem.png">');
+							}
+						});
+					}
+				}
+			});
 		});
 
 		return false;
@@ -795,8 +849,8 @@ $(function(){
 					$('.fileupload').bind('fileuploaddestroy');
 					$(".fileupload").each(function(){
 						$(this).fileupload({
-							done:function(e,t){
-								var n=t.files[0];
+							done:function(e,data){
+								var n=data.files[0];
 								var r=n.name;
 								
 								var chamaString = JSON.parse(data.result);
@@ -827,6 +881,33 @@ $(function(){
 						if(this.value == ''){
 							this.value='Título';
 						}
+					});
+					//Remove Imagens dos elementos
+					$('.excluir-imagem').on('click', function(e){
+						e.preventDefault();
+						var box_img = $(this).siblings('.quadro');
+						var imagem  = $(this).siblings('.quadro').find('img').attr('src');
+						var img_id  = $(this).siblings('.quadro').find('img').attr('id');  
+						$.ajax({
+							url: '../../quiz/show_base_url',
+							async: false,
+							success: function(e){
+								var base_url = e;
+								if(imagem == base_url+'assets/img/backgrounds/imagem.png' || imagem == '../../assets/img/backgrounds/imagem.png'){
+									alert('Não existe imagem para ser excluida');
+								}else{
+									$.ajax({
+										url: base_url+'quiz/remove_image',
+										data: {imagem:imagem},
+										async: false,
+										success: function(e){
+											$(box_img).remove('img');
+											$(box_img).html('<img id="'+img_id+'" src="../../assets/img/backgrounds/imagem.png">');
+										}
+									});
+								}
+							}
+						});
 					});
 					return false;
 				}
@@ -918,8 +999,8 @@ $(function(){
 					$('.fileupload').bind('fileuploaddestroy');
 					$(".fileupload").each(function(){
 						$(this).fileupload({
-							done:function(e,t){
-								var n=t.files[0];
+							done:function(e,data){
+								var n=data.files[0];
 								var r=n.name;
 								
 								var chamaString = JSON.parse(data.result);
@@ -944,6 +1025,33 @@ $(function(){
 					if(this.value == ''){
 						this.value='Título';
 					}
+				});
+				//Remove Imagens dos elementos
+				$('.excluir-imagem').on('click', function(e){
+					e.preventDefault();
+					var box_img = $(this).siblings('.quadro');
+					var imagem  = $(this).siblings('.quadro').find('img').attr('src');
+					var img_id  = $(this).siblings('.quadro').find('img').attr('id');  
+					$.ajax({
+						url: '../../quiz/show_base_url',
+						async: false,
+						success: function(e){
+							var base_url = e;
+							if(imagem == base_url+'assets/img/backgrounds/imagem.png' || imagem == '../../assets/img/backgrounds/imagem.png'){
+								alert('Não existe imagem para ser excluida');
+							}else{
+								$.ajax({
+									url: base_url+'quiz/remove_image',
+									data: {imagem:imagem},
+									async: false,
+									success: function(e){
+										$(box_img).remove('img');
+										$(box_img).html('<img id="'+img_id+'" src="../../assets/img/backgrounds/imagem.png">');
+									}
+								});
+							}
+						}
+					});
 				});
 				return false;
 			}
@@ -1037,8 +1145,8 @@ $(function(){
 						$('.fileupload').bind('fileuploaddestroy');
 						$(".fileupload").each(function(index){
 							$(this).fileupload({
-								done:function(e,t){
-									var n=t.files[0];
+								done:function(e,data){
+									var n=data.files[0];
 									var r=n.name;
 									
 									var chamaString = JSON.parse(data.result);
@@ -1066,6 +1174,33 @@ $(function(){
 					$('html, body').animate({scrollTop:$(document).height()}, 1000);
 					$('.excluir-um').click(function(){ $(this).parents('.group').remove(); });
 					$('.excluir-dois').click(function(){ $(this).parents('.header').remove(); });
+					//Remove Imagens dos elementos
+					$('.excluir-imagem').on('click', function(e){
+						e.preventDefault();
+						var box_img = $(this).siblings('.quadro');
+						var imagem  = $(this).siblings('.quadro').find('img').attr('src');
+						var img_id  = $(this).siblings('.quadro').find('img').attr('id');  
+						$.ajax({
+							url: '../../quiz/show_base_url',
+							async: false,
+							success: function(e){
+								var base_url = e;
+								if(imagem == base_url+'assets/img/backgrounds/imagem.png' || imagem == '../../assets/img/backgrounds/imagem.png'){
+									alert('Não existe imagem para ser excluida');
+								}else{
+									$.ajax({
+										url: base_url+'quiz/remove_image',
+										data: {imagem:imagem},
+										async: false,
+										success: function(e){
+											$(box_img).remove('img');
+											$(box_img).html('<img id="'+img_id+'" src="../../assets/img/backgrounds/imagem.png">');
+										}
+									});
+								}
+							}
+						});
+					});
 					return false;
 				}
 		});		
@@ -1163,8 +1298,8 @@ $(function(){
 						$('.fileupload').bind('fileuploaddestroy');
 						$(".fileupload").each(function(){
 							$(this).fileupload({
-								done:function(e,t){
-									var n=t.files[0];
+								done:function(e,data){
+									var n=data.files[0];
 									var r=n.name;
 									
 									var chamaString = JSON.parse(data.result);
@@ -1195,6 +1330,33 @@ $(function(){
 						if(this.value == ''){
 							this.value='Título';
 						}
+					});
+					//Remove Imagens dos elementos
+					$('.excluir-imagem').on('click', function(e){
+						e.preventDefault();
+						var box_img = $(this).siblings('.quadro');
+						var imagem  = $(this).siblings('.quadro').find('img').attr('src');
+						var img_id  = $(this).siblings('.quadro').find('img').attr('id');  
+						$.ajax({
+							url: '../../quiz/show_base_url',
+							async: false,
+							success: function(e){
+								var base_url = e;
+								if(imagem == base_url+'assets/img/backgrounds/imagem.png' || imagem == '../../assets/img/backgrounds/imagem.png'){
+									alert('Não existe imagem para ser excluida');
+								}else{
+									$.ajax({
+										url: base_url+'quiz/remove_image',
+										data: {imagem:imagem},
+										async: false,
+										success: function(e){
+											$(box_img).remove('img');
+											$(box_img).html('<img id="'+img_id+'" src="../../assets/img/backgrounds/imagem.png">');
+										}
+									});
+								}
+							}
+						});
 					});
 					return false;
 				}

@@ -304,6 +304,16 @@ class Quiz extends CI_Controller {
 	{
 		echo base_url();
 	}
+	#Remove a imagem da pasta
+	public function remove_image()
+	{
+		$imagem = str_replace('../../', './', $this->input->get('imagem'));
+		if(unlink($imagem)){
+			echo 'Imagem excluida com sucesso';
+		}else{
+			echo 'Falha ao tentar excluir imagem '.$imagem;
+		}
+	}
 
 }
 
