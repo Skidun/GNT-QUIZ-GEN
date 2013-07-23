@@ -464,7 +464,7 @@ $(function(){
 		function(color, context)
 			{
 			var all = color.val('all');
-			$('#previewPerguntas .respostas').css({color: all && '#' + all.hex || 'transparent'});
+			$('#previewPerguntas .respostas td').css({color: all && '#' + all.hex || 'transparent'});
 			$(this).css('background-color','transparent');
 			}
 	);
@@ -475,7 +475,7 @@ $(function(){
 		function(color, context)
 			{
 			var all = color.val('all');
-			$('#previewPerguntas .respostas').css({backgroundColor: all && '#' + all.hex || 'transparent'});
+			$('#previewPerguntas .respostas td').css({backgroundColor: all && '#' + all.hex || 'transparent'});
 			$(this).css('background-color','transparent');
 			}
 	);
