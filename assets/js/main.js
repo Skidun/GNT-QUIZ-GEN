@@ -268,7 +268,7 @@ $(function(){
 			'<div class="group" id="'+id+'">'+
 				'<div class="header">'+
 					'<span class="icon"></span>'+
-					'<div class="input"><input type="text" name="nome" id="nome-pergunta-'+id+'" value="Título" size=""/></div>'+
+					'<div class="input"><input type="text" name="nome" id="nome-pergunta-'+id+'" value="Pergunta" size=""/></div>'+
 					'<span class="arrow"></span>'+
 					'<a href="#" class="excluir exclui-um"></a>'+
 				'</div>'+
@@ -356,9 +356,9 @@ $(function(){
 
 	//Editor de Texto
 	////Accordion Externo
-	$('#perfilCustomizacao').accordion({ header: ".header" , icons: false , heightStyle:"content" , active:0 });
+	$('#perfilCustomizacao').accordion({ header: ".header" , icons: false , heightStyle:"content" , active:0, collapsible: true });
 	////Accordion Interno
-	$('.editor').accordion({ header: ".intro" , icons: false , heightStyle:"content" , active:0 });
+	$('.editor').accordion({ header: ".intro" , icons: false , heightStyle:"content" , active:0, collapsible: true });
 	////Tamanho da fonte
 	//////Perguntas
 	$('#dk_container_titulo-tamanho a').click(function(){
@@ -734,7 +734,7 @@ $(function(){
 						'<div class="group">'+
 							'<div class="header">'+
 								'<span class="icon"></span>'+
-								'<div class="input"><input type="text" name="nome" id="nome-pergunta-'+id+'" value="Título" size=""/></div>'+
+								'<div class="input"><input type="text" name="nome" id="nome-pergunta-'+id+'" value="Pergunta" size=""/></div>'+
 								'<span class="arrow"></span>'+
 								'<a class="excluir excluir-dois"></a>'+
 							'</div>'+
@@ -989,7 +989,7 @@ $(function(){
 						'<div class="group">'+
 							'<div class="header">'+
 								'<span class="icon"></span>'+
-								'<div class="input"><input type="text" name="nome" id="nome-pergunta-'+id+'" value="Título" size=""/></div>'+
+								'<div class="input"><input type="text" name="nome" id="nome-pergunta-'+id+'" value="Pergunta" size=""/></div>'+
 								'<span class="arrow"></span>'+
 								'<a class="excluir excluir-um"></a>'+
 							'</div>'+
@@ -1112,7 +1112,7 @@ $(function(){
 						'<div class="group">'+
 							'<div class="header">'+
 								'<span class="icon"></span>'+
-								'<div class="input"><input type="text" name="nome-pergunta" id="nome-pergunta-'+id+'" value="Título" size=""/></div>'+
+								'<div class="input"><input type="text" name="nome-pergunta" id="nome-pergunta-'+id+'" value="Pergunta" size=""/></div>'+
 								'<span class="arrow"></span>'+
 								'<a class="excluir excluir-um"></a>'+
 							'</div>'+
