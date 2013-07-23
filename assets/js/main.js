@@ -268,7 +268,7 @@ $(function(){
 			'<div class="group" id="'+id+'">'+
 				'<div class="header">'+
 					'<span class="icon"></span>'+
-					'<div class="input"><input type="text" name="nome" id="nome-pergunta-'+id+'" value="Título" size=""/></div>'+
+					'<div class="input"><input type="text" name="nome" id="nome-pergunta-'+id+'" value="Pergunta" size=""/></div>'+
 					'<span class="arrow"></span>'+
 					'<a href="#" class="excluir exclui-um"></a>'+
 				'</div>'+
@@ -734,7 +734,7 @@ $(function(){
 						'<div class="group">'+
 							'<div class="header">'+
 								'<span class="icon"></span>'+
-								'<div class="input"><input type="text" name="nome" id="nome-pergunta-'+id+'" value="Título" size=""/></div>'+
+								'<div class="input"><input type="text" name="nome" id="nome-pergunta-'+id+'" value="Pergunta" size=""/></div>'+
 								'<span class="arrow"></span>'+
 								'<a class="excluir excluir-dois"></a>'+
 							'</div>'+
@@ -989,7 +989,7 @@ $(function(){
 						'<div class="group">'+
 							'<div class="header">'+
 								'<span class="icon"></span>'+
-								'<div class="input"><input type="text" name="nome" id="nome-pergunta-'+id+'" value="Título" size=""/></div>'+
+								'<div class="input"><input type="text" name="nome" id="nome-pergunta-'+id+'" value="Pergunta" size=""/></div>'+
 								'<span class="arrow"></span>'+
 								'<a class="excluir excluir-um"></a>'+
 							'</div>'+
@@ -1112,7 +1112,7 @@ $(function(){
 						'<div class="group">'+
 							'<div class="header">'+
 								'<span class="icon"></span>'+
-								'<div class="input"><input type="text" name="nome-pergunta" id="nome-pergunta-'+id+'" value="Título" size=""/></div>'+
+								'<div class="input"><input type="text" name="nome-pergunta" id="nome-pergunta-'+id+'" value="Pergunta" size=""/></div>'+
 								'<span class="arrow"></span>'+
 								'<a class="excluir excluir-um"></a>'+
 							'</div>'+
