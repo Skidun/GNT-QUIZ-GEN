@@ -782,6 +782,8 @@ p {
   float: right;
   background: #faab2a;
   width: 620px;
+  height:400px;
+  position: relative;
 }
 #conteudo .item .body .preview #nome {
   font-family: 'Conv_Amaranth-Bold';
@@ -843,6 +845,8 @@ p {
   float: left;
   margin: 57px 0 22px 0;
   width: 280px;
+  bottom:0;
+  position:absolute;
 }
 #conteudo .item .body .preview #texto #botoesResultado a {
   background-color: #cc1e59;
@@ -868,7 +872,6 @@ p {
   background: #fdd595;
   overflow: hidden;
   float: right;
-  border: 2px solid #333333;
   margin: 2px 16px 0 0;
 }
 #conteudo .item .body .preview #imagem img {
@@ -1668,7 +1671,6 @@ p {
 #quizVisualizacao #imagem{
   overflow: hidden;
   float: right;
-  border: 2px solid #333333;
   margin: 2px 16px 0 0;
 }
 #quizVisualizacao #botoes{
