@@ -2,7 +2,7 @@
 			<div id="wrap">			
 			<nav>
 				<ul class="nav1">
-					<li><div class="logo"></div></li>
+					<li><a class="logo-link" href="<?php echo base_url();?>"><div class="logo"></div></a></li>
 					<li><a href="#">quizes</a>
 						<ul class="nav2">
 							<li><a href="#">todos os quizes</a></li>

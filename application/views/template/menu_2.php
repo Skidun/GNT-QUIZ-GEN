@@ -1,6 +1,6 @@
 	<div id="topo-dois">
 			<div id="wrap">			
-				<div class="logo"></div>
+				<a class="logo-link" href="<?php echo base_url();?>"><div class="logo"></div></a>
 				<div class="descricao">
 					<p><?php echo $titulo;?></p>
 					<span>tipo: <?php echo $tipo?></span>

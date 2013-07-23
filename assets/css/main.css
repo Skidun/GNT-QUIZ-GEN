@@ -183,6 +183,9 @@ p {
   float: left;
   margin: 9px 18px 0 21px;
 }
+#topo .logo-link{
+ margin:0!important;
+}
 #topo nav .nav1 {
   font-family: 'Conv_Amaranth';
   font-size: 24px;
