@@ -464,7 +464,7 @@ $(function(){
 		function(color, context)
 			{
 			var all = color.val('all');
-			$('#previewPerguntas #nome').css('color','#'+all.hex);
+			$('#previewPerguntas #nome').css({color: all && '#' + all.hex || 'transparent'}); 
 			$(this).css('background-color','transparent');
 			}
 	);
@@ -474,7 +474,7 @@ $(function(){
 		function(color, context)
 			{
 			var all = color.val('all');
-			$('#previewPerguntas .titulo').css('color','#'+all.hex);
+			$('#previewPerguntas .titulo').css({color: all && '#' + all.hex || 'transparent'});
 			$(this).css('background-color','transparent');
 			}
 	);
@@ -485,7 +485,7 @@ $(function(){
 		function(color, context)
 			{
 			var all = color.val('all');
-			$('#previewPerguntas .subtitulo a').css('color','#'+all.hex);
+			$('#previewPerguntas .subtitulo a').css({color: all && '#' + all.hex || 'transparent'});
 			$(this).css('background-color','transparent');
 			}
 	);
@@ -496,7 +496,7 @@ $(function(){
 		function(color, context)
 			{
 			var all = color.val('all');
-			$('#botoes a').css('color','#'+all.hex);
+			$('#botoes a').css({color: all && '#' + all.hex || 'transparent'});
 			$(this).css('background-color','transparent');
 			}
 	);
@@ -507,7 +507,7 @@ $(function(){
 		function(color, context)
 			{
 			var all = color.val('all');
-			$('#botoes a').css('background-color','#'+all.hex);
+			$('#botoes a').css({backgroundColor: all && '#' + all.hex || 'transparent'});
 			$(this).css('background-color','transparent');
 			}
 	);
@@ -518,7 +518,7 @@ $(function(){
 		function(color, context)
 			{
 			var all = color.val('all');
-			$('#previewPerguntas .respostas').css('color','#'+all.hex);
+			$('#previewPerguntas .respostas td').css({color: all && '#' + all.hex || 'transparent'});
 			$(this).css('background-color','transparent');
 			}
 	);
@@ -529,7 +529,7 @@ $(function(){
 		function(color, context)
 			{
 			var all = color.val('all');
-			$('#previewPerguntas .respostas').css('background-color','#'+all.hex);
+			$('#previewPerguntas .respostas td').css({backgroundColor: all && '#' + all.hex || 'transparent'});
 			$(this).css('background-color','transparent');
 			}
 	);
@@ -540,7 +540,7 @@ $(function(){
 		function(color, context)
 			{
 			var all = color.val('all');
-			$('#previewPerguntas').css('background-color','#'+all.hex);
+			$('#previewPerguntas').css({backgroundColor: all && '#' + all.hex || 'transparent'});
 			$(this).css('background-color','transparent');
 			}
 	);
@@ -552,7 +552,7 @@ $(function(){
 		function(color, context)
 			{
 			var all = color.val('all');
-			$('#previewResultados #nome').css('color','#'+all.hex);
+			$('#previewResultados #nome').css({color: all && '#' + all.hex || 'transparent'});
 			$(this).css('background-color','transparent');
 			}
 	);
@@ -563,7 +563,7 @@ $(function(){
 		function(color, context)
 			{
 			var all = color.val('all');
-			$('#previewResultados .titulo').css('color','#'+all.hex);
+			$('#previewResultados .titulo').css({color: all && '#' + all.hex || 'transparent'});
 			$(this).css('background-color','transparent');
 			}
 	);
@@ -574,7 +574,7 @@ $(function(){
 		function(color, context)
 			{
 			var all = color.val('all');
-			$('#previewResultados .acertos').css('color','#'+all.hex);
+			$('#previewResultados .acertos').css({color: all && '#' + all.hex || 'transparent'});
 			$(this).css('background-color','transparent');
 			}
 	);
@@ -585,7 +585,7 @@ $(function(){
 		function(color, context)
 			{
 			var all = color.val('all');
-			$('#previewResultados .descricao').css('color','#'+all.hex);
+			$('#previewResultados .descricao').css({color: all && '#' + all.hex || 'transparent'});
 			$(this).css('background-color','transparent');
 			}
 	);
@@ -596,7 +596,7 @@ $(function(){
 		function(color, context)
 			{
 			var all = color.val('all');
-			$('#previewResultados .saibaMais a').css('color','#'+all.hex);
+			$('#previewResultados .saibaMais a').css({color: all && '#' + all.hex || 'transparent'});
 			$(this).css('background-color','transparent');
 			}
 	);
@@ -607,7 +607,7 @@ $(function(){
 		function(color, context)
 			{
 			var all = color.val('all');
-			$('#botoesResultado a').css('color','#'+all.hex);
+			$('#botoesResultado a').css({color: all && '#' + all.hex || 'transparent'});
 			$(this).css('background-color','transparent');
 			}
 	);
@@ -618,7 +618,7 @@ $(function(){
 		function(color, context)
 			{
 			var all = color.val('all');
-			$('#botoesResultado a').css('background-color','#'+all.hex);
+			$('#botoesResultado a').css({backgroundColor: all && '#' + all.hex || 'transparent'});
 			$(this).css('background-color','transparent');
 			}
 	);
@@ -629,7 +629,7 @@ $(function(){
 		function(color, context)
 			{
 			var all = color.val('all');
-			$('#previewResultados').css('background-color','#'+all.hex);
+			$('#previewResultados').css({backgroundColor: all && '#' + all.hex || 'transparent'});
 			$(this).css('background-color','transparent');
 			}
 	);
