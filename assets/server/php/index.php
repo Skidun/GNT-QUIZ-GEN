@@ -12,4 +12,17 @@
 
 error_reporting(E_ALL | E_STRICT);
 require('UploadHandler2.php');
-$upload_handler = new UploadHandler();
+$upload_handler = new UploadHandler(array(
+		'image_versions' => array(
+			'' => array(
+								'max_width' => 240,
+								'max_height'=> 260,
+								'jpeg_quality' => 80
+				),
+			'medium' => array(
+								'max_width' => 240,
+								'max_height'=> 260,
+								'jpeg_quality' => 80
+				),
+			),
+	));
