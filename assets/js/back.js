@@ -644,7 +644,7 @@ var eventos_back = {
 		var prox_url = $('#btn-proxima-etapa-1-perfil').attr('rel');
 		$('.group').each(function(index){
 			var titulo = $('#nome-perfil-'+index).val(), descricao =  $('#descricao-perfil-'+index).val(), link = $('#link-perfil-'+index).val(), texto = $('#texto-perfil-'+index).val(), imagem = $('#alvo-'+index).attr('src'), id_quiz = $('#id_quiz').val(), id_perfil = $('#id-perfil-'+index).val();
-			if(titulo == '' || titulo == 'Título'){
+			if(titulo == '' || titulo == 'Título' || titulo == 'Perfil'){
 				//alert('Preencha todos os campos de cada perfil');
 				if(url != ''){
 					window.location.href=url;
@@ -718,7 +718,7 @@ var eventos_back = {
 			var nome 		 = $('#nome-pergunta-'+index).val(), link = $('#link-pergunta-'+index).val(), texto = $('#texto-pergunta-'+index).val(), imagem = $('#alvo-pergunta-'+index).attr('src'), id_quiz = $('#id_quiz').val(), tipo_quiz = $('#tipo_quiz').val(), ordem = index;
 			var box_resposta = $(this).find('.sorteia .header');
 			//Valida se o campo de nome da pergunta 
-			if(nome == '' || nome == 'Preencha esse campo' || nome == 'Título'){
+			if(nome == '' || nome == 'Preencha esse campo' || nome == 'Título' || nome == 'Pergunta'){
 				$('#nome-pergunta-'+index).val('Preencha esse campo')
 				if(url != ''){
 					window.location.href=url;
@@ -863,7 +863,7 @@ var eventos_back = {
 			var nome 		 = $('#nome-pergunta-'+index).val(), link = $('#link-pergunta-'+index).val(), texto = $('#texto-pergunta-'+index).val(), imagem = $('#alvo-pergunta-'+index).attr('src'), id_quiz = $('#id_quiz').val(), tipo_quiz = $('#tipo_quiz').val(), ordem = index;
 			var box_resposta = $(this).find('.sorteia .header');
 			//Valida se o campo de nome da pergunta 
-			if(nome == '' || nome == 'Preencha esse campo'){
+			if(nome == '' || nome == 'Preencha esse campo' || nome == 'Título' || nome == 'Pergunta'){
 				$('#nome-pergunta-'+index).val('Preencha esse campo');
 				alert('Preencha todos os campos');
 				$('.loader').hide();
@@ -1065,7 +1065,7 @@ var eventos_back = {
 						var imagem = campo_imagem;
 					}
 					//Valida o campo de titulo
-					if(titulo == ''){
+					if(titulo == '' || titulo == 'Título'){
 						alert('O título da faixa e o range de pontuação são campos obrigatórios');
 						return false;
 					}else{

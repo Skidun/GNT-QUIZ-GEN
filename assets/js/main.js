@@ -131,11 +131,24 @@ $(function(){
         dataType: 'json',
         done: function (e, data) {			
             $.each(data.result.files, function (index, file) {
-				$('#previewPerguntas').attr('style', 'background: url(../../assets/server/php/files/'+file.name+') !important;');
+				$('#previewPerguntas').attr('style', "background-image: url('../../assets/server/php/files/"+file.name+"');");
 				$('img#alvo-perguntas').attr('src','../../assets/server/php/files/'+file.name);
 				$('#bg_image_pergunta').val(file.name);
 				$('img.carregando').remove();
-            });
+				$('input:radio[name="repete-imagem-perguntas"]').change(function(){
+					$('#previewPerguntas').css('background-repeat', this.value);
+					console.log(this.value);
+				});
+				$('input:radio[name="alinhaH-imagem-perguntas"]').change(function(){
+						$('#previewPerguntas').css('background-position-x', this.value);
+						console.log(this.value);
+					});
+				$('input:radio[name="alinhaV-imagem-perguntas"]').change(function(){
+						$('#previewPerguntas').css('background-position-y', this.value);
+						console.log(this.value);
+					});
+	            });
+
         },
         progressall: function (e, data) {
             $('img#alvo-perguntas').parent().append('<img src="../../assets/img/ajax-loader.gif" alt="carregando..." class="carregando"> ');
@@ -149,10 +162,22 @@ $(function(){
         done: function (e, data) {			
             $.each(data.result.files, function (index, file) {
 				$('img#alvo-resultados').attr('src','../../assets/server/php/files/'+file.name);
-				$('#previewResultados').attr('style', 'background: url(../../assets/server/php/files/'+file.name+') !important;');
+				$('#previewResultados').attr('style', "background-image: url('../../assets/server/php/files/"+file.name+"');");
 				$('#bg_image_resultado').val(file.name);
 				$('img.carregando').remove();
-            });
+				$('input:radio[name="repete-imagem"]').change(function(){
+					$('#previewResultados').css('background-repeat', this.value);
+					console.log(this.value);
+				});
+				$('input:radio[name="alinhaH-imagem"]').change(function(){
+						$('#previewResultados').css('background-position-x', this.value);
+						console.log(this.value);
+					});
+				$('input:radio[name="alinhaV-imagem"]').change(function(){
+						$('#previewResultados').css('background-position-y', this.value);
+						console.log(this.value);
+					});
+	            });
         },
         progressall: function (e, data) {
             $('img#alvo-resultados').parent().append('<img src="../../assets/img/ajax-loader.gif" alt="carregando..." class="carregando"> ');
@@ -703,37 +728,36 @@ $(function(){
 		$('input[name="ireferencia-resultados-alinhamento"]').val('text-align:'+this.id+';');
 		$('#previewResultados .saibaMais').css('text-align',this.id);
 	});
-	//Posicionamento do background das respostas
-	/*$('input:radio[name="repete-imagem"]').each(function(){
-		$(this).on('click', function(e){
-			e.preventDefault();
-			$('#previewPerguntas').css('background-repeat', this.value);
-		});
-	});*/
-	$('input:radio[name="repete-imagem"]').change(function(){
+	//Configuração de alinhamento de imagem de fundo perguntas
+	$('input:radio[name="repete-imagem-perguntas"]').change(function(){
 		$('#previewPerguntas').css('background-repeat', this.value);
 		console.log(this.value);
 	});
-	/*$('input:radio[name="alinhaH-imagem"]').each(function(){
-		$(this).on('click', function(e){
-			e.preventDefault();
-			$('#previewPerguntas').css('background-position-x', this.value);
-		});
-	});*/
-	$('input:radio[name="alinhaH-imagem"]').change(function(){
+
+	$('input:radio[name="alinhaH-imagem-perguntas"]').change(function(){
 		$('#previewPerguntas').css('background-position-x', this.value);
 		console.log(this.value);
 	});
-	/*$('input:radio[name="alinhaV-imagem"]').each(function(){
-		$(this).on('click', function(e){
-			e.preventDefault();
-			$('#previewPerguntas').css('background-position-y', this.value);
-		});
-	});*/
-	$('input:radio[name="alinhaV-imagem"]').change(function(){
+
+	$('input:radio[name="alinhaV-imagem-perguntas"]').change(function(){
 		$('#previewPerguntas').css('background-position-y', this.value);
 		console.log(this.value);
 	});
+	//Configuração de alinhamento de imagem de fundo Resultados
+	$('input:radio[name="repete-imagem"]').change(function(){
+		$('#previewResultados').css('background-repeat', this.value);
+		console.log(this.value);
+	});
+	
+	$('input:radio[name="alinhaH-imagem"]').change(function(){
+		$('#previewResultados').css('background-position-x', this.value);
+		console.log(this.value);
+	});
+	$('input:radio[name="alinhaV-imagem"]').change(function(){
+		$('#previewResultados').css('background-position-y', this.value);
+		console.log(this.value);
+	});	
+
 	//Gerador de Código
 	var code = $("textarea#quizCode").val();
 	$('textarea#codigo').val($.trim(code));
@@ -772,7 +796,7 @@ $(function(){
 								'<span class="icon"></span>'+
 								'<div class="input"><input type="text" name="nome" id="nome-pergunta-'+id+'" value="Pergunta" size=""/></div>'+
 								'<span class="arrow"></span>'+
-								'<a class="excluir excluir-dois"></a>'+
+								'<a class="excluir excluir-um"></a>'+
 							'</div>'+
 							'<div class="body">'+
 								'<div id="perguntas">'+
@@ -864,6 +888,10 @@ $(function(){
 							this.value='Título';
 						}
 					});
+
+					$('.excluir-um').click(function(){ $(this).parents('.group').remove(); });
+					$('.excluir-dois').click(function(){ $(this).parents('.header').remove(); return false;});
+
 					//Remove Imagens dos elementos
 					$('.excluir-imagem').on('click', function(e){
 						e.preventDefault();
@@ -998,6 +1026,10 @@ $(function(){
 					})
 				//scrolla pro fim da página
 				$('html, body').animate({scrollTop:$(document).height()}, 1000);
+				
+				$('.excluir-um').click(function(){ $(this).parents('.group').remove(); });
+				$('.excluir-dois').click(function(){ $(this).parents('.header').remove(); return false;});
+				
 				$('.group').find('input[name="nome"]').focus(function(){
 					if(this.value == 'Título'){
 						this.value='';
@@ -1209,6 +1241,7 @@ $(function(){
 				$('input:checkbox:checked').val('10');
 			});
 		});
+
 		return false;
 	});
 	/*botao nova pergunta*/
@@ -1297,6 +1330,8 @@ $(function(){
 						})
 					//scrolla pro fim da página
 					$('html, body').animate({scrollTop:$(document).height()}, 1000);
+					$('.excluir-um').click(function(){ $(this).parents('.group').remove(); });
+					$('.excluir-dois').click(function(){ $(this).parents('.header').remove(); return false;});
 					$('.group').each(function(index){
 						$(this).find('input:checkbox').on('click', function(){
 							$('input:checkbox').val(0)
