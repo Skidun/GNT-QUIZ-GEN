@@ -959,6 +959,7 @@ $(function(){
 							'<span class="excluir excluir-um"></span>'+
 						'</div>'+
 						'<div class="body">'+
+							'<div class="textoDoSlider">Considere a quantidade de respostas corretas como o valor total de pontos possíveis na faixa de classificação. 1 acerto = 10 pontos.</div>'+
 							'<div class="sliderHolder">'+
 								'<input type="text" id="amountIni" class="amountIni'+(tamanho+1)+'" readonly/>'+
 								'<input type="text" id="amountFin" class="amountFin'+(tamanho+1)+'" readonly/>'+
