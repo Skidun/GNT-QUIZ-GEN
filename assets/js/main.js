@@ -1516,7 +1516,10 @@ $(document).ready(function(){
 								$('#quizVisualizacao.questoes').show();
 								$('#quizVisualizacao.resultados').hide();
 								$('#slideInner').css('margin-left','0');
-								$('input[type="radio"][value="10"] , input[type="checkbox"][value="10"]').parent().next().css('text-decoration','underline');
+								//$('input[type="radio"][value="10"] , input[type="checkbox"][value="10"]').parent().next().css('text-decoration','underline');
+								$('input[type="radio"][value="0"] , input[type="checkbox"][value="0"]').each(function(){
+									$(this).attr('disabled', 'disabled').parent().next().css('color','#666666');
+								});
 								$('#quizVisualizacao').append(
 									'<div id="botoes">'+
 										'<a href="#" id="anterior" class="control" title="Anterior" style="color:#ffffff; background-color:#cc1e59;">&laquo; Anterior</a>'+
