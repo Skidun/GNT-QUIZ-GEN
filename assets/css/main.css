@@ -780,7 +780,11 @@ p {
 }
 #conteudo .item .body .preview {
   float: right;
-  background: #faab2a;
+  background-image:none;
+  background-repeat:no-repeat;
+  background-position-x:left;
+  background-position-y:top;
+  background-color: #faab2a;  
   width: 620px;
   height:400px;
   position: relative;

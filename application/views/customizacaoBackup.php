@@ -209,9 +209,9 @@
 						<?php 
 							if($customizacao['quiz_bg_color'] != ''){
 						?>
-							<div id="previewPerguntas" class="preview" style="background-image:<?php if($customizacao['quiz_bg_img'] == ""){ echo 'none'; }else{ echo "url('".base_url()."assets/server/php/files/".$customizacao['quiz_bg_img']."')"; } ?>; background-repeat:<?php echo $customizacao['quiz_bg_img_repeat']; ?>; background-position-x:<?php echo $customizacao['quiz_bg_img_align_horizontal']; ?>; background-position-y:<?php echo $customizacao['quiz_bg_img_align_vertical']; ?>; background-color: #<?php echo $customizacao['quiz_bg_color'] ?>; ">
+							<div id="previewPerguntas" class="preview" style="background: <?php if($customizacao['quiz_bg_img'] == "") {echo "#".$customizacao['quiz_bg_color'];}else{echo "url('".base_url()."assets/server/php/files/".$customizacao['quiz_bg_img']."') ".$customizacao['quiz_bg_img_align_horizontal']." ".$customizacao['quiz_bg_img_align_vertical']." ".$customizacao['quiz_bg_img_repeat']." #".$customizacao['quiz_bg_color'].";";}?>">
 						<?php }else{?>
-							<div id="previewPerguntas" class="preview" style="background-image:<?php if($customizacao['quiz_bg_img'] == ""){ echo 'none'; }else{ echo "url('".base_url()."assets/server/php/files/".$customizacao['quiz_bg_img']."')"; } ?>; background-repeat:<?php echo $customizacao['quiz_bg_img_repeat']; ?>; background-position-x:<?php echo $customizacao['quiz_bg_img_align_horizontal']; ?>; background-position-y:<?php echo $customizacao['quiz_bg_img_align_vertical']; ?>; background-color: #<?php echo $customizacao['quiz_bg_color'] ?>; ">
+							<div id="previewPerguntas" class="preview" style="background: <?php if($customizacao['quiz_bg_img'] == "") {echo "#".$customizacao['quiz_bg_color'];}else{echo "url('".base_url()."assets/server/php/files/".$customizacao['quiz_bg_img']."') ".$customizacao['quiz_bg_img_align_horizontal']." ".$customizacao['quiz_bg_img_align_vertical']." ".$customizacao['quiz_bg_img_repeat'].";";}?>">
 						<?php }?>	
 							<div id="nome" style="font-size:<?php echo $customizacao['titulo_quiz_font_size'];?>; color:#<?php echo $customizacao['titulo_quiz_font_color'];?>; text-align:<?php echo $customizacao['titulo_quiz_align'];?>;"><?php  echo $titulo;?></div>
 							<div id="texto">

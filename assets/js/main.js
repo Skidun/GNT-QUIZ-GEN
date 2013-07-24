@@ -660,32 +660,14 @@ $(function(){
 		$('#previewPerguntas .respostas').css('text-align',this.id);
 	});
 	//Posicinamento do Backgound das Perguntas
-	/*$('input:radio[name="repete-imagem-perguntas"]').each(function(){
-		$(this).on('click', function(e){
-			e.preventDefault();
-			$('#previewPerguntas').css('background-repeat', this.value);
-		});
-	});*/
 	$('input:radio[name="repete-imagem-perguntas"]').change(function(){
 		$('#previewPerguntas').css('background-repeat', this.value);
 		console.log(this.value);
 	});
-	/*$('input:radio[name="alinhaH-imagem-perguntas"]').each(function(){
-		$(this).on('click', function(e){
-			e.preventDefault();
-			$('#previewPerguntas').css('background-position-x', this.value);
-		});
-	});*/
 	$('input:radio[name="alinhaH-imagem-perguntas"]').change(function(){
 		$('#previewPerguntas').css('background-position-x', this.value);
 		console.log(this.value);
 	});
-	/*$('input:radio[name="alinhaV-imagem-perguntas"]').each(function(){
-		$(this).on('click', function(e){
-			e.preventDefault();
-			$('#previewPerguntas').css('background-position-y', this.value);
-		});
-	});*/
 	$('input:radio[name="alinhaV-imagem-perguntas"]').change(function(){
 		$('#previewPerguntas').css('background-position-y', this.value);
 		console.log(this.value);
