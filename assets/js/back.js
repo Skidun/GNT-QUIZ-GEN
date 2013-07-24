@@ -510,7 +510,7 @@ var eventos_back = {
 			$( "#slider"+index ).slider({
 					range: true,
 					min: 0,
-					max: 200,
+					max: 400,
 					step: 10,
 					values: [ de, ate ],
 					slide: function( event, ui ) {

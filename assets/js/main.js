@@ -931,7 +931,7 @@ $(function(){
 		$( "#slider"+calculaSlider ).slider({
 				range: true,
 				min: 0,
-				max: 200,
+				max: 400,
 				step: 10,
 				values: [ 0, 10 ],
 				slide: function( event, ui ) {
@@ -988,7 +988,7 @@ $(function(){
 				$( "#slider"+(tamanho+1) ).slider({
 							range: true,
 							min: 0,
-							max: 200,
+							max: 400,
 							step: 10,
 							values: [ 0, 10 ],
 							slide: function( event, ui ) {
