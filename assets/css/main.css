@@ -1703,6 +1703,9 @@ p {
   font-size: 15px;
   text-align: center;
   line-height: 270%;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
 }
 #quizVisualizacao #anterior{
   float: left;
@@ -1748,6 +1751,9 @@ p {
   font-size: 15px;
   text-align: center;
   line-height: 270%;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;  
 }
 #quizVisualizacao #botoesResultado a.anterior{
   float: left;
