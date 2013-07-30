@@ -1,8 +1,4 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
-/**
-** Controller que contem os tipos de Quizes e redireciona-os para suas respectivas views com seus respectivos atributos
-** O model desse controller está sendo carregado no config/autoload.php
-**/
 
 class Quiz_tipo extends CI_Controller {
 
