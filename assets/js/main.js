@@ -199,7 +199,7 @@ $(function(){
 				'</div>'+
 				'<div class="body">'+
 					'<div class="texto">'+
-						'<label for="descricao">Descrição</label>'+
+						'<label for="descricao">Descrição <div class="limite">Limite de caracteres:<span id="campospan" title="500">500</span></div></label>'+
 						'<div class="textarea"><textarea name="descricao" id="descricao-perfil-'+id+'" cols="" rows=""></textarea></div>'+
 						'<label for="link">Link de referência:</label>'+
 						'<div class="input"><input type="text" name="link" id="link-perfil-'+id+'" value="http://" size=""/></div>'+
@@ -280,6 +280,8 @@ $(function(){
 				}
 			});
 		});
+		//Chama contador de caracteres
+		$('textarea[name="descricao"]').contadorDeCaracteres();
 		return false;
 	});
 	
@@ -966,7 +968,7 @@ $(function(){
 								'<div id="slider'+(tamanho+1)+'"></div>'+
 							'</div>'+
 							'<div class="texto">'+
-								'<label for="descricao">Descrição</label>'+
+								'<label for="descricao">Descrição <div class="limite">Limite de caracteres:<span id="campospan" title="500">500</span></div></label>'+
 								'<div class="textarea">'+
 									'<textarea name="descricao" cols="" rows=""></textarea>'+
 								'</div>'+
@@ -1071,7 +1073,8 @@ $(function(){
 				return false;
 			}
 		});
-	
+		//Chama contador de caracteres
+		$('textarea[name="descricao"]').contadorDeCaracteres();	
 	});
 	
 	//Resposta Certa > perguntas e respostas
@@ -1567,3 +1570,55 @@ $(function(){
 		e.stopPropagation();
 	});
 });
+
+//Contador de caracteres
+(function($){
+	$.fn.contadorDeCaracteres = function(){
+		return this.each(function(){
+
+			/*
+				Keyup é um evento que é disparado sempre que o usuário tirou o dedo da tecla.
+				Ou seja, não queremos fazer nada quando o usuário clica, somente quando ele solta
+				a tecla.
+			*/
+			$('textarea[name="descricao"]').keyup(function(event){
+		 
+				// abaixo algumas variáveis que iremos utilizar.
+		 
+				// pega a span onde esta a quantidade máxima de caracteres.
+				var target    = $(this).parents('.texto').find('#campospan');
+		 
+				// pego pelo atributo title a quantidade maxima permitida.
+				var max        = target.attr('title');
+		 
+				// tamanho da string dentro da textarea.
+				var len     = $(this).val().length;
+		 
+				// quantidade de caracteres restantes dentro da textarea.
+				var remain    = max - len;
+		 
+				// caso a quantidade dentro da textarea seja maior que
+				// a quantidade maxima.
+				if(len > max)
+				{
+					// abaixo vamos pegar tudo que tiver na string e limitar
+					// a quantidade de caracteres para o máximo setado.
+					// isso significa que qualquer coisa que seja maior que
+					// o máximo será cortado.
+					var val = $(this).val();
+					$(this).val(val.substr(0, max));
+		 
+					// setamos o restante para 0.
+					remain = 0;
+				}
+		 
+				// atualizamos a quantidade de caracteres restantes.
+				target.html(remain);
+		 
+			});
+		
+		});
+	};
+}(jQuery));
+
+$('textarea[name="descricao"]').contadorDeCaracteres();
