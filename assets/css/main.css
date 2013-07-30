@@ -862,6 +862,9 @@ p {
   font-size: 15px;
   text-align: center;
   line-height: 270%;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
 }
 #conteudo .item .body .preview #texto #botoesResultado a.anterior {
   float: left;
@@ -897,6 +900,9 @@ p {
   font-size: 15px;
   text-align: center;
   line-height: 270%;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
 }
 #conteudo .item .body .preview #botoes a.anterior {
   float: left;
