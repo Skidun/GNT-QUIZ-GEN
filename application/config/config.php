@@ -14,7 +14,7 @@
 | path to your installation.
 |
 */
-$config['base_url']	= 'http://localhost/GNT-QUIZ-GEN/';
+$config['base_url']	= 'http://gntquizgen.tk/homolog/';
 
 /*
 |--------------------------------------------------------------------------
