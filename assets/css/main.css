@@ -1416,6 +1416,18 @@ p {
   display: block;
   margin: 4px 0 3px 0;
 }
+#accordion .body label .limite,
+#accordion2 .body label .limite {
+	float:right;
+	color: #666666;
+	font-size: 13px;
+	font-style: italic;
+}
+#accordion .body label .limite #campospan,
+#accordion2 .body label .limite #campospan {
+	width: 25px;
+	display: inline-block;
+}
 #accordion .body .textarea,
 #accordion2 .body .textarea {
   background: url("../img/backgrounds/textarea.png") 0 0 repeat-x;
