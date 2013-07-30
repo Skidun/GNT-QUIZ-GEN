@@ -1527,7 +1527,11 @@ $(document).ready(function(){
 								//$('input[type="radio"][value="10"] , input[type="checkbox"][value="10"]').parent().next().css('text-decoration','underline');
 								$('input[type="radio"] , input[type="checkbox"]').attr('disabled', 'disabled');
 								$('input[type="radio"][value="0"] , input[type="checkbox"][value="0"]').each(function(){
-									$(this).parent().next().css('opacity','0.5');
+									$(this).parent().next().css({
+										'opacity':'0.5',
+										'-moz-opacity': '0.5',
+										'-khtml-opacity': '0.5'
+									});
 								});
 								$('#quizVisualizacao').append(
 									'<div id="botoes">'+
