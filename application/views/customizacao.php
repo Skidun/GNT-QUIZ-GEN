@@ -25,7 +25,7 @@
 								<!--Tamanho da fonte-->
 								<p>Tamanho da fonte:</p>
 								<?php 
-									$options_titulo_tamanho = array('18px'=>'18px', '20px'=>'20px', '22px'=>'22px');
+									$options_titulo_tamanho = array('10px'=>'10px', '12px'=>'12px', '14px'=>'14px', '16px'=>'16px', '18px'=>'18px', '20px'=>'20px', '22px'=>'22px');
 									echo form_dropdown('titulo-tamanho', $options_titulo_tamanho, $customizacao['titulo_quiz_font_size'], ' class="default"');
 								?>
 								<!--passa o valor Tamanho da fonte escondido-->
@@ -54,7 +54,7 @@
 								<!--Tamanho da fonte-->
 								<p>Tamanho da fonte:</p>
 								<?php 
-									$options_pergunta_tamanho = array('18px'=>'18px','20px'=>'20px','22px'=>'22px', '24px'=>'24px', '26px'=>'26px');
+									$options_pergunta_tamanho = array('10px'=>'10px', '12px'=>'12px', '14px'=>'14px', '16px'=>'16px', '18px'=>'18px', '20px'=>'20px', '22px'=>'22px');
 									echo form_dropdown('perguntas-tamanho', $options_pergunta_tamanho, $customizacao['pergunta_quiz_font_size'], ' class="default" ');
 								?>
 								<!--passa o valor Tamanho da fonte escondido-->
@@ -84,7 +84,7 @@
 								<p>Tamanho da fonte:</p>
 
 								<?php 
-									$options_link_tamanho = array('14px'=>'14px','16px'=>'16px','18px'=>'18px');
+									$options_link_tamanho = array('10px'=>'10px', '12px'=>'12px', '14px'=>'14px', '16px'=>'16px', '18px'=>'18px', '20px'=>'20px', '22px'=>'22px');
 									echo form_dropdown('referencia-tamanho', $options_link_tamanho, $customizacao['link_ref_pergunta_font_size'], ' class="default" ');
 								?>
 								<!--passa o valor Tamanho da fonte escondido-->
@@ -115,7 +115,7 @@
 								<p>Tamanho da fonte:</p>
 
 								<?php 
-									$options_resposta_tamanho = array('13px'=>'13px','15px'=>'15px','17px'=>'17px');
+									$options_resposta_tamanho = array('10px'=>'10px', '12px'=>'12px', '14px'=>'14px', '16px'=>'16px', '18px'=>'18px', '20px'=>'20px', '22px'=>'22px');
 									echo form_dropdown('respostas-tamanho', $options_resposta_tamanho, $customizacao['resposta_pergunta_font_size'], ' class="default" ');
 								?>
 								<!--passa o valor Tamanho da fonte escondido-->
@@ -324,7 +324,7 @@
 								<!--Tamanho da fonte-->
 								<p>Tamanho da fonte:</p>
 								<?php 
-									$options_titulo_resultados_tamanho = array('18px'=>'18px','20px'=>'20px','22px'=>'22px');
+									$options_titulo_resultados_tamanho = array('10px'=>'10px', '12px'=>'12px', '14px'=>'14px', '16px'=>'16px', '18px'=>'18px', '20px'=>'20px', '22px'=>'22px');
 									echo form_dropdown('titulo-resultados-tamanho', $options_titulo_resultados_tamanho, $customizacao['resultado_titulo_quiz_font_size'], ' class="default" ');
 								?>
 								<!--passa o valor Tamanho da fonte escondido-->
@@ -353,7 +353,7 @@
 								<!--Tamanho da fonte-->
 								<p>Tamanho da fonte:</p>
 								<?php 
-									$options_perguntas_resultados_tamanho = array('18px'=>'18px','20px'=>'20px','22px'=>'22px', '24px'=>'24px', '26px'=>'26px');
+									$options_perguntas_resultados_tamanho = array('10px'=>'10px', '12px'=>'12px', '14px'=>'14px', '16px'=>'16px', '18px'=>'18px', '20px'=>'20px', '22px'=>'22px');
 									echo form_dropdown('perguntas-resultados-tamanho', $options_perguntas_resultados_tamanho, $customizacao['resultado_titulo_faixa_font_size'], ' class="default" ');
 								?>
 								<!--passa o valor Tamanho da fonte escondido-->
@@ -382,7 +382,7 @@
 								<!--Tamanho da fonte-->
 								<p>Tamanho da fonte:</p>
 								<?php 
-									$options_acertos_tamanho = array('18px'=>'18px','20px'=>'20px','22px'=>'22px', '24px'=>'24px', '26px'=>'26px');
+									$options_acertos_tamanho = array('10px'=>'10px', '12px'=>'12px', '14px'=>'14px', '16px'=>'16px', '18px'=>'18px', '20px'=>'20px', '22px'=>'22px');
 									echo form_dropdown('acertos-tamanho', $options_acertos_tamanho, $customizacao['resultado_porcentagem_font_size'], ' class="default" ');
 								?>
 								<!--passa o valor Tamanho da fonte escondido-->
@@ -409,7 +409,7 @@
 							</div>
 							<div class="content">
 								<?php 
-									$options_descricao_tamanho = array('16px'=>'16px', '18px'=>'18px','20px'=>'20px','22px'=>'22px', '24px'=>'24px');
+									$options_descricao_tamanho = array('10px'=>'10px', '12px'=>'12px', '14px'=>'14px', '16px'=>'16px', '18px'=>'18px', '20px'=>'20px', '22px'=>'22px');
 									echo form_dropdown('descricao-tamanho', $options_descricao_tamanho, $customizacao['resultado_descricao_font_size'], ' class="default" ');
 								?>
 								<!--Tamanho da fonte-->
@@ -440,7 +440,7 @@
 								<!--Tamanho da fonte-->
 								<p>Tamanho da fonte:</p>
 								<?php 
-									$options_referencia_resultados_tamanho = array('13px'=>'13px', '15px'=>'15px','17px'=>'17px');
+									$options_referencia_resultados_tamanho = array('10px'=>'10px', '12px'=>'12px', '14px'=>'14px', '16px'=>'16px', '18px'=>'18px', '20px'=>'20px', '22px'=>'22px');
 									echo form_dropdown('referencia-resultados-tamanho', $options_referencia_resultados_tamanho, $customizacao['resultado_linkref_font_size'], ' class="default" ');
 								?>
 								<!--passa o valor Tamanho da fonte escondido-->

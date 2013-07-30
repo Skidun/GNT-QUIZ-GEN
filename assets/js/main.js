@@ -94,36 +94,40 @@ $(function(){
 	});
 
 	$('.fileupload#form-file-upload-pergunta').each(function (index) {
-			$(this).fileupload({
-				done: function (e, data) {
-						var filess= data.files[0];
-						var filenam = filess.name;
-							
-						var chamaString = JSON.parse(data.result);
-						console.log( chamaString.files[0].name );
-						
-						$(this).find('img#alvo-pergunta-'+index).attr('src','../../assets/server/php/files/'+chamaString.files[0].name);
-						
-						$('img.carregando').remove();
+		$(this).fileupload({
+			done: function (e, data) {
+				var filess= data.files[0];
+				var filenam = filess.name;
+				
+				var chamaString = JSON.parse(data.result);
+				console.log( chamaString.files[0].name );
+					
+				$(this).find('img#alvo-pergunta-'+index).attr('src','../../assets/server/php/files/'+chamaString.files[0].name);
+				$('img.carregando').remove();
 
 				},
-				progressall: function (e, data) {
-					$('img#alvo-pergunta-'+index).parent().append('<img src="../../assets/img/ajax-loader.gif" alt="carregando..." class="carregando"> ');
-				}
-			});
+			progressall: function (e, data) {
+				$('img#alvo-pergunta-'+index).parent().append('<img src="../../assets/img/ajax-loader.gif" alt="carregando..." class="carregando"> ');
+			}
+		});
 	});
 	
 	//Perfil
-	$('.group').find('input[name="nome"]').focus(function(){
-			if(this.value == 'Título'){
-				this.value='';
-			}
-		});
-		$('.group').find('input[name="nome"]').blur(function(){
-			if(this.value == ''){
-				this.value='Título';
-			}
-		});
+	$('.group').find('input[name="nome"], input[name="nome-pergunta"]').focus(function(){
+		if(this.value == 'Título' || this.value == 'Pergunta'){
+			this.value='';
+		}
+	});
+	$('.group').find('input[name="nome"]').blur(function(){
+		if(this.value == ''){
+			this.value='Título';
+		}
+	});
+	$('.group').find('input[name="nome-pergunta"]').blur(function(){
+		if(this.value == ''){
+			this.value='Pergunta';
+		}
+	});
 	/*perguntas*/
 	$('#fileupload-perfil-customiza')
    .fileupload({
@@ -227,10 +231,9 @@ $(function(){
 			$(this).fileupload({
 				done: function (e, data) {
 					var filess= data.files[0];
-					var filenam = filess.name;
-					
-						var chamaString = JSON.parse(data.result);
-						console.log( chamaString.files[0].name );					
+					var filenam = filess.name;					
+					var chamaString = JSON.parse(data.result);
+					console.log( chamaString.files[0].name );					
 					
 					$(this).find('#alvo-'+index).attr('src','../../assets/server/php/files/'+chamaString.files[0].name);
 					$('img.carregando').remove();
@@ -393,6 +396,7 @@ $(function(){
 		$('html, body').animate({scrollTop:$(document).height()}, 1000);
 		$('.excluir-um').click(function(){ $(this).parents('.group').remove(); });
 		$('.excluir-dois').click(function(){ $(this).parents('.header').remove(); return false;});
+
 		$('.group').find('input[name="nome"], input[name="nome-pergunta"]').focus(function(){
 			if(this.value == 'Pergunta'){
 				this.value='';
@@ -1342,6 +1346,7 @@ $(function(){
 							$('input:checkbox:checked').val('10');
 						});
 					});
+
 					$('.group').find('input[name="nome"], input[name="nome-pergunta"]').focus(function(){
 						if(this.value == 'Pergunta'){
 							this.value='';
@@ -1565,7 +1570,7 @@ $(document).ready(function(){
 
 //Impede o accordion de fechar quando clica no titulo
 $(function(){
-	$('#accordion .header input[name="nome"], #accordion2 .header input[name="nome"]').click(function(e){
+	$('#accordion .header input[name="nome"], #accordion2 .header input[name="nome"], #accordion2 .header input[name="nome-pergunta"]').click(function(e){
 		//$(this).parents('.header').next('.body').slideDown();
 		e.stopPropagation();
 	});
