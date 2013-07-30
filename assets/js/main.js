@@ -322,7 +322,7 @@ $(function(){
 					'<span class="icon"></span>'+
 					'<div class="input"><input type="text" name="nome" id="nome-pergunta-'+id+'" value="Pergunta" size=""/></div>'+
 					'<span class="arrow"></span>'+
-					'<a href="#" class="excluir exclui-um"></a>'+
+					'<a href="#" class="excluir excluir-um"></a>'+
 				'</div>'+
 				'<div class="body">'+
 					'<div id="perguntas">'+
@@ -391,14 +391,14 @@ $(function(){
 		$('html, body').animate({scrollTop:$(document).height()}, 1000);
 		$('.excluir-um').click(function(){ $(this).parents('.group').remove(); });
 		$('.excluir-dois').click(function(){ $(this).parents('.header').remove(); return false;});
-		$('.group').find('input[name="nome"]').focus(function(){
-			if(this.value == 'Título'){
+		$('.group').find('input[name="nome"], input[name="nome-pergunta"]').focus(function(){
+			if(this.value == 'Pergunta'){
 				this.value='';
 			}
 		});
-		$('.group').find('input[name="nome"]').blur(function(){
+		$('.group').find('input[name="nome"], input[name="nome-pergunta"]').blur(function(){
 			if(this.value == ''){
-				this.value='Título';
+				this.value='Pergunta';
 			}
 		});
 		//Remove Imagens dos elementos
@@ -878,14 +878,14 @@ $(function(){
 					//scrolla pro fim da página
 					$('html, body').animate({scrollTop:$(document).height()}, 1000);
 
-					$('.group').find('input[name="nome"]').focus(function(){
-						if(this.value == 'Título'){
+					$('.group').find('input[name="nome"], input[name="nome-pergunta"]').focus(function(){
+						if(this.value == 'Pergunta'){
 							this.value='';
 						}
 					});
-					$('.group').find('input[name="nome"]').blur(function(){
+					$('.group').find('input[name="nome"], input[name="nome-pergunta"]').blur(function(){
 						if(this.value == ''){
-							this.value='Título';
+							this.value='Pergunta';
 						}
 					});
 
@@ -1031,14 +1031,14 @@ $(function(){
 				$('.excluir-um').click(function(){ $(this).parents('.group').remove(); });
 				$('.excluir-dois').click(function(){ $(this).parents('.header').remove(); return false;});
 				
-				$('.group').find('input[name="nome"]').focus(function(){
-					if(this.value == 'Título'){
+				$('.group').find('input[name="nome"], input[name="nome-pergunta"]').focus(function(){
+					if(this.value == 'Pergunta'){
 						this.value='';
 					}
 				});
-				$('.group').find('input[name="nome"]').blur(function(){
+				$('.group').find('input[name="nome"], input[name="nome-pergunta"]').blur(function(){
 					if(this.value == ''){
-						this.value='Título';
+						this.value='Pergunta';
 					}
 				});
 				//Remove Imagens dos elementos
@@ -1175,14 +1175,14 @@ $(function(){
 								}
 							})
 						})
-					$('.group').find('input[name="nome"]').focus(function(){
-					if(this.value == 'Título'){
+					$('.group').find('input[name="nome"], input[name="nome-pergunta"]').focus(function(){
+					if(this.value == 'Pergunta'){
 						this.value='';
 					}
 					});
-					$('.group').find('input[name="nome"]').blur(function(){
+					$('.group').find('input[name="nome"], input[name="nome-pergunta"]').blur(function(){
 						if(this.value == ''){
-							this.value='Título';
+							this.value='Pergunta';
 						}
 					});	
 					//scrolla pro fim da página
@@ -1340,13 +1340,13 @@ $(function(){
 						});
 					});
 					$('.group').find('input[name="nome"], input[name="nome-pergunta"]').focus(function(){
-						if(this.value == 'Título'){
+						if(this.value == 'Pergunta'){
 							this.value='';
 						}
 					});
 					$('.group').find('input[name="nome"], input[name="nome-pergunta"]').blur(function(){
 						if(this.value == ''){
-							this.value='Título';
+							this.value='Pergunta';
 						}
 					});
 					//Remove Imagens dos elementos
