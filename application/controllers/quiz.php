@@ -200,9 +200,24 @@ class Quiz extends CI_Controller {
 				$html_perguntas	.=		'<div id="texto">';
 			}					
 			
-			$html_perguntas	.=		'		<div class="titulo" style="font-size:'.$customizacao['pergunta_quiz_font_size'].'; color:#'.$customizacao['pergunta_quiz_font_color'].'; text-align:'.$customizacao['pergunta_quiz_align'].';">'.$pergunta->pergunta.'</div>										
-										<table class="respostas" style="font-size:'.$customizacao['resposta_pergunta_font_size'].'; color:#'.$customizacao['resposta_pergunta_font_color'].'; text-align:'.$customizacao['resposta_pergunta_align'].';">										
-										';
+			$html_perguntas	.=		'		<div class="titulo" style="font-size:'.$customizacao['pergunta_quiz_font_size'].'; color:#'.$customizacao['pergunta_quiz_font_color'].'; text-align:'.$customizacao['pergunta_quiz_align'].';">'.$pergunta->pergunta.'</div>';										
+			switch ($customizacao['resposta_pergunta_align']) {
+											case 'left':
+												$html_perguntas .=	'<table class="respostas" style="font-size:'.$customizacao['resposta_pergunta_font_size'].'; color:#'.$customizacao['resposta_pergunta_font_color'].'; text-align:'.$customizacao['resposta_pergunta_align'].'; margin: 19px auto 19px 0px;">			
+												';
+											break;
+											case 'center':
+												$html_perguntas .=	'<table class="respostas" style="font-size:'.$customizacao['resposta_pergunta_font_size'].'; color:#'.$customizacao['resposta_pergunta_font_color'].'; text-align:'.$customizacao['resposta_pergunta_align'].'; margin: 19px auto;">';
+											break;
+											case 'right':
+												$html_perguntas .=	'<table class="respostas" style="font-size:'.$customizacao['resposta_pergunta_font_size'].'; color:#'.$customizacao['resposta_pergunta_font_color'].'; text-align:'.$customizacao['resposta_pergunta_align'].'; margin: 19px 0px 19px auto;">';
+											break;
+											case 'justify':
+												$html_perguntas .=	'<table class="respostas" style="font-size:'.$customizacao['resposta_pergunta_font_size'].'; color:#'.$customizacao['resposta_pergunta_font_color'].'; text-align:'.$customizacao['resposta_pergunta_align'].'; margin: 19px auto 19px 0px;">			
+												';
+											break;		
+							
+										}							
 						$respostas					= $this->resposta_model->get_all($pergunta->id);
 						foreach($respostas->result() as $resposta):
 							if($resposta->tipo_resposta != 'resposta_certa'){				

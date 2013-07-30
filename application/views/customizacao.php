@@ -538,7 +538,14 @@
 								if($perfis != null){
 							?>
 							<div id="texto">
-								<div class="titulo" style="font-size: <?php echo $customizacao['resultado_titulo_faixa_font_size'];?>;color: #<?php echo $customizacao['resultado_titulo_faixa_font_color'];?>; text-align:<?php echo $customizacao['resultado_titulo_faixa_align'];?>;"><?php echo $perfis['titulo'];?></div>								
+								<div class="titulo" style="font-size: <?php echo $customizacao['resultado_titulo_faixa_font_size'];?>;color: #<?php echo $customizacao['resultado_titulo_faixa_font_color'];?>; text-align:<?php echo $customizacao['resultado_titulo_faixa_align'];?>;"><?php echo $perfis['titulo'];?></div>
+								<?php 
+									if($tipo != 'perfil'){
+								?>								
+								<div class="acertos" style="font-size: <?php echo $customizacao['resultado_porcentagem_font_size'];?>;color: #<?php echo $customizacao['resultado_porcentagem_font_color'];?>; text-align:<?php echo $customizacao['resultado_porcentagem_align'];?>;">Você fez xx ponto(s).</div>
+								<?php
+									}
+								?>
 								<div class="resultado">
 									<p class="descricao" style="font-size:<?php echo $customizacao['resultado_descricao_font_size'];?>; color:#<?php echo $customizacao['resultado_descricao_font_color']?>; text-align:<?php echo $customizacao['resultado_descricao_align'];?>;"><?php echo $perfis['descricao'];?></p>
 									<div class="saibaMais"><a href="<?php echo $perfis['link_referencia'];?>" style="font-size: <?php echo $customizacao['resultado_linkref_font_size'];?>; color:#<?php echo $customizacao['resultado_linkref_font_color'];?>; text-align:<?php echo $customizacao['resultado_linkref_align'];?>;"><?php echo $perfis['texto_link'];?></a></div>

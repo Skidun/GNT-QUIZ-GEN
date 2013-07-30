@@ -687,8 +687,23 @@ $(function(){
 	$('.respostas-alinhamento div').click(function(){
 		$(this).siblings().removeClass('ativo');
 		$(this).addClass('ativo');
+		switch(this.id){
+			case 'left':
+				$('#previewPerguntas .respostas').css('margin-left',0);
+			break;
+			case 'center':
+				$('#previewPerguntas .respostas').css('margin', '19px auto');
+			break;
+			case 'right':
+				$('#previewPerguntas .respostas').css('margin-right', 0);
+			break;
+			case 'justify':
+				$('#previewPerguntas .respostas').css('margin-left',0);
+				$('#previewPerguntas .respostas td').css('text-align', this.id);
+			break;				
+		}
 		$('input[name="irespostas-alinhamento"]').val('text-align:'+this.id+';');
-		$('#previewPerguntas .respostas').css('text-align',this.id);
+		
 	});
 	//Posicinamento do Backgound das Perguntas
 	$('input:radio[name="repete-imagem-perguntas"]').change(function(){
