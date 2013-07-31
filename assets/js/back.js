@@ -504,27 +504,39 @@ var eventos_back = {
 		});
 
 		//Slider de faixas já existentes
-		$('.group.salvo').each(function(index){
-			var de = $(this).find('.amountIni'+index).val();
-			var ate = $(this).find('.amountFin'+index).val();
-			$( "#slider"+index ).slider({
-					range: true,
-					min: 0,
-					max: 400,
-					step: 10,
-					values: [ de, ate ],
-					slide: function( event, ui ) {
-						$( ".amountIni"+index ).val( ui.values[ 0 ]+ "pts");
-						$( ".amountFin"+index ).val( ui.values[ 1 ]+ "pts");
-					},
-					change: function(event, ui){
-						$(this).parents('.group').removeClass('edit');
-						$(this).parents('.group').addClass('edit');
-					}
-				});
-			 $( ".amountIni"+index).val( $( "#slider"+index).slider( "values", 0 )+ "pts" );
-			 $( ".amountFin"+index).val( $( "#slider"+index).slider( "values", 1 ) + "pts" );
-		});
+		
+			var tipo_quiz_slider = $('#tipo_quiz').val();
+			var id_quiz_slider	 = $('#id_quiz').val();
+			$.ajax({
+				url: '../../perguntas/qtd_perguntas',
+				async: false,
+				data: {tipo:tipo_quiz_slider, id:id_quiz_slider},
+				success: function(data){
+					$('.group.salvo').each(function(index){
+						var de = $(this).find('.amountIni'+index).val();
+						var ate = $(this).find('.amountFin'+index).val();
+						$( "#slider"+index ).slider({
+							range: true,
+							min: 0,
+							max: data,
+							step: 10,
+							values: [ de, ate ],
+							slide: function( event, ui ) {
+								$( ".amountIni"+index ).val( ui.values[ 0 ]+ "pts");
+								$( ".amountFin"+index ).val( ui.values[ 1 ]+ "pts");
+							},
+							change: function(event, ui){
+								$(this).parents('.group').removeClass('edit');
+								$(this).parents('.group').addClass('edit');
+							}
+						});
+						$( ".amountIni"+index).val( $( "#slider"+index).slider( "values", 0 )+ "pts" );
+						$( ".amountFin"+index).val( $( "#slider"+index).slider( "values", 1 ) + "pts" );
+					 });
+				}
+			});
+			
+		
 		//Excluir BG Resultado
 		$('.excluir-bg-resultado').on('click', function(e){
 			e.preventDefault();

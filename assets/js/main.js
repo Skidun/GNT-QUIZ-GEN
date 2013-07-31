@@ -947,22 +947,31 @@ $(function(){
 		});
 	//Certo ou Errado > faixas de classificacao
 	/*calcula quantos sliders tem e imprime*/
-	var calculaSlider = $('.header').length;	
-	for(i=0 ; i<calculaSlider ; i++){
-		$( "#slider"+calculaSlider ).slider({
-				range: true,
-				min: 0,
-				max: 400,
-				step: 10,
-				values: [ 0, 10 ],
-				slide: function( event, ui ) {
-					$( ".amountIni"+calculaSlider ).val( ui.values[ 0 ]+ "pts");
-					$( ".amountFin"+calculaSlider ).val( ui.values[ 1 ]+ "pts");
-				}
-			});
-		 $( ".amountIni"+calculaSlider ).val( $( "#slider"+calculaSlider ).slider( "values", 0 )+ "pts" );
-		 $( ".amountFin"+calculaSlider ).val( $( "#slider"+calculaSlider ).slider( "values", 1 ) + "pts" );
-	 }
+	var tipo_quiz_slider = $('#tipo_quiz').val();
+	var id_quiz_slider	 = $('#id_quiz').val();
+	$.ajax({
+		url: '../../perguntas/qtd_perguntas',
+		async: false,
+		data: {tipo:tipo_quiz_slider, id:id_quiz_slider},
+		success: function(data){
+			var calculaSlider = $('.header').length;	
+			for(i=0 ; i<calculaSlider ; i++){
+				$( "#slider"+calculaSlider ).slider({
+						range: true,
+						min: 0,
+						max: data,
+						step: 10,
+						values: [ 0, 10 ],
+						slide: function( event, ui ) {
+							$( ".amountIni"+calculaSlider ).val( ui.values[ 0 ]+ "pts");
+							$( ".amountFin"+calculaSlider ).val( ui.values[ 1 ]+ "pts");
+						}
+					});
+				 $( ".amountIni"+calculaSlider ).val( $( "#slider"+calculaSlider ).slider( "values", 0 )+ "pts" );
+				 $( ".amountFin"+calculaSlider ).val( $( "#slider"+calculaSlider ).slider( "values", 1 ) + "pts" );
+			 }
+		}
+	});
 	 /*botao faixas de classificacao*/
 	$("#novaFaixa").click(function(){
 		$.ajax({
@@ -1007,19 +1016,28 @@ $(function(){
 						'</div>'+
 					'</div>');
 				/*novo slider*/
-				$( "#slider"+(tamanho+1) ).slider({
-							range: true,
-							min: 0,
-							max: 400,
-							step: 10,
-							values: [ 0, 10 ],
-							slide: function( event, ui ) {
-								$( ".amountIni"+(tamanho+1) ).val( ui.values[ 0 ]+" pts");
-								$( ".amountFin"+(tamanho+1) ).val( ui.values[ 1 ]+" pts");
-							}
-						});
-				 $( ".amountIni"+(tamanho+1) ).val( $( "#slider"+(tamanho+1) ).slider( "values", 0 ));
-				 $( ".amountFin"+(tamanho+1) ).val( $( "#slider"+(tamanho+1) ).slider( "values", 1 ));
+				var tipo_quiz_slider = $('#tipo_quiz').val();
+				var id_quiz_slider	 = $('#id_quiz').val();
+				$.ajax({
+					url: '../../perguntas/qtd_perguntas',
+					async: false,
+					data: {tipo:tipo_quiz_slider, id:id_quiz_slider},
+					success: function(data){
+						$( "#slider"+(tamanho+1) ).slider({
+									range: true,
+									min: 0,
+									max: data,
+									step: 10,
+									values: [ 0, 10 ],
+									slide: function( event, ui ) {
+										$( ".amountIni"+(tamanho+1) ).val( ui.values[ 0 ]+" pts");
+										$( ".amountFin"+(tamanho+1) ).val( ui.values[ 1 ]+" pts");
+									}
+								});
+						 $( ".amountIni"+(tamanho+1) ).val( $( "#slider"+(tamanho+1) ).slider( "values", 0 ));
+						 $( ".amountFin"+(tamanho+1) ).val( $( "#slider"+(tamanho+1) ).slider( "values", 1 ));
+					}
+				});		 
 				 
 				//coloca o novo elemento de accordion no esquema
 				$( "#accordion" ).accordion('destroy');
@@ -1054,13 +1072,13 @@ $(function(){
 				$('.excluir-dois').click(function(){ $(this).parents('.header').remove(); return false;});
 				
 				$('.group').find('input[name="nome"], input[name="nome-pergunta"]').focus(function(){
-					if(this.value == 'Pergunta'){
+					if(this.value == 'Título'){
 						this.value='';
 					}
 				});
 				$('.group').find('input[name="nome"], input[name="nome-pergunta"]').blur(function(){
 					if(this.value == ''){
-						this.value='Pergunta';
+						this.value='Título';
 					}
 				});
 				//Remove Imagens dos elementos
@@ -1088,6 +1106,12 @@ $(function(){
 								});
 							}
 						}
+					});
+				});
+				$(function(){
+					$('#accordion .header input[name="nome"], #accordion .header .input input[name="nome"], #accordion2 .header input[name="nome"], #accordion2 .header input[name="nome-pergunta"]').click(function(e){
+						//$(this).parents('.header').next('.body').slideDown();
+						e.stopPropagation();
 					});
 				});
 				return false;
@@ -1590,7 +1614,7 @@ $(document).ready(function(){
 
 //Impede o accordion de fechar quando clica no titulo
 $(function(){
-	$('#accordion .header input[name="nome"], #accordion2 .header input[name="nome"], #accordion2 .header input[name="nome-pergunta"]').click(function(e){
+	$('#accordion .header input[name="nome"], #accordion .header .input input[name="nome"], #accordion2 .header input[name="nome"], #accordion2 .header input[name="nome-pergunta"]').click(function(e){
 		//$(this).parents('.header').next('.body').slideDown();
 		e.stopPropagation();
 	});

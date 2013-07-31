@@ -20,6 +20,12 @@ class Resposta_model extends CI_Model {
         $this->db->where('id_quiz', $id);
         return $this->db->count_all_results($this->table);
     }
+
+    public function count_varias_corretas($id)
+    {
+        $this->db->where('id_quiz', $id)->where('perfil_resposta', 10);
+        return $this->db->count_all_results($this->table);
+    }
 	
 	public function get_all($pergunta_id)
     {                

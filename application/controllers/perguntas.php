@@ -611,6 +611,18 @@ class Perguntas extends CI_Controller {
 		#Chama a view dentro do template
 		$this->template->show('perguntas', $data);
 	}
+	//Action que retorna range final do slider de faixa
+	public function qtd_perguntas(){
+		$id 	= $this->input->get('id');
+		$tipo 	= $this->input->get('tipo');
+		if($tipo != 'resposta_certa'){
+			$quantidade = $this->pergunta_model->count_rows($id);
+			echo $quantidade*10;
+		}else{
+			$quantidade = $this->resposta_model->count_varias_corretas($id);
+			echo $quantidade*10;
+		} 
+	}
 }
 
 /* End of file perguntas.php */
