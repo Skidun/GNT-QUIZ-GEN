@@ -43,7 +43,7 @@
 							    <div class="slides-resultado">
 									<div id="texto">
 										<div class="titulo" style="font-size: <?php echo $customizacao['resultado_titulo_faixa_font_size'];?>;color: #<?php echo $customizacao['resultado_titulo_faixa_font_color'];?>; text-align:<?php echo $customizacao['resultado_titulo_faixa_align'];?>;"></div>								
-										<div class="saibaMais pontuacao" style="font-size: <?php echo $customizacao['resultado_porcentagem_font_size'];?>;color: #<?php echo $customizacao['resultado_porcentagem_font_color'];?>; text-align:<?php echo $customizacao['resultado_porcentagem_align'];?>;"></div>
+										<div class="saibaMais pontuacao" style="font-size: <?php echo $customizacao['resultado_porcentagem_font_size'];?>;color: <?php if($customizacao['resultado_porcentagem_font_color'] != ''){echo '#'.$customizacao['resultado_porcentagem_font_color'];}else{echo 'transparent';}?>; text-align:<?php echo $customizacao['resultado_porcentagem_align'];?>;"></div>
 										<div class="resultado">
 											<p class="descricao" style="font-size:<?php echo $customizacao['resultado_descricao_font_size'];?>; color:#<?php echo $customizacao['resultado_descricao_font_color']?>; text-align:<?php echo $customizacao['resultado_descricao_align'];?>;"></p>
 											<div class="saibaMais"><a href="#" target="_blank"  style="font-size: <?php echo $customizacao['resultado_linkref_font_size'];?>; color:#<?php echo $customizacao['resultado_linkref_font_color'];?>; text-align:<?php echo $customizacao['resultado_linkref_align'];?>;"></a></div>
