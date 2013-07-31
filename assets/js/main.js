@@ -224,7 +224,7 @@ $(function(){
 			'</div>');		
 		/*bota o accordion no esquema*/
 		$( "#accordion" ).accordion('destroy').sortable('destroy');		
-		$( "#accordion" ).accordion({active:($('.header').length-1),header: "> div > .header",heightStyle: "content"}).sortable({axis: "y",handle: ".header",stop: function( event, ui ) {ui.item.children( ".header" ).triggerHandler( "focusout" );}});
+		$( "#accordion" ).accordion({active:($('.header').length-1),header: "> div > .header",heightStyle: "content",collapsible: true}).sortable({axis: "y",handle: ".header",stop: function( event, ui ) {ui.item.children( ".header" ).triggerHandler( "focusout" );}});
 		/*tem que resetar o fileupload e chamar de novo*/		
 		$('.fileupload').bind('fileuploaddestroy');
 		$('.fileupload').each(function (index) {
@@ -365,7 +365,7 @@ $(function(){
 		$("#accordion2").accordion('destroy').sortable('destroy');
 		//$('select[name=perfil-resposta]').removeData("dropkick");
 		//$('#dk_container_perfil-resposta-'+id).remove();	
-		$("#accordion2").accordion({active:$("#accordion2 .sorteia").length-1,header:"> div > .header"}).sortable({axis:"y",handle:".header",stop:function(event,ui){ui.item.children(".header").triggerHandler("focusout")}});
+		$("#accordion2").accordion({active:$("#accordion2 .sorteia").length-1,header:"> div > .header",collapsible: true}).sortable({axis:"y",handle:".header",stop:function(event,ui){ui.item.children(".header").triggerHandler("focusout")}});
 		//coloca o novo select no esquema
 		$('select[name="perfil-resposta"]').dropkick();
 		//calcula quantos sortables tem e carrega
@@ -863,7 +863,7 @@ $(function(){
 						'</div>');
 					//coloca o novo elemento de accordion no esquema
 					$("#accordion2").accordion('destroy').sortable('destroy');
-					$("#accordion2").accordion({active:$("#accordion2 .sorteia").length-1,header:"> div > .header"}).sortable({axis:"y",handle:".header",stop:function(event,ui){ui.item.children(".header").triggerHandler("focusout")}});
+					$("#accordion2").accordion({active:$("#accordion2 .sorteia").length-1,header:"> div > .header",collapsible: true}).sortable({axis:"y",handle:".header",stop:function(event,ui){ui.item.children(".header").triggerHandler("focusout")}});
 					//coloca o novo radio no esquema
 					//$( "#radio"+(tamanho+1)+tamanho ).button();
 					//$( "#radio"+(tamanho+2)+tamanho ).button();
@@ -1025,7 +1025,8 @@ $(function(){
 				$( "#accordion" ).accordion('destroy');
 				$( "#accordion" ).accordion({
 					active: tamanho,
-					header: "> div > .header"			
+					header: "> div > .header",
+					collapsible: true
 				});
 				/*tem que resetar o fileupload e chamar de novo*/		
 					$('.fileupload').bind('fileuploaddestroy');
@@ -1170,7 +1171,7 @@ $(function(){
 						'</div>');
 					//coloca o novo elemento de accordion no esquema
 					$("#accordion2").accordion('destroy').sortable('destroy');
-					$("#accordion2").accordion({active:$("#accordion2 .sorteia").length-1,header:"> div > .header"}).sortable({axis:"y",handle:".header",stop:function(event,ui){ui.item.children(".header").triggerHandler("focusout")}});
+					$("#accordion2").accordion({active:$("#accordion2 .sorteia").length-1,header:"> div > .header",collapsible: true}).sortable({axis:"y",handle:".header",stop:function(event,ui){ui.item.children(".header").triggerHandler("focusout")}});
 					//coloca o novo radio no esquema
 					//$( "#radio0"+($(".sorteia").length-1) ).button();
 						//calcula quantos sortables tem e carrega
@@ -1324,7 +1325,7 @@ $(function(){
 						'</div>');
 					//coloca o novo elemento de accordion no esquema
 					$("#accordion2").accordion('destroy').sortable('destroy');
-					$("#accordion2").accordion({active:$("#accordion2 .sorteia").length-1,header:"> div > .header"}).sortable({axis:"y",handle:".header",stop:function(event,ui){ui.item.children(".header").triggerHandler("focusout")}});
+					$("#accordion2").accordion({active:$("#accordion2 .sorteia").length-1,header:"> div > .header",collapsible: true}).sortable({axis:"y",handle:".header",stop:function(event,ui){ui.item.children(".header").triggerHandler("focusout")}});
 					//coloca o novo checkbox no esquema
 					//$( "#checkbox0"+($(".sorteia").length-1) ).button();
 					//calcula quantos sortables tem e carrega
