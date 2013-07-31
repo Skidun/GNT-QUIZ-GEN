@@ -219,8 +219,23 @@
 									if($perguntas == NULL){
 								?>
 								<div class="titulo" style="font-size:<?php echo $customizacao['pergunta_quiz_font_size'];?>.'; color:#<?php echo $customizacao['pergunta_quiz_font_color'];?>; text-align:<?php echo $customizacao['pergunta_quiz_align'];?>;">Lorem ipsum dolor sit amet, consectetuer adipiscing elit.?</div>
-								
-								<table class="respostas">
+								<?php
+									switch ($customizacao['resposta_pergunta_align']) {
+										case 'left':
+											echo '<table class="respostas" style="font-size:'.$customizacao['resposta_pergunta_font_size'].'; color:#'.$customizacao['resposta_pergunta_font_color'].'; margin: 19px auto 19px 0px;">';
+										break;
+										case 'center':
+											echo '<table class="respostas" style="font-size:'.$customizacao['resposta_pergunta_font_size'].'; color:#'.$customizacao['resposta_pergunta_font_color'].'; margin: 19px auto;">';
+										break;
+										case 'right':
+											echo '<table class="respostas" style="font-size:'.$customizacao['resposta_pergunta_font_size'].'; color:#'.$customizacao['resposta_pergunta_font_color'].'; margin: 19px 0px 19px auto;">';
+										break;
+										case 'justify':
+											echo '<table class="respostas" style="font-size:'.$customizacao['resposta_pergunta_font_size'].'; color:#'.$customizacao['resposta_pergunta_font_color'].'; margin: 19px auto 19px 0px;">			
+											';
+										break;		
+									}				
+								?>
 									<?php 
 										if($respostas == NULL){
 											echo '
@@ -244,12 +259,12 @@
 										<?php if($tipo != 'resposta_certa'){?>
 										<tr>
 											<td><input type="radio" name="resposta" value="<?php echo $resposta->perfil_resposta;?>" /></td>
-											<td style="font-size:<?php echo $customizacao['resposta_pergunta_font_size'];?>; color:#<?php echo $customizacao['resposta_pergunta_font_color'];?>; text-align:<?php echo $customizacao['resposta_pergunta_align'];?>;"><?php echo $resposta->resposta;?></td>
+											<td style="font-size:<?php echo $customizacao['resposta_pergunta_font_size'];?>; color:#<?php echo $customizacao['resposta_pergunta_font_color'];?>;"><?php echo $resposta->resposta;?></td>
 										</tr>
 										<?php }else{?>
 										<tr>
 											<td><input type="checkbox" name="resposta" value="<?php echo $resposta->perfil_resposta;?>" /></td>
-											<td style="font-size:<?php echo $customizacao['resposta_pergunta_font_size'];?>; color:#<?php echo $customizacao['resposta_pergunta_font_color'];?>; text-align:<?php echo $customizacao['resposta_pergunta_align'];?>;"><?php echo $resposta->resposta;?></td>
+											<td style="font-size:<?php echo $customizacao['resposta_pergunta_font_size'];?>; color:#<?php echo $customizacao['resposta_pergunta_font_color'];?>;"><?php echo $resposta->resposta;?></td>
 										</tr>
 									<?php }endforeach;}?>
 								</table>								
@@ -260,7 +275,24 @@
 								?>
 								<div class="titulo" style="font-size:<?php echo $customizacao['pergunta_quiz_font_size'];?>; color:#<?php echo $customizacao['pergunta_quiz_font_color'];?>; text-align:<?php echo $customizacao['pergunta_quiz_align'];?>;"><?php echo $perguntas['pergunta'];?></div>
 								
-								<table class="respostas">
+								<?php
+									switch ($customizacao['resposta_pergunta_align']) {
+										case 'left':
+											echo '<table class="respostas" style="font-size:'.$customizacao['resposta_pergunta_font_size'].'; color:#'.$customizacao['resposta_pergunta_font_color'].'; margin: 19px auto 19px 0px;">			
+											';
+										break;
+										case 'center':
+											echo '<table class="respostas" style="font-size:'.$customizacao['resposta_pergunta_font_size'].'; color:#'.$customizacao['resposta_pergunta_font_color'].'; margin: 19px auto;">';
+										break;
+										case 'right':
+											echo '<table class="respostas" style="font-size:'.$customizacao['resposta_pergunta_font_size'].'; color:#'.$customizacao['resposta_pergunta_font_color'].'; margin: 19px 0px 19px auto;">';
+										break;
+										case 'justify':
+											echo '<table class="respostas" style="font-size:'.$customizacao['resposta_pergunta_font_size'].'; color:#'.$customizacao['resposta_pergunta_font_color'].'; margin: 19px auto 19px 0px;">			
+											';
+										break;		
+									}				
+								?>
 									<?php 
 										if($respostas == NULL){
 											echo '
@@ -284,12 +316,12 @@
 										<?php if($tipo != 'resposta_certa'){?>
 										<tr>
 											<td><input type="radio" name="resposta" value="<?php echo $resposta->perfil_resposta;?>" /></td>
-											<td style="font-size:<?php echo $customizacao['resposta_pergunta_font_size'];?>; color:#<?php echo $customizacao['resposta_pergunta_font_color'];?>; text-align:<?php echo $customizacao['resposta_pergunta_align'];?>;"><?php echo $resposta->resposta;?></td>
+											<td style="font-size:<?php echo $customizacao['resposta_pergunta_font_size'];?>; color:#<?php echo $customizacao['resposta_pergunta_font_color'];?>;"><?php echo $resposta->resposta;?></td>
 										</tr>
 										<?php }else{?>
 										<tr>
 											<td><input type="checkbox" name="resposta" value="<?php echo $resposta->perfil_resposta;?>" /></td>
-											<td style="font-size:<?php echo $customizacao['resposta_pergunta_font_size'];?>; color:#<?php echo $customizacao['resposta_pergunta_font_color'];?>; text-align:<?php echo $customizacao['resposta_pergunta_align'];?>;"><?php echo $resposta->resposta;?></td>
+											<td style="font-size:<?php echo $customizacao['resposta_pergunta_font_size'];?>; color:#<?php echo $customizacao['resposta_pergunta_font_color'];?>;"><?php echo $resposta->resposta;?></td>
 										</tr>
 									<?php }endforeach;}?>
 								</table>								
@@ -542,7 +574,7 @@
 								<?php 
 									if($tipo != 'perfil'){
 								?>								
-								<div class="acertos" style="font-size: <?php echo $customizacao['resultado_porcentagem_font_size'];?>;color: #<?php echo $customizacao['resultado_porcentagem_font_color'];?>; text-align:<?php echo $customizacao['resultado_porcentagem_align'];?>;">Você fez xx ponto(s).</div>
+								<div class="acertos" style="font-size: <?php echo $customizacao['resultado_porcentagem_font_size'];?>;color: <?php if($customizacao['resultado_porcentagem_font_color'] !=  ''){echo '#'.$customizacao['resultado_porcentagem_font_color'];}else{echo 'transparent';}?>; text-align:<?php echo $customizacao['resultado_porcentagem_align'];?>;">Você fez xx ponto(s).</div>
 								<?php
 									}
 								?>
