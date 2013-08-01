@@ -259,12 +259,12 @@
 										<?php if($tipo != 'resposta_certa'){?>
 										<tr>
 											<td><input type="radio" name="resposta" value="<?php echo $resposta->perfil_resposta;?>" /></td>
-											<td style="font-size:<?php echo $customizacao['resposta_pergunta_font_size'];?>; color:#<?php echo $customizacao['resposta_pergunta_font_color'];?>;"><?php echo $resposta->resposta;?></td>
+											<td><?php echo $resposta->resposta;?></td>
 										</tr>
 										<?php }else{?>
 										<tr>
 											<td><input type="checkbox" name="resposta" value="<?php echo $resposta->perfil_resposta;?>" /></td>
-											<td style="font-size:<?php echo $customizacao['resposta_pergunta_font_size'];?>; color:#<?php echo $customizacao['resposta_pergunta_font_color'];?>;"><?php echo $resposta->resposta;?></td>
+											<td><?php echo $resposta->resposta;?></td>
 										</tr>
 									<?php }endforeach;}?>
 								</table>								
