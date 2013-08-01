@@ -31,7 +31,7 @@
 									<div id="slider1"></div>
 								</div>
 								<div class="texto">
-									<label for="descricao">Descrição</label>
+									<label for="descricao">Descrição <div class="limite">Limite de caracteres:<span id="campospan" title="500">500</span></div></label>
 									<div class="textarea"><textarea name="descricao" cols="" rows=""></textarea></div>
 									<label for="link">Link de referência:</label>
 									<div class="input"><input type="text" name="link" value="http://" size="" /></div>
