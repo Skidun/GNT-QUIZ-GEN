@@ -518,9 +518,9 @@ var eventos_back = {
 						$( "#slider"+index ).slider({
 							range: true,
 							min: 0,
-							max: data,
-							step: 10,
-							values: [ de, ate ],
+							max: data/10,
+							step: 1,
+							values: [ de/10, ate/10 ],
 							slide: function( event, ui ) {
 								$( ".amountIni"+index ).val( ui.values[ 0 ]+ "pts");
 								$( ".amountFin"+index ).val( ui.values[ 1 ]+ "pts");
