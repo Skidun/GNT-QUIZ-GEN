@@ -583,8 +583,8 @@
 									<div class="saibaMais"><a href="<?php echo $perfis['link_referencia'];?>" style="font-size: <?php echo $customizacao['resultado_linkref_font_size'];?>; color:#<?php echo $customizacao['resultado_linkref_font_color'];?>; text-align:<?php echo $customizacao['resultado_linkref_align'];?>;"><?php echo $perfis['texto_link'];?></a></div>
 								
 									<div id="botoesResultado">
-										<a href="#" class="anterior" title="jogar novamente" style="color: #<?php echo $customizacao['resultado_botao_font_color'];?>;background-color: #<?php echo $customizacao['resultado_botao_bg_color'];?>;">&laquo; jogar novamente</a>
-										<a href="#" class="proximo" title="ver gabarito" style="color: #<?php echo $customizacao['resultado_botao_font_color'];?>;background-color: #<?php echo $customizacao['resultado_botao_bg_color'];?>;">ver gabarito</a>
+										<a href="#" class="anterior" title="jogar novamente" style="color: #<?php echo $customizacao['resultado_botao_font_color'];?>;background-color: <?php if($customizacao['resultado_botao_bg_color'] != ''){echo '#'.$customizacao['resultado_botao_bg_color'];}else{echo 'transparent';}?>;">&laquo; jogar novamente</a>
+										<a href="#" class="proximo" title="ver gabarito" style="color: #<?php echo $customizacao['resultado_botao_font_color'];?>;background-color: <?php if($customizacao['resultado_botao_bg_color'] != ''){echo '#'.$customizacao['resultado_botao_bg_color'];}else{echo 'transparent';}?>;">ver gabarito</a>
 									</div>
 								
 								</div>								
