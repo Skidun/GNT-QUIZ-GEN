@@ -24,14 +24,14 @@
 							</div>
 							<div class="body">
 								<!--O numero de identificacao do slider deve vir salvo do BD, o restante ele calcula dinamicamente para ser salvo-->
-								<div class="textoDoSlider">Considere a quantidade de respostas corretas como o valor total de pontos possíveis na faixa de classificação. 1 acerto = 10 pontos.</div>
+								<div class="textoDoSlider">Considere a quantidade de respostas corretas como o valor total de pontos possíveis na faixa de classificação. 1 acerto = 1 ponto.</div>
 								<div class="sliderHolder">
 									<input type="text" id="amountIni" class="amountIni1" readonly />
 									<input type="text" id="amountFin" class="amountFin1" readonly />		
 									<div id="slider1"></div>
 								</div>
 								<div class="texto">
-									<label for="descricao">Descrição</label>
+									<label for="descricao">Descrição <div class="limite">Limite de caracteres:<span id="campospan" title="500">500</span></div></label>
 									<div class="textarea"><textarea name="descricao" cols="" rows=""></textarea></div>
 									<label for="link">Link de referência:</label>
 									<div class="input"><input type="text" name="link" value="http://" size="" /></div>

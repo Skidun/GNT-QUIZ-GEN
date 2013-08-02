@@ -20,8 +20,8 @@ class Faixa extends CI_Controller {
 
 	public function save_faixa()
 	{
-		$data['range_de']		=	$this->input->get('range_de', true);
-		$data['range_ate']		=	$this->input->get('range_ate', true);
+		$data['range_de']		=	$this->input->get('range_de', true)*10;
+		$data['range_ate']		=	$this->input->get('range_ate', true)*10;
 		$data['titulo']			=	$this->input->get('titulo', 	true);
 		$data['descricao']		=	$this->input->get('descricao', true);
 		$data['link_referencia']=	$this->input->get('link_referencia', true);

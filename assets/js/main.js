@@ -959,9 +959,9 @@ $(function(){
 				$( "#slider"+calculaSlider ).slider({
 						range: true,
 						min: 0,
-						max: data,
-						step: 10,
-						values: [ 0, 10 ],
+						max: data/10,
+						step: 1,
+						values: [ 0, 1 ],
 						slide: function( event, ui ) {
 							$( ".amountIni"+calculaSlider ).val( ui.values[ 0 ]+ "pts");
 							$( ".amountFin"+calculaSlider ).val( ui.values[ 1 ]+ "pts");
@@ -989,7 +989,7 @@ $(function(){
 							'<span class="excluir excluir-um"></span>'+
 						'</div>'+
 						'<div class="body">'+
-							'<div class="textoDoSlider">Considere a quantidade de respostas corretas como o valor total de pontos possíveis na faixa de classificação. 1 acerto = 10 pontos.</div>'+
+							'<div class="textoDoSlider">Considere a quantidade de respostas corretas como o valor total de pontos possíveis na faixa de classificação. 1 acerto = 1 ponto.</div>'+
 							'<div class="sliderHolder">'+
 								'<input type="text" id="amountIni" class="amountIni'+(tamanho+1)+'" readonly/>'+
 								'<input type="text" id="amountFin" class="amountFin'+(tamanho+1)+'" readonly/>'+
@@ -1026,9 +1026,9 @@ $(function(){
 						$( "#slider"+(tamanho+1) ).slider({
 									range: true,
 									min: 0,
-									max: data,
-									step: 10,
-									values: [ 0, 10 ],
+									max: data/10,
+									step: 1,
+									values: [ 0, 1 ],
 									slide: function( event, ui ) {
 										$( ".amountIni"+(tamanho+1) ).val( ui.values[ 0 ]+" pts");
 										$( ".amountFin"+(tamanho+1) ).val( ui.values[ 1 ]+" pts");
@@ -1546,7 +1546,8 @@ $(document).ready(function(){
 							$('.loader').fadeOut();
 							$('.slides-resultado #texto .titulo').text(e.titulo);
 							if(tipo != 'perfil'){
-							$('.slides-resultado #texto .pontuacao').text("Você fez "+e.pontuacao+" ponto(s).");
+								var acertos = (e.pontuacao/10);
+							$('.slides-resultado #texto .pontuacao').text("Você fez "+acertos+" ponto(s).");
 							}
 							$('.slides-resultado #texto .resultado .descricao').text(e.descricao);
 							$('.slides-resultado #texto .resultado .saibaMais a').attr('href', e.link_referencia).text(e.texto_link);

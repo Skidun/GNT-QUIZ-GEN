@@ -21,7 +21,7 @@
 							</div>
 							<div class="body">
 								<div class="texto">
-									<label for="descricao">Descrição</label>
+									<label for="descricao">Descrição <div class="limite">Limite de caracteres:<span id="campospan" title="500">500</span></div></label>
 									<div class="textarea"><textarea name="descricao" id="descricao-perfil-0" cols="" rows=""></textarea></div>
 									<label for="link">Link de referência:</label>
 									<div class="input"><input type="text" name="link" id="link-perfil-0" value="http://" size="" /></div>
