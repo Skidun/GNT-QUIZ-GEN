@@ -41,6 +41,9 @@
 							<div id="nome" style="font-size: <?php echo $customizacao['resultado_titulo_quiz_font_size'];?>;color: #<?php echo $customizacao['resultado_titulo_quiz_font_color'];?>; text-align:<?php echo $customizacao['resultado_titulo_quiz_align'];?>;"><?php echo $titulo;?></div>
 							
 							    <div class="slides-resultado">
+									<div id="imagem" style="background: #fdd595;">
+										<img id="alvo-perguntas" src="" />
+									</div>								
 									<div id="texto">
 										<div class="titulo" style="font-size: <?php echo $customizacao['resultado_titulo_faixa_font_size'];?>;color: #<?php echo $customizacao['resultado_titulo_faixa_font_color'];?>; text-align:<?php echo $customizacao['resultado_titulo_faixa_align'];?>;"></div>								
 										<div class="saibaMais pontuacao" style="font-size: <?php echo $customizacao['resultado_porcentagem_font_size'];?>;color: <?php if($customizacao['resultado_porcentagem_font_color'] != ''){echo '#'.$customizacao['resultado_porcentagem_font_color'];}else{echo 'transparent';}?>; text-align:<?php echo $customizacao['resultado_porcentagem_align'];?>;"></div>
@@ -56,9 +59,6 @@
 											</div>
 										
 										</div>								
-									</div>
-									<div id="imagem" style="background: #fdd595;">
-										<img id="alvo-perguntas" src="" />
 									</div>
 							    </div>
 								
