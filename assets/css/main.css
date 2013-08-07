@@ -797,9 +797,9 @@ p {
 }
 #conteudo .item .body .preview #texto {
   color: #333333;
-  float: left;
+  float: right;
   width: 315px;
-  margin: 0 0 0 20px;
+  margin: 0 20px 0 0;
 }
 #conteudo .item .body .preview #texto .acertos {
   font-family: 'Conv_Amaranth';
@@ -878,8 +878,8 @@ p {
   height: 260px;
   background: #fdd595;
   overflow: hidden;
-  float: right;
-  margin: 2px 16px 0 0;
+  float: left;
+  margin: 2px 0 0 16px;
 }
 #conteudo .item .body .preview #imagem img {
   width: 240px;
@@ -1667,9 +1667,9 @@ p {
   margin: 13px 19px;
 }
 #quizVisualizacao #texto{
-  float: left;
+  float: right;
   width: 315px;
-  margin: 0 0 0 20px;
+  margin: 0 20px 0 0;
 }
 #quizVisualizacao .titulo{
   font-family: 'Conv_Amaranth';
@@ -1692,8 +1692,8 @@ p {
 }
 #quizVisualizacao #imagem{
   overflow: hidden;
-  float: right;
-  margin: 2px 16px 0 0;
+  float: left;
+  margin: 2px 0 0 16px;
 }
 #quizVisualizacao #botoes{
   float: left;

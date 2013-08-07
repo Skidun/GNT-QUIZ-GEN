@@ -214,6 +214,9 @@
 							<div id="previewPerguntas" class="preview" style="background-image:<?php if($customizacao['quiz_bg_img'] == ""){ echo 'none'; }else{ echo "url('".base_url()."assets/server/php/files/".$customizacao['quiz_bg_img']."')"; } ?>; background-repeat:<?php echo $customizacao['quiz_bg_img_repeat']; ?>; background-position-x:<?php echo $customizacao['quiz_bg_img_align_horizontal']; ?>; background-position-y:<?php echo $customizacao['quiz_bg_img_align_vertical']; ?>; background-color: #<?php echo $customizacao['quiz_bg_color'] ?>; ">
 						<?php }?>	
 							<div id="nome" style="font-size:<?php echo $customizacao['titulo_quiz_font_size'];?>; color:#<?php echo $customizacao['titulo_quiz_font_color'];?>; text-align:<?php echo $customizacao['titulo_quiz_align'];?>;"><?php  echo $titulo;?></div>
+							<div id="imagem">
+								<img id="alvo-pergunta" src="<?php if($perguntas == NULL){echo base_url()."assets/img/backgrounds/imagem2.png";}else{echo $perguntas['imagem'];}?>" />
+							</div>
 							<div id="texto">
 								<?php
 									if($perguntas == NULL){
@@ -328,9 +331,6 @@
 								
 								<div class="subtitulo" style="font-size: <?php echo $customizacao['link_ref_pergunta_align'];?>;"><a href="<?php echo $perguntas['link_referencia'];?>" target="_blank" style="font-size:<?php echo $customizacao['link_ref_pergunta_font_size'];?>; color:#<?php echo $customizacao['link_ref_pergunta_font_color'];?>;"><?php echo $perguntas['texto_link'];?></a></div>
 								<?php }?>
-							</div>
-							<div id="imagem">
-								<img id="alvo-pergunta" src="<?php if($perguntas == NULL){echo base_url()."assets/img/backgrounds/imagem2.png";}else{echo $perguntas['imagem'];}?>" />
 							</div>
 							<div id="botoes">
 								<a href="#" class="anterior" title="Anterior" style="color:#<?php echo $customizacao['botao_perguntas_font_color'];?>; background-color:#<?php echo $customizacao['botao_perguntas_bg_color'];?>;">&laquo; Anterior</a>
@@ -569,6 +569,10 @@
 							<?php 
 								if($perfis != null){
 							?>
+							<div id="imagem" style="margin-bottom: 10px;">
+								<!--<img id="alvo--" src="<?php echo base_url();?>assets/img/backgrounds/imagem2.png" />-->
+								<img id="alvo--" src="<?php echo $perfis['imagem'];?>" />
+							</div>							
 							<div id="texto">
 								<div class="titulo" style="font-size: <?php echo $customizacao['resultado_titulo_faixa_font_size'];?>;color: #<?php echo $customizacao['resultado_titulo_faixa_font_color'];?>; text-align:<?php echo $customizacao['resultado_titulo_faixa_align'];?>;"><?php echo $perfis['titulo'];?></div>
 								<?php 
@@ -589,13 +593,12 @@
 								
 								</div>								
 							</div>
-							<div id="imagem" style="margin-bottom: 10px;">
-								<!--<img id="alvo--" src="<?php echo base_url();?>assets/img/backgrounds/imagem2.png" />-->
-								<img id="alvo--" src="<?php echo $perfis['imagem'];?>" />
-							</div>
 							<?php
 								}else{
 							?>
+							<div id="imagem">
+								<img id="alvo--" src="<?php echo base_url();?>assets/img/backgrounds/imagem2.png" />
+							</div>							
 							<div id="texto">
 								<div class="titulo">Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</div>								
 								<div class="resultado">
@@ -609,9 +612,6 @@
 									</div>
 								
 								</div>								
-							</div>
-							<div id="imagem">
-								<img id="alvo--" src="<?php echo base_url();?>assets/img/backgrounds/imagem2.png" />
 							</div>
 							<?php }?>	
 
