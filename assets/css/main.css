@@ -669,6 +669,9 @@ p {
   font-size: 15px;
   color: #666666;
 }
+#conteudo .sorteia .header .input .ponto-resposta-enquete {
+  width: 756px;
+}
 #conteudo #perguntas,
 #conteudo #respostas {
   float: left;
@@ -843,7 +846,6 @@ p {
 #conteudo .item .body .preview #texto .resultado .saibaMais a {
   color: #333333;
   font-size: 15px;
-  text-decoration: underline;
 }
 #conteudo .item .body .preview #texto #botoesResultado {
   float: left;
@@ -1661,6 +1663,7 @@ p {
   float: left;
   width: 620px;
   height: 400px;
+  position: relative;
 }
 #quizVisualizacao #nome{
   font-family: 'Conv_Amaranth-Bold';
@@ -1679,7 +1682,6 @@ p {
 #quizVisualizacao .subtitulo{
   font-family: 'Conv_Amaranth-Italic';  
   line-height: 120%;
-  text-decoration: underline;
 }
 #quizVisualizacao .respostas{
   font-family: 'Conv_Amaranth';
@@ -1700,7 +1702,7 @@ p {
   width: 580px;
   margin: 20px;
   bottom: 0;
-  position:fixed;
+  position:absolute;
 }
 #quizVisualizacao #botoes a{
   width: 110px;
@@ -1749,7 +1751,7 @@ p {
   margin: 0 0 20px 0;
   width: 280px;
   bottom: 0;
-  position: fixed;
+  position: absolute;
 }
 #quizVisualizacao #botoesResultado a{
   height: 40px;

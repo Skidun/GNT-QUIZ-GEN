@@ -141,22 +141,25 @@ class Quiz extends CI_Controller {
 		        	case 'perfil':
 		        		//$this->session->set_flashdata('id_quiz', $id);
 		        		redirect("quiz_tipo/perfil/".$id);
-		        		break;
+		        	break;
 		        	
 		        	case 'certo-ou-errado':
 		        		//$this->session->set_flashdata('id_quiz', $id);
 		        		redirect('perguntas/certo-ou-errado/'.$id);
-		        		break;
+		        	break;
 		        	
 		        	case 'resposta_certa':
 		        		$this->session->set_flashdata('id_quiz', $id);
 		        		redirect('perguntas/resposta_certa/'.$id);
-		        		break;
+		        	break;
 
 		        	case 'apenas_uma':
 		        		$this->session->set_flashdata('id_quiz', $id);
 		        		redirect('perguntas/apenas_uma/'.$id);
-		        		break;		
+		        	break;
+		        	case 'enquete':
+		        		redirect('perguntas/enquete/'.$id);
+		        	break;				
 		        }
 			}
 		}
@@ -220,7 +223,7 @@ class Quiz extends CI_Controller {
 										}							
 						$respostas					= $this->resposta_model->get_all($pergunta->id);
 						foreach($respostas->result() as $resposta):
-							if($resposta->tipo_resposta != 'resposta_certa'){				
+							if($resposta->tipo_resposta != 'resposta_certa' && $resposta->tipo_resposta !='enquete'){				
 								$html_perguntas.='
 													<tr>
 														<td><input type="radio" name="resposta'.$count_resposta.'" value="'.$resposta->perfil_resposta.'" /></td>

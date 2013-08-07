@@ -316,7 +316,7 @@
 										}else{
 										foreach($respostas as $resposta):
 									?>
-										<?php if($tipo != 'resposta_certa'){?>
+										<?php if($tipo != 'resposta_certa' && $tipo != 'enquete'){?>
 										<tr>
 											<td><input type="radio" name="resposta" value="<?php echo $resposta->perfil_resposta;?>" /></td>
 											<td><?php echo $resposta->resposta;?></td>

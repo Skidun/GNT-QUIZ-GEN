@@ -46,6 +46,7 @@ $route['quiz_tipo/certo-ou-errado/(:num)']= 'quiz_tipo/faixa/$1';
 $route['quiz_tipo/resposta_certa/(:num)']= 'quiz_tipo/faixa/$1';
 $route['customizacao/certo-ou-errado/(:num)']= 'customizacao/faixa/$1';
 $route['customizacao/resposta_certa/(:num)']= 'customizacao/faixa/$1';
+$route['customizacao/enquete/(:num)']		= 'customizacao/faixa/$1';
 $route['visualizacao/certo-ou-errado/(:num)']= 'visualizacao/faixa/$1';
 $route['visualizacao/resposta_certa/(:num)']= 'visualizacao/faixa/$1';
 $route['remover-faixa/(:num)']= 'faixa/remove_faixa/$1';
