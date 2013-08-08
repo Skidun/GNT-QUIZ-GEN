@@ -16,15 +16,15 @@ class Quiz extends CI_Controller {
 	{
 		parent::__construct();
 		//Carregar o Model Quiz
-		if(!$this->session->userdata('logado')){
-			redirect('login');
-		}
 		$this->load->model('faixa_model');
 	}
 	
 	public function index()
 	{
 		$this->all();
+		if(!$this->session->userdata('logado')){
+			redirect('login');
+		}
 	}
 
 	public function all($de_paginacao=0)
@@ -95,6 +95,9 @@ class Quiz extends CI_Controller {
             
         $data['html_paginacao'] = $this->pagination->create_links();
 		
+		if(!$this->session->userdata('logado')){
+			redirect('login');
+		}
 
 		$this->template->show('home', $data);
 
@@ -102,12 +105,20 @@ class Quiz extends CI_Controller {
 	//Chama view que Cria novo view
 	public function create()
 	{
+		if(!$this->session->userdata('logado')){
+			redirect('login');
+		}
+
 		$data['page_title'] = "Cadastrar Novo Quiz";
-		$this->template->show('create_quiz', $data);
+		$this->template->show('create_quiz', $data);		
 	}
 	//Chama view que edita o Quiz
 	public function edit($id)
 	{
+		if(!$this->session->userdata('logado')){
+			redirect('login');
+		}
+
 		$data['page_title'] = "Editar Quiz $id";
 		$data = $this->quiz_model->get($id);
 		$this->template->show('edit_quiz', $data);
@@ -115,6 +126,10 @@ class Quiz extends CI_Controller {
 	//Salva o Quiz cadastrado no banco de dados
 	public function save()
 	{
+		if(!$this->session->userdata('logado')){
+			redirect('login');
+		}
+
 		$this->form_validation->set_rules('titulo', 'Titulo', 'trim|required|max_length[140]|xss_clean');
 		
 		if(!$this->form_validation->run()){
@@ -167,6 +182,9 @@ class Quiz extends CI_Controller {
 	//Faz update do quiz
 	public function update()
 	{
+		if(!$this->session->userdata('logado')){
+			redirect('login');
+		}
 		$this->form_validation->set_rules('titulo', 'Titulo', 'trim|required|max_length[140]|xss_clean');
 		$data['titulo'] 		= $this->input->post('titulo', TRUE);
 		$data['data_alteracao'] = date('Y-m-d H:i:s');

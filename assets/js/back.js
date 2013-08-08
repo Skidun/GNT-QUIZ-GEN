@@ -519,7 +519,7 @@ var eventos_back = {
 							min: 0,
 							max: data/10,
 							step: 1,
-							values: [ de, ate ],
+							values: [ de, ate],
 							slide: function( event, ui ) {
 								$( ".amountIni"+index ).val( ui.values[ 0 ]+ "pts");
 								$( ".amountFin"+index ).val( ui.values[ 1 ]+ "pts");
@@ -529,8 +529,8 @@ var eventos_back = {
 								$(this).parents('.group').addClass('edit');
 							}
 						});
-						$( ".amountIni"+index).val( $( "#slider"+index).slider( "values", 0 )+ "pts" );
-						$( ".amountFin"+index).val( $( "#slider"+index).slider( "values", 1 ) + "pts" );
+							$(this).find( ".amountIni"+index ).val( de/10 + "pts" );
+				 			$(this).find( ".amountFin"+index ).val( ate/10 + "pts" );
 					 });
 				}
 			});

@@ -5,23 +5,26 @@ class Perguntas extends CI_Controller {
 	public function __construct()
 	{
 		parent::__construct();
-
-		if(!$this->session->userdata('logado')){
-			redirect('login');
-		}
 	}
 
 	public function index()
 	{
+		if(!$this->session->userdata('logado')){
+			redirect('login');
+		}
 		redirect('visualizar-todos-quizes');
 	}
 
 	public function perfil($id)
 	{
+		if(!$this->session->userdata('logado')){
+			redirect('login');
+		}
 		#Resgata informações do quiz de acordo com seu ID que é passado como 3º segmento da URL
 		#Também pega os perfis cadastrados para aquele quiz
 		#Seta algumas variáveis em branco que serão populadas após o loop da consulta
 		#Pega as perguntas que já estão salvas no banco
+
 		$data  			= $this->quiz_model->get($id);
 		$perfis 		= $this->perfil_model->get_all($id);
 		$option_perfil 	= '';
@@ -122,6 +125,9 @@ class Perguntas extends CI_Controller {
 	#Método que salva a pergunta do tipo perfil
 	public function save_pergunta_perfil()
 	{
+		if(!$this->session->userdata('logado')){
+			redirect('login');
+		}
 		$data['pergunta'] 		 = $this->input->get('texto', true);
 		$data['link_referencia'] = $this->input->get('link_referencia', true);
 		$data['texto_link'] 	 = $this->input->get('texto_link', true);
@@ -143,6 +149,9 @@ class Perguntas extends CI_Controller {
 	#Método que atualiza as perguntas
 	public function update_pergunta_perfil()
 	{
+		if(!$this->session->userdata('logado')){
+			redirect('login');
+		}
 		$id 					 = $this->input->get('id_pergunta', true);
 		$data['pergunta'] 		 = $this->input->get('texto', true);
 		$data['link_referencia'] = $this->input->get('link_referencia', true);
@@ -165,6 +174,9 @@ class Perguntas extends CI_Controller {
 	#Método que remove a pergunta
 	public function remove_pergunta($id)
 	{
+		if(!$this->session->userdata('logado')){
+			redirect('login');
+		}
 		#Se caso a imagem não for a padrão ele precisa remove-la do servidor
 		if($this->input->get('imagem', true)){
 			@$img_perfil	 = explode(',',$this->input->get('imagem'));
@@ -194,6 +206,9 @@ class Perguntas extends CI_Controller {
 	#####################################################################
 	public function faixa($id)
 	{
+		if(!$this->session->userdata('logado')){
+			redirect('login');
+		}
 		#Resgata informações do quiz de acordo com seu ID que é passado como 3º segmento da URL
 		#Também pega os perfis cadastrados para aquele quiz
 		#Seta algumas variáveis em branco que serão populadas após o loop da consulta
@@ -310,6 +325,9 @@ class Perguntas extends CI_Controller {
 
 	public function apenas_uma($id)
 	{
+		if(!$this->session->userdata('logado')){
+			redirect('login');
+		}
 		#Resgata informações do quiz de acordo com seu ID que é passado como 3º segmento da URL
 		#Também pega os perfis cadastrados para aquele quiz
 		#Seta algumas variáveis em branco que serão populadas após o loop da consulta
@@ -427,6 +445,9 @@ class Perguntas extends CI_Controller {
 	#Método que salva a pergunta do tipo Certo ou Errado
 	public function save_pergunta_certo_ou_errado()
 	{
+		if(!$this->session->userdata('logado')){
+			redirect('login');
+		}
 		$data['pergunta'] 		 = $this->input->get('texto', true);
 		$data['link_referencia'] = $this->input->get('link_referencia', true);
 		$data['texto_link'] 	 = $this->input->get('texto_link', true);
@@ -448,6 +469,9 @@ class Perguntas extends CI_Controller {
 	#Método que atualiza as perguntas
 	public function update_pergunta_certo_ou_errado()
 	{
+		if(!$this->session->userdata('logado')){
+			redirect('login');
+		}
 		$id 					 = $this->input->get('id_pergunta', true);
 		$data['pergunta'] 		 = $this->input->get('texto', true);
 		$data['link_referencia'] = $this->input->get('link_referencia', true);
@@ -470,6 +494,9 @@ class Perguntas extends CI_Controller {
 	#Método que remove a pergunta
 	public function remove_pergunta_ce($id)
 	{
+		if(!$this->session->userdata('logado')){
+			redirect('login');
+		}
 		#Se caso a imagem não for a padrão ele precisa remove-la do servidor
 		if($this->input->get('imagem', true)){
 			@$img_perfil	 = explode(',',$this->input->get('imagem'));
@@ -496,6 +523,9 @@ class Perguntas extends CI_Controller {
 
 	public function resposta_certa($id)
 	{
+		if(!$this->session->userdata('logado')){
+			redirect('login');
+		}
 		#Resgata informações do quiz de acordo com seu ID que é passado como 3º segmento da URL
 		#Também pega os perfis cadastrados para aquele quiz
 		#Seta algumas variáveis em branco que serão populadas após o loop da consulta
@@ -614,6 +644,9 @@ class Perguntas extends CI_Controller {
 	//Action Perguntas do Tipo Enquete
 	public function enquete($id)
 	{
+		if(!$this->session->userdata('logado')){
+			redirect('login');
+		}
 		#Resgata informações do quiz de acordo com seu ID que é passado como 3º segmento da URL
 		#Também pega os perfis cadastrados para aquele quiz
 		#Seta algumas variáveis em branco que serão populadas após o loop da consulta
@@ -733,14 +766,14 @@ class Perguntas extends CI_Controller {
 		if($tipo != 'resposta_certa'){
 			if($tipo == 'enquete'){
 				$quantidade = $this->resposta_model->count_varias_corretas($id);
-				echo $quantidade;
+				echo $quantidade*10;
 			}else{
 				$quantidade = $this->pergunta_model->count_rows($id);
-				echo $quantidade;
+				echo $quantidade*10;
 			}
 		}else{
 			$quantidade = $this->resposta_model->count_varias_corretas($id);
-			echo $quantidade;
+			echo $quantidade*10;
 		} 
 	}
 }

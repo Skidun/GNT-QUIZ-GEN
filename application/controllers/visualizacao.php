@@ -6,15 +6,15 @@ class Visualizacao extends CI_Controller {
 	{
 		parent::__construct();
 
-		if(!$this->session->userdata('logado')){
-			redirect('login');
-		}
 		$this->load->model('faixa_model');
 	}
 
 	public function index()
 	{
 		redirect('visualizar-todos-quizes');
+		if(!$this->session->userdata('logado')){
+			redirect('login');
+		}
 	}
 
 	public function perfil($id)
@@ -32,6 +32,10 @@ class Visualizacao extends CI_Controller {
 			redirect('perguntas/perfil/'.$id);
 		}
 		$this->template->show('visualizador', $data);
+
+		if(!$this->session->userdata('logado')){
+			redirect('login');
+		}
 	}
 	//Gera o resultado do tipo perfil
 	public function resultado_perfil()
@@ -86,6 +90,9 @@ class Visualizacao extends CI_Controller {
 					break;
 			}
 		}
+		if(!$this->session->userdata('logado')){
+			redirect('login');
+		}
 		$this->template->show('visualizador', $data);
 	}
 	#Action que chama a visualização do quiz de tipo Enquete
@@ -117,6 +124,9 @@ class Visualizacao extends CI_Controller {
 					redirect('perguntas/enquete/'.$id);
 					break;
 			}
+		}
+		if(!$this->session->userdata('logado')){
+			redirect('login');
 		}
 		$this->template->show('visualizador', $data);
 	}
@@ -184,6 +194,9 @@ class Visualizacao extends CI_Controller {
 			redirect('quiz_tipo/apenas_uma/'.$id);
 		}elseif($perguntas == NULL || $respostas == NULL){
 			redirect('perguntas/apenas_uma/'.$id);
+		}
+		if(!$this->session->userdata('logado')){
+			redirect('login');
 		}
 		$this->template->show('visualizador', $data);
 	}
