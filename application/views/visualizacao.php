@@ -53,7 +53,7 @@
 										
 											<div id="botoesResultado">
 												<a href="#" class="anterior" title="jogar novamente" style="color: #<?php echo $customizacao['resultado_botao_font_color'];?>;background-color: <?php if($customizacao['resultado_botao_bg_color'] != ''){echo '#'.$customizacao['resultado_botao_bg_color'];}else{echo 'transparent';}?>;">&laquo; jogar novamente</a>
-												<?php if($tipo != 'perfil'):?>
+												<?php if($tipo != 'perfil' && $tipo != 'enquete'):?>
 													<a href="#" class="proximo" title="ver gabarito" style="color: #<?php echo $customizacao['resultado_botao_font_color'];?>;background-color: <?php if($customizacao['resultado_botao_bg_color'] != ''){echo '#'.$customizacao['resultado_botao_bg_color'];}else{echo 'transparent';}?>;">ver gabarito</a>
 												<?php endif;?>
 											</div>
