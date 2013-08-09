@@ -529,8 +529,10 @@ var eventos_back = {
 								$(this).parents('.group').addClass('edit');
 							}
 						});
-							//$(this).find( ".amountIni"+index ).val( de/10 );
-				 			//$(this).find( ".amountFin"+index ).val( ate/10 );
+						//$( ".amountIni"+index ).val( $( "#slider"+index ).slider( "values", 0 ));
+				 		//$( ".amountFin"+index ).val( $( "#slider"+index ).slider( "values", 1 ));
+						$(this).find( ".amountIni"+index ).val( de/10 );
+				 		$(this).find( ".amountFin"+index ).val( ate/10 );
 					 });
 				}
 			});
