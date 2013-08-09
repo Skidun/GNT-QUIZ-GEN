@@ -155,7 +155,7 @@ class Quiz_tipo extends CI_Controller {
 							</div>
 							<div class="body">
 								<!--O numero de identificacao do slider deve vir salvo do BD, o restante ele calcula dinamicamente para ser salvo-->
-								<div class="textoDoSlider">Considere a quantidade de respostas corretas como o valor total de pontos possíveis na faixa de classificação. 1 acerto = 1 ponto.</div>
+								<div class="textoDoSlider">Considere a quantidade de respostas corretas.</div>
 								<div class="sliderHolder">
 									<input type="text" id="amountIni" class="amountIni'.$count.'" value="'.$faixa->range_de.'" readonly />
 									<input type="text" id="amountFin" class="amountFin'.$count.'" value="'.$faixa->range_ate.'" readonly />		
@@ -227,7 +227,7 @@ class Quiz_tipo extends CI_Controller {
 							</div>
 							<div class="body">
 								<!--O numero de identificacao do slider deve vir salvo do BD, o restante ele calcula dinamicamente para ser salvo-->
-								<div class="textoDoSlider">Considere a quantidade de respostas corretas como o valor total de pontos possíveis na faixa de classificação. 1 acerto = 1 ponto.</div>
+								<div class="textoDoSlider">Considere a quantidade de respostas corretas.</div>
 								<div class="sliderHolder">
 									<input type="text" id="amountIni" class="amountIni'.$count.'" value="'.$faixa->range_de.'" readonly />
 									<input type="text" id="amountFin" class="amountFin'.$count.'" value="'.$faixa->range_ate.'" readonly />		
@@ -299,7 +299,7 @@ class Quiz_tipo extends CI_Controller {
 							</div>
 							<div class="body">
 								<!--O numero de identificacao do slider deve vir salvo do BD, o restante ele calcula dinamicamente para ser salvo-->
-								<div class="textoDoSlider">Considere a quantidade de respostas corretas como o valor total de pontos possíveis na faixa de classificação. 1 acerto = 1 ponto.</div>
+								<div class="textoDoSlider">Considere a quantidade de respostas corretas.</div>
 								<div class="sliderHolder">
 									<input type="text" id="amountIni" class="amountIni'.$count.'" value="'.$faixa->range_de.'" readonly />
 									<input type="text" id="amountFin" class="amountFin'.$count.'" value="'.$faixa->range_ate.'" readonly />		

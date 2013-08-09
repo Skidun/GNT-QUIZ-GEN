@@ -273,7 +273,6 @@ class Perguntas extends CI_Controller {
 					$list_perguntas		.=	'			
 																<div class="header">
 																	<span class="icon"></span>
-																	<a href="'.site_url('remover-resposta').'/'.$resposta->id.'" class="excluir excluir-dois" rel="'.$resposta->id_quiz.'"></a>
 																	<div class="input">
 																		<input type="text" name="nome-resposta" id="nome-resposta-'.$count_resp.'" value="'.$resposta->resposta.'" size="" />
 																		<input type="hidden" name="id-resposta" id="id-resposta-'.$count_resp.'" value="'.$resposta->id.'"/>

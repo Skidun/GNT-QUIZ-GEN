@@ -68,7 +68,8 @@
 												?>
 														<div class="header">
 															<span class="icon"></span>
-															<a class="excluir excluir-dois"></a>
+															
+															<!-- <a class="excluir excluir-dois"></a> -->
 															<div class="input"><input type="text" name="nome-resposta" id="nome-resposta-0" value="" size="" /></div>
 															<div class="radio">
 																<!-- <label for="radio00" class="radioCustom"></label> -->
@@ -79,7 +80,7 @@
 
 														<div class="header">
 															<span class="icon"></span>
-															<a class="excluir excluir-dois"></a>
+															<!-- <a class="excluir excluir-dois"></a> -->
 															<div class="input"><input type="text" name="nome-resposta" id="nome-resposta-0" value="" size="" /></div>
 															<div class="radio">
 																<!-- <label for="radio10" class="radioCustom"></label> -->

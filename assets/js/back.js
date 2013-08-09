@@ -521,16 +521,16 @@ var eventos_back = {
 							step: 1,
 							values: [ de, ate],
 							slide: function( event, ui ) {
-								$( ".amountIni"+index ).val( ui.values[ 0 ]+ "pts");
-								$( ".amountFin"+index ).val( ui.values[ 1 ]+ "pts");
+								$( ".amountIni"+index ).val( ui.values[ 0 ]);
+								$( ".amountFin"+index ).val( ui.values[ 1 ]);
 							},
 							change: function(event, ui){
 								$(this).parents('.group').removeClass('edit');
 								$(this).parents('.group').addClass('edit');
 							}
 						});
-							$(this).find( ".amountIni"+index ).val( de/10 + "pts" );
-				 			$(this).find( ".amountFin"+index ).val( ate/10 + "pts" );
+							//$(this).find( ".amountIni"+index ).val( de/10 );
+				 			//$(this).find( ".amountFin"+index ).val( ate/10 );
 					 });
 				}
 			});

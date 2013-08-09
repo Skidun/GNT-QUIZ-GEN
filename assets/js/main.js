@@ -963,12 +963,12 @@ $(function(){
 						step: 1,
 						values: [ 0, 1 ],
 						slide: function( event, ui ) {
-							$( ".amountIni"+calculaSlider ).val( ui.values[ 0 ]+ "pts");
-							$( ".amountFin"+calculaSlider ).val( ui.values[ 1 ]+ "pts");
+							$( ".amountIni"+calculaSlider ).val( ui.values[ 0 ]);
+							$( ".amountFin"+calculaSlider ).val( ui.values[ 1 ]);
 						}
 					});
-				 $( ".amountIni"+calculaSlider ).val( $( "#slider"+calculaSlider ).slider( "values", 0 )+ "pts" );
-				 $( ".amountFin"+calculaSlider ).val( $( "#slider"+calculaSlider ).slider( "values", 1 ) + "pts" );
+				 $( ".amountIni"+calculaSlider ).val( $( "#slider"+calculaSlider ).slider( "values", 0 ));
+				 $( ".amountFin"+calculaSlider ).val( $( "#slider"+calculaSlider ).slider( "values", 1 ));
 			 }
 		}
 	});
@@ -989,7 +989,7 @@ $(function(){
 							'<span class="excluir excluir-um"></span>'+
 						'</div>'+
 						'<div class="body">'+
-							'<div class="textoDoSlider">Considere a quantidade de respostas corretas como o valor total de pontos possíveis na faixa de classificação. 1 acerto = 1 ponto.</div>'+
+							'<div class="textoDoSlider">Considere a quantidade de respostas corretas.</div>'+
 							'<div class="sliderHolder">'+
 								'<input type="text" id="amountIni" class="amountIni'+(tamanho+1)+'" readonly/>'+
 								'<input type="text" id="amountFin" class="amountFin'+(tamanho+1)+'" readonly/>'+
@@ -1030,8 +1030,8 @@ $(function(){
 									step: 1,
 									values: [ 0, 1 ],
 									slide: function( event, ui ) {
-										$( ".amountIni"+(tamanho+1) ).val( ui.values[ 0 ]+" pts");
-										$( ".amountFin"+(tamanho+1) ).val( ui.values[ 1 ]+" pts");
+										$( ".amountIni"+(tamanho+1) ).val( ui.values[ 0 ]);
+										$( ".amountFin"+(tamanho+1) ).val( ui.values[ 1 ]);
 									}
 								});
 						 $( ".amountIni"+(tamanho+1) ).val( $( "#slider"+(tamanho+1) ).slider( "values", 0 ));
@@ -1564,7 +1564,7 @@ $(document).ready(function(){
 							if(tipo != 'perfil'){
 								if(tipo == 'enquete'){
 									var acertos = e.pontuacao;
-									$('.slides-resultado #texto .pontuacao').text("Seu nível de conhecimento do assunto é de "+acertos+" %.");
+									$('.slides-resultado #texto .pontuacao').text(acertos+" %.");
 								}else{
 									var acertos = (e.pontuacao/10);
 									$('.slides-resultado #texto .pontuacao').text("Você fez "+acertos+" ponto(s).");
