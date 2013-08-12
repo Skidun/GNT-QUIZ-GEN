@@ -963,12 +963,12 @@ $(function(){
 						step: 1,
 						values: [ 0, 1 ],
 						slide: function( event, ui ) {
-							$( ".amountIni"+calculaSlider ).val( ui.values[ 0 ]+ "pts");
-							$( ".amountFin"+calculaSlider ).val( ui.values[ 1 ]+ "pts");
+							$( ".amountIni"+calculaSlider ).val( ui.values[ 0 ]);
+							$( ".amountFin"+calculaSlider ).val( ui.values[ 1 ]);
 						}
 					});
-				 $( ".amountIni"+calculaSlider ).val( $( "#slider"+calculaSlider ).slider( "values", 0 )+ "pts" );
-				 $( ".amountFin"+calculaSlider ).val( $( "#slider"+calculaSlider ).slider( "values", 1 ) + "pts" );
+				 $( ".amountIni"+calculaSlider ).val( $( "#slider"+calculaSlider ).slider( "values", 0 ));
+				 $( ".amountFin"+calculaSlider ).val( $( "#slider"+calculaSlider ).slider( "values", 1 ));
 			 }
 		}
 	});
@@ -989,7 +989,7 @@ $(function(){
 							'<span class="excluir excluir-um"></span>'+
 						'</div>'+
 						'<div class="body">'+
-							'<div class="textoDoSlider">Considere a quantidade de respostas corretas como o valor total de pontos possíveis na faixa de classificação. 1 acerto = 1 ponto.</div>'+
+							'<div class="textoDoSlider">Considere a quantidade de respostas corretas.</div>'+
 							'<div class="sliderHolder">'+
 								'<input type="text" id="amountIni" class="amountIni'+(tamanho+1)+'" readonly/>'+
 								'<input type="text" id="amountFin" class="amountFin'+(tamanho+1)+'" readonly/>'+
@@ -1030,8 +1030,8 @@ $(function(){
 									step: 1,
 									values: [ 0, 1 ],
 									slide: function( event, ui ) {
-										$( ".amountIni"+(tamanho+1) ).val( ui.values[ 0 ]+" pts");
-										$( ".amountFin"+(tamanho+1) ).val( ui.values[ 1 ]+" pts");
+										$( ".amountIni"+(tamanho+1) ).val( ui.values[ 0 ]);
+										$( ".amountFin"+(tamanho+1) ).val( ui.values[ 1 ]);
 									}
 								});
 						 $( ".amountIni"+(tamanho+1) ).val( $( "#slider"+(tamanho+1) ).slider( "values", 0 ));
@@ -1283,6 +1283,8 @@ $(function(){
 		$(this).parent().find('.sorteia').append('<div class="header novo"><span class="icon"></span><a class="excluir excluir-dois"></a><div class="input"><input type="text" name="nome-resposta" value="" size=""/></div><div class="checkbox"><input type="checkbox" id="checkbox'+grupoNumero+respostaNumero+'" value="0" name="grupo'+respostaNumero+'"/> Esta é a resposta correta</div></div>');
 		//coloca o novo checkbox no esquema
 		//$( "#checkbox"+grupoNumero+respostaNumero ).button();
+		$(this).parents('.group').removeClass('edit');
+		$(this).parents('.group').addClass('edit');
 		$('.group').each(function(index){
 			$(this).find('input:checkbox').on('click', function(){
 				$('input:checkbox').val(0)
@@ -1428,8 +1430,22 @@ $(function(){
 				}
 		});		
 	});
+	/*botao nova resposta*/
+	$(document).on('click','#nova-resposta-enquete',function(){
+		//gera uma combinacao unica de numero para o novo select[name], assim não dá conflito
+		//por exemplo, resposta-21, é o select do grupo 2(#sortable2) e o segundo select desse grupo
+		var respostaNumero = $(this).parent().find('.sorteia').attr('id').slice(-1);
+		var grupoNumero = $(this).parent().find(".header").length;
+		$(this).parent().find('.sorteia').append('<div class="header novo"><span class="icon"></span><a class="excluir excluir-dois"></a><div class="input"><input type="text" name="nome-resposta" class="ponto-resposta-enquete" value="" size=""/></div><input type="hidden" id="checkbox'+grupoNumero+respostaNumero+'" value="10" name="grupo'+respostaNumero+'"/></div>');
+		$(this).parents('.group').removeClass('edit');
+		$(this).parents('.group').addClass('edit');
+		$('.excluir-dois').click(function(){ $(this).parents('.header').remove(); return false;});
+
+		return false;
+	});
 	
 });
+
 /*Calcula o tamanho do Iframe*/
 jQuery.fn.alturaIframe = function(){
 	return this.each(function(){
@@ -1520,7 +1536,7 @@ $(document).ready(function(){
 
 			$('.loader').show();
 
-			if($('#tipo-quiz').val() != 'resposta_certa'){
+			if($('#tipo-quiz').val() != 'resposta_certa' && $('#tipo-quiz').val() != 'enquete'){
 				$('input:radio:checked').each(function(){
 					//resposta.push(this);
 					resposta.push($(this).val());
@@ -1546,8 +1562,13 @@ $(document).ready(function(){
 							$('.loader').fadeOut();
 							$('.slides-resultado #texto .titulo').text(e.titulo);
 							if(tipo != 'perfil'){
-								var acertos = (e.pontuacao/10);
-							$('.slides-resultado #texto .pontuacao').text("Você fez "+acertos+" ponto(s).");
+								if(tipo == 'enquete'){
+									var acertos = e.pontuacao;
+									$('.slides-resultado #texto .pontuacao').text(acertos+" %.");
+								}else{
+									var acertos = (e.pontuacao/10);
+									$('.slides-resultado #texto .pontuacao').text("Você fez "+acertos+" ponto(s).");
+								}
 							}
 							$('.slides-resultado #texto .resultado .descricao').text(e.descricao);
 							$('.slides-resultado #texto .resultado .saibaMais a').attr('href', e.link_referencia).text(e.texto_link);

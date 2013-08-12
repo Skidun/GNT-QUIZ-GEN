@@ -22,6 +22,7 @@
 										<option value="certo-ou-errado">Certo ou Errado</option>
 										<option value="resposta_certa">Várias respostas certas</option>
 										<option value="apenas_uma">Apenas uma resposta correta</option>
+										<option value="enquete">Enquete</option>
 									</select>
 									</div>
 								</td>

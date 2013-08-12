@@ -504,7 +504,6 @@ var eventos_back = {
 		});
 
 		//Slider de faixas já existentes
-		
 			var tipo_quiz_slider = $('#tipo_quiz').val();
 			var id_quiz_slider	 = $('#id_quiz').val();
 			$.ajax({
@@ -520,18 +519,20 @@ var eventos_back = {
 							min: 0,
 							max: data/10,
 							step: 1,
-							values: [ de/10, ate/10 ],
+							values: [ de, ate],
 							slide: function( event, ui ) {
-								$( ".amountIni"+index ).val( ui.values[ 0 ]+ "pts");
-								$( ".amountFin"+index ).val( ui.values[ 1 ]+ "pts");
+								$( ".amountIni"+index ).val( ui.values[ 0 ]);
+								$( ".amountFin"+index ).val( ui.values[ 1 ]);
 							},
 							change: function(event, ui){
 								$(this).parents('.group').removeClass('edit');
 								$(this).parents('.group').addClass('edit');
 							}
 						});
-						$( ".amountIni"+index).val( $( "#slider"+index).slider( "values", 0 )+ "pts" );
-						$( ".amountFin"+index).val( $( "#slider"+index).slider( "values", 1 ) + "pts" );
+						//$( ".amountIni"+index ).val( $( "#slider"+index ).slider( "values", 0 ));
+				 		//$( ".amountFin"+index ).val( $( "#slider"+index ).slider( "values", 1 ));
+						$(this).find( ".amountIni"+index ).val( de/10 );
+				 		$(this).find( ".amountFin"+index ).val( ate/10 );
 					 });
 				}
 			});
@@ -910,7 +911,11 @@ var eventos_back = {
 								$(box_resposta).each(function(index_resp){
 									var resposta 	= $(this).find('.input input[name="nome-resposta"]').val(), ordem_resp = index_resp;
 									if(tipo_quiz != 'resposta_certa'){
-										var certa_ou_errada = $(this).find('input:radio').val();	
+										if(tipo_quiz == 'enquete'){
+											var certa_ou_errada = 10;
+										}else{
+											var certa_ou_errada = $(this).find('input:radio').val();
+										}		
 									}else{
 										var certa_ou_errada = $(this).find('input:checkbox').val();
 									}
@@ -955,7 +960,12 @@ var eventos_back = {
 					$(box_resposta).each(function(index_resp){
 						var resposta = $(this).find('.input input[name="nome-resposta"]').val(), id_resposta = $(this).find('.input input[name="id-resposta"]').val(),  perfil_resposta = $(this).find('select[name=perfil-resposta]').val();
 						if(tipo_quiz != 'resposta_certa'){
-							var certa_ou_errada = $(this).find('input:radio').val();	
+							if(tipo_quiz == 'enquete'){
+								var certa_ou_errada = 10;
+							}else{
+								var certa_ou_errada = $(this).find('input:radio').val();
+							}
+								
 						}else{
 							var certa_ou_errada = $(this).find('input:checkbox').val();
 						}
@@ -1064,11 +1074,11 @@ var eventos_back = {
 			url: '../../quiz/show_base_url',
 			async: false,
 			success: function(base_url){
-				$('.group').each(function(indexs){
+				$('.group').each(function(index){
 					//Variáveis dos campos que serão salvos
 					var titulo 	   = $(this).find('input[name="nome"]').val(), descricao = $(this).find('textarea[name="descricao"]').val(), link = $(this).find('input[name="link"]').val();
 					var texto_link = $(this).find('input[name="texto"]').val(), campo_imagem 	= $(this).find('img#alvo').attr('src');
-					var range_inicial = $(this).find('#amountIni').val(), range_final = $(this).find('#amountFin').val();
+					var range_inicial = $(this).find('#amountIni').val(), range_final = $(this).find('#amountFin').val(), ordem = index;
 					var id_faixa = $(this).find('#id-faixa').val();
 					//Verifica se a imagem se foi ou não feito upload de uma nova imagem
 					if(campo_imagem == base_url+'assets/img/backgrounds/imagem.png'){
@@ -1087,7 +1097,7 @@ var eventos_back = {
 							$.ajax({
 								url: base_url+'faixa/save_faixa',
 								async: false,
-								data: {range_de:range_inicial, range_ate:range_final, titulo:titulo, descricao:descricao, link_referencia:link, texto_link:texto_link, imagem:imagem, id_quiz:id_quiz},
+								data: {range_de:range_inicial, range_ate:range_final, titulo:titulo, descricao:descricao, link_referencia:link, texto_link:texto_link, imagem:imagem, ordem:ordem, id_quiz:id_quiz},
 								success: function(e){
 									if(e == 'sucesso'){
 										console.log('Faixa cadastrada com sucesso');
@@ -1099,7 +1109,7 @@ var eventos_back = {
 							$.ajax({
 								url: base_url+'faixa/update_faixa/'+id_faixa,
 								async: false,
-								data: {range_de:range_inicial, range_ate:range_final, titulo:titulo, descricao:descricao, link_referencia:link, texto_link:texto_link, imagem:imagem, id_quiz:id_quiz},
+								data: {range_de:range_inicial, range_ate:range_final, titulo:titulo, descricao:descricao, link_referencia:link, texto_link:texto_link, imagem:imagem, ordem:ordem, id_quiz:id_quiz},
 								success: function(e){
 									if(e == 'sucesso'){
 										console.log('Faixa cadastrada com sucesso');
