@@ -27,6 +27,7 @@ class Faixa extends CI_Controller {
 		$data['link_referencia']=	$this->input->get('link_referencia', true);
 		$data['texto_link']		=	$this->input->get('texto_link', true);
 		$data['imagem']			=	$this->input->get('imagem', true);
+		$data['ordem']			= 	$this->input->get('ordem');
 		$data['id_quiz']		=	$this->input->get('id_quiz', true);
 
 		$create = $this->faixa_model->create($data);
@@ -39,13 +40,14 @@ class Faixa extends CI_Controller {
 
 	public function update_faixa($id)
 	{
-		$data['range_de']		=	$this->input->get('range_de', true);
-		$data['range_ate']		=	$this->input->get('range_ate', true);
+		$data['range_de']		=	$this->input->get('range_de', true)*10;
+		$data['range_ate']		=	$this->input->get('range_ate', true)*10;
 		$data['titulo']			=	$this->input->get('titulo', 	true);
 		$data['descricao']		=	$this->input->get('descricao', true);
 		$data['link_referencia']=	$this->input->get('link_referencia', true);
 		$data['texto_link']		=	$this->input->get('texto_link', true);
 		$data['imagem']			=	$this->input->get('imagem', true);
+		$data['ordem']			=	$this->input->get('ordem', true);
 		$data['id_quiz']		=	$this->input->get('id_quiz', true);
 
 		$update = $this->faixa_model->update($id, $data);

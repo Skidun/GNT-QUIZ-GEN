@@ -68,7 +68,8 @@
 												?>
 														<div class="header">
 															<span class="icon"></span>
-															<a class="excluir excluir-dois"></a>
+															
+															<!-- <a class="excluir excluir-dois"></a> -->
 															<div class="input"><input type="text" name="nome-resposta" id="nome-resposta-0" value="" size="" /></div>
 															<div class="radio">
 																<!-- <label for="radio00" class="radioCustom"></label> -->
@@ -79,7 +80,7 @@
 
 														<div class="header">
 															<span class="icon"></span>
-															<a class="excluir excluir-dois"></a>
+															<!-- <a class="excluir excluir-dois"></a> -->
 															<div class="input"><input type="text" name="nome-resposta" id="nome-resposta-0" value="" size="" /></div>
 															<div class="radio">
 																<!-- <label for="radio10" class="radioCustom"></label> -->
@@ -133,6 +134,23 @@
 															Esta é a resposta correta
 														</div>
 													</div>
+												<?php 
+													break;
+													case 'enquete':
+												?>
+													<div class="header">
+														<span class="icon"></span>
+														<span class="excluir excluir-dois"></span>
+														<div class="input"><input type="text" name="nome-resposta" class="ponto-resposta-enquete" value="" size="" /></div>
+														<input type="hidden" id="checkbox00" value="10" name="grupo0" />
+													</div>
+													
+													<div class="header">
+														<span class="icon"></span>
+														<span class="excluir excluir-dois"></span>
+														<div class="input"><input type="text" name="nome-resposta" class="ponto-resposta-enquete" value="" size="" /></div>
+														<input type="hidden" id="checkbox10" value="10" name="grupo0" />
+													</div>
 										
 												<?php 
 													break;
@@ -150,6 +168,9 @@
 											case 'resposta_certa':
 												echo '<a id="nova-resposta-variasRespostas" class="nova-resposta" href="javascript:void(0)"></a>';
 											break;
+											case 'enquete':
+												echo '<a id="nova-resposta-enquete" class="nova-resposta" href="javascript:void(0)"></a>';
+											break;	
 										}
 									?>
 								</div><!--respostas-->

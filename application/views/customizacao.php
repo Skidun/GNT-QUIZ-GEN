@@ -316,7 +316,7 @@
 										}else{
 										foreach($respostas as $resposta):
 									?>
-										<?php if($tipo != 'resposta_certa'){?>
+										<?php if($tipo != 'resposta_certa' && $tipo != 'enquete'){?>
 										<tr>
 											<td><input type="radio" name="resposta" value="<?php echo $resposta->perfil_resposta;?>" /></td>
 											<td><?php echo $resposta->resposta;?></td>
@@ -587,8 +587,8 @@
 									<div class="saibaMais"><a href="<?php echo $perfis['link_referencia'];?>" style="font-size: <?php echo $customizacao['resultado_linkref_font_size'];?>; color:#<?php echo $customizacao['resultado_linkref_font_color'];?>; text-align:<?php echo $customizacao['resultado_linkref_align'];?>;"><?php echo $perfis['texto_link'];?></a></div>
 								
 									<div id="botoesResultado">
-										<a href="#" class="anterior" title="jogar novamente" style="color: #<?php echo $customizacao['resultado_botao_font_color'];?>;background-color: #<?php echo $customizacao['resultado_botao_bg_color'];?>;">&laquo; jogar novamente</a>
-										<a href="#" class="proximo" title="ver gabarito" style="color: #<?php echo $customizacao['resultado_botao_font_color'];?>;background-color: #<?php echo $customizacao['resultado_botao_bg_color'];?>;">ver gabarito</a>
+										<a href="#" class="anterior" title="jogar novamente" style="color: #<?php echo $customizacao['resultado_botao_font_color'];?>;background-color: <?php if($customizacao['resultado_botao_bg_color'] != ''){echo '#'.$customizacao['resultado_botao_bg_color'];}else{echo 'transparent';}?>;">&laquo; jogar novamente</a>
+										<a href="#" class="proximo" title="ver gabarito" style="color: #<?php echo $customizacao['resultado_botao_font_color'];?>;background-color: <?php if($customizacao['resultado_botao_bg_color'] != ''){echo '#'.$customizacao['resultado_botao_bg_color'];}else{echo 'transparent';}?>;">ver gabarito</a>
 									</div>
 								
 								</div>								
@@ -596,6 +596,9 @@
 							<?php
 								}else{
 							?>
+							<div id="imagem">
+								<img id="alvo--" src="<?php echo base_url();?>assets/img/backgrounds/imagem2.png" />
+							</div>							
 							<div id="texto">
 								<div class="titulo">Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</div>								
 								<div class="resultado">
@@ -609,9 +612,6 @@
 									</div>
 								
 								</div>								
-							</div>
-							<div id="imagem">
-								<img id="alvo--" src="<?php echo base_url();?>assets/img/backgrounds/imagem2.png" />
 							</div>
 							<?php }?>	
 
