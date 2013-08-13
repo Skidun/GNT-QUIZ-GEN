@@ -841,20 +841,18 @@ $(function(){
 									'<div id="sortable'+tamanho+'" class="sorteia">'+
 										'<div class="header">'+
 											'<span class="icon"></span>'+
-											'<a class="excluir excluir-dois"></a>'+
 											'<div class="input"><input type="text" name="nome-resposta" id="" value="" size=""/></div>'+
 											'<div class="radio">'+
 												'<!--<label for="radio'+(tamanho+1)+tamanho+'" class="radioCustom"></label>-->'+
-												'<input type="radio" id="radio'+(tamanho+1)+tamanho+'" value="0" name="grupo'+tamanho+'"/>Esta é a resposta correta'+
+												'<input type="radio" id="radio'+(tamanho+1)+tamanho+'" value="0" name="grupo'+tamanho+'"/> Esta é a resposta correta'+
 											'</div>'+
 										'</div>'+
 										'<div class="header">'+
 											'<span class="icon"></span>'+
-											'<a class="excluir excluir-dois"></a>'+
 											'<div class="input"><input type="text" name="nome-resposta" value="" size=""/></div>'+
 											'<div class="radio">'+
 												'<!--<label for="radio'+(tamanho+2)+tamanho+'" class="radioCustom"></label>-->'+
-												'<input type="radio" id="radio'+(tamanho+2)+tamanho+'" value="" name="grupo'+tamanho+'"/>Esta é a resposta correta'+
+												'<input type="radio" id="radio'+(tamanho+2)+tamanho+'" value="" name="grupo'+tamanho+'"/> Esta é a resposta correta'+
 											'</div>'+
 										'</div>'+
 									'</div>'+

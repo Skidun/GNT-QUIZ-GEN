@@ -1703,6 +1703,8 @@ p {
   margin: 20px;
   bottom: 0;
   position:absolute;
+  display: none;
+
 }
 #quizVisualizacao #botoes a{
   width: 110px;
@@ -1729,6 +1731,14 @@ p {
   margin:0 auto;
   width:620px;
   position:relative;
+  display: none;
+}
+#slideshow .loader{
+  text-align:center;
+  top: 190px;
+  left: 245px;
+  display: block;
+  position: absolute;
 }
 #slideshow #slidesContainer .slide, #slideshow #slidesContainer .slide-resultado {
   margin:0 auto;

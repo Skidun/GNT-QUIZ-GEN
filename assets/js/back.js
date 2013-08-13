@@ -581,6 +581,10 @@ var eventos_back = {
 				}
 			});
 		});
+
+	//Loader Visualizar Quiz
+	$('#slideshow #slidesContainer, #quizVisualizacao #botoes').delay(3000).fadeIn(1000);
+	$('#slideshow .loader').fadeOut(4000);	
 		
 	},	
 

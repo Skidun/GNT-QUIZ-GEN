@@ -14,6 +14,9 @@
 							    <?php echo $perguntas;?>
 
 								</div>
+								<div class="loader">
+									<img src="<?php echo base_url();?>assets/img/ajax-loader.gif" />								
+								</div>
 							</div>
 							<!-- Slideshow HTML -->
 
