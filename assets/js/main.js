@@ -1623,7 +1623,7 @@ $(document).ready(function(){
 									  $('#quizVisualizacao.resultados').show();
 									  $('#botoes').remove();			
 								});								
-							
+								$('#botoes').show();
 							});
 						}
 					});
