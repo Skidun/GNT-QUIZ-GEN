@@ -61,7 +61,7 @@ class Quiz_tipo extends CI_Controller {
 								<div class="imagem">
 									<label for="imagem">Imagem relacionada:<span>Dimensões: 240px x 260px<br />Formatos: JPG, PNG e GIF<br />Tamanho: 1MB<br />Nomes sem acentos e caracteres especiais</span></label>
 									
-									<form class="fileupload" action="'.site_url('assets/server/php/').'" method="POST" enctype="multipart/form-data">
+									<form class="fileupload" action="../../assets/server/php/" method="POST" enctype="multipart/form-data">
 										<div class="quadro"><img id="alvo-'.$count.'" src="'.$perfil->imagem.'" name="imagem" /></div>
 										<span class="btn btn-success fileinput-button">
 											<input id="file" type="file" id="" />
